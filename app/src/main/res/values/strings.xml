@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">PassLive</string>
+
+    //Option menu
+    <string name="option_all">Todas</string>
+    <string name="option_setting">Ajustes</string>
+    <string name="option_exit">Salir</string>
+
+    //Drawer menu
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+    //Floating Button
+
+    <string name="add_password">Agregar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_password">Add_Password</string>
+
+    
+    //Add password design
+    <string name="EtTittle">Título</string>
+    <string name="EtAccount">Cuenta</string>
+    <string name="EtUsername">Nombre de usuario</string>
+    <string name="EtPassword">Contraseña</string>
+    <string name="EtWebsites">Sitio Web</string>
+    <string name="EtNote">Nota</string>
+
+
+    //Add password menu
+    <string name="save_password">Guardar</string>
+
+    //ID proof
+    <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="id_production">ca-app-pub-2936215461830489~5293704997</string>
+</resources>
