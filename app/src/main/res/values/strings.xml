@@ -31,6 +31,14 @@
     //Add password menu
     <string name="save_password">Guardar</string>
 
+    //Item password
+    <string name="Item_tittle">Título</string>
+    <string name="Item_account" >Cuenta</string>
+    <string name="Item_username">Nombre de usuario</string>
+    <string name="Item_password">Contraseña</string>
+    <string name="Item_websites">Sitio web</string>
+    <string name="Item_note">Nota</string>
+
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>
     <string name="id_production">ca-app-pub-2936215461830489~5293704997</string>
