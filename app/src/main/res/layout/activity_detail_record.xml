@@ -19,8 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="12dp"
-        tools:ignore="ExtraText">
+        android:layout_marginTop="10dp">
 
         // Texto
         <TextView
@@ -44,6 +43,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
             android:background="@color/black"/>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     //Cuenta
@@ -86,8 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="12dp"
-            tools:ignore="ExtraText">
+            android:layout_marginTop="12dp">
 
             // Texto
             <TextView
@@ -119,8 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="12dp"
-            tools:ignore="ExtraText">
+            android:layout_marginTop="12dp">
 
             // Texto
             <TextView
@@ -129,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -140,8 +139,11 @@
                 android:text="@string/D_Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:textStyle="italic"
                 android:textSize="15sp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             //Linea para mejorar diseño
             <View
@@ -157,8 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="12dp"
-            tools:ignore="ExtraText">
+            android:layout_marginTop="12dp">
 
             // Texto
             <TextView
@@ -167,19 +168,34 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
             //Datos
             <TextView
                 android:id="@+id/D_Websites"
-                android:text="@string/D_Websites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
+                android:text="@string/D_Websites"
                 android:textSize="15sp"/>
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/Img_web"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@null"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"/>
+
             </RelativeLayout>
+
+
 
             //Linea para mejorar diseño
             <View
@@ -189,16 +205,49 @@
                 android:background="@color/black"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    //Nota
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        //Texto
+        <TextView
+            android:text="@string/Txt_D_Note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        //Datos
+        <TextView
+            android:id="@+id/D_Note"
+            android:text="@string/D_Note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#000"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     //Tiempo de registro
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="12dp"
-            tools:ignore="ExtraText">
+            android:layout_marginTop="12dp">
 
             // Texto
             <TextView
+                android:id="@+id/D_RecordTime"
                 android:text="@string/Txt_D_RecordTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -226,8 +275,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="12dp"
-            tools:ignore="ExtraText">
+            android:layout_marginTop="12dp"/>
 
             // Texto
             <TextView
@@ -238,7 +286,7 @@
                 android:textSize="18sp"/>
             //Datos
             <TextView
-                android:id="@+id/D_UpodateTime"
+                android:id="@+id/D_UpdateTime"
                 android:text="@string/D_UpdateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

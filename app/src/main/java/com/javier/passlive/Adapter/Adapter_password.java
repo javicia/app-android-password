@@ -1,6 +1,7 @@
 package com.javier.passlive.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.javier.passlive.Detail.Detail_record;
 import com.javier.passlive.Model.Password;
 import com.javier.passlive.R;
 
@@ -56,7 +58,10 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         @Override
         //Cuando el usuario presione el item
         public void onClick(View v) {
-
+            Intent intent = new Intent(context, Detail_record.class);
+            //Enviamos el dato id a la actividad Detail_record
+                    intent.putExtra("Id_registro", id);
+                    context.startActivity(intent);
         }
     });
     holder.ImgB_option.setOnClickListener(new View.OnClickListener() {

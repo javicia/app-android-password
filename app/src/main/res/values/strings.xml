@@ -62,6 +62,8 @@
     <string name="D_Password">--</string>
     <string name="Txt_D_Websites">Sitio web: </string>
     <string name="D_Websites">--</string>
+    <string name="Txt_D_Note">Notas: </string>
+    <string name="D_Note">--</string>
     <string name="Txt_D_RecordTime">Tiempo de registro: </string>
     <string name="D_RecordTime">--</string>
     <string name="Txt_D_UpdateTime">Tiempo de actualización: </string>

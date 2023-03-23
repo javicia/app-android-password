@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 <item
-    android:id="@+id/option_all"
+    android:id="@+id/Option_all"
     android:title="@string/option_all"
     android:icon="@drawable/icon_all"
     />
     <item
-        android:id="@+id/option_setting"
+        android:id="@+id/Option_setting"
         android:title="@string/option_setting"
         android:icon="@drawable/icon_setting"
         />
     <item
-        android:id="@+id/option_exit"
+        android:id="@+id/Option_exit"
         android:title="@string/option_exit"
         android:icon="@drawable/icon_exit"
         />
