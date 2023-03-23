@@ -1,5 +1,6 @@
 package com.javier.passlive.Password_Option;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.javier.passlive.BBDD.BBDDHelper;
+import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
 public class Add_Password extends AppCompatActivity {
@@ -58,6 +60,8 @@ public class Add_Password extends AppCompatActivity {
                     "" + password,"" + websites,   "" + note,
                     ""+ time, ""+ time);
             Toast.makeText(this, "Se ha guardado con éxito: "+id, Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Add_Password.this, MainActivity.class));
+            finish();
         }
         else {
             EtTittle.setError("Campo Obligatorio");

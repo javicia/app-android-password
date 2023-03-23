@@ -13,7 +13,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_password"
         android:paddingBottom="30dp"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false"
+        tools:ignore="MissingClass" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnadd_password"
@@ -25,6 +26,6 @@
         android:src="@drawable/icon_add"
         android:layout_margin="10dp"
         android:contentDescription="@string/add_password"
-        />
+        tools:ignore="MissingClass" />
 
 </RelativeLayout>

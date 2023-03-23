@@ -38,6 +38,18 @@
     <string name="Item_password">Contraseña</string>
     <string name="Item_websites">Sitio web</string>
     <string name="Item_note">Nota</string>
+    
+    
+    //Menu Fragment_All
+    
+    <string name="menu_Record_number">Número de registros</string>
+    <string name="menu_Record_seach">Buscar registros</string>
+
+    // Dialog box
+
+    <string name="TxtTotal">Total de registros</string>
+    <string name="Total">--</string>
+    <string name="Fully_Undertood">Entendido</string>
 
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>

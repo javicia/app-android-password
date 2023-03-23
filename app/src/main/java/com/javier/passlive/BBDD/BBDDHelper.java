@@ -70,7 +70,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
     public ArrayList<Password> GetAllrecord(String orderby){
     ArrayList<Password> passwordList = new ArrayList<>();
     //Creamos consulta para seleccionar el registro
-        String selectQuery = "SELECT * FROM " + Constans.TABLE_NAME + "ORDER BY " + orderby;
+        String selectQuery = "SELECT * FROM " + Constans.TABLE_NAME + " ORDER BY " + orderby;
 
         SQLiteDatabase db = this.getWritableDatabase();
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
@@ -94,6 +94,46 @@ public class BBDDHelper extends SQLiteOpenHelper {
         }
         db.close();
         return passwordList;
+    }
+    //Método para buscar registros
+    public ArrayList<Password> search_Records(String consultation){
+        ArrayList<Password> passwordList = new ArrayList<>();
+        //Creamos consulta para seleccionar el registro
+        String selectQuery = "SELECT * FROM " + Constans.TABLE_NAME + " WHERE " + Constans.C_TITTLE +
+                " LIKE '%" + consultation + "%'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Recorremos todos los registros de la BD para que se puedan añadir a la lista
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor.moveToFirst()){
+            do {
+                @SuppressLint("Range") Password model_password = new Password(
+                        "" + cursor.getInt(cursor.getColumnIndex(Constans.C_ID)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_TITTLE)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_ACCOUNT)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_USERNAME)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_PASSWORD)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_WEBSITES)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_NOTES)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME)));
+
+                passwordList.add(model_password);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return passwordList;
+    }
+//Obtenemos el total de registros de la BBDD
+    public int GetRecordNumber(){
+        String countquery = "SELECT * FROM " + Constans.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countquery, null);
+
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
 
     }
