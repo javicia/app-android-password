@@ -18,7 +18,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_password">Add_Password</string>
 
-    
+
     //Add password design
     <string name="EtTittle">Título</string>
     <string name="EtAccount">Cuenta</string>
@@ -33,15 +33,15 @@
 
     //Item password
     <string name="Item_tittle">Título</string>
-    <string name="Item_account" >Cuenta</string>
+    <string name="Item_account">Cuenta</string>
     <string name="Item_username">Nombre de usuario</string>
     <string name="Item_password">Contraseña</string>
     <string name="Item_websites">Sitio web</string>
     <string name="Item_note">Nota</string>
-    
-    
+
+
     //Menu Fragment_All
-    
+
     <string name="menu_Record_number">Número de registros</string>
     <string name="menu_Record_seach">Buscar registros</string>
 
@@ -51,7 +51,33 @@
     <string name="Total">--</string>
     <string name="Fully_Undertood">Entendido</string>
 
+    // Record Detail
+    <string name="Txt_D_Tittle">Título: </string>
+    <string name="D_Tittle">--</string>
+    <string name="Txt_D_Account">Cuenta: </string>
+    <string name="D_Account">--</string>
+    <string name="Txt_D_Username">Nombre de usuario: </string>
+    <string name="D_Username">--</string>
+    <string name="Txt_D_Password">Contraseña: </string>
+    <string name="D_Password">--</string>
+    <string name="Txt_D_Websites">Sitio web: </string>
+    <string name="D_Websites">--</string>
+    <string name="Txt_D_RecordTime">Tiempo de registro: </string>
+    <string name="D_RecordTime">--</string>
+    <string name="Txt_D_UpdateTime">Tiempo de actualización: </string>
+    <string name="D_UpdateTime">--</string>
+
+
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>
     <string name="id_production">ca-app-pub-2936215461830489~5293704997</string>
+    <string name="title_activity_detail_record">Detail_record</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

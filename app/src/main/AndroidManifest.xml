@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.javier.passlive">
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
-        <!-- Sample AdMob app ID:  -->
+        <activity
+            android:name=".Detail.Detail_record"
+            android:exported="false"
+            android:label="@string/title_activity_detail_record"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- Sample AdMob app ID: -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/id_proff"/>
+            android:value="@string/id_proff" />
+
         <activity
             android:name=".Password_Option.Add_Password"
             android:exported="false"
