@@ -28,7 +28,7 @@
             android:value="@string/id_proff" />
 
         <activity
-            android:name=".Password_Option.Add_Password"
+            android:name=".Password_Option.Add_Update_Record"
             android:exported="false"
             android:label="@string/title_activity_add_password"
             android:theme="@style/AppTheme.NoActionBar" />

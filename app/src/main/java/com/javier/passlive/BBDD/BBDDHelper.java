@@ -35,7 +35,6 @@ public class BBDDHelper extends SQLiteOpenHelper {
     }
 
     //Método para ingresar registro en BBDD
-
     public long insertRecord(String tittle, String account, String usename, String password,
                              String websites, String notes, String recordTime, String updateTime) {
 
@@ -63,6 +62,33 @@ public class BBDDHelper extends SQLiteOpenHelper {
 
         //Devuelve id de registro insertado
         return id;
+
+    }
+    public void updateRecord(String id, String tittle, String account, String usename, String password,
+                             String websites, String notes, String recordTime, String updateTime) {
+
+        //Indicamos que la BBDD va a ser editable
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //Insertamos los datos
+        values.put(Constans.C_TITTLE, tittle);
+        values.put(Constans.C_ACCOUNT, account);
+        values.put(Constans.C_USERNAME, usename);
+        values.put(Constans.C_PASSWORD, password);
+        values.put(Constans.C_WEBSITES, websites);
+        values.put(Constans.C_NOTES, notes);
+        values.put(Constans.C_RECORD_TIME, recordTime);
+        values.put(Constans.C_UPDATE_TIME, updateTime);
+
+        //Actualizamos la fila
+        db.update(Constans.TABLE_NAME, values, Constans.C_ID + "=?", new String[]{id});
+
+        //Cerramos conexión de BBDD
+
+        db.close();
+
 
     }
 //Método para ordenar los registros por el más nuevo, el más antiguo, por el nombre del título asc, desc

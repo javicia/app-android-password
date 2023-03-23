@@ -1,18 +1,23 @@
 package com.javier.passlive.Adapter;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.javier.passlive.Detail.Detail_record;
 import com.javier.passlive.Model.Password;
+import com.javier.passlive.Password_Option.Add_Update_Record;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
@@ -23,11 +28,14 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
     private Context context;
     private ArrayList<Password> passwordList;
 
+    Dialog dialog;
+
     //Constructor
 
     public Adapter_password(Context context, ArrayList<Password> passwordList) {
         this.context = context;
         this.passwordList = passwordList;
+        dialog = new Dialog(context);
     }
 
     @NonNull
@@ -39,7 +47,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HolderPassword holder, int position) {
+    public void onBindViewHolder(@NonNull HolderPassword holder, @SuppressLint("Recyclerview") int position) {
     Password model_password = passwordList.get(position);
     String id = model_password.getId();
     String tittle = model_password.getTittle();
@@ -69,6 +77,9 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         //Cuando el usuario presione el Image Button
         public void onClick(View v) {
 
+        Option_edit_delete("" + position, "" +id, "" +tittle, "" + account,
+                "" + username, "" + password, "" + note,
+                "" + t_record, "" + t_update);
         }
     });
     }
@@ -95,5 +106,44 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
 
             ImgB_option = itemView.findViewById(R.id.ImgB_option);
         }
+    }
+
+    //Método para visualizar el cuadro de dialogo
+    private void Option_edit_delete(String position, String id, String tittle, String account,
+                                    String usename, String websites, String note, String t_record,
+                                    String t_update){
+        Button Btn_edit_record, Btn_edit_delete_record;
+        dialog.setContentView(R.layout.box_dialog_edit_delete);
+        Btn_edit_record = dialog.findViewById(R.id.Btn_edit_record);
+        Btn_edit_delete_record = dialog.findViewById(R.id.Btn_edit_delete_record);
+
+        Btn_edit_record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Add_Update_Record.class);
+                intent.putExtra("POSITION", position);
+                intent.putExtra("ID", id);
+                intent.putExtra("TITTLE", tittle);
+                intent.putExtra("ACCOUNT", account);
+                intent.putExtra("USERNAME", usename);
+                intent.putExtra("WEBSITES", websites);
+                intent.putExtra("NOTE", note);
+                intent.putExtra("T_RECORD", t_record);
+                intent.putExtra("T_UPDATE", t_update);
+                intent.putExtra("EDITION MODE", true);
+                context.startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+            Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context,"Eliminar registro", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+            dialog.setCancelable(true);
+
     }
 }

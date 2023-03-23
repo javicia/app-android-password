@@ -7,6 +7,12 @@
         android:icon="@drawable/icon_seach"
         app:showAsAction="always"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+    <item
+        android:id="@+id/menu_Order_record"
+        android:title="@string/menu_Order_record"
+        android:icon="@drawable/icon_order_record"
+        app:showAsAction="ifRoom"
+        />
 <item
     android:id="@+id/menu_Record_number"
     android:title="@string/menu_Record_number"

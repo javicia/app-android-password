@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,13 +23,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.javier.passlive.Adapter.Adapter_password;
 import com.javier.passlive.BBDD.BBDDHelper;
 import com.javier.passlive.BBDD.Constans;
-import com.javier.passlive.Password_Option.Add_Password;
+import com.javier.passlive.Password_Option.Add_Update_Record;
 import com.javier.passlive.R;
 
 
 public class Fragment_All extends Fragment {
-
-   Dialog dialog;
+    String newOrder= Constans.C_RECORD_TIME + " DESC";
+    String sortPast= Constans.C_RECORD_TIME + " ASC";
+    String orderTittleAsc = Constans.C_TITTLE + " ASC";
+    String orderTittleDesc = Constans.C_TITTLE + " DESC";
+    String statusOrder = newOrder;
+   Dialog dialog, dialog_order;
  BBDDHelper helper;
     RecyclerView RView_record;
     FloatingActionButton btnadd_password;
@@ -41,24 +46,25 @@ public class Fragment_All extends Fragment {
         btnadd_password= view.findViewById(R.id.btnadd_password);
         helper = new BBDDHelper(getActivity());
         dialog = new Dialog(getActivity());
+        dialog_order = new Dialog(getActivity());
 
 //Listar registros
-        LoadRecord();
+        LoadRecord(newOrder);
                 btnadd_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getActivity(), Add_Password.class));
-
-                        //Intent intent = new Intent(getActivity(), Add_Password.class);
-                        //startActivity(intent);
+                        Intent intent= new Intent(getActivity(),Add_Update_Record.class);
+                        intent.putExtra("EDITION MODE", false);
+                        startActivity(intent);
                     }
                 });
         return view;
     }
 //Método para cargar registros
-    private void LoadRecord() {
+    private void LoadRecord(String orderby) {
+        statusOrder = orderby;
         Adapter_password adapter_password = new Adapter_password(getActivity(), helper.GetAllrecord(
-                Constans.C_TITTLE + " ASC"));
+                orderby));
         RView_record.setAdapter(adapter_password);
     }
     //Buscar registro en base de datos
@@ -94,6 +100,10 @@ public class Fragment_All extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        if(id == R.id.menu_Order_record){
+            Order_Record();
+            return true;
+        }
         if (id == R.id.menu_Record_number){
             Display_total_records();
             return true;
@@ -106,6 +116,13 @@ public class Fragment_All extends Fragment {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
+//Para refrescar la lista cuando estemos en el fragmento
+    @Override
+    public void onResume() {
+        LoadRecord(statusOrder);
+        super.onResume();
+    }
+
     //Método para visualizar total de registros
     public void Display_total_records(){
         TextView Total;
@@ -133,5 +150,47 @@ public class Fragment_All extends Fragment {
         });
         dialog.show();
         dialog.setCancelable(false);
+    }
+
+    private void Order_Record(){
+        Button Btn_New, Btn_Past, Btn_Asc, Btn_Desc;
+        //Conexión hacia el diseño
+        dialog_order.setContentView(R.layout.box_dialog_order_record);
+
+        Btn_New = dialog_order.findViewById(R.id.Btn_New);
+        Btn_Past = dialog_order.findViewById(R.id.Btn_Past);
+        Btn_Asc = dialog_order.findViewById(R.id.Btn_Asc);
+        Btn_Desc = dialog_order.findViewById(R.id.Btn_Desc);
+
+        Btn_New.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoadRecord(newOrder);
+                dialog_order.dismiss();
+            }
+        });
+        Btn_Past.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoadRecord(sortPast);
+                dialog_order.dismiss();
+            }
+        });
+        Btn_Asc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoadRecord(orderTittleAsc);
+                dialog_order.dismiss();
+            }
+        });
+        Btn_Desc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoadRecord(orderTittleDesc);
+                dialog_order.dismiss();
+            }
+        });
+        dialog_order.show();
+        dialog_order.setCancelable(true);
     }
 }

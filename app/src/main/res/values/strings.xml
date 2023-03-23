@@ -44,6 +44,7 @@
 
     <string name="menu_Record_number">Número de registros</string>
     <string name="menu_Record_seach">Buscar registros</string>
+    <string name="menu_Order_record">Ordenar registros</string>
 
     // Dialog box
 
@@ -70,6 +71,17 @@
     <string name="D_UpdateTime">--</string>
 
 
+    //dialog box edit-delete record
+    <string name="Btn_edit_record">Editar</string>
+    <string name="Btn_delete_record">Eliminar</string>
+
+
+    //Order record
+    <string name="Btn_New">Nuevos</string>
+    <string name="Btn_Past">Pasados</string>
+    <string name="Btn_Asc">A-Z</string>
+    <string name="Btn_Des">Z-A</string>
+
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>
     <string name="id_production">ca-app-pub-2936215461830489~5293704997</string>
@@ -80,6 +92,5 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+   
 </resources>

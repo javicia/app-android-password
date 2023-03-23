@@ -9,6 +9,7 @@ import android.text.format.DateFormat;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.javier.passlive.BBDD.BBDDHelper;
@@ -26,10 +27,21 @@ public class Detail_record extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_record);
+
+        ActionBar actionBar = getSupportActionBar();
+
         Intent intent = getIntent();
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
         helper = new BBDDHelper(this);
+
+        //Visualizar el título de un registro
+        String tittle_record = D_Tittle.getText().toString();
+        assert actionBar != null;
+        actionBar.setTitle(tittle_record);
+        //creamos la fecha de retroceso dentro del action Bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
         Initialize_variables();
         Registration_info();
     }
@@ -95,5 +107,12 @@ public class Detail_record extends AppCompatActivity {
         }
 
         db.close();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        //cuando presionamos la fecha de retroceso nos mandará a la actividad anterior
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }
