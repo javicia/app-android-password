@@ -1,11 +1,17 @@
 package com.javier.passlive.Password_Option;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,10 +26,14 @@ public class Add_Update_Record extends AppCompatActivity {
 
     EditText EtTittle,EtAccount,EtUsername,EtPassword, EtWebsites,EtNote;
     String id, tittle, account, username, password,websites,note, t_record, t_update;
+    ImageView Image;
+    Button Btn_Attach_image;
 
     private boolean EDITION_MODE= false;
 
     private BBDDHelper BDHelper;
+
+    Uri imageUri = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +44,15 @@ public class Add_Update_Record extends AppCompatActivity {
         Initial_Var();
         GetInformation();
 
+        Btn_Attach_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TakePhoto();
+            }
+        });
+
     }
+
     private void Initial_Var(){
         EtTittle = findViewById(R.id.EtTittle);
         EtAccount = findViewById(R.id.EtAccount);
@@ -42,6 +60,9 @@ public class Add_Update_Record extends AppCompatActivity {
         EtPassword = findViewById(R.id.EtPassword);
         EtWebsites = findViewById(R.id.EtWebsites);
         EtNote = findViewById(R.id.EtNote);
+
+        Image = findViewById(R.id.Image);
+        Btn_Attach_image = findViewById(R.id.Btn_Attach_image);
 
         BDHelper = new BBDDHelper(this);
     }
@@ -137,5 +158,15 @@ public class Add_Update_Record extends AppCompatActivity {
            Add_Update_Record();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void TakePhoto() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "Nueva imagen");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "Descripción");
+        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
     }
 }
