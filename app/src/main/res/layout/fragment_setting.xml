@@ -36,5 +36,37 @@
            android:focusable="true"
            android:foreground="?android:attr/selectableItemBackground"
            />
+       <TextView
+           android:id="@+id/Export_File"
+           android:text="@string/Export_File"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textStyle="bold"
+           android:padding="12dp"
+           android:textSize="15sp"
+           android:layout_marginTop="8dp"
+           android:layout_marginStart="18dp"
+           app:drawableStartCompat="@drawable/icon_import_export"
+           android:drawablePadding="8dp"
+           android:clickable="true"
+           android:focusable="true"
+           android:foreground="?android:attr/selectableItemBackground"
+           />
+       <TextView
+           android:id="@+id/Import_File"
+           android:text="@string/Import_File"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textStyle="bold"
+           android:padding="12dp"
+           android:textSize="15sp"
+           android:layout_marginTop="8dp"
+           android:layout_marginStart="18dp"
+           app:drawableStartCompat="@drawable/icon_import_export"
+           android:drawablePadding="8dp"
+           android:clickable="true"
+           android:focusable="true"
+           android:foreground="?android:attr/selectableItemBackground"
+           />
    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

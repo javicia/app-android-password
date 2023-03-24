@@ -19,7 +19,7 @@ import com.javier.passlive.R;
 
 public class Fragment_Setting extends Fragment {
 
-    TextView Delete_All_Record;
+    TextView Delete_All_Record, Export_File, Import_File;
     Dialog dialog;
 
     BBDDHelper bbddHelper;
@@ -30,6 +30,8 @@ public class Fragment_Setting extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         Delete_All_Record = view.findViewById(R.id.Delete_All_Record);
+        Export_File = view.findViewById(R.id.Export_File);
+        Import_File = view.findViewById(R.id.Import_File);
         dialog = new Dialog(getActivity());
         bbddHelper = new BBDDHelper(getActivity());
 
@@ -37,6 +39,20 @@ public class Fragment_Setting extends Fragment {
             @Override
             public void onClick(View v) {
                 Dialog_Delete_All_Record();
+            }
+        });
+
+        Export_File.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Exportar archivo", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Import_File.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Importar archivo", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

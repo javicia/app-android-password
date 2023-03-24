@@ -43,10 +43,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'com.airbnb.android:lottie:4.2.1'
-
+    implementation 'com.github.chrisbanes:PhotoView:latest.release.here'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'com.opencsv:opencsv:4.6'
     implementation 'androidx.biometric:biometric:1.1.0'
 }
 
 apply plugin: 'com.android.application'
+//apply plugin: 'com.google.gms.google-services'

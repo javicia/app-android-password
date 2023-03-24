@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="400dp"
+    android:layout_gravity="center">
+
+<com.github.chrisbanes.photoview.PhotoView
+    android:id = "@id/Visualize_image"
+    android:src = "@drawable/logo_image"
+    android:scaleType = "centerCrop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/Btn_close_image"
+        android:text="@string/Btn_close_image"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"
+        android:layout_alignBottom="@+id/Visualize_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

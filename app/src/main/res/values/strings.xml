@@ -87,11 +87,15 @@
     
     <string name="Txt_Setting">Ajustes</string>
     <string name="Delete_All_Record">Eliminar todoslos registros</string>
-    
+
+    <string name="Export_File">Exportar archivo CSV</string>
+    <string name="Import_File">Importar archivo CSV</string>
     //Dialog box message
     <string name="Txt_Question">¿Estás seguro(a) de eliminar todos los registros?</string>
     <string name="Btn_Yes">Sí, estoy de acuerdo</string>
     <string name="Btn_Cancel">Cancelar</string>
+
+    <string name="Btn_close_image">Cerrar</string>
 
 
     //ID proof

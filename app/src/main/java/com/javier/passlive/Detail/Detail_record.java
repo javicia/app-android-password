@@ -1,11 +1,20 @@
 package com.javier.passlive.Detail;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.format.DateFormat;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +29,15 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Detail_record extends AppCompatActivity {
-    TextView D_Tittle, D_Account, D_Username, D_Password, D_Websites,D_Note, D_RecordTime, D_UpdateTime;
+    TextView D_Tittle, D_Account, D_Username, D_Websites,D_Note, D_RecordTime, D_UpdateTime;
     String id_record;
     BBDDHelper helper;
+    ImageView D_Image;
+    Dialog dialog;
+
+    EditText D_Password;
+
+    ImageButton Img_web;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +54,30 @@ public class Detail_record extends AppCompatActivity {
         String tittle_record = D_Tittle.getText().toString();
         assert actionBar != null;
         actionBar.setTitle(tittle_record);
-        //creamos la fecha de retroceso dentro del action Bar
+        //Creamos la fecha de retroceso dentro del action Bar
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        Initialize_variables();
-        Registration_info();
+
+        D_Image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog_Visualize();
+            }
+        });
+
+        Img_web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url_web = D_Websites.getText().toString().trim();
+                //Si contiene la url
+                if(!url_web.equals("")){
+                    openWeb(url_web);
+                  //No contiene la url
+                }else {
+                    Toast.makeText(Detail_record.this, "No existe una url", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     //Método para inicializar variables
     private void Initialize_variables(){
@@ -55,9 +89,13 @@ public class Detail_record extends AppCompatActivity {
         D_Note = findViewById(R.id.D_Note);
         D_RecordTime = findViewById(R.id.D_RecordTime);
         D_UpdateTime = findViewById(R.id.D_UpdateTime);
+        D_Image = findViewById(R.id.D_image);
+
+        dialog= new Dialog(this);
+        Img_web = findViewById(R.id.Img_web);
     }
 
-//Método para visualizar información de los registros
+    //Método para visualizar información de los registros
     private void Registration_info(){
         String query ="SELECT * FROM " + Constans.TABLE_NAME + " WHERE " + Constans.C_ID + " =\"" +
                 id_record + "\"";
@@ -75,6 +113,7 @@ public class Detail_record extends AppCompatActivity {
                 @SuppressLint("Range") String password = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_PASSWORD));
                 @SuppressLint("Range") String websites = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_WEBSITES));
                 @SuppressLint("Range") String note = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_NOTES));
+                @SuppressLint("Range") String image = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_IMAGE));
                 @SuppressLint("Range") String recordTime = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_RECORD_TIME));
                 @SuppressLint("Range") String updateTime = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
 
@@ -98,10 +137,20 @@ public class Detail_record extends AppCompatActivity {
                 D_Account.setText(account);
                 D_Username.setText(username);
                 D_Password.setText(password);
+                D_Password.setEnabled(false);
+                D_Password.setBackgroundColor(Color.TRANSPARENT);
+                D_Password.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 D_Websites.setText(websites);
                 D_Note.setText(note);
                 D_RecordTime.setText(record_time);
                 D_UpdateTime.setText(update_time);
+                //Si la imagen no existe que se setee dentro
+                if(image.equals("null")){
+                    D_Image.setImageResource(R.drawable.logo_image);
+                }else {
+                    //Si la imagen existe pasamos la imagen
+                    D_Image.setImageURI(Uri.parse(image));
+                }
 
             }while (cursor.moveToNext());
         }
@@ -109,10 +158,56 @@ public class Detail_record extends AppCompatActivity {
         db.close();
     }
 
+    //Método para visualizar cuadro de diálogo para ampliar imagen
+    private void Dialog_Visualize(){
+        PhotoView Visualize_image;
+        Button Btn_close_image;
+        dialog.setContentView(R.layout.box_dialog_image_visualize);
+        Visualize_image = dialog.findViewById(R.id.Visualize_image);
+        Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
+
+        String query ="SELECT * FROM " + Constans.TABLE_NAME + " WHERE " + Constans.C_ID + " =\"" +
+                id_record + "\"";
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+//Buscar en la BBDD el registro seleccionado
+        if (cursor.moveToFirst()){
+            do{
+                @SuppressLint("Range") String image = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_IMAGE));
+
+                if(image.equals("null")){
+                    Visualize_image.setImageResource(R.drawable.logo_image);
+                }else {
+                    //Si la imagen existe pasamos la imagen
+                    Visualize_image.setImageURI(Uri.parse(image));
+                }
+
+            }while (cursor.moveToNext());
+        }
+
+        db.close();
+
+        Btn_close_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.setCancelable(false);
+    }
+    private void openWeb(String url_web) {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + url_web));
+    startActivity(intent);
+    }
     @Override
     public boolean onSupportNavigateUp() {
         //cuando presionamos la fecha de retroceso nos mandará a la actividad anterior
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+    //Método para abrir página web
+
 }

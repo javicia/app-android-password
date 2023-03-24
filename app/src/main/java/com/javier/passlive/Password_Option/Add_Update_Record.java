@@ -1,8 +1,10 @@
 package com.javier.passlive.Password_Option;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,11 +20,11 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.javier.passlive.BBDD.BBDDHelper;
 import com.javier.passlive.MainActivity;
@@ -40,6 +42,8 @@ public class Add_Update_Record extends AppCompatActivity {
     private BBDDHelper BDHelper;
 
     Uri imageUri = null;
+
+    ImageView ImageView_delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +57,15 @@ public class Add_Update_Record extends AppCompatActivity {
         Btn_Attach_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Si el permiso de cámara ha sido concedido entonces que se ejecute el método TakePhoto
+        if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)==
+                PackageManager.PERMISSION_GRANTED){
+            TakePhoto();
+            //En caso contrario llamamos a la solicitur de permiso de cámara
+        }else {
+            Camera_Permission_Request.launch(Manifest.permission.CAMERA);
+        }
 
-                TakePhoto();
             }
         });
 
@@ -72,6 +83,7 @@ public class Add_Update_Record extends AppCompatActivity {
         Btn_Attach_image = findViewById(R.id.Btn_Attach_image);
 
         BDHelper = new BBDDHelper(this);
+        ImageView_delete = findViewById(R.id.ImageView_delete);
     }
 
 //Método para obtener información desde el adaptador
@@ -104,15 +116,22 @@ public class Add_Update_Record extends AppCompatActivity {
             //Si la imagen no existe que se setee dentro del ImageView
             if (imageUri.toString().equals("null")) {
                 Image.setImageResource(R.drawable.logo_image);
+                ImageView_delete.setVisibility(View.VISIBLE);
             }
             //Si la imagen existe
             else {
-
+                Image.setImageURI(imageUri);
+                ImageView_delete.setVisibility(View.VISIBLE);
             }
-        }else{
-            //falso, se agrega un nuevo registro
-        Image.setImageURI(imageUri);
-        }
+
+            ImageView_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    imageUri = null;
+                    Image.setImageResource(R.drawable.logo_image);
+                    Toast.makeText(Add_Update_Record.this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 //Método para guardar password
     private void Add_Update_Record(){
@@ -200,4 +219,13 @@ private ActivityResultLauncher<Intent> camaraActivytyResultLauncher = registerFo
             }
         }
 );
+    //Método que permite comprobar si el permiso ha sido concedido por el usuario
+    private ActivityResultLauncher<String> Camera_Permission_Request = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(), Grant_permission ->{
+                if(Grant_permission){
+                    TakePhoto();
+                }else {
+                    Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
+                }
+            });
 }
