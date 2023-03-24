@@ -15,7 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.javier.passlive.BBDD.BBDDHelper;
 import com.javier.passlive.Detail.Detail_record;
+import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Password;
 import com.javier.passlive.Password_Option.Add_Update_Record;
 import com.javier.passlive.R;
@@ -28,6 +30,8 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
     private Context context;
     private ArrayList<Password> passwordList;
 
+    BBDDHelper bbddHelper;
+
     Dialog dialog;
 
     //Constructor
@@ -36,6 +40,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         this.context = context;
         this.passwordList = passwordList;
         dialog = new Dialog(context);
+        bbddHelper = new BBDDHelper(context);
     }
 
     @NonNull
@@ -138,7 +143,12 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
             Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context,"Eliminar registro", Toast.LENGTH_SHORT).show();
+                    bbddHelper.deleteRecord(id);
+                    Intent intent = new Intent(context, MainActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                    Toast.makeText(context,"Registro eliminado", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
             });

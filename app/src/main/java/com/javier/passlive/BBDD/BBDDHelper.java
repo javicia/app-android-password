@@ -36,7 +36,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
 
     //Método para ingresar registro en BBDD
     public long insertRecord(String tittle, String account, String usename, String password,
-                             String websites, String notes, String recordTime, String updateTime) {
+                             String websites, String notes, String image, String recordTime, String updateTime) {
 
         //Indicamos que la BBDD va a ser editable
 
@@ -50,6 +50,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
         values.put(Constans.C_PASSWORD, password);
         values.put(Constans.C_WEBSITES, websites);
         values.put(Constans.C_NOTES, notes);
+        values.put(Constans.C_IMAGE, image);
         values.put(Constans.C_RECORD_TIME, recordTime);
         values.put(Constans.C_UPDATE_TIME, updateTime);
 
@@ -64,8 +65,10 @@ public class BBDDHelper extends SQLiteOpenHelper {
         return id;
 
     }
+
+    //Método para actualizar registros en BBDD
     public void updateRecord(String id, String tittle, String account, String usename, String password,
-                             String websites, String notes, String recordTime, String updateTime) {
+                             String websites, String notes, String image, String recordTime, String updateTime) {
 
         //Indicamos que la BBDD va a ser editable
 
@@ -79,6 +82,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
         values.put(Constans.C_PASSWORD, password);
         values.put(Constans.C_WEBSITES, websites);
         values.put(Constans.C_NOTES, notes);
+        values.put(Constans.C_IMAGE, image);
         values.put(Constans.C_RECORD_TIME, recordTime);
         values.put(Constans.C_UPDATE_TIME, updateTime);
 
@@ -91,6 +95,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
 
 
     }
+
 //Método para ordenar los registros por el más nuevo, el más antiguo, por el nombre del título asc, desc
  //Método regresa la lista de registros
     public ArrayList<Password> GetAllrecord(String orderby){
@@ -112,6 +117,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
                     ""+ cursor.getString(cursor.getColumnIndex(Constans.C_PASSWORD)),
                     ""+ cursor.getString(cursor.getColumnIndex(Constans.C_WEBSITES)),
                     ""+ cursor.getString(cursor.getColumnIndex(Constans.C_NOTES)),
+                    ""+ cursor.getString(cursor.getColumnIndex(Constans.C_IMAGE)),
                     ""+ cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME)),
                     ""+ cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME)));
 
@@ -121,6 +127,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
         db.close();
         return passwordList;
     }
+
     //Método para buscar registros
     public ArrayList<Password> search_Records(String consultation){
         ArrayList<Password> passwordList = new ArrayList<>();
@@ -142,6 +149,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
                         ""+ cursor.getString(cursor.getColumnIndex(Constans.C_PASSWORD)),
                         ""+ cursor.getString(cursor.getColumnIndex(Constans.C_WEBSITES)),
                         ""+ cursor.getString(cursor.getColumnIndex(Constans.C_NOTES)),
+                        ""+ cursor.getString(cursor.getColumnIndex(Constans.C_IMAGE)),
                         ""+ cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME)),
                         ""+ cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME)));
 
@@ -151,6 +159,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
         db.close();
         return passwordList;
     }
+
 //Obtenemos el total de registros de la BBDD
     public int GetRecordNumber(){
         String countquery = "SELECT * FROM " + Constans.TABLE_NAME;
@@ -162,4 +171,17 @@ public class BBDDHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    //Eliminar registros
+    public void deleteRecord(String id){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(Constans.TABLE_NAME, Constans.C_ID+" = ?", new String[]{id});
+        db.close();
+    }
+
+    //Método para eliminar todos los registros de la BBDD
+    public void deleteAllRecord(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM" + Constans.TABLE_NAME);
+        db.close();
+    }
     }

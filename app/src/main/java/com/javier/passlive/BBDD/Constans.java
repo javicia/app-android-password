@@ -17,6 +17,8 @@ public class Constans {
     public static final String C_PASSWORD = "CONTRASEÑA";
     public static final String C_WEBSITES = "SITIO WEB";
     public static final String C_NOTES = "NOTAS";
+
+    public static final String C_IMAGE = "IMÁGENES";
     public static final String C_RECORD_TIME = "TIEMPO DE REGISTRO";
     public static final String C_UPDATE_TIME = "TIEMPO DE ACTUALIZACION";
 
@@ -32,6 +34,7 @@ public class Constans {
             + C_PASSWORD + " TEXT, "
             + C_WEBSITES + " TEXT, "
             + C_NOTES + " TEXT, "
+            + C_IMAGE + " TEXT, "
             + C_RECORD_TIME + " TEXT, "
             + C_UPDATE_TIME + " TEXT "
             + ")";

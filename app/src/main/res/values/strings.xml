@@ -26,6 +26,7 @@
     <string name="EtPassword">Contraseña</string>
     <string name="EtWebsites">Sitio Web</string>
     <string name="EtNote">Nota</string>
+    <string name="Btn_Attach_image">Adjuntar imagen</string>
 
 
     //Add password menu
@@ -81,6 +82,17 @@
     <string name="Btn_Past">Pasados</string>
     <string name="Btn_Asc">A-Z</string>
     <string name="Btn_Des">Z-A</string>
+
+    //Setting
+    
+    <string name="Txt_Setting">Ajustes</string>
+    <string name="Delete_All_Record">Eliminar todoslos registros</string>
+    
+    //Dialog box message
+    <string name="Txt_Question">¿Estás seguro(a) de eliminar todos los registros?</string>
+    <string name="Btn_Yes">Sí, estoy de acuerdo</string>
+    <string name="Btn_Cancel">Cancelar</string>
+
 
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>

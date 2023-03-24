@@ -3,11 +3,13 @@ package com.javier.passlive.Model;
 
 public class Password {
 
-    String id, tittle, account, username, password, websites, note, t_record, t_update;
+    String id, tittle, account, username, password, websites, note, image, t_record, t_update;
 
     //Constructor
 
-    public Password(String id, String tittle, String account, String username, String password, String websites, String note, String t_record, String t_update) {
+    public Password(String id, String tittle, String account, String username,
+                    String password, String websites, String note,
+                    String image, String t_record, String t_update) {
         this.id = id;
         this.tittle = tittle;
         this.account = account;
@@ -15,6 +17,7 @@ public class Password {
         this.password = password;
         this.websites = websites;
         this.note = note;
+        this.image = image;
         this.t_record = t_record;
         this.t_update = t_update;
     }
@@ -74,6 +77,14 @@ public class Password {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getT_record() {
