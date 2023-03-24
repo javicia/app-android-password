@@ -1,5 +1,6 @@
 package com.javier.passlive.Password_Option;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +53,7 @@ public class Add_Update_Record extends AppCompatActivity {
         Btn_Attach_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 TakePhoto();
             }
         });
@@ -75,14 +82,15 @@ public class Add_Update_Record extends AppCompatActivity {
         if(EDITION_MODE){
             //Verdadero
             id = intent.getStringExtra("ID");
-            id = intent.getStringExtra("TITTLE");
-            id = intent.getStringExtra("ACCOUNT");
-            id = intent.getStringExtra("USERNAME");
-            id = intent.getStringExtra("PASSWORD");
-            id = intent.getStringExtra("WEBSITE");
-            id = intent.getStringExtra("NOTE");
-            id = intent.getStringExtra("T_RECORD");
-            id = intent.getStringExtra("T_UPDATE");
+            tittle = intent.getStringExtra("TITTLE");
+            account = intent.getStringExtra("ACCOUNT");
+            username = intent.getStringExtra("USERNAME");
+            password = intent.getStringExtra("PASSWORD");
+            websites = intent.getStringExtra("WEBSITE");
+            note = intent.getStringExtra("NOTE");
+            imageUri = Uri.parse(intent.getStringExtra("IMAGE"));
+            t_record = intent.getStringExtra("T_RECORD");
+            t_update = intent.getStringExtra("T_UPDATE");
 
             //Seteamos información en las vistas
 
@@ -93,9 +101,17 @@ public class Add_Update_Record extends AppCompatActivity {
             EtWebsites.setText(websites);
             EtNote.setText(note);
 
+            //Si la imagen no existe que se setee dentro del ImageView
+            if (imageUri.toString().equals("null")) {
+                Image.setImageResource(R.drawable.logo_image);
+            }
+            //Si la imagen existe
+            else {
+
+            }
         }else{
             //falso, se agrega un nuevo registro
-
+        Image.setImageURI(imageUri);
         }
     }
 //Método para guardar password
@@ -111,11 +127,10 @@ public class Add_Update_Record extends AppCompatActivity {
         if(EDITION_MODE){
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
-
             String current_time = ""+ System.currentTimeMillis();
-            BDHelper.updateRecord(""+id, ""+tittle,""+account, ""+username,
-                    ""+ password, ""+ websites, ""+ note,""+t_record,
-                    ""+current_time);
+            BDHelper.updateRecord("" + id, "" + tittle,"" + account, "" + username,
+                    "" + password, ""+ websites, ""+ note,"" + imageUri,"" + t_record,
+                    "" + current_time);
             Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Add_Update_Record.this, MainActivity.class));
             finish();
@@ -131,8 +146,8 @@ public class Add_Update_Record extends AppCompatActivity {
                 long id = BDHelper.insertRecord(
                         "" +tittle, "" + account, "" + username,
                         "" + password,"" + websites,   "" + note,
-                        ""+ time, ""+ time);
-                Toast.makeText(this, "Se ha guardado con éxito: "+id, Toast.LENGTH_SHORT).show();
+                        ""+ imageUri,""+ time, ""+ time);
+                Toast.makeText(this, "Se ha guardado con éxito: ", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Add_Update_Record.this, MainActivity.class));
                 finish();
             }
@@ -159,7 +174,7 @@ public class Add_Update_Record extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+//Método para realizar foto
     private void TakePhoto() {
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "Nueva imagen");
@@ -168,5 +183,21 @@ public class Add_Update_Record extends AppCompatActivity {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        camaraActivytyResultLauncher.launch(intent);
     }
+
+private ActivityResultLauncher<Intent> camaraActivytyResultLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                //Comprobamos si la fotografía ha sido guardada correctamente
+                if (result.getResultCode() == Activity.RESULT_OK){
+                    Image.setImageURI(imageUri);
+                }else{
+                    Toast.makeText(Add_Update_Record.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+);
 }

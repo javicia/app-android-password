@@ -6,14 +6,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Detail.Detail_record"
-    tools:ignore="ExtraText,ScrollViewCount">
+    tools:context=".Detail.Detail_record">
 
     <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="12dp">
+
     // Título
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -299,7 +299,12 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/black"/>
-
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/Detail_image"
+            android:src="@drawable/logo_image"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 </ScrollView>

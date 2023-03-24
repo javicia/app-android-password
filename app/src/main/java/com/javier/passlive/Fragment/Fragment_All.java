@@ -54,7 +54,7 @@ public class Fragment_All extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent= new Intent(getActivity(),Add_Update_Record.class);
-                        intent.putExtra("EDITION MODE", false);
+                        intent.putExtra("EDITION_MODE", false);
                         startActivity(intent);
                     }
                 });

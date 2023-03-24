@@ -39,7 +39,6 @@ public class BBDDHelper extends SQLiteOpenHelper {
                              String websites, String notes, String image, String recordTime, String updateTime) {
 
         //Indicamos que la BBDD va a ser editable
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -71,7 +70,6 @@ public class BBDDHelper extends SQLiteOpenHelper {
                              String websites, String notes, String image, String recordTime, String updateTime) {
 
         //Indicamos que la BBDD va a ser editable
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -90,12 +88,8 @@ public class BBDDHelper extends SQLiteOpenHelper {
         db.update(Constans.TABLE_NAME, values, Constans.C_ID + "=?", new String[]{id});
 
         //Cerramos conexión de BBDD
-
         db.close();
-
-
     }
-
 //Método para ordenar los registros por el más nuevo, el más antiguo, por el nombre del título asc, desc
  //Método regresa la lista de registros
     public ArrayList<Password> GetAllrecord(String orderby){
@@ -181,7 +175,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
     //Método para eliminar todos los registros de la BBDD
     public void deleteAllRecord(){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM" + Constans.TABLE_NAME);
+        db.execSQL("DELETE FROM " + Constans.TABLE_NAME);
         db.close();
     }
     }

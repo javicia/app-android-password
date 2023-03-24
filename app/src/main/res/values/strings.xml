@@ -81,7 +81,7 @@
     <string name="Btn_New">Nuevos</string>
     <string name="Btn_Past">Pasados</string>
     <string name="Btn_Asc">A-Z</string>
-    <string name="Btn_Des">Z-A</string>
+    <string name="Btn_Desc">Z-A</string>
 
     //Setting
     
@@ -98,11 +98,5 @@
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>
     <string name="id_production">ca-app-pub-2936215461830489~5293704997</string>
     <string name="title_activity_detail_record">Detail_record</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
    
 </resources>

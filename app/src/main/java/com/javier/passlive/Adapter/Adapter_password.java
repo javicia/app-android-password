@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
     String password = model_password.getPassword();
     String websites = model_password.getWebsites();
     String note = model_password.getNote();
+    String image = model_password.getImage();
     String t_record = model_password.getT_record();
     String t_update = model_password.getT_update();
 
@@ -81,10 +83,18 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         @Override
         //Cuando el usuario presione el Image Button
         public void onClick(View v) {
+        Option_edit_delete(
+                "" + position,
+                "" +id,
+                "" +tittle,
+                "" + account,
+                "" + username,
+                "" + websites,
+                "" + note,
+                "" + image,
+                ""+ t_record,
+                "" + t_update);
 
-        Option_edit_delete("" + position, "" +id, "" +tittle, "" + account,
-                "" + username, "" + password, "" + note,
-                "" + t_record, "" + t_update);
         }
     });
     }
@@ -115,7 +125,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
 
     //Método para visualizar el cuadro de dialogo
     private void Option_edit_delete(String position, String id, String tittle, String account,
-                                    String usename, String websites, String note, String t_record,
+                                    String usename, String websites, String note, String image, String t_record,
                                     String t_update){
         Button Btn_edit_record, Btn_edit_delete_record;
         dialog.setContentView(R.layout.box_dialog_edit_delete);
@@ -133,6 +143,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
                 intent.putExtra("USERNAME", usename);
                 intent.putExtra("WEBSITES", websites);
                 intent.putExtra("NOTE", note);
+                intent.putExtra("IMAGE", image);
                 intent.putExtra("T_RECORD", t_record);
                 intent.putExtra("T_UPDATE", t_update);
                 intent.putExtra("EDITION MODE", true);
