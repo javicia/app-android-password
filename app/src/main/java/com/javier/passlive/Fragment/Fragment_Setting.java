@@ -14,10 +14,14 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.javier.passlive.BBDD.BBDDHelper;
+import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.MainActivity;
+import com.javier.passlive.Model.Password;
 import com.javier.passlive.R;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
 
 
 public class Fragment_Setting extends Fragment {
@@ -26,6 +30,8 @@ public class Fragment_Setting extends Fragment {
     Dialog dialog;
 
     BBDDHelper bbddHelper;
+
+    String orderTitleAsc = Constans.C_TITTLE + "ASC";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,6 +104,26 @@ public class Fragment_Setting extends Fragment {
         //Si la carpeta no exista, la creamos
         if(!file.exists()){
         fileFolder = file.mkdirs();
+        }
+        //Creamos el nombre del archivo
+        String csvfileName ="PassLive.csv";
+        //Concatenamos el nombre de la carpeta y archivo para almacenar en File_Folder
+        String File_Folder = file + "/" + csvfileName;
+        //Obtenemos el registro que exportaremos
+        ArrayList<Password> recordList = new ArrayList<>();
+        recordList.clear();
+        recordList = bbddHelper.GetAllrecord(orderTitleAsc);
+        try {
+            //Escribir en el archivo
+            FileWriter fileWriter = new FileWriter(File_Folder);
+            //recorremos cada atributo para escribirlo en el archivo
+            int i;
+            for (i = 0; i < recordList.size(); i++) ;
+            fileWriter.append("" + recordList.get(i).getId());
+            fileWriter.append(",");
+        }catch (Exception e){
+            Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
         }
     }
 }
