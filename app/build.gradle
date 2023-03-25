@@ -42,10 +42,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    //Animation gif
     implementation 'com.airbnb.android:lottie:4.2.1'
+    //PhotoView
     implementation 'com.github.chrisbanes:PhotoView:latest.release.here'
+    //Material
     implementation 'com.google.android.material:material:1.8.0'
+    //Import csv
     implementation 'com.opencsv:opencsv:4.6'
+    //Biometric
     implementation 'androidx.biometric:biometric:1.1.0'
 }
 

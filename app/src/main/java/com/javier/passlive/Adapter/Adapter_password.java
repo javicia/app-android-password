@@ -35,8 +35,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
 
     Dialog dialog;
 
-    //Constructor
-
+    //Creamos Constructor
     public Adapter_password(Context context, ArrayList<Password> passwordList) {
         this.context = context;
         this.passwordList = passwordList;
@@ -98,7 +97,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         }
     });
     }
-
+    //Método para obtener el registro
     @Override
     public int getItemCount() {
         //Devuelve el tamaño de la lista

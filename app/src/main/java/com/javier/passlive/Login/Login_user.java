@@ -1,8 +1,8 @@
 package com.javier.passlive.Login;
 
+import android.hardware.biometrics.BiometricPrompt;
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricPrompt;

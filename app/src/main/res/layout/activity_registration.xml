@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context=".UserRegistration.Registration"
+    tools:ignore="ExtraText">
+    <TextView
+        android:id="@+id/Txt_Welcome"
+        android:text="@string/Txt_Welcome"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/Txt_Message"
+        android:text="@string/Txt_Message"
+        android:layout_marginTop="12dp"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    // User Password
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/Et_UserPassword"
+            android:hint="@string/Et_UserPassword"
+            android:textStyle="italic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    // Confirm User Password
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/Et_ConfirmPassword"
+            android:hint="@string/Et_ConfirmPassword"
+            android:textStyle="italic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/Btn_Registration"
+        android:text="@string/Btn_Registration"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="#ffffff"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

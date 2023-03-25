@@ -17,12 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
+
+        <activity android:name=".Login.Login_user"
+            android:exported="false"/>
+        <activity
+            android:name=".UserRegistration.Registration"
+            android:exported="false" />
         <activity
             android:name=".Detail.Detail_record"
             android:exported="false"
             android:label="@string/title_activity_detail_record"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!-- Sample AdMob app ID: -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- Sample AdMob app ID: -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/id_proff" />
@@ -30,7 +35,6 @@
         <activity
             android:name=".Password_Option.Add_Update_Record"
             android:exported="false"
-            android:label="@string/title_activity_add_password"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
