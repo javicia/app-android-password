@@ -43,6 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //Animation gif
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.airbnb.android:lottie:4.2.1'
     //PhotoView
     implementation 'com.github.chrisbanes:PhotoView:latest.release.here'
@@ -52,6 +53,7 @@ dependencies {
     implementation 'com.opencsv:opencsv:4.6'
     //Biometric
     implementation 'androidx.biometric:biometric:1.1.0'
+    implementation "androidx.biometric:biometric-ktx:1.2.0-alpha04"
 }
 
 apply plugin: 'com.android.application'

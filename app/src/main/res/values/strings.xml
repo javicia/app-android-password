@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">PassLive</string>
+    //Login
+    <string name="Btn_Access">Acceder</string>
+    
+    //Biometric
+    <string name="Txt_Other_Procedure">Otro procedimiento</string>
+    <string name="Btn_Biometric_Login">Atenticación Biométrica</string>
 
     //Option menu
     <string name="option_all">Todas</string>
@@ -75,8 +81,15 @@
     <string name="Txt_Question">¿Estás seguro(a) de eliminar todos los registros?</string>
     <string name="Btn_Yes">Sí, estoy de acuerdo</string>
     <string name="Btn_Cancel">Cancelar</string>
-
     <string name="Btn_close_image">Cerrar</string>
+    
+    //Dialog box password
+    <string name="Txt_Password">Su contraseña es:</string>
+    <string name="Password__">--</string>
+    <string name="New_Password">Nueva contraseña</string>
+    <string name="Confirm_Password">Confirma contraseña</string>
+    <string name="Btn_Change_password">Cambiar</string>
+    <string name="Btn_Cancel_Password">Cancelar</string>
 
 
     //UserRegistration
@@ -100,6 +113,7 @@
     <string name="Export_File">Exportar archivo CSV</string>
     <string name="Import_File">Importar archivo CSV</string>
     <string name="Btn_Registration">Registrar</string>
+    <string name="Change_Password">Cambiar password</string>
 
 
     //ID proof

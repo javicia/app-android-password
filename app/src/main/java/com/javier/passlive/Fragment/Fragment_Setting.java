@@ -35,12 +35,13 @@ import java.util.ArrayList;
 
 public class Fragment_Setting extends Fragment {
 
-    TextView Delete_All_Record, Export_File, Import_File;
-    Dialog dialog;
+    TextView Delete_All_Record, Export_File, Import_File, Change_Password;
+    Dialog dialog, dialog_password;
 
     BBDDHelper bbddHelper;
 
     String orderTitleAsc = Constans.C_TITTLE + "ASC";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +51,9 @@ public class Fragment_Setting extends Fragment {
         Delete_All_Record = view.findViewById(R.id.Delete_All_Record);
         Export_File = view.findViewById(R.id.Export_File);
         Import_File = view.findViewById(R.id.Import_File);
+        Change_Password = view.findViewById(R.id.Change_Password);
         dialog = new Dialog(getActivity());
+        dialog_password = new Dialog(getActivity());
         bbddHelper = new BBDDHelper(getActivity());
 
         Delete_All_Record.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +108,14 @@ public class Fragment_Setting extends Fragment {
                 });
 
                 builder.create().show();
+            }
+        });
+
+        Change_Password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Toast.makeText(getActivity(), "Cambiar contraseña", Toast.LENGTH_SHORT).show();
+                Dialog_Change_Password();
             }
         });
         return view;
@@ -251,4 +262,8 @@ public class Fragment_Setting extends Fragment {
                 }
             }
     );
+
+    private void Dialog_Change_Password(){
+    //Establecemos vistas
+    }
 }
