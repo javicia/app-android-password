@@ -13,6 +13,11 @@
         android:icon="@drawable/icon_setting"
         />
     <item
+        android:id="@+id/option_about"
+        android:title="@string/option_about"
+        android:icon="@drawable/icon_about"
+        />
+    <item
         android:id="@+id/Option_exit"
         android:title="@string/option_exit"
         android:icon="@drawable/icon_exit"

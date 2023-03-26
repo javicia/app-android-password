@@ -27,6 +27,7 @@
             android:id="@+id/Et_UserPassword"
             android:hint="@string/Et_UserPassword"
             android:textStyle="italic"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

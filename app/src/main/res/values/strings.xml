@@ -2,17 +2,18 @@
     <string name="app_name">PassLive</string>
     //Login
     <string name="Btn_Access">Acceder</string>
-    
+
     //Biometric
     <string name="Txt_Other_Procedure">Otro procedimiento</string>
     <string name="Btn_Biometric_Login">Atenticación Biométrica</string>
 
-    //Option menu
+    //Drawer menu
     <string name="option_all">Todas</string>
     <string name="option_setting">Ajustes</string>
+    <string name="option_about">Acerca De</string>
     <string name="option_exit">Salir</string>
 
-    //Drawer menu
+    //Drawer layout
 
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
@@ -82,10 +83,10 @@
     <string name="Btn_Yes">Sí, estoy de acuerdo</string>
     <string name="Btn_Cancel">Cancelar</string>
     <string name="Btn_close_image">Cerrar</string>
-    
+
     //Dialog box password
     <string name="Txt_Password">Su contraseña es:</string>
-    <string name="Password__">--</string>
+    <string name="Password__">----</string>
     <string name="New_Password">Nueva contraseña</string>
     <string name="Confirm_Password">Confirma contraseña</string>
     <string name="Btn_Change_password">Cambiar</string>
@@ -97,7 +98,6 @@
     <string name="Txt_Message">Por favor, introduzca una contraseña</string>
     <string name="Et_UserPassword">Contraseña</string>
     <string name="Et_ConfirmPassword">Confirmar contraseña</string>
-
 
 
     //Order record
@@ -115,10 +115,17 @@
     <string name="Btn_Registration">Registrar</string>
     <string name="Change_Password">Cambiar password</string>
 
+    //Info app
+    <string name="Txt_Developer">Desarrollado por: Javier García Pérez</string>
+    <string name="Txt_email">Contacto: javier.garcia.perez@hotmail.com</string>
+    <string name="Txt_version">Versión: 1.0</string>
+    <string name="Txt_follow">Síguenos:</string>
 
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>
     <string name="id_production">ca-app-pub-2936215461830489~5293704997</string>
     <string name="title_activity_detail_record">Detail_record</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

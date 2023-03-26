@@ -9,9 +9,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +27,7 @@ import com.javier.passlive.Password_Option.Add_Update_Record;
 import com.javier.passlive.R;
 
 
-public class Fragment_All extends Fragment {
+public class F_All extends Fragment {
     String newOrder= Constans.C_RECORD_TIME + " DESC";
     String sortPast= Constans.C_RECORD_TIME + " ASC";
     String orderTittleAsc = Constans.C_TITTLE + " ASC";
@@ -40,6 +40,9 @@ public class Fragment_All extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //No permite captura de pantalla
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all, container, false);
         RView_record = view.findViewById(R.id.RView_record);
