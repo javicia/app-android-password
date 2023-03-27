@@ -49,14 +49,36 @@
         android:textStyle="italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/Btn_Biometric_Login"
-        android:text="@string/Btn_Biometric_Login"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="#ffffff"
-        android:layout_marginTop="25dp"
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+        <Button
+            android:id="@+id/Btn_Biometric_Login"
+            android:text="@string/Btn_Biometric_Login"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        <ImageButton
+            android:id="@+id/Ib_Alert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_alert"
+            android:background="@android:color/transparent"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="150dp"
         android:layout_height="150dp"

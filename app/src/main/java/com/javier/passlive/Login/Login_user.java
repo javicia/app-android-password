@@ -1,9 +1,11 @@
 package com.javier.passlive.Login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.biometrics.BiometricPrompt;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.biometric.BiometricPrompt;
 import android.hardware.biometrics.BiometricManager;
 import androidx.biometric.BiometricPrompt;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +35,8 @@ public class Login_user extends AppCompatActivity {
     EditText Et_UserPassword;
     Button Btn_Access, Btn_Biometric_Login;
     SharedPreferences sharedPreferences;
+
+    ImageButton Ib_Alert;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +102,21 @@ public class Login_user extends AppCompatActivity {
         }
     });
 
+    Ib_Alert.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Login_user.this);
+            builder.setTitle("Aviso");
+            builder.setMessage("Esta funcionalidad sólo está disponible con huellas dactilares previamente registradas en su dispositivo ");
+            builder.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            builder.create().show();
+        }
+    });
 
     }
 
@@ -105,5 +125,6 @@ public class Login_user extends AppCompatActivity {
         Btn_Access = findViewById(R.id.Btn_Access);
         Btn_Biometric_Login = findViewById(R.id.Btn_Biometric_Login);
         sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        Ib_Alert = findViewById(R.id.Ib_Alert);
     }
 }
