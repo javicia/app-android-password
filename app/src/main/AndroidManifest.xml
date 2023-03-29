@@ -4,7 +4,7 @@
     package="com.javier.passlive">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
@@ -25,7 +25,6 @@
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-            //Con la propiedad LAUNCHER indicamos que será la primera activity en mostrar al abrir la app
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>

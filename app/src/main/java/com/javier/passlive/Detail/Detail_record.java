@@ -10,16 +10,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
@@ -33,9 +32,7 @@ public class Detail_record extends AppCompatActivity {
     BBDD helper;
     ImageView D_Image;
     Dialog dialog;
-
     EditText D_Password;
-
     ImageButton Img_web;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +78,9 @@ public class Detail_record extends AppCompatActivity {
                 }
             }
         });
-             */
+
+
+          */
     }
     //Método para inicializar variables
     private void Initialize_variables(){
@@ -110,16 +109,16 @@ public class Detail_record extends AppCompatActivity {
 //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-    @SuppressLint("Range") String id = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_ID));
-                @SuppressLint("Range") String tittle = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_TITTLE));
-                @SuppressLint("Range") String account = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_ACCOUNT));
-                @SuppressLint("Range") String username = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_USERNAME));
-                @SuppressLint("Range") String password = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_PASSWORD));
-                @SuppressLint("Range") String websites = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_WEBSITES));
-                @SuppressLint("Range") String note = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_NOTES));
-                @SuppressLint("Range") String image = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
+                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.C_ID));
+                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Constans.C_TITTLE));
+                @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Constans.C_ACCOUNT));
+                @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Constans.C_USERNAME));
+                @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Constans.C_PASSWORD));
+                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.C_WEBSITES));
+                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.C_NOTES));
+                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.C_IMAGE));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro
@@ -155,12 +154,11 @@ public class Detail_record extends AppCompatActivity {
 
             }while (cursor.moveToNext());
         }
-
         db.close();
     }
-
+/*
     //Método para visualizar cuadro de diálogo para ampliar imagen
-    /*private void Dialog_Visualize(){
+    private void Dialog_Visualize(){
         PhotoView Visualize_image;
         Button Btn_close_image;
         dialog.setContentView(R.layout.box_dialog_image_visualize);
@@ -200,11 +198,11 @@ public class Detail_record extends AppCompatActivity {
         dialog.setCancelable(false);
     }
 
-     */
+ */
     //Método para abrir página web
     private void openWeb(String url_web) {
-    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + url_web));
-    startActivity(intent);
+    Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" +url_web));
+    startActivity(navigation);
     }
     @Override
     public boolean onSupportNavigateUp() {
