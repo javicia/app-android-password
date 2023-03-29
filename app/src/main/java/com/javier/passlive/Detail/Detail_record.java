@@ -42,7 +42,6 @@ public class Detail_record extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_detail_record);
 
         ActionBar actionBar = getSupportActionBar();
@@ -51,6 +50,8 @@ public class Detail_record extends AppCompatActivity {
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
         helper = new BBDD(this);
+        Initialize_variables();
+        Registration_info();
 
         //Visualizar el título de un registro
         String tittle_record = D_Tittle.getText().toString();
@@ -121,15 +122,12 @@ public class Detail_record extends AppCompatActivity {
                 @SuppressLint("Range") String updateTime = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
-
                 //Tiempo registro
-
                 Calendar calendar_recordTime = Calendar.getInstance(Locale.getDefault());
                 calendar_recordTime.setTimeInMillis(Long.parseLong(recordTime));
                 String record_time = "" + DateFormat.format("dd/MM/yyyy hh:mm:aa", calendar_recordTime);
 
                 //Tiempo de actualización
-
                 Calendar calendar_updateTime = Calendar.getInstance(Locale.getDefault());
                 calendar_updateTime.setTimeInMillis(Long.parseLong(updateTime));
                 String update_time = "" + DateFormat.format("dd/MM/yyyy hh:mm:aa", calendar_updateTime);
@@ -203,6 +201,7 @@ public class Detail_record extends AppCompatActivity {
     }
 
      */
+    //Método para abrir página web
     private void openWeb(String url_web) {
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + url_web));
     startActivity(intent);
@@ -213,6 +212,6 @@ public class Detail_record extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
-    //Método para abrir página web
+
 
 }

@@ -32,7 +32,7 @@
     <string name="add_password">Agregar</string>
 
     // Record Detail
-    <string name="Txt_D_Tittle">Título: </string>
+    <string name="Txt_D_Tittle">Título:</string>
     <string name="D_Tittle">--</string>
     <string name="Txt_D_Account">Cuenta: </string>
     <string name="D_Account">--</string>
@@ -51,7 +51,7 @@
 
 
     //Add password design
-    <string name="EtTittle">Título</string>
+    <string name="EtTittle">Título (Obligatorio)</string>
     <string name="EtAccount">Cuenta</string>
     <string name="EtUsername">Nombre de usuario</string>
     <string name="EtPassword">Contraseña</string>

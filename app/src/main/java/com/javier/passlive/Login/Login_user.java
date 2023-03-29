@@ -31,7 +31,6 @@ public class Login_user extends AppCompatActivity {
     Button Btn_Access, Btn_Biometric_Login;
     SharedPreferences sharedPreferences;
 
-    ImageButton Ib_Alert;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,22 +96,6 @@ public class Login_user extends AppCompatActivity {
         }
     });
 
-    Ib_Alert.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(Login_user.this);
-            builder.setTitle("Aviso");
-            builder.setMessage("Esta funcionalidad sólo está disponible con huellas dactilares previamente registradas en su dispositivo ");
-            builder.setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            builder.create().show();
-        }
-    });
-
     }
 
     private void Inicialize_Variables(){
@@ -120,6 +103,6 @@ public class Login_user extends AppCompatActivity {
         Btn_Access = findViewById(R.id.Btn_Access);
         Btn_Biometric_Login = findViewById(R.id.Btn_Biometric_Login);
         sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
-        Ib_Alert = findViewById(R.id.Ib_Alert);
+
     }
 }
