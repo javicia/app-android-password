@@ -26,7 +26,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.javier.passlive.BBDD.BBDDHelper;
+import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
@@ -45,7 +45,7 @@ public class F_Setting extends Fragment {
     TextView Delete_All_Record, Export_File, Import_File, Change_Password;
     Dialog dialog, dialog_password;
 
-    BBDDHelper bbddHelper;
+    BBDD bbddHelper;
 
     String orderTitleAsc = Constans.C_TITTLE + "ASC";
 
@@ -71,7 +71,7 @@ public class F_Setting extends Fragment {
         Change_Password = view.findViewById(R.id.Change_Password);
         dialog = new Dialog(getActivity());
         dialog_password = new Dialog(getActivity());
-        bbddHelper = new BBDDHelper(getActivity());
+        bbddHelper = new BBDD(getActivity());
 
         sharedPreferences = getActivity().getSharedPreferences(SHARE_PREF, Context.MODE_PRIVATE);
 
@@ -321,7 +321,7 @@ public class F_Setting extends Fragment {
                     Toast.makeText(getActivity(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                     //Cuando todas las condiciones no se cumplen
                 }else {
-                    sharedPreferences.Editor editor = sharedPreferences.edit();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     //Enviamos los nuevos datos a las llaves
                     editor.putString(KEY_PASSWORD, String_newPassword);
                     editor.putString(KEY_C_PASSWORD, String_confirmedNewPassword);

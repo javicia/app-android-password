@@ -3,11 +3,8 @@ package com.javier.passlive.Login;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.hardware.biometrics.BiometricPrompt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.biometric.BiometricPrompt;
-import android.hardware.biometrics.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -29,7 +24,7 @@ public class Login_user extends AppCompatActivity {
     //Declaramos aviso biométrico
     private BiometricPrompt biometricPrompt;
     //Como debe comportarse el sistema biométrico
-    private BiometricPrompt.PrompInfo prompInfo;
+    private BiometricPrompt.PromptInfo prompInfo;
 
 
     EditText Et_UserPassword;

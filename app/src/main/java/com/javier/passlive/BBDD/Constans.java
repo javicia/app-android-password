@@ -23,9 +23,9 @@ public class Constans {
 
     //Realizamos consulta para crear la tabla
 
-    public static final String CREATE_TABLE = "CREATE TABLE"+ TABLE_NAME
+    public static final String CREATE_TABLE = "CREATE TABLE "+ TABLE_NAME
             + "("
-            + C_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + C_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + C_TITTLE + " TEXT,"
             + C_ACCOUNT + " TEXT,"
             + C_USERNAME + " TEXT,"

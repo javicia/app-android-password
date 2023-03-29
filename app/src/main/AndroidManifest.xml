@@ -25,23 +25,17 @@
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-            // Con la propiedad LAUNCHER indicamos que será la primera activity en mostrar al abrir la app
+            //Con la propiedad LAUNCHER indicamos que será la primera activity en mostrar al abrir la app
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
         <activity
             android:name=".Detail.Detail_record"
-            android:exported="false"
-            android:label="@string/title_activity_detail_record"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- Sample AdMob app ID: -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/id_proff" />
+            android:exported="false" />
 
         <activity
             android:name=".Password_Option.Add_Update_Record"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

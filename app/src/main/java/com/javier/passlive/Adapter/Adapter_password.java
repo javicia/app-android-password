@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDDHelper;
+import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.Detail.Detail_record;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Password;
@@ -31,7 +30,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
     private Context context;
     private ArrayList<Password> passwordList;
 
-    BBDDHelper bbddHelper;
+    BBDD bbddHelper;
 
     Dialog dialog;
 
@@ -40,7 +39,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         this.context = context;
         this.passwordList = passwordList;
         dialog = new Dialog(context);
-        bbddHelper = new BBDDHelper(context);
+        bbddHelper = new BBDD(context);
     }
 
     @NonNull

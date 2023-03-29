@@ -10,9 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.format.DateFormat;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,7 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.javier.passlive.BBDD.BBDDHelper;
+import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
 
@@ -32,7 +30,7 @@ import java.util.Locale;
 public class Detail_record extends AppCompatActivity {
     TextView D_Tittle, D_Account, D_Username, D_Websites,D_Note, D_RecordTime, D_UpdateTime;
     String id_record;
-    BBDDHelper helper;
+    BBDD helper;
     ImageView D_Image;
     Dialog dialog;
 
@@ -52,7 +50,7 @@ public class Detail_record extends AppCompatActivity {
         Intent intent = getIntent();
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-        helper = new BBDDHelper(this);
+        helper = new BBDD(this);
 
         //Visualizar el título de un registro
         String tittle_record = D_Tittle.getText().toString();
@@ -62,9 +60,9 @@ public class Detail_record extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-        D_Image.setOnClickListener(new View.OnClickListener() {
+         /*D_Image.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+           public void onClick(View v) {
                 Dialog_Visualize();
             }
         });
@@ -82,6 +80,7 @@ public class Detail_record extends AppCompatActivity {
                 }
             }
         });
+             */
     }
     //Método para inicializar variables
     private void Initialize_variables(){
@@ -163,7 +162,7 @@ public class Detail_record extends AppCompatActivity {
     }
 
     //Método para visualizar cuadro de diálogo para ampliar imagen
-    private void Dialog_Visualize(){
+    /*private void Dialog_Visualize(){
         PhotoView Visualize_image;
         Button Btn_close_image;
         dialog.setContentView(R.layout.box_dialog_image_visualize);
@@ -202,6 +201,8 @@ public class Detail_record extends AppCompatActivity {
         dialog.show();
         dialog.setCancelable(false);
     }
+
+     */
     private void openWeb(String url_web) {
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + url_web));
     startActivity(intent);

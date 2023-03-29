@@ -27,7 +27,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.javier.passlive.BBDD.BBDDHelper;
+import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -40,7 +40,7 @@ public class Add_Update_Record extends AppCompatActivity {
 
     private boolean EDITION_MODE= false;
 
-    private BBDDHelper BDHelper;
+    private BBDD BDHelper;
 
     Uri imageUri = null;
 
@@ -53,8 +53,8 @@ public class Add_Update_Record extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_password);
         ActionBar actionBar = getSupportActionBar();
-        //assert actionBar !=null;
-        //actionBar.setTitle("");
+        assert actionBar !=null;
+        actionBar.setTitle("");
         Initial_Var();
         GetInformation();
 
@@ -74,7 +74,6 @@ public class Add_Update_Record extends AppCompatActivity {
         });
 
     }
-
     private void Initial_Var(){
         EtTittle = findViewById(R.id.EtTittle);
         EtAccount = findViewById(R.id.EtAccount);
@@ -86,16 +85,16 @@ public class Add_Update_Record extends AppCompatActivity {
         Image = findViewById(R.id.Image);
         Btn_Attach_image = findViewById(R.id.Btn_Attach_image);
 
-        BDHelper = new BBDDHelper(this);
         ImageView_delete = findViewById(R.id.ImageView_delete);
-    }
+        BDHelper = new BBDD(this);
 
+    }
 //Método para obtener información desde el adaptador
-    private void GetInformation(){
+    private void GetInformation() {
         Intent intent = getIntent();
         EDITION_MODE = intent.getBooleanExtra("EDITION MODE", false);
 
-        if(EDITION_MODE){
+        if (EDITION_MODE) {
             //Verdadero
             id = intent.getStringExtra("ID");
             tittle = intent.getStringExtra("TITTLE");
@@ -109,7 +108,6 @@ public class Add_Update_Record extends AppCompatActivity {
             t_update = intent.getStringExtra("T_UPDATE");
 
             //Seteamos información en las vistas
-
             EtTittle.setText(tittle);
             EtAccount.setText(account);
             EtUsername.setText(username);
@@ -136,6 +134,9 @@ public class Add_Update_Record extends AppCompatActivity {
                     Toast.makeText(Add_Update_Record.this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
                 }
             });
+        } else {
+        // Si es falso se agrega un registro
+        }
     }
 //Método para guardar password
     private void Add_Update_Record(){

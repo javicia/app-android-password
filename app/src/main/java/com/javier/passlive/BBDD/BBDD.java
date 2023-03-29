@@ -13,25 +13,20 @@ import com.javier.passlive.Model.Password;
 
 import java.util.ArrayList;
 
-public class BBDDHelper extends SQLiteOpenHelper {
+public class BBDD extends SQLiteOpenHelper {
 
 
-    public BBDDHelper(@Nullable Context context) {
+    public BBDD(@Nullable Context context) {
         super(context, Constans.BD_NAME, null, Constans.BD_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        //Creamos tabla en BBDD
-        db.execSQL(Constans.CREATE_TABLE);
-    }
+    public void onCreate(SQLiteDatabase db) {db.execSQL(Constans.CREATE_TABLE);}
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + Constans.TABLE_NAME);
         onCreate(db);
-
     }
 
     //Método para ingresar registro en BBDD
@@ -40,6 +35,7 @@ public class BBDDHelper extends SQLiteOpenHelper {
 
         //Indicamos que la BBDD va a ser editable
         SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues values = new ContentValues();
 
         //Insertamos los datos
