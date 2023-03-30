@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.javier.passlive.BBDD.BBDD;
-import com.javier.passlive.Detail.Detail_record;
+import com.javier.passlive.Detail.Web_Detail_Record;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
 import com.javier.passlive.Option_Web.Web_Add_Update_Record;
@@ -25,44 +25,44 @@ import com.javier.passlive.R;
 import java.util.ArrayList;
 
 //Inflar diseño item_password obtener los datos leidos en la BBDD en los textView
-public class Adapter_password extends RecyclerView.Adapter<Adapter_password.HolderPassword>{
+public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     private Context context;
-    private ArrayList<Web> passwordList;
+    private ArrayList<Web> webList;
 
     BBDD bbddHelper;
 
     Dialog dialog;
 
     //Creamos Constructor
-    public Adapter_password(Context context, ArrayList<Web> passwordList) {
+    public Adapter_web(Context context, ArrayList<Web> passwordList) {
         this.context = context;
-        this.passwordList = passwordList;
+        this.webList = passwordList;
         dialog = new Dialog(context);
         bbddHelper = new BBDD(context);
     }
 
     @NonNull
     @Override
-    public HolderPassword onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HolderWeb onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //Inflamos item
-        View view = LayoutInflater.from(context).inflate(R.layout.item_password, parent, false);
-        return new HolderPassword(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_web, parent, false);
+        return new HolderWeb(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HolderPassword holder, @SuppressLint("Recyclerview") int position) {
-    Web model_password = passwordList.get(position);
-    String id = model_password.getId();
-    String tittle = model_password.getTittle();
-    String account = model_password.getAccount();
-    String username = model_password.getUsername();
-    String password = model_password.getPassword();
-    String websites = model_password.getWebsites();
-    String note = model_password.getNote();
-    String image = model_password.getImage();
-    String t_record = model_password.getT_record();
-    String t_update = model_password.getT_update();
+    public void onBindViewHolder(@NonNull HolderWeb holder, @SuppressLint("Recyclerview") int position) {
+    Web model_web = webList.get(position);
+    String id = model_web.getId();
+    String tittle =model_web.getTittle();
+    String account = model_web.getAccount();
+    String username = model_web.getUsername();
+    String password = model_web.getPassword();
+    String websites = model_web.getWebsites();
+    String note = model_web.getNote();
+    String image = model_web.getImage();
+    String t_record = model_web.getT_record();
+    String t_update = model_web.getT_update();
 
     holder.Item_tittle.setText(tittle);
     holder.Item_account.setText(account);
@@ -71,7 +71,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         @Override
         //Cuando el usuario presione el item
         public void onClick(View v) {
-            Intent intent = new Intent(context, Detail_record.class);
+            Intent intent = new Intent(context, Web_Detail_Record.class);
             //Enviamos el dato id a la actividad Detail_record
                     intent.putExtra("Id_registro", id);
                     context.startActivity(intent);
@@ -100,14 +100,14 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
     @Override
     public int getItemCount() {
         //Devuelve el tamaño de la lista
-        return passwordList.size();
+        return webList.size();
     }
 
-    class HolderPassword extends RecyclerView.ViewHolder{
+    class HolderWeb extends RecyclerView.ViewHolder{
 
         TextView Item_tittle,Item_account,Item_username,Item_password, Item_websites,Item_note;
         ImageButton ImgB_option;
-        public HolderPassword(@NonNull View itemView) {
+        public HolderWeb(@NonNull View itemView) {
             super(itemView);
 
             Item_tittle = itemView.findViewById(R.id.Item_tittle);

@@ -2,11 +2,20 @@ package com.javier.passlive.Model;
 
 public class Bank {
 
-    String id, title, title_account_bank, account_bank, websites, notes, image, record_time, update_time;
+    String id, title, bank, title_account_bank, account_bank, websites, notes, image, record_time, update_time;
 
-    public Bank(String id, String title,String title_account_bank,String account_bank, String websites, String notes, String image, String record_time, String update_time) {
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public Bank(String id, String title, String bank, String title_account_bank, String account_bank, String websites, String notes, String image, String record_time, String update_time) {
         this.id = id;
         this.title = title;
+        this.bank = bank;
         this.title_account_bank = title_account_bank;
         this.account_bank = account_bank;
         this.websites = websites;

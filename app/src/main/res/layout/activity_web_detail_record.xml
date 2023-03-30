@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Detail.Web_Detail_Record">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    //Título
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        // Texto
+        <TextView
+            android:text="@string/Txt_D_Tittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+        //Datos
+        <TextView
+            android:id="@+id/D_Tittle"
+            android:text="@string/D_Tittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textSize="15sp"/>
+
+        //Linea para mejorar diseño
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/black"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    //Cuenta
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            tools:ignore="ExtraText">
+
+            // Texto
+            <TextView
+                android:text="@string/Txt_D_Account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            //Datos
+            <TextView
+                android:id="@+id/D_Account"
+                android:text="@string/D_Account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textSize="15sp"/>
+
+            //Linea para mejorar diseño
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    //Nombre usuario
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            // Texto
+            <TextView
+                android:text="@string/Txt_D_Username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            //Datos
+            <TextView
+                android:id="@+id/D_Username"
+                android:text="@string/D_Username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textSize="15sp"/>
+
+            //Linea para mejorar diseño
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    //Contraseña
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            // Texto
+            <TextView
+                android:text="@string/Txt_D_Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:passwordToggleEnabled="true">
+
+            //Datos
+            <EditText
+                android:id="@+id/D_Password"
+                android:text="@string/D_Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            //Linea para mejorar diseño
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    //Sitio Web
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            // Texto
+            <TextView
+                android:text="@string/Txt_D_Websites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            //Datos
+            <TextView
+                android:id="@+id/D_Websites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:text="@string/D_Websites"
+                android:textSize="15sp"
+                android:layout_toStartOf="@id/Img_web"/>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/Img_web"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@null"
+                    android:src="@drawable/icon_visit_web"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"/>
+
+            </RelativeLayout>
+
+
+
+            //Linea para mejorar diseño
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    //Nota
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        //Texto
+        <TextView
+            android:text="@string/Txt_D_Note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        //Datos
+        <TextView
+            android:id="@+id/D_Note"
+            android:text="@string/D_Note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#000"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    //Tiempo de registro
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+
+            // Texto
+            <TextView
+                android:id="@+id/D_RecordTime"
+                android:text="@string/Txt_D_RecordTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            //Datos
+            <TextView
+                android:text="@string/D_RecordTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textSize="15sp"/>
+
+            //Linea para mejorar diseño
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    //tiempo de actualización
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"/>
+
+            // Texto
+            <TextView
+                android:text="@string/Txt_D_UpdateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+            //Datos
+            <TextView
+                android:id="@+id/D_UpdateTime"
+                android:text="@string/D_UpdateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textSize="15sp"/>
+
+            //Linea para mejorar diseño
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/D_image"
+            android:src="@drawable/logo_image"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

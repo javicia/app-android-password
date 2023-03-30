@@ -52,8 +52,10 @@
     // Bank Record Detail
     <string name="Txt_B_Tittle">Título:</string>
     <string name="B_Tittle">--</string>
-    <string name="Txt_B_Account_Title">Titular de la cuenta:  </string>
-    <string name="B_Account">--</string>
+    <string name="Txt_B_Bank">Banco: </string>
+    <string name="B_Bank">--</string>
+    <string name="Txt_B_Account_Name">Titular de la cuenta:  </string>
+    <string name="B_Account_Name">--</string>
     <string name="Txt_B_Number">Número de cuenta bancaria:  </string>
     <string name="D_Number">--</string>
     <string name="Txt_B_Websites">Sitio web: </string>
@@ -97,7 +99,7 @@
 
     //Add bank design
     <string name="Et_B_Title">Título (Obligatorio)</string>
-    <string name="Et_B_Account_title">Titular de la cuenta</string>
+    <string name="Et_B_Account_name">Titular de la cuenta</string>
     <string name="Et_B_Number_Bank">Número de cuenta bancaria</string>
     <string name="Et_B_Websites">Sitio Web</string>
     <string name="Et_B_Note">Nota</string>
@@ -105,7 +107,7 @@
 
     //Add card design
     <string name="Et_C_Title">Título (Obligatorio)</string>
-    <string name="Et_C_Name_title">Nombre del titular</string>
+    <string name="Et_C_Name">Nombre del titular</string>
     <string name="Et_C_Number_Card">Número de tarjeta</string>
     <string name="Et_C_Date">Fecha de caducidad</string>
     <string name="Et_C_CVC">Código de seguridad</string>
@@ -124,7 +126,8 @@
 
     //Item bank
     <string name="Item_b_tittle">Título</string>
-    <string name="Item_b_account_title">Titular de la cuenta</string>
+    <string name="Item_b_bank">Banco</string>
+    <string name="Item_b_account_name">Titular de la cuenta</string>
     <string name="Item_b_number">Número de cuenta bancaria</string>
     <string name="Item_b_websites">Sitio web</string>
     <string name="Item_b_note">Nota</string>
@@ -135,10 +138,7 @@
     <string name="Item_c_number">Número de tarjeta</string>
     <string name="Item_c_date">Fecha de caducidad</string>
     <string name="Item_c_cvc">Codigo de seguridad</string>
-    <string name="Item_c_websites">Sitio web</string>
     <string name="Item_c_note">Nota</string>
-
-
 
 
     // Dialog box

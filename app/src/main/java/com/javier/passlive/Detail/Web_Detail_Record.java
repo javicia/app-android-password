@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.format.DateFormat;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,7 +25,7 @@ import com.javier.passlive.R;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Detail_record extends AppCompatActivity {
+public class Web_Detail_Record extends AppCompatActivity {
     TextView D_Tittle, D_Account, D_Username, D_Websites,D_Note, D_RecordTime, D_UpdateTime;
     String id_record;
     BBDD helper;
@@ -39,7 +38,7 @@ public class Detail_record extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-        setContentView(R.layout.activity_detail_record);
+        setContentView(R.layout.activity_web_detail_record);
 
         ActionBar actionBar = getSupportActionBar();
 

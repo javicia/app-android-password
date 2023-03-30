@@ -29,7 +29,7 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".Detail.Detail_record"
+            android:name=".Detail.Web_Detail_Record"
             android:exported="false" />
 
         <activity

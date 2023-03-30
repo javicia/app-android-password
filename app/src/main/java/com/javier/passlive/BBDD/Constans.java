@@ -34,7 +34,8 @@ public class Constans {
     public static final String TABLE_ACCOUNT_BANK= "ACCOUNT_BANK";
     public static final String B_ID_BANK ="ID";
     public static final String B_TITLE_BANK ="TITULO";
-    public static final String B_TITLE_ACCOUNT_BANK ="TITULAR_CUENTA";
+    public static final String B_BANK = "BANCO";
+    public static final String B_TITLE_ACCOUNT_NAME ="TITULAR_CUENTA";
     public static final String B_ACCOUNT_BANK ="CUENTA_BANCARIA";
     public static final String B_WEBSITES = "SITIO_WEB";
     public static final String B_NOTES ="NOTAS";
@@ -89,7 +90,8 @@ public class Constans {
             + "("
             + B_ID_BANK + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + B_TITLE_BANK + " TEXT, "
-            + B_TITLE_ACCOUNT_BANK + " TEXT,"
+            + B_BANK + " TEXT,"
+            + B_TITLE_ACCOUNT_NAME + " TEXT,"
             + B_ACCOUNT_BANK + " TEXT,"
             + B_WEBSITES + " TEXT,"
             + B_NOTES + " TEXT,"

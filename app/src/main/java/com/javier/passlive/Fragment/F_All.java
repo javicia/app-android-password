@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.javier.passlive.Adapter.Adapter_password;
+import com.javier.passlive.Adapter.Adapter_web;
 import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Option_Web.Web_Add_Update_Record;
@@ -66,13 +66,13 @@ public class F_All extends Fragment {
 //Método para cargar registros
     private void LoadRecord(String orderby) {
         statusOrder = orderby;
-        Adapter_password adapter_password = new Adapter_password(getActivity(), helper.GetAllrecord(
+        Adapter_web adapter_password = new Adapter_web(getActivity(), helper.GetAllrecord(
                 orderby));
         RView_record.setAdapter(adapter_password);
     }
     //Buscar registro en base de datos
         private void Record_seach(String consultation){
-        Adapter_password adapter_password = new Adapter_password(getActivity(),
+        Adapter_web adapter_password = new Adapter_web(getActivity(),
                 helper.search_Records(consultation));
 
         RView_record.setAdapter(adapter_password);
