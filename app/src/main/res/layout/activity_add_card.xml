@@ -34,8 +34,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/Et_C_Name_title"
-                android:hint="@string/Et_C_Name_title"
+                android:id="@+id/Et_C_Name"
+                android:hint="@string/Et_C_Name"
                 android:padding="15dp"
                 android:textSize="18sp"
                 android:maxLines="1"

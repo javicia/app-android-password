@@ -50,14 +50,14 @@
     <string name="D_UpdateTime">--</string>
 
     // Bank Record Detail
-    <string name="Txt_B_Tittle">Título:</string>
-    <string name="B_Tittle">--</string>
+    <string name="Txt_B_Title">Título:</string>
+    <string name="B_Title">--</string>
     <string name="Txt_B_Bank">Banco: </string>
     <string name="B_Bank">--</string>
     <string name="Txt_B_Account_Name">Titular de la cuenta:  </string>
     <string name="B_Account_Name">--</string>
     <string name="Txt_B_Number">Número de cuenta bancaria:  </string>
-    <string name="D_Number">--</string>
+    <string name="B_Number">--</string>
     <string name="Txt_B_Websites">Sitio web: </string>
     <string name="B_Websites">--</string>
     <string name="Txt_B_Note">Notas: </string>
@@ -68,15 +68,15 @@
     <string name="B_UpdateTime">--</string>
 
     // Card Record Detail
-    <string name="Txt_C_Tittle">Título:</string>
-    <string name="C_Tittle">--</string>
+    <string name="Txt_C_Title">Título:</string>
+    <string name="C_Title">--</string>
     <string name="Txt_C_Name">Nombre del titular:  </string>
     <string name="C_Name">--</string>
     <string name="Txt_C_Number">Número de tarjeta:  </string>
     <string name="C_Number">--</string>
     <string name="Txt_C_Date">Fecha de caducidad:  </string>
     <string name="C_Date">--</string>
-    <string name="Txt_C_CVC">CVC:  </string>
+    <string name="Txt_C_CVC">Código de seguridad:  </string>
     <string name="C_CVC">--</string>
     <string name="Txt_C_Websites">Sitio web: </string>
     <string name="C_Websites">--</string>
@@ -99,6 +99,7 @@
 
     //Add bank design
     <string name="Et_B_Title">Título (Obligatorio)</string>
+    <string name="Et_B_Bank_name">Nombre de banco</string>
     <string name="Et_B_Account_name">Titular de la cuenta</string>
     <string name="Et_B_Number_Bank">Número de cuenta bancaria</string>
     <string name="Et_B_Websites">Sitio Web</string>
@@ -113,7 +114,6 @@
     <string name="Et_C_CVC">Código de seguridad</string>
     <string name="Et_C_Note">Nota</string>
     <string name="Btn_C_Image">Adjuntar imagen</string>
-
 
 
     //Item web

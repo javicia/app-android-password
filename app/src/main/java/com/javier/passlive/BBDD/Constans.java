@@ -37,6 +37,7 @@ public class Constans {
     public static final String B_BANK = "BANCO";
     public static final String B_TITLE_ACCOUNT_NAME ="TITULAR_CUENTA";
     public static final String B_ACCOUNT_BANK ="CUENTA_BANCARIA";
+    public static final String B_NUMBER = "NUMERO_CUENTA";
     public static final String B_WEBSITES = "SITIO_WEB";
     public static final String B_NOTES ="NOTAS";
     public static final String B_IMAGE ="IMAGENES";
@@ -93,6 +94,7 @@ public class Constans {
             + B_BANK + " TEXT,"
             + B_TITLE_ACCOUNT_NAME + " TEXT,"
             + B_ACCOUNT_BANK + " TEXT,"
+            + B_NUMBER + " TEXT, "
             + B_WEBSITES + " TEXT,"
             + B_NOTES + " TEXT,"
             + B_IMAGE + " TEXT,"

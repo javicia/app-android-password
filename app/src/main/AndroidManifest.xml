@@ -4,7 +4,7 @@
     package="com.javier.passlive">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
@@ -17,21 +17,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
-
-        <activity android:name=".Login.Login_user"
-            android:exported="false"/>
+        <activity
+            android:name=".MainActivitys"
+            android:exported="false" />
+        <activity
+            android:name=".Login.Login_user"
+            android:exported="false" />
         <activity
             android:name=".UserRegistration.Registration"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Detail.Web_Detail_Record"
             android:exported="false" />
-
         <activity
             android:name=".Option_Web.Web_Add_Update_Record"
             android:exported="false" />

@@ -34,8 +34,22 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/Et_B_Account_title"
-                android:hint="@string/Et_B_Account_title"
+                android:id="@+id/Et_B_Bank_name"
+                android:hint="@string/Et_B_Bank_name"
+                android:padding="15dp"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:inputType="textCapWords|text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Et_B_Account_name"
+                android:hint="@string/Et_B_Account_name"
                 android:padding="15dp"
                 android:textSize="18sp"
                 android:maxLines="1"
@@ -65,8 +79,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/EtWebsites"
-                android:hint="@string/EtWebsites"
+                android:id="@+id/Et_B_Websites"
+                android:hint="@string/Et_B_Websites"
                 android:padding="15dp"
                 android:textSize="18sp"
                 android:maxLines="1"
@@ -79,8 +93,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/EtNote"
-                android:hint="@string/EtNote"
+                android:id="@+id/Et_B_Note"
+                android:hint="@string/Et_B_Note"
                 android:padding="15dp"
                 android:textSize="18sp"
                 android:height="150dp"

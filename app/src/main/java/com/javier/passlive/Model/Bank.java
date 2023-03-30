@@ -2,22 +2,16 @@ package com.javier.passlive.Model;
 
 public class Bank {
 
-    String id, title, bank, title_account_bank, account_bank, websites, notes, image, record_time, update_time;
+    String id, title, bank, title_account_bank, account_bank, number, websites, notes, image, record_time, update_time;
 
-    public String getBank() {
-        return bank;
-    }
 
-    public void setBank(String bank) {
-        this.bank = bank;
-    }
-
-    public Bank(String id, String title, String bank, String title_account_bank, String account_bank, String websites, String notes, String image, String record_time, String update_time) {
+    public Bank(String id, String title, String bank, String title_account_bank, String account_bank, String number, String websites, String notes, String image, String record_time, String update_time) {
         this.id = id;
         this.title = title;
         this.bank = bank;
         this.title_account_bank = title_account_bank;
         this.account_bank = account_bank;
+        this.number = number;
         this.websites = websites;
         this.notes = notes;
         this.image = image;
@@ -41,6 +35,14 @@ public class Bank {
         this.title = title;
     }
 
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
     public String getTitle_account_bank() {
         return title_account_bank;
     }
@@ -55,6 +57,14 @@ public class Bank {
 
     public void setAccount_bank(String account_bank) {
         this.account_bank = account_bank;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getWebsites() {

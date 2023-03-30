@@ -36,7 +36,7 @@ public class Web_Add_Update_Record extends AppCompatActivity {
     EditText EtTittle,EtAccount,EtUsername,EtPassword, EtWebsites,EtNote;
     String id, tittle, account, username, password,websites,note, t_record, t_update;
     ImageView Image;
-    Button Btn_Attach_image;
+    Button Btn_W_Image;
 
     private boolean EDITION_MODE= false;
 
@@ -58,7 +58,7 @@ public class Web_Add_Update_Record extends AppCompatActivity {
         Initial_Var();
         GetInformation();
 
-        Btn_Attach_image.setOnClickListener(new View.OnClickListener() {
+        Btn_W_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Si el permiso de cámara ha sido concedido entonces que se ejecute el método TakePhoto
@@ -83,7 +83,7 @@ public class Web_Add_Update_Record extends AppCompatActivity {
         EtNote = findViewById(R.id.EtNote);
 
         Image = findViewById(R.id.Image);
-        Btn_Attach_image = findViewById(R.id.Btn_Attach_Image);
+        Btn_W_Image = findViewById(R.id.Btn_B_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
         BDHelper = new BBDD(this);

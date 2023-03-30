@@ -23,15 +23,15 @@
 
             // Texto
             <TextView
-                android:text="@string/Txt_B_Tittle"
+                android:text="@string/Txt_B_Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
             //Datos
             <TextView
-                android:id="@+id/B_Tittle"
-                android:text="@string/D_Tittle"
+                android:id="@+id/B_Title"
+                android:text="@string/B_Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -122,7 +122,7 @@
 
             // Texto
             <TextView
-                android:text="@string/Txt_D_Password"
+                android:text="@string/Txt_B_Number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -135,7 +135,7 @@
 
                 //Datos
                 <EditText
-                    android:id="@+id/D_Password"
+                    android:id="@+id/B_Number"
                     android:text="@string/D_Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
 
             // Texto
             <TextView
-                android:text="@string/Txt_D_Websites"
+                android:text="@string/Txt_B_Websites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -176,7 +176,7 @@
 
                 //Datos
                 <TextView
-                    android:id="@+id/D_Websites"
+                    android:id="@+id/B_Websites"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
@@ -217,7 +217,7 @@
 
             //Texto
             <TextView
-                android:text="@string/Txt_D_Note"
+                android:text="@string/Txt_B_Note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -225,7 +225,7 @@
 
             //Datos
             <TextView
-                android:id="@+id/D_Note"
+                android:id="@+id/B_Note"
                 android:text="@string/D_Note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -250,15 +250,15 @@
 
             // Texto
             <TextView
-                android:id="@+id/D_RecordTime"
-                android:text="@string/Txt_D_RecordTime"
+                android:id="@+id/B_RecordTime"
+                android:text="@string/Txt_B_RecordTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
             //Datos
             <TextView
-                android:text="@string/D_RecordTime"
+                android:text="@string/B_RecordTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -282,15 +282,15 @@
 
         // Texto
         <TextView
-            android:text="@string/Txt_D_UpdateTime"
+            android:text="@string/Txt_B_UpdateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"/>
         //Datos
         <TextView
-            android:id="@+id/D_UpdateTime"
-            android:text="@string/D_UpdateTime"
+            android:id="@+id/B_UpdateTime"
+            android:text="@string/B_UpdateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="italic"
@@ -303,7 +303,7 @@
             android:layout_marginTop="5dp"
             android:background="@color/black"/>
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/D_image"
+            android:id="@+id/B_image"
             android:src="@drawable/logo_image"
             android:layout_marginTop="12dp"
             android:layout_gravity="center"

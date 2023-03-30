@@ -35,9 +35,9 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
     Dialog dialog;
 
     //Creamos Constructor
-    public Adapter_web(Context context, ArrayList<Web> passwordList) {
+    public Adapter_web(Context context, ArrayList<Web> webList) {
         this.context = context;
-        this.webList = passwordList;
+        this.webList = webList;
         dialog = new Dialog(context);
         bbddHelper = new BBDD(context);
     }
