@@ -33,7 +33,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".Password_Option.Add_Update_Record"
+            android:name=".Option_Web.Web_Add_Update_Record"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

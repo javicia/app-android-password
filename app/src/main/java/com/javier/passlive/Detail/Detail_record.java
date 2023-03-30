@@ -100,7 +100,7 @@ public class Detail_record extends AppCompatActivity {
 
     //Método para visualizar información de los registros
     private void Registration_info(){
-        String query ="SELECT * FROM " + Constans.TABLE_NAME + " WHERE " + Constans.C_ID + " =\"" +
+        String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + " WHERE " + Constans.W_ID + " =\"" +
                 id_record + "\"";
 
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -109,16 +109,16 @@ public class Detail_record extends AppCompatActivity {
 //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.C_ID));
-                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Constans.C_TITTLE));
-                @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Constans.C_ACCOUNT));
-                @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Constans.C_USERNAME));
-                @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Constans.C_PASSWORD));
-                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.C_WEBSITES));
-                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.C_NOTES));
-                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.C_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
+                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.W_ID));
+                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Constans.W_TITTLE));
+                @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Constans.W_ACCOUNT));
+                @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Constans.W_USERNAME));
+                @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Constans.W_PASSWORD));
+                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.W_WEBSITES));
+                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.W_NOTES));
+                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.W_RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.W_UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro

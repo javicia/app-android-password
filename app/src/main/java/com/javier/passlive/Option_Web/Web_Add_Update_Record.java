@@ -1,4 +1,4 @@
-package com.javier.passlive.Password_Option;
+package com.javier.passlive.Option_Web;
 
 import android.Manifest;
 import android.app.Activity;
@@ -31,7 +31,7 @@ import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
-public class Add_Update_Record extends AppCompatActivity {
+public class Web_Add_Update_Record extends AppCompatActivity {
 
     EditText EtTittle,EtAccount,EtUsername,EtPassword, EtWebsites,EtNote;
     String id, tittle, account, username, password,websites,note, t_record, t_update;
@@ -51,7 +51,7 @@ public class Add_Update_Record extends AppCompatActivity {
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        setContentView(R.layout.activity_add_password);
+        setContentView(R.layout.activity_add_web);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar !=null;
         actionBar.setTitle("");
@@ -83,7 +83,7 @@ public class Add_Update_Record extends AppCompatActivity {
         EtNote = findViewById(R.id.EtNote);
 
         Image = findViewById(R.id.Image);
-        Btn_Attach_image = findViewById(R.id.Btn_Attach_image);
+        Btn_Attach_image = findViewById(R.id.Btn_Attach_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
         BDHelper = new BBDD(this);
@@ -131,7 +131,7 @@ public class Add_Update_Record extends AppCompatActivity {
                 public void onClick(View v) {
                     imageUri = null;
                     Image.setImageResource(R.drawable.logo_image);
-                    Toast.makeText(Add_Update_Record.this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Web_Add_Update_Record.this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
@@ -139,7 +139,7 @@ public class Add_Update_Record extends AppCompatActivity {
         }
     }
 //Método para guardar password
-    private void Add_Update_Record(){
+    private void Add_Update_Record_Web(){
 //Obtener datos de entrada
         tittle= EtTittle.getText().toString().trim();
         account=EtAccount.getText().toString().trim();
@@ -152,11 +152,11 @@ public class Add_Update_Record extends AppCompatActivity {
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = ""+ System.currentTimeMillis();
-            BDHelper.updateRecord("" + id, "" + tittle,"" + account, "" + username,
+            BDHelper.updateRecordWeb("" + id, "" + tittle,"" + account, "" + username,
                     "" + password, ""+ websites, ""+ note,"" + imageUri,"" + t_record,
                     "" + current_time);
             Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Add_Update_Record.this, MainActivity.class));
+            startActivity(new Intent(Web_Add_Update_Record.this, MainActivity.class));
             finish();
 
 
@@ -167,12 +167,12 @@ public class Add_Update_Record extends AppCompatActivity {
             if(!tittle.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = BDHelper.insertRecord(
+                long id = BDHelper.insertRecordWeb(
                         "" +tittle, "" + account, "" + username,
                         "" + password,"" + websites,   "" + note,
                         ""+ imageUri,""+ time, ""+ time);
                 Toast.makeText(this, "Se ha guardado con éxito: ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Add_Update_Record.this, MainActivity.class));
+                startActivity(new Intent(Web_Add_Update_Record.this, MainActivity.class));
                 finish();
             }
             else {
@@ -194,7 +194,7 @@ public class Add_Update_Record extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save_password){
-           Add_Update_Record();
+           Add_Update_Record_Web();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -219,7 +219,7 @@ private ActivityResultLauncher<Intent> camaraActivytyResultLauncher = registerFo
                 if (result.getResultCode() == Activity.RESULT_OK){
                     Image.setImageURI(imageUri);
                 }else{
-                    Toast.makeText(Add_Update_Record.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Web_Add_Update_Record.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
                 }
             }
         }

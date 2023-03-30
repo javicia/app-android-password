@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.Detail.Detail_record;
 import com.javier.passlive.MainActivity;
-import com.javier.passlive.Model.Password;
-import com.javier.passlive.Password_Option.Add_Update_Record;
+import com.javier.passlive.Model.Web;
+import com.javier.passlive.Option_Web.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
@@ -28,14 +28,14 @@ import java.util.ArrayList;
 public class Adapter_password extends RecyclerView.Adapter<Adapter_password.HolderPassword>{
 
     private Context context;
-    private ArrayList<Password> passwordList;
+    private ArrayList<Web> passwordList;
 
     BBDD bbddHelper;
 
     Dialog dialog;
 
     //Creamos Constructor
-    public Adapter_password(Context context, ArrayList<Password> passwordList) {
+    public Adapter_password(Context context, ArrayList<Web> passwordList) {
         this.context = context;
         this.passwordList = passwordList;
         dialog = new Dialog(context);
@@ -52,7 +52,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
 
     @Override
     public void onBindViewHolder(@NonNull HolderPassword holder, @SuppressLint("Recyclerview") int position) {
-    Password model_password = passwordList.get(position);
+    Web model_password = passwordList.get(position);
     String id = model_password.getId();
     String tittle = model_password.getTittle();
     String account = model_password.getAccount();
@@ -133,7 +133,7 @@ public class Adapter_password extends RecyclerView.Adapter<Adapter_password.Hold
         Btn_edit_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Add_Update_Record.class);
+                Intent intent = new Intent(context, Web_Add_Update_Record.class);
                 intent.putExtra("POSITION", position);
                 intent.putExtra("ID", id);
                 intent.putExtra("TITTLE", tittle);

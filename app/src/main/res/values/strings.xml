@@ -31,7 +31,7 @@
 
     <string name="add_password">Agregar</string>
 
-    // Record Detail
+    // Web Record Detail
     <string name="Txt_D_Tittle">Título:</string>
     <string name="D_Tittle">--</string>
     <string name="Txt_D_Account">Cuenta: </string>
@@ -49,24 +49,96 @@
     <string name="Txt_D_UpdateTime">Tiempo de actualización: </string>
     <string name="D_UpdateTime">--</string>
 
+    // Bank Record Detail
+    <string name="Txt_B_Tittle">Título:</string>
+    <string name="B_Tittle">--</string>
+    <string name="Txt_B_Account_Title">Titular de la cuenta:  </string>
+    <string name="B_Account">--</string>
+    <string name="Txt_B_Number">Número de cuenta bancaria:  </string>
+    <string name="D_Number">--</string>
+    <string name="Txt_B_Websites">Sitio web: </string>
+    <string name="B_Websites">--</string>
+    <string name="Txt_B_Note">Notas: </string>
+    <string name="B_Note">--</string>
+    <string name="Txt_B_RecordTime">Tiempo de registro: </string>
+    <string name="B_RecordTime">--</string>
+    <string name="Txt_B_UpdateTime">Tiempo de actualización: </string>
+    <string name="B_UpdateTime">--</string>
 
-    //Add password design
+    // Card Record Detail
+    <string name="Txt_C_Tittle">Título:</string>
+    <string name="C_Tittle">--</string>
+    <string name="Txt_C_Name">Nombre del titular:  </string>
+    <string name="C_Name">--</string>
+    <string name="Txt_C_Number">Número de tarjeta:  </string>
+    <string name="C_Number">--</string>
+    <string name="Txt_C_Date">Fecha de caducidad:  </string>
+    <string name="C_Date">--</string>
+    <string name="Txt_C_CVC">CVC:  </string>
+    <string name="C_CVC">--</string>
+    <string name="Txt_C_Websites">Sitio web: </string>
+    <string name="C_Websites">--</string>
+    <string name="Txt_C_Note">Notas: </string>
+    <string name="C_Note">--</string>
+    <string name="Txt_C_RecordTime">Tiempo de registro: </string>
+    <string name="C_RecordTime">--</string>
+    <string name="Txt_C_UpdateTime">Tiempo de actualización: </string>
+    <string name="C_UpdateTime">--</string>
+
+
+    //Add web design
     <string name="EtTittle">Título (Obligatorio)</string>
     <string name="EtAccount">Cuenta</string>
     <string name="EtUsername">Nombre de usuario</string>
     <string name="EtPassword">Contraseña</string>
     <string name="EtWebsites">Sitio Web</string>
     <string name="EtNote">Nota</string>
-    <string name="Btn_Attach_image">Adjuntar imagen</string>
+    <string name="Btn_W_Image">Adjuntar imagen</string>
+
+    //Add bank design
+    <string name="Et_B_Title">Título (Obligatorio)</string>
+    <string name="Et_B_Account_title">Titular de la cuenta</string>
+    <string name="Et_B_Number_Bank">Número de cuenta bancaria</string>
+    <string name="Et_B_Websites">Sitio Web</string>
+    <string name="Et_B_Note">Nota</string>
+    <string name="Btn_B_Image">Adjuntar imagen</string>
+
+    //Add card design
+    <string name="Et_C_Title">Título (Obligatorio)</string>
+    <string name="Et_C_Name_title">Nombre del titular</string>
+    <string name="Et_C_Number_Card">Número de tarjeta</string>
+    <string name="Et_C_Date">Fecha de caducidad</string>
+    <string name="Et_C_CVC">Código de seguridad</string>
+    <string name="Et_C_Note">Nota</string>
+    <string name="Btn_C_Image">Adjuntar imagen</string>
 
 
-    //Item password
+
+    //Item web
     <string name="Item_tittle">Título</string>
     <string name="Item_account">Cuenta</string>
     <string name="Item_username">Nombre de usuario</string>
     <string name="Item_password">Contraseña</string>
     <string name="Item_websites">Sitio web</string>
     <string name="Item_note">Nota</string>
+
+    //Item bank
+    <string name="Item_b_tittle">Título</string>
+    <string name="Item_b_account_title">Titular de la cuenta</string>
+    <string name="Item_b_number">Número de cuenta bancaria</string>
+    <string name="Item_b_websites">Sitio web</string>
+    <string name="Item_b_note">Nota</string>
+
+    //Item card
+    <string name="Item_c_tittle">Título</string>
+    <string name="Item_c_name">Nombre del titular</string>
+    <string name="Item_c_number">Número de tarjeta</string>
+    <string name="Item_c_date">Fecha de caducidad</string>
+    <string name="Item_c_cvc">Codigo de seguridad</string>
+    <string name="Item_c_websites">Sitio web</string>
+    <string name="Item_c_note">Nota</string>
+
+
 
 
     // Dialog box
@@ -100,6 +172,7 @@
 
 
     //Order record
+    <string name="Btn_Category">Categorias</string>
     <string name="Btn_New">Nuevos</string>
     <string name="Btn_Past">Antiguos</string>
     <string name="Btn_Asc">A-Z</string>
@@ -113,6 +186,12 @@
     <string name="Import_File">Importar archivo CSV</string>
     <string name="Btn_Registration">Registrar</string>
     <string name="Change_Password">Cambiar password</string>
+
+
+    //Caregory
+    <string name="Btn_Web">Cuentas de Sitios Web</string>
+    <string name="Btn_Bank">Cuentas bancarias</string>
+    <string name="Btn_Card">Tarjetas de crédito</string>
 
     //Info app
     <string name="Txt_Developer">Desarrollado por: Javier García Pérez</string>

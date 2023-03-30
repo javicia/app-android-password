@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context=".Password_Option.Add_Update_Record">
+    tools:context=".Option_Web.Web_Add_Update_Record">
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -127,8 +127,8 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
-        android:id="@+id/Btn_Attach_image"
-        android:text="Btn_Attach_image"
+        android:id="@+id/Btn_W_Image"
+        android:text="@string/Btn_W_Image"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"
         android:textStyle="bold"

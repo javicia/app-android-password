@@ -23,15 +23,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.javier.passlive.Adapter.Adapter_password;
 import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.BBDD.Constans;
-import com.javier.passlive.Password_Option.Add_Update_Record;
+import com.javier.passlive.Option_Web.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
 
 public class F_All extends Fragment {
-    String newOrder= Constans.C_RECORD_TIME + " DESC";
-    String sortPast= Constans.C_RECORD_TIME + " ASC";
-    String orderTittleAsc = Constans.C_TITTLE + " ASC";
-    String orderTittleDesc = Constans.C_TITTLE + " DESC";
+    String newOrder= Constans.W_RECORD_TIME + " DESC";
+    String sortPast= Constans.W_RECORD_TIME + " ASC";
+    String orderTittleAsc = Constans.W_TITTLE + " ASC";
+    String orderTittleDesc = Constans.W_TITTLE + " DESC";
     String statusOrder = newOrder;
    Dialog dialog, dialog_order;
  BBDD helper;
@@ -56,7 +56,7 @@ public class F_All extends Fragment {
                 btnadd_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent= new Intent(getActivity(),Add_Update_Record.class);
+                        Intent intent= new Intent(getActivity(), Web_Add_Update_Record.class);
                         intent.putExtra("EDITION_MODE", false);
                         startActivity(intent);
                     }

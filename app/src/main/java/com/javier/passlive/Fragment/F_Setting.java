@@ -30,7 +30,7 @@ import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
-import com.javier.passlive.Model.Password;
+import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import com.opencsv.CSVReader;
 
@@ -47,7 +47,7 @@ public class F_Setting extends Fragment {
 
     BBDD bbddHelper;
 
-    String orderTitleAsc = Constans.C_TITTLE + "ASC";
+    String orderTitleAsc = Constans.W_TITTLE + "ASC";
 
     //Guardar preferencias de usuario en un archivo con una clave y valor
     SharedPreferences sharedPreferences;
@@ -183,7 +183,7 @@ public class F_Setting extends Fragment {
         //Concatenamos el nombre de la carpeta y archivo para almacenar en File_Folder
         String File_Folder = file + "/" + csvfileName;
         //Obtenemos el registro que exportaremos
-        ArrayList<Password> recordList = new ArrayList<>();
+        ArrayList<Web> recordList = new ArrayList<>();
         recordList.clear();
         recordList = bbddHelper.GetAllrecord(orderTitleAsc);
         try {
@@ -246,7 +246,7 @@ public class F_Setting extends Fragment {
                     String t_Record = nextLine[8];
                     String t_Update = nextLine[9];
 
-                    long ids = bbddHelper.insertRecord("" + title, ""+ account,
+                    long ids = bbddHelper.insertRecordWeb("" + title, ""+ account,
                             "" + username, "" + password, ""+ websites,
                             ""+ note, ""+ image, ""+ t_Record, "" + t_Update);
                 }
