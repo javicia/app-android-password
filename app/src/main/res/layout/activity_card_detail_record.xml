@@ -31,7 +31,7 @@
             //Datos
             <TextView
                 android:id="@+id/C_Title"
-                android:text="@string/D_Tittle"
+                android:text="@string/C_Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -280,7 +280,7 @@
         //Datos
         <TextView
             android:id="@+id/C_UpdateTime"
-            android:text="@string/D_UpdateTime"
+            android:text="@string/C_UpdateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="italic"

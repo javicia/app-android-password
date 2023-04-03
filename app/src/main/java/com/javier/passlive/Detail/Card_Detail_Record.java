@@ -73,7 +73,7 @@ public class Card_Detail_Record extends AppCompatActivity {
             dialog= new Dialog(this);
         }
         private void Registration_info(){
-            String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
+            String query ="SELECT * FROM " + Constans.TABLE_CARD+ " WHERE " + Constans.ID_CARD + " =\"" +
                     id_record + "\"";
 
             SQLiteDatabase db = helper.getWritableDatabase();
@@ -82,16 +82,16 @@ public class Card_Detail_Record extends AppCompatActivity {
 //Buscar en la BBDD el registro seleccionado
             if (cursor.moveToFirst()){
                 do{
-                    @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.B_ID_BANK));
-                    @SuppressLint("Range") String title_bank = "" +cursor.getString(cursor.getColumnIndex(Constans.B_TITLE_BANK));
-                    @SuppressLint("Range") String name_bank = "" +cursor.getString(cursor.getColumnIndex(Constans.B_BANK));
-                    @SuppressLint("Range") String account_name = "" +cursor.getString(cursor.getColumnIndex(Constans.B_ACCOUNT_BANK));
-                    @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Constans.B_NUMBER));
-                    @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.B_WEBSITES));
-                    @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.B_NOTES));
-                    @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.B_IMAGE));
-                    @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.B_RECORD_TIME));
-                    @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.B_UPDATE_TIME));
+                    @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.ID_CARD));
+                    @SuppressLint("Range") String title_card = "" +cursor.getString(cursor.getColumnIndex(Constans.C_TITLE_CARD));
+                    @SuppressLint("Range") String name_card = "" +cursor.getString(cursor.getColumnIndex(Constans.C_USERNAME));
+                    @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Constans.C_NUMBER));
+                    @SuppressLint("Range") String date = "" +cursor.getString(cursor.getColumnIndex(Constans.C_DATE));
+                    @SuppressLint("Range") String cvc = "" +cursor.getString(cursor.getColumnIndex(Constans.C_CVC));
+                    @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.C_NOTES));
+                    @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.C_IMAGE));
+                    @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME));
+                    @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
 
                     //Convertimos tiempo a dia/mes/año
                     //Tiempo registro
@@ -104,25 +104,31 @@ public class Card_Detail_Record extends AppCompatActivity {
                     calendar_updateTime.setTimeInMillis(Long.parseLong(updateTime));
                     String update_time = "" + DateFormat.format("dd/MM/yyyy hh:mm:aa", calendar_updateTime);
 
+                    //Fecha de caducidad tarjeta
+                    Calendar calendar_date = Calendar.getInstance(Locale.getDefault());
+                    calendar_date.setTimeInMillis(Long.parseLong(date));
+                    int month = calendar_date.get(Calendar.MONTH) + 1; // Sumar 1 porque Calendar.MONTH comienza en 0
+                    int year = calendar_date.get(Calendar.YEAR);
+                    String expiration_date = String.format("%02d/%04d", month, year);
+
                     //Setear información en las vistas
 
-                    B_Title.setText(title_bank);
-                    B_Bank.setText(name_bank);
-                    B_Account_Name.setText(account_name);
-                    B_Number.setText(number);
-                    B_Number.setEnabled(false);
-                    B_Number.setBackgroundColor(Color.TRANSPARENT);
-                    B_Number.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    B_Websites.setText(websites);
-                    B_Note.setText(note);
-                    B_RecordTime.setText(record_time);
-                    B_UpdateTime.setText(update_time);
+                    C_Title.setText(title_card);
+                    C_Name.setText(name_card);
+                    C_Number.setText(number);
+                    C_Date.setText(expiration_date);
+                    C_CVC.setText(cvc);
+                    C_CVC.setBackgroundColor(Color.TRANSPARENT);
+                    C_CVC.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    C_Note.setText(note);
+                    C_RecordTime.setText(record_time);
+                    C_UpdateTime.setText(update_time);
                     //Si la imagen no existe que se setee dentro
                     if(image.equals("null")){
-                        B_Image.setImageResource(R.drawable.logo_image);
+                        C_Image.setImageResource(R.drawable.logo_image);
                     }else {
                         //Si la imagen existe pasamos la imagen
-                        B_Image.setImageURI(Uri.parse(image));
+                        C_Image.setImageURI(Uri.parse(image));
                     }
 
                 }while (cursor.moveToNext());

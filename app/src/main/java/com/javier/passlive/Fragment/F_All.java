@@ -2,6 +2,7 @@ package com.javier.passlive.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,15 +22,26 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.javier.passlive.Adapter.Adapter_bank;
+import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
 import com.javier.passlive.BBDD.BBDD;
 import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.Category.Category;
+import com.javier.passlive.Model.Bank;
+import com.javier.passlive.Model.Card;
+import com.javier.passlive.Model.Web;
 import com.javier.passlive.Option_Web.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 public class F_All extends Fragment {
-    String newOrder= Constans.W_RECORD_TIME + " DESC";
+    String category = Constans.ACCOUNT_WEB + Constans.ACCOUNT_BANK + Constans.CARD + " CATE";
+    String newOrder= Constans.W_RECORD_TIME + Constans.B_RECORD_TIME + Constans.C_RECORD_TIME + " DESC";
     String sortPast= Constans.W_RECORD_TIME + " ASC";
     String orderTittleAsc = Constans.W_TITTLE + " ASC";
     String orderTittleDesc = Constans.W_TITTLE + " DESC";
@@ -56,8 +69,7 @@ public class F_All extends Fragment {
                 btnadd_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent= new Intent(getActivity(), Web_Add_Update_Record.class);
-                        intent.putExtra("EDITION_MODE", false);
+                        Intent intent= new Intent(getActivity(), Category.class);
                         startActivity(intent);
                     }
                 });
@@ -65,17 +77,53 @@ public class F_All extends Fragment {
     }
 //Método para cargar registros
     private void LoadRecord(String orderby) {
-        statusOrder = orderby;
-        Adapter_web adapter_password = new Adapter_web(getActivity(), helper.GetAllrecord(
-                orderby));
-        RView_record.setAdapter(adapter_password);
+        String currentRecordType = orderby;
+        List<Object> recordList = new ArrayList<>();
+        switch (currentRecordType){
+            case "web":
+                recordList.addAll(helper.GetAllrecordWeb(orderby));
+                Adapter_web adapter_web= new Adapter_web(getActivity(),recordList);
+                RView_record.setAdapter(adapter_web);
+                break;
+            case "bank":
+                recordList.addAll(helper.GetAllrecordBank(orderby));
+                Adapter_bank adapter_bank = new Adapter_bank(getActivity(),recordList);
+                RView_record.setAdapter(adapter_bank);
+                break;
+            case "card":
+                recordList.addAll(helper.GetAllrecordCard(orderby));
+                Adapter_card adapter_card = new Adapter_card(getActivity(),recordList);
+                RView_record.setAdapter(adapter_card);
+                break;
+        }
+
     }
     //Buscar registro en base de datos
         private void Record_seach(String consultation){
-        Adapter_web adapter_password = new Adapter_web(getActivity(),
-                helper.search_Records(consultation));
+            List<Object> seachResults = new ArrayList<>();
+            seachResults.addAll(helper.search_RecordsWeb(consultation));
+            seachResults.addAll(helper.search_RecordsBank(consultation));
+            seachResults.addAll(helper.search_RecordsCard(consultation));
 
-        RView_record.setAdapter(adapter_password);
+            RecyclerView.Adapter adapter = null;
+            if (!seachResults.isEmpty()) {
+                //Si se producen resultados, crear el adaptador cortrespontiente
+                if (seachResults.get(0) instanceof Web) {
+                    adapter = new Adapter_web(getActivity(), seachResults);
+                } else if (seachResults.get(0) instanceof Bank) {
+                    adapter = new Adapter_bank(getActivity(), seachResults);
+                } else if (seachResults.get(0) instanceof Card) {
+                    adapter = new Adapter_card(getActivity(), seachResults);
+                }
+            }
+            if (adapter !=null){
+                //Si se creó el adaptador, establecerlo en el RecyclerView
+                RView_record.setAdapter(adapter);
+            }else {
+                //Si no se encuentra resultado
+                Toast.makeText(getActivity(), "No se encuentran resultados", Toast.LENGTH_SHORT).show();
+            }
+
  }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -156,10 +204,11 @@ public class F_All extends Fragment {
     }
 
     private void Order_Record(){
-        Button Btn_New, Btn_Past, Btn_Asc, Btn_Desc;
+        Button Btn_Category, Btn_New, Btn_Past, Btn_Asc, Btn_Desc;
         //Conexión hacia el diseño
         dialog_order.setContentView(R.layout.box_dialog_order_record);
 
+        Btn_Category = dialog_order.findViewById(R.id.Btn_Category);
         Btn_New = dialog_order.findViewById(R.id.Btn_New);
         Btn_Past = dialog_order.findViewById(R.id.Btn_Past);
         Btn_Asc = dialog_order.findViewById(R.id.Btn_Asc);
@@ -169,6 +218,14 @@ public class F_All extends Fragment {
             @Override
             public void onClick(View v) {
                 LoadRecord(newOrder);
+                dialog_order.dismiss();
+            }
+        });
+
+        Btn_Category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoadRecord(sortPast);
                 dialog_order.dismiss();
             }
         });

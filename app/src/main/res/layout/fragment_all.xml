@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#7ed957"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/icon_add"
         android:layout_margin="10dp"
         android:contentDescription="@string/add_password"

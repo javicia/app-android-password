@@ -23,19 +23,20 @@ import com.javier.passlive.Option_Web.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Inflar diseño item_password obtener los datos leidos en la BBDD en los textView
 public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     private Context context;
-    private ArrayList<Web> webList;
+    private List<Object> webList;
 
     BBDD bbddHelper;
 
     Dialog dialog;
 
     //Creamos Constructor
-    public Adapter_web(Context context, ArrayList<Web> webList) {
+    public Adapter_web(Context context, List<Object> webList) {
         this.context = context;
         this.webList = webList;
         dialog = new Dialog(context);
@@ -52,7 +53,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     @Override
     public void onBindViewHolder(@NonNull HolderWeb holder, @SuppressLint("Recyclerview") int position) {
-    Web model_web = webList.get(position);
+    Web model_web = (Web) webList.get(position);
     String id = model_web.getId();
     String tittle =model_web.getTittle();
     String account = model_web.getAccount();
@@ -81,7 +82,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
         @Override
         //Cuando el usuario presione el Image Button
         public void onClick(View v) {
-        Option_edit_delete(
+        Option_edit_deleteWeb(
                 "" + position,
                 "" +id,
                 "" +tittle,
@@ -122,7 +123,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
     }
 
     //Método para visualizar el cuadro de dialogo
-    private void Option_edit_delete(String position, String id, String tittle, String account,
+    private void Option_edit_deleteWeb (String position, String id, String tittle, String account,
                                     String usename, String websites, String note, String image, String t_record,
                                     String t_update){
         Button Btn_edit_record, Btn_edit_delete_record;

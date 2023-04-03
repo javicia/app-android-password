@@ -185,7 +185,7 @@ public class F_Setting extends Fragment {
         //Obtenemos el registro que exportaremos
         ArrayList<Web> recordList = new ArrayList<>();
         recordList.clear();
-        recordList = bbddHelper.GetAllrecord(orderTitleAsc);
+        recordList = bbddHelper.GetAllrecordWeb(orderTitleAsc);
         try {
             //Escribir en el archivo
             FileWriter fileWriter = new FileWriter(File_Folder);

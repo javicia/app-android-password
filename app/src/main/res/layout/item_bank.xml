@@ -46,8 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/Item_b_account_title"
-                android:text="@string/Item_b_account_title"
+                android:id="@+id/Item_b_account_name"
+                android:text="@string/Item_b_account_name"
                 android:textSize="15dp"
                 android:visibility="gone"
                 android:layout_width="match_parent"

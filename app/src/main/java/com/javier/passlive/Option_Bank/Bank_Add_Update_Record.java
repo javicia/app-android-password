@@ -153,36 +153,38 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = ""+ System.currentTimeMillis();
-            BDHelper.updateRecordWeb("" + id, "" + title,"" + bank_name, "" + account_name,
-                    "" + number, ""+ websites, ""+ note,"" + imageUri,"" + t_record,
+            BDHelper.updateRecordBank(
+                    "" + id,
+                    ""+ title,
+                    "" + bank_name,
+                    "" + account_name,
+                    "" + number,
+                    ""+ websites,
+                    ""+ note,
+                    "" + imageUri,
+                    "" + t_record,
                     "" + current_time);
             Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Bank_Add_Update_Record.this, MainActivity.class));
             finish();
-
-
-
         }else {
             //Si es falsa se agrega un nuevo registro
 
             if(!title.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = BDHelper.insertRecordBank(
+                long id = BDHelper.insertRecordBank (
                         "" +title, "" + bank_name, "" + account_name,
                         "" + number,"" + websites,   "" + note,
                         ""+ imageUri,""+ time, ""+ time);
                 Toast.makeText(this, "Se ha guardado con éxito: ", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Bank_Add_Update_Record.this, MainActivity.class));
                 finish();
-            }
-            else {
+            } else {
                 Et_B_Title.setError("Campo Obligatorio");
                 Et_B_Title.setFocusable(true);
             }
         }
-
-
     }
 
     @Override

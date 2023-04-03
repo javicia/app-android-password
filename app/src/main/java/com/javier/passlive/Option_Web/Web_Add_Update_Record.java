@@ -58,7 +58,7 @@ public class Web_Add_Update_Record extends AppCompatActivity {
         Initial_Var();
         GetInformation();
 
-        Btn_W_Image.setOnClickListener(new View.OnClickListener() {
+       /* Btn_W_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Si el permiso de cámara ha sido concedido entonces que se ejecute el método TakePhoto
@@ -73,6 +73,8 @@ public class Web_Add_Update_Record extends AppCompatActivity {
             }
         });
 
+
+        */
     }
     private void Initial_Var(){
         EtTittle = findViewById(R.id.EtTittle);

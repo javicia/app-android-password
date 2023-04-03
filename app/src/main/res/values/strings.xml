@@ -134,7 +134,7 @@
 
     //Item card
     <string name="Item_c_tittle">Título</string>
-    <string name="Item_c_name">Nombre del titular</string>
+    <string name="Item_c_account_name">Nombre del titular</string>
     <string name="Item_c_number">Número de tarjeta</string>
     <string name="Item_c_date">Fecha de caducidad</string>
     <string name="Item_c_cvc">Codigo de seguridad</string>

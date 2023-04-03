@@ -31,7 +31,7 @@ import com.javier.passlive.R;
 
 public class Card_Add_Update_Record extends AppCompatActivity {
     EditText Et_C_Title,Et_C_Name, Et_C_Number_Card,Et_C_Date,Et_C_CVC, Et_C_Note;
-    String id, title, name, number, date, cvc, note, t_record, t_update;
+    String id_card, title, username, name, number, date, cvc, note, t_record, t_update;
     ImageView Image;
     Button Btn_C_Image;
 
@@ -55,7 +55,7 @@ public class Card_Add_Update_Record extends AppCompatActivity {
         Initial_Var();
         GetInformation();
 
-        Btn_C_Image.setOnClickListener(new View.OnClickListener() {
+        /*Btn_C_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Si el permiso de cámara ha sido concedido entonces que se ejecute el método TakePhoto
@@ -70,6 +70,8 @@ public class Card_Add_Update_Record extends AppCompatActivity {
             }
         });
 
+
+         */
     }
     private void Initial_Var(){
         Et_C_Title = findViewById(R.id.Et_C_Title);
@@ -93,7 +95,7 @@ public class Card_Add_Update_Record extends AppCompatActivity {
 
         if (EDITION_MODE) {
             //Verdadero
-            id = intent.getStringExtra("ID");
+            id_card = intent.getStringExtra("ID");
             title = intent.getStringExtra("TITLE");
             name = intent.getStringExtra("NAME");
             number = intent.getStringExtra("NUMBER");
@@ -148,16 +150,22 @@ public class Card_Add_Update_Record extends AppCompatActivity {
         if(EDITION_MODE){
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
-            String current_time = ""+ System.currentTimeMillis();
-            BDHelper.updateRecordWeb("" + id, "" + title,"" + name, "" + number,
-                    "" + date, ""+ cvc, ""+ note,"" + imageUri,"" + t_record,
+            String current_time = "" + System.currentTimeMillis();
+            BDHelper.updateRecordCard(
+                    "" + id_card,
+                    ""+ title,
+                    "" + username,
+                    "" + number,
+                    "" + date,
+                    "" + cvc,
+                    ""+ note,
+                    ""+ imageUri,
+                    "" + t_record,
+                    "" + t_update,
                     "" + current_time);
             Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Card_Add_Update_Record.this, MainActivity.class));
             finish();
-
-
-
         }else {
             //Si es falsa se agrega un nuevo registro
 

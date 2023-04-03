@@ -130,7 +130,7 @@
 
         <Button
             android:id="@+id/Btn_C_Image"
-            android:text="@string/Btn_B_Image"
+            android:text="@string/Btn_C_Image"
             android:background="@color/colorPrimary"
             android:textColor="#ffffff"
             android:textStyle="bold"

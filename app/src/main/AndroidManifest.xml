@@ -18,8 +18,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivitys"
+            android:name=".Category.Category"
             android:exported="false" />
+
         <activity
             android:name=".Login.Login_user"
             android:exported="false" />
@@ -32,12 +33,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Detail.Web_Detail_Record"
             android:exported="false" />
         <activity
+            android:name=".Detail.Bank_Detail_Record"
+            android:exported="false" />
+        <activity
+            android:name=".Detail.Card_Detail_Record"
+            android:exported="false" />
+
+        <activity
             android:name=".Option_Web.Web_Add_Update_Record"
             android:exported="false" />
+        <activity
+            android:name=".Option_Bank.Bank_Add_Update_Record"
+            android:exported="false" />
+        <activity
+            android:name=".Option_Card.Card_Add_Update_Record"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
