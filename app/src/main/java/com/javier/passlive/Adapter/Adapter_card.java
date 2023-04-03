@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 
 import com.javier.passlive.Detail.Card_Detail_Record;
 import com.javier.passlive.MainActivity;
@@ -25,13 +25,12 @@ import com.javier.passlive.Model.Card;
 import com.javier.passlive.Option_Card.Card_Add_Update_Record;
 import com.javier.passlive.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
     private Context context;
     private List<Object> cardList;
-    BBDD bbddHelper;
+    BBDD_Helper bbddHelper;
     Dialog dialog;
 
     //Creamos Constructor
@@ -39,7 +38,7 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
         this.context = context;
         this.cardList = cardList;
         dialog = new Dialog(context);
-        bbddHelper = new BBDD(context);
+        bbddHelper = new BBDD_Helper(context);
     }
 
     @NonNull

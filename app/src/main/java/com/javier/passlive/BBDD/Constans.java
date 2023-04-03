@@ -83,6 +83,7 @@ public class Constans {
             + W_RECORD_TIME + " TEXT,"
             + W_UPDATE_TIME + " TEXT"
             + W_ID_CATEGORY + " INTEGER"
+            + "FOREIGN KEY(" + W_ID_CATEGORY + ") REFERENCES " + TABLE_CATEGORY + "(" + ID_CATEGORY + ")"
             + ")";
 
     //Realizamos consulta para crear la tabla Account_bank
@@ -99,6 +100,7 @@ public class Constans {
             + B_RECORD_TIME + "TEXT,"
             + B_UPDATE_TIME + "TEXT,"
             + B_ID_CATEGORY + "INTEGER,"
+            + "FOREIGN KEY(" + B_ID_CATEGORY + ") REFERENCES " + TABLE_CATEGORY + "(" + ID_CATEGORY + ")"
             + ")";
 
     //Realizamos consulta para crear la tabla CARD
@@ -115,6 +117,7 @@ public class Constans {
             + C_RECORD_TIME + " TEXT,"
             + C_UPDATE_TIME + " TEXT,"
             + C_ID_CATEGORY  + " INTEGER,"
+            + "FOREIGN KEY(" + C_ID_CATEGORY + ") REFERENCES " + TABLE_CATEGORY + "(" + ID_CATEGORY + ")"
             + ")";
 
 

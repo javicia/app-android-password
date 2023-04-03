@@ -19,7 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
 
@@ -30,7 +30,7 @@ public class Card_Detail_Record extends AppCompatActivity {
 
     TextView C_Title, C_Name, C_Date, C_Note, C_RecordTime, C_UpdateTime;
     String id_record;
-    BBDD helper;
+    BBDD_Helper helper;
     ImageView C_Image;
     Dialog dialog;
     EditText C_Number,C_CVC ;
@@ -47,7 +47,7 @@ public class Card_Detail_Record extends AppCompatActivity {
             Intent intent = getIntent();
             id_record = intent.getStringExtra("Id_registro");
             Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-            helper = new BBDD(this);
+            helper = new BBDD_Helper(this);
             Initialize_variables();
             Registration_info();
 

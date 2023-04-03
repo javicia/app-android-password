@@ -15,14 +15,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.Detail.Web_Detail_Record;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
 import com.javier.passlive.Option_Web.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //Inflar diseño item_password obtener los datos leidos en la BBDD en los textView
@@ -31,7 +30,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
     private Context context;
     private List<Object> webList;
 
-    BBDD bbddHelper;
+    BBDD_Helper bbddHelper;
 
     Dialog dialog;
 
@@ -40,7 +39,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
         this.context = context;
         this.webList = webList;
         dialog = new Dialog(context);
-        bbddHelper = new BBDD(context);
+        bbddHelper = new BBDD_Helper(context);
     }
 
     @NonNull

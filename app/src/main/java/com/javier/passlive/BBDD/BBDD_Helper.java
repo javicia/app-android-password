@@ -6,25 +6,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
-
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.Model.Card;
 import com.javier.passlive.Model.Web;
-
 import java.util.ArrayList;
 
-public class BBDD extends SQLiteOpenHelper {
+public class BBDD_Helper extends SQLiteOpenHelper {
 
 
-    public BBDD(@Nullable Context context) {
+    public BBDD_Helper(@Nullable Context context) {
         super(context, Constans.BD_NAME, null, Constans.BD_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(Constans.CREATE_TABLE_CATEGORY);
+        //db.execSQL(Constans.CREATE_TABLE_CATEGORY);
         db.execSQL(Constans.CREATE_TABLE_ACCOUNT_WEB);
         db.execSQL(Constans.CREATE_TABLE_ACCOUNT_BANK);
         db.execSQL(Constans.CREATE_TABLE_CARD);
@@ -386,11 +383,17 @@ public class BBDD extends SQLiteOpenHelper {
 
 //Obtenemos el total de registros de la BBDD
     public int GetRecordNumber(){
-        String countquery = "SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + Constans.TABLE_ACCOUNT_BANK + Constans.TABLE_CARD;
+        String query = "SELECT COUNT(*) FROM "
+                + Constans.TABLE_ACCOUNT_WEB + ", "
+                + Constans.TABLE_ACCOUNT_BANK + ", "
+                + Constans.TABLE_CARD;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countquery, null);
+        Cursor cursor = db.rawQuery(query, null);
 
-        int count = cursor.getCount();
+        int count = 0;
+        if (cursor.moveToFirst()){
+            count= cursor.getInt(0);
+        }
         cursor.close();
         return count;
     }

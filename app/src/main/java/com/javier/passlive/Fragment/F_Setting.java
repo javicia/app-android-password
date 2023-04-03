@@ -26,7 +26,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
@@ -45,7 +45,7 @@ public class F_Setting extends Fragment {
     TextView Delete_All_Record, Export_File, Import_File, Change_Password;
     Dialog dialog, dialog_password;
 
-    BBDD bbddHelper;
+    BBDD_Helper bbddHelper;
 
     String orderTitleAsc = Constans.W_TITTLE + "ASC";
 
@@ -71,7 +71,7 @@ public class F_Setting extends Fragment {
         Change_Password = view.findViewById(R.id.Change_Password);
         dialog = new Dialog(getActivity());
         dialog_password = new Dialog(getActivity());
-        bbddHelper = new BBDD(getActivity());
+        bbddHelper = new BBDD_Helper(getActivity());
 
         sharedPreferences = getActivity().getSharedPreferences(SHARE_PREF, Context.MODE_PRIVATE);
 

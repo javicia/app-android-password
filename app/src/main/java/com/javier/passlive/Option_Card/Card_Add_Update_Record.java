@@ -1,10 +1,8 @@
 package com.javier.passlive.Option_Card;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,8 +22,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import com.javier.passlive.BBDD.BBDD;
+
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -37,7 +35,7 @@ public class Card_Add_Update_Record extends AppCompatActivity {
 
     private boolean EDITION_MODE= false;
 
-    private BBDD BDHelper;
+    private BBDD_Helper BDHelper;
 
     Uri imageUri = null;
 
@@ -85,7 +83,7 @@ public class Card_Add_Update_Record extends AppCompatActivity {
         Btn_C_Image = findViewById(R.id.Btn_B_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
-        BDHelper = new BBDD(this);
+        BDHelper = new BBDD_Helper(this);
 
     }
     //Método para obtener información desde el adaptador

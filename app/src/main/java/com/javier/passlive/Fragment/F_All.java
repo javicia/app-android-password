@@ -2,7 +2,6 @@ package com.javier.passlive.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,17 +24,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.javier.passlive.Adapter.Adapter_bank;
 import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Category.Category;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.Model.Card;
 import com.javier.passlive.Model.Web;
-import com.javier.passlive.Option_Web.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -47,7 +44,7 @@ public class F_All extends Fragment {
     String orderTittleDesc = Constans.W_TITTLE + " DESC";
     String statusOrder = newOrder;
    Dialog dialog, dialog_order;
- BBDD helper;
+ BBDD_Helper helper;
     RecyclerView RView_record;
     FloatingActionButton btnadd_password;
     @Override
@@ -60,7 +57,7 @@ public class F_All extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all, container, false);
         RView_record = view.findViewById(R.id.RView_record);
         btnadd_password= view.findViewById(R.id.btnadd_password);
-        helper = new BBDD(getActivity());
+        helper = new BBDD_Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
 

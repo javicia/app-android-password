@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.net.Uri;
 import android.text.InputType;
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
 import java.util.Calendar;
@@ -27,7 +27,7 @@ public class Bank_Detail_Record extends AppCompatActivity {
 
     TextView B_Title, B_Bank, B_Account_Name, B_Websites,B_Note, B_RecordTime, B_UpdateTime;
     String id_record;
-    BBDD helper;
+    BBDD_Helper helper;
     ImageView B_Image;
     Dialog dialog;
     EditText B_Number;
@@ -45,7 +45,7 @@ public class Bank_Detail_Record extends AppCompatActivity {
         Intent intent = getIntent();
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-        helper = new BBDD(this);
+        helper = new BBDD_Helper(this);
         Initialize_variables();
         Registration_info();
 

@@ -27,9 +27,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.MainActivity;
-import com.javier.passlive.Option_Web.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
 public class Bank_Add_Update_Record extends AppCompatActivity {
@@ -41,7 +40,7 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
 
     private boolean EDITION_MODE= false;
 
-    private BBDD BDHelper;
+    private BBDD_Helper BDHelper;
 
     Uri imageUri = null;
 
@@ -87,7 +86,7 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
         Btn_B_Image = findViewById(R.id.Btn_B_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
-        BDHelper = new BBDD(this);
+        BDHelper = new BBDD_Helper(this);
 
     }
     //Método para obtener información desde el adaptador

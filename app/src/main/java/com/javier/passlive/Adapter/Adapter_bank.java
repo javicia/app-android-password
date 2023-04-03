@@ -14,19 +14,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.R;
 import com.javier.passlive.Option_Bank.Bank_Add_Update_Record;
 import com.javier.passlive.Detail.Bank_Detail_Record;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
     private Context context;
     private List<Object> bankList;
-    BBDD bbddHelper;
+    BBDD_Helper bbddHelper;
     Dialog dialog;
 
 
@@ -34,7 +34,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
        this.context = context;
        this.bankList = bankList;
        dialog = new Dialog(context);
-       bbddHelper = new BBDD(context);
+       bbddHelper = new BBDD_Helper(context);
 
    }
 
