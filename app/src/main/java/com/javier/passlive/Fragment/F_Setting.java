@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.DAO.WebDAO;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
@@ -185,7 +186,7 @@ public class F_Setting extends Fragment {
         //Obtenemos el registro que exportaremos
         ArrayList<Web> recordList = new ArrayList<>();
         recordList.clear();
-        recordList = bbddHelper.GetAllrecordWeb(orderTitleAsc);
+        recordList = WebDAO.GetAllrecordWeb(orderTitleAsc);
         try {
             //Escribir en el archivo
             FileWriter fileWriter = new FileWriter(File_Folder);
@@ -246,7 +247,7 @@ public class F_Setting extends Fragment {
                     String t_Record = nextLine[8];
                     String t_Update = nextLine[9];
 
-                    long ids = bbddHelper.insertRecordWeb("" + title, ""+ account,
+                    long ids = WebDAO.insertRecordWeb("" + title, ""+ account,
                             "" + username, "" + password, ""+ websites,
                             ""+ note, ""+ image, ""+ t_Record, "" + t_Update);
                 }

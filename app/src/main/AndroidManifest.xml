@@ -35,23 +35,23 @@
         </activity>
 
         <activity
-            android:name=".Detail.Web_Detail_Record"
+            android:name=".Record.Web_Record"
             android:exported="false" />
         <activity
-            android:name=".Detail.Bank_Detail_Record"
+            android:name=".Record.Bank_Record"
             android:exported="false" />
         <activity
-            android:name=".Detail.Card_Detail_Record"
+            android:name=".Record.Card_Record"
             android:exported="false" />
 
         <activity
-            android:name=".Option_Web.Web_Add_Update_Record"
+            android:name=".Add_Update_Record.Web_Add_Update_Record"
             android:exported="false" />
         <activity
-            android:name=".Option_Bank.Bank_Add_Update_Record"
+            android:name=".Add_Update_Record.Bank_Add_Update_Record"
             android:exported="false" />
         <activity
-            android:name=".Option_Card.Card_Add_Update_Record"
+            android:name=".Add_Update_Record.Card_Add_Update_Record"
             android:exported="false" />
 
         <activity

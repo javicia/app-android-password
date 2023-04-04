@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class CardDAO {
 
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db;
 
     public CardDAO(Context context) {
         BBDD_Helper dbHelper = new BBDD_Helper(context);
@@ -127,7 +127,7 @@ public class CardDAO {
         db.close();
         return cardList;
     }
-    public void deleteRecordCard(String id){
+    public static void deleteRecordCard(String id){
         db.delete(Constans.TABLE_CARD, Constans.ID_CARD+" = ?", new String[]{id});
         db.close();
     }

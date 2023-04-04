@@ -1,4 +1,4 @@
-package com.javier.passlive.Detail;
+package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -23,7 +23,7 @@ import com.javier.passlive.R;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Bank_Detail_Record extends AppCompatActivity {
+public class Bank_Record extends AppCompatActivity {
 
     TextView B_Title, B_Bank, B_Account_Name, B_Websites,B_Note, B_RecordTime, B_UpdateTime;
     String id_record;

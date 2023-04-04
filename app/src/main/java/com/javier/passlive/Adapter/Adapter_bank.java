@@ -19,8 +19,8 @@ import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.R;
-import com.javier.passlive.Option_Bank.Bank_Add_Update_Record;
-import com.javier.passlive.Detail.Bank_Detail_Record;
+import com.javier.passlive.Add_Update_Record.Bank_Add_Update_Record;
+import com.javier.passlive.Record.Bank_Record;
 
 import java.util.List;
 
@@ -68,7 +68,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
             @Override
             //Cuando el usuario presione el item
             public void onClick(View v) {
-                Intent intent = new Intent(context, Bank_Detail_Record.class);
+                Intent intent = new Intent(context, Bank_Record.class);
                 //Enviamos el dato id a la actividad Detail_record
                 intent.putExtra("Id_registro", id);
                 context.startActivity(intent);

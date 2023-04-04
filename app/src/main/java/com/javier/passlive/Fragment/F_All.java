@@ -2,6 +2,7 @@ package com.javier.passlive.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -37,17 +38,18 @@ import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class F_All extends Fragment {
-    String category = Constans.ACCOUNT_WEB + Constans.ACCOUNT_BANK + Constans.CARD + " CATE";
     String newOrder= Constans.W_RECORD_TIME + Constans.B_RECORD_TIME + Constans.C_RECORD_TIME + " DESC";
     String sortPast= Constans.W_RECORD_TIME + " ASC";
     String orderTittleAsc = Constans.W_TITTLE + " ASC";
     String orderTittleDesc = Constans.W_TITTLE + " DESC";
     String statusOrder = newOrder;
-   Dialog dialog, dialog_order;
+   Dialog dialog, dialog_order, dialog_category;
  BBDD_Helper helper;
     RecyclerView RView_record;
     FloatingActionButton btnadd_password;
@@ -64,9 +66,10 @@ public class F_All extends Fragment {
         helper = new BBDD_Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
+        dialog_category = new Dialog(getActivity());
 
 //Listar registros
-        LoadRecord(newOrder);
+        loadRecord(newOrder);
                 btnadd_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -77,24 +80,16 @@ public class F_All extends Fragment {
         return view;
     }
 //Método para cargar registros
-    private void LoadRecord(String orderby) {
-        statusOrder = orderby;
-        List<Object> recordList = new ArrayList<>();
+    private void loadRecord(String orderby) {
+            statusOrder = orderby;
+            Adapter_web adapter_web = new Adapter_web(getActivity(), Collections.singletonList(WebDAO.GetAllrecordWeb(orderby)));
+            Adapter_bank adapter_bank = new Adapter_bank(getActivity(), Collections.singletonList(BankDAO.GetAllrecordBank(orderby)));
+            Adapter_card adapter_card = new Adapter_card(getActivity(), Collections.singletonList(CardDAO.GetAllrecordCard(orderby)));
 
-        // Agregar los registros de la tabla Web al recordList
-        recordList.addAll(WebDAO.GetAllrecordWeb(orderby));
+            RView_record.setAdapter(adapter_web);
+            RView_record.setAdapter(adapter_bank);
+            RView_record.setAdapter(adapter_card);
 
-        // Agregar los registros de la tabla Phone al recordList
-        recordList.addAll(BankDAO.GetAllrecordBank(orderby));
-
-        // Agregar los registros de la tabla Card al recordList
-        recordList.addAll(CardDAO.GetAllrecordCard(orderby));
-
-        // Crear un Adapter general con el recordList
-        Adapter adapter = new Adapter(getActivity(), recordList);
-
-        // Setear el Adapter en el RecyclerView
-        RView_record.setAdapter(adapter);
     }
     //Buscar registro en base de datos
         private void Record_seach(String consultation){
@@ -168,7 +163,7 @@ public class F_All extends Fragment {
 //Para refrescar la lista cuando estemos en el fragmento
     @Override
     public void onResume() {
-        LoadRecord(statusOrder);
+        loadRecord(statusOrder);
         super.onResume();
     }
 
@@ -212,42 +207,75 @@ public class F_All extends Fragment {
         Btn_Asc = dialog_order.findViewById(R.id.Btn_Asc);
         Btn_Desc = dialog_order.findViewById(R.id.Btn_Desc);
 
-        Btn_New.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoadRecord(newOrder);
-                dialog_order.dismiss();
-            }
-        });
 
         Btn_Category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadRecord(sortPast);
+                orderRecordsByCategory();
                 dialog_order.dismiss();
             }
         });
+        Btn_New.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadRecord(newOrder);
+                dialog_order.dismiss();
+            }
+        });
+
         Btn_Past.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadRecord(sortPast);
+                loadRecord(sortPast);
                 dialog_order.dismiss();
             }
         });
         Btn_Asc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadRecord(orderTittleAsc);
+                loadRecord(orderTittleAsc);
                 dialog_order.dismiss();
             }
         });
         Btn_Desc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadRecord(orderTittleDesc);
+                loadRecord(orderTittleDesc);
                 dialog_order.dismiss();
             }
         });
+        dialog_order.show();
+        dialog_order.setCancelable(true);
+    }
+
+    private void orderRecordsByCategory() {
+        Button Btn_Order_Web, Btn_Order_Bank, Btn_Order_Card;
+        dialog_category.setContentView(R.layout.box_order_category);
+
+        Btn_Order_Web = dialog_category.findViewById(R.id.Btn_Order_Web);
+        Btn_Order_Bank = dialog_category.findViewById(R.id.Btn_Order_Bank);
+        Btn_Order_Card = dialog_category.findViewById(R.id.Btn_Order_Card);
+        Btn_Order_Web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Adapter_web adapter_web = new Adapter_web(getActivity(), Collections.singletonList(WebDAO.GetAllrecordWeb(statusOrder)));
+            }
+        });
+
+        Btn_Order_Bank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Adapter_bank adapter_bank = new Adapter_bank(getActivity(), Collections.singletonList(BankDAO.GetAllrecordBank(statusOrder)));
+
+            }
+        });
+
+       Btn_Order_Card.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Adapter_card adapter_card = new Adapter_card(getActivity(), Collections.singletonList(CardDAO.GetAllrecordCard(statusOrder)));
+           }
+       });
         dialog_order.show();
         dialog_order.setCancelable(true);
     }

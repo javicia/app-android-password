@@ -1,4 +1,4 @@
-package com.javier.passlive.Detail;
+package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -25,7 +25,7 @@ import com.javier.passlive.R;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Web_Detail_Record extends AppCompatActivity {
+public class Web_Record extends AppCompatActivity {
     TextView D_Tittle, D_Account, D_Username, D_Websites,D_Note, D_RecordTime, D_UpdateTime;
     String id_record;
     BBDD_Helper helper;

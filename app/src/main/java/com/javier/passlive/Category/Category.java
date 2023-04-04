@@ -9,9 +9,9 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.javier.passlive.Option_Bank.Bank_Add_Update_Record;
-import com.javier.passlive.Option_Card.Card_Add_Update_Record;
-import com.javier.passlive.Option_Web.Web_Add_Update_Record;
+import com.javier.passlive.Add_Update_Record.Bank_Add_Update_Record;
+import com.javier.passlive.Add_Update_Record.Card_Add_Update_Record;
+import com.javier.passlive.Add_Update_Record.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
 public class Category extends AppCompatActivity {

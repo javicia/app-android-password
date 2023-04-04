@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="8dp"
+    tools:context=".Category.Category">
+
+    <Button
+        android:id="@+id/Btn_Order_Web"
+        android:text="@string/Btn_Order_Web"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/icon_web"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/Btn_Order_Bank"
+        android:text="@string/Btn_Order_Bank"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:drawableLeft="@drawable/icon_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/Btn_Order_Card"
+        android:text="@string/Btn_Order_Card"
+        android:textStyle="bold"
+
+        android:textColor="#ffffff"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableLeft="@drawable/icon_card"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>

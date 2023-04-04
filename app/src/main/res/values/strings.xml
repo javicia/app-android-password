@@ -178,6 +178,12 @@
     <string name="Btn_Asc">A-Z</string>
     <string name="Btn_Desc">Z-A</string>
 
+    //Order Category
+    <string name="Btn_Order_Web">Cuentas de Sitios Web</string>
+    <string name="Btn_Order_Bank">Cuentas bancarias</string>
+    <string name="Btn_Order_Card">Tarjetas de crédito</string>
+
+
 
     //Setting
     <string name="Txt_Setting">Ajustes</string>
@@ -192,6 +198,7 @@
     <string name="Btn_Web">Cuentas de Sitios Web</string>
     <string name="Btn_Bank">Cuentas bancarias</string>
     <string name="Btn_Card">Tarjetas de crédito</string>
+
 
     //Info app
     <string name="Txt_Developer">Desarrollado por: Javier García Pérez</string>

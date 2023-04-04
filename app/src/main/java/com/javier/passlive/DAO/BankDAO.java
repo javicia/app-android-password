@@ -13,7 +13,7 @@ import com.javier.passlive.Model.Bank;
 import java.util.ArrayList;
 
 public class BankDAO {
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db;
 
     public BankDAO(Context context) {
         BBDD_Helper dbHelper = new BBDD_Helper(context);

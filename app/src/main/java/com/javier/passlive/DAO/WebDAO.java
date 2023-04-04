@@ -144,7 +144,7 @@ public class WebDAO {
         return webList;
     }
 
-    public void deleteRecordWeb(String id) {
+    public static void deleteRecordWeb(String id) {
         db.execSQL("DELETE FROM " + Constans.TABLE_ACCOUNT_WEB);
         db.close();
     }

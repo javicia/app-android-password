@@ -1,4 +1,4 @@
-package com.javier.passlive.Detail;
+package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -26,7 +26,7 @@ import com.javier.passlive.R;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Card_Detail_Record extends AppCompatActivity {
+public class Card_Record extends AppCompatActivity {
 
     TextView C_Title, C_Name, C_Date, C_Note, C_RecordTime, C_UpdateTime;
     String id_record;

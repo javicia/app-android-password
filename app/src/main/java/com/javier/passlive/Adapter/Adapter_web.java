@@ -16,10 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.Detail.Web_Detail_Record;
+import com.javier.passlive.DAO.WebDAO;
+import com.javier.passlive.Record.Web_Record;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
-import com.javier.passlive.Option_Web.Web_Add_Update_Record;
+import com.javier.passlive.Add_Update_Record.Web_Add_Update_Record;
 import com.javier.passlive.R;
 
 import java.util.List;
@@ -71,7 +72,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
         @Override
         //Cuando el usuario presione el item
         public void onClick(View v) {
-            Intent intent = new Intent(context, Web_Detail_Record.class);
+            Intent intent = new Intent(context, Web_Record.class);
             //Enviamos el dato id a la actividad Detail_record
                     intent.putExtra("Id_registro", id);
                     context.startActivity(intent);
@@ -152,7 +153,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    bbddHelper.deleteRecord(id);
+                    WebDAO.deleteRecordWeb(id);
                     Intent intent = new Intent(context, MainActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
