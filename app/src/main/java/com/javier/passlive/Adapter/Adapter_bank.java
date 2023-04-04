@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.R;
@@ -148,7 +149,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
         Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bbddHelper.deleteRecord(id);
+                BankDAO.deleteRecordBank(id);
                 Intent intent = new Intent(context, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

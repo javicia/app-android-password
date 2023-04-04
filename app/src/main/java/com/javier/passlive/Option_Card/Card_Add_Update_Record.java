@@ -24,6 +24,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.DAO.CardDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -149,7 +150,7 @@ public class Card_Add_Update_Record extends AppCompatActivity {
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = "" + System.currentTimeMillis();
-            BDHelper.updateRecordCard(
+            CardDAO.updateRecordCard(
                     "" + id_card,
                     ""+ title,
                     "" + username,
@@ -170,7 +171,7 @@ public class Card_Add_Update_Record extends AppCompatActivity {
             if(!title.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = BDHelper.insertRecordCard(
+                long id = CardDAO.insertRecordCard(
                         "" +title, "" + name, "" + number,
                         "" + date,"" + cvc, "" + note,
                         ""+ imageUri,""+ time, ""+ time);

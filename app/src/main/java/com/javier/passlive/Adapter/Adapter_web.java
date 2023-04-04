@@ -24,7 +24,7 @@ import com.javier.passlive.R;
 
 import java.util.List;
 
-//Inflar diseño item_password obtener los datos leidos en la BBDD en los textView
+
 public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     private Context context;

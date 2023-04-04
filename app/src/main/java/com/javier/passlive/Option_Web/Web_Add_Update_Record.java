@@ -25,6 +25,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.DAO.WebDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -151,7 +152,7 @@ public class Web_Add_Update_Record extends AppCompatActivity {
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = ""+ System.currentTimeMillis();
-            BDHelper.updateRecordWeb("" + id, "" + tittle,"" + account, "" + username,
+           WebDAO.updateRecordWeb("" + id, "" + tittle,"" + account, "" + username,
                     "" + password, ""+ websites, ""+ note,"" + imageUri,"" + t_record,
                     "" + current_time);
             Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
@@ -166,7 +167,7 @@ public class Web_Add_Update_Record extends AppCompatActivity {
             if(!tittle.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = BDHelper.insertRecordWeb(
+                long id = WebDAO.insertRecordWeb(
                         "" +tittle, "" + account, "" + username,
                         "" + password,"" + websites,   "" + note,
                         ""+ imageUri,""+ time, ""+ time);

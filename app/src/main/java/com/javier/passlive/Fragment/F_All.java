@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,10 @@ import com.javier.passlive.Adapter.Adapter_bank;
 import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
 import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.DAO.BankDAO;
+import com.javier.passlive.DAO.CardDAO;
 import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.DAO.WebDAO;
 import com.javier.passlive.Category.Category;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.Model.Card;
@@ -74,33 +78,30 @@ public class F_All extends Fragment {
     }
 //Método para cargar registros
     private void LoadRecord(String orderby) {
-        String currentRecordType = orderby;
+        statusOrder = orderby;
         List<Object> recordList = new ArrayList<>();
-        switch (currentRecordType){
-            case "web":
-                recordList.addAll(helper.GetAllrecordWeb(orderby));
-                Adapter_web adapter_web= new Adapter_web(getActivity(),recordList);
-                RView_record.setAdapter(adapter_web);
-                break;
-            case "bank":
-                recordList.addAll(helper.GetAllrecordBank(orderby));
-                Adapter_bank adapter_bank = new Adapter_bank(getActivity(),recordList);
-                RView_record.setAdapter(adapter_bank);
-                break;
-            case "card":
-                recordList.addAll(helper.GetAllrecordCard(orderby));
-                Adapter_card adapter_card = new Adapter_card(getActivity(),recordList);
-                RView_record.setAdapter(adapter_card);
-                break;
-        }
 
+        // Agregar los registros de la tabla Web al recordList
+        recordList.addAll(WebDAO.GetAllrecordWeb(orderby));
+
+        // Agregar los registros de la tabla Phone al recordList
+        recordList.addAll(BankDAO.GetAllrecordBank(orderby));
+
+        // Agregar los registros de la tabla Card al recordList
+        recordList.addAll(CardDAO.GetAllrecordCard(orderby));
+
+        // Crear un Adapter general con el recordList
+        Adapter adapter = new Adapter(getActivity(), recordList);
+
+        // Setear el Adapter en el RecyclerView
+        RView_record.setAdapter(adapter);
     }
     //Buscar registro en base de datos
         private void Record_seach(String consultation){
             List<Object> seachResults = new ArrayList<>();
-            seachResults.addAll(helper.search_RecordsWeb(consultation));
-            seachResults.addAll(helper.search_RecordsBank(consultation));
-            seachResults.addAll(helper.search_RecordsCard(consultation));
+            seachResults.addAll(WebDAO.search_RecordsWeb(consultation));
+            seachResults.addAll(BankDAO.search_RecordsBank(consultation));
+            seachResults.addAll(CardDAO.search_RecordsCard(consultation));
 
             RecyclerView.Adapter adapter = null;
             if (!seachResults.isEmpty()) {

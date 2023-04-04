@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -152,7 +153,7 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = ""+ System.currentTimeMillis();
-            BDHelper.updateRecordBank(
+            BankDAO.updateRecordBank(
                     "" + id,
                     ""+ title,
                     "" + bank_name,
@@ -172,7 +173,7 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
             if(!title.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = BDHelper.insertRecordBank (
+                long id = BankDAO.insertRecordBank (
                         "" +title, "" + bank_name, "" + account_name,
                         "" + number,"" + websites,   "" + note,
                         ""+ imageUri,""+ time, ""+ time);
