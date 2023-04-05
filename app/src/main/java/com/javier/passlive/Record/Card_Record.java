@@ -40,7 +40,7 @@ public class Card_Record extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             //No permite captura de pantalla
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-            setContentView(R.layout.activity_card_detail_record);
+            setContentView(R.layout.activity_card_record);
 
             ActionBar actionBar = getSupportActionBar();
 

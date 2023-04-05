@@ -20,7 +20,7 @@ import com.javier.passlive.DAO.WebDAO;
 import com.javier.passlive.Record.Web_Record;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
-import com.javier.passlive.Add_Update_Record.Web_Add_Update_Record;
+import com.javier.passlive.Util.Util_Web;
 import com.javier.passlive.R;
 
 import java.util.List;
@@ -134,7 +134,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
         Btn_edit_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Web_Add_Update_Record.class);
+                Intent intent = new Intent(context, Util_Web.class);
                 intent.putExtra("POSITION", position);
                 intent.putExtra("ID", id);
                 intent.putExtra("TITTLE", tittle);

@@ -9,9 +9,9 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.javier.passlive.Add_Update_Record.Bank_Add_Update_Record;
-import com.javier.passlive.Add_Update_Record.Card_Add_Update_Record;
-import com.javier.passlive.Add_Update_Record.Web_Add_Update_Record;
+import com.javier.passlive.Util.Util_Bank;
+import com.javier.passlive.Util.Util_Card;
+import com.javier.passlive.Util.Util_Web;
 import com.javier.passlive.R;
 
 public class Category extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class Category extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dialog = new Dialog(this);
-        dialog.setContentView(R.layout.box_add_category);
+        dialog.setContentView(R.layout.box_category_dialog);
 
         Btn_Web = dialog.findViewById(R.id.Btn_Web);
         Btn_Bank = dialog.findViewById(R.id.Btn_Bank);
@@ -30,7 +30,7 @@ public class Category extends AppCompatActivity {
         Btn_Web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Category.this, Web_Add_Update_Record.class);
+                Intent intent = new Intent(Category.this, Util_Web.class);
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class Category extends AppCompatActivity {
         Btn_Bank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Category.this, Bank_Add_Update_Record.class);
+                Intent intent = new Intent(Category.this, Util_Bank.class);
                 startActivity(intent);
             }
         });
@@ -46,7 +46,7 @@ public class Category extends AppCompatActivity {
         Btn_Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Category.this, Card_Add_Update_Record.class);
+                Intent intent = new Intent(Category.this, Util_Card.class);
                 startActivity(intent);
             }
         });

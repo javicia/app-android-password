@@ -23,7 +23,7 @@ import com.javier.passlive.MainActivity;
 
 
 import com.javier.passlive.Model.Card;
-import com.javier.passlive.Add_Update_Record.Card_Add_Update_Record;
+import com.javier.passlive.Util.Util_Card;
 import com.javier.passlive.R;
 
 import java.util.List;
@@ -131,7 +131,7 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
         Btn_edit_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Card_Add_Update_Record.class);
+                Intent intent = new Intent(context, Util_Card.class);
                 intent.putExtra("POSITION", position);
                 intent.putExtra("ID", id);
                 intent.putExtra("TITLE", title);

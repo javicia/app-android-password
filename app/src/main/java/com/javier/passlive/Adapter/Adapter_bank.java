@@ -19,7 +19,7 @@ import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.R;
-import com.javier.passlive.Add_Update_Record.Bank_Add_Update_Record;
+import com.javier.passlive.Util.Util_Bank;
 import com.javier.passlive.Record.Bank_Record;
 
 import java.util.List;
@@ -129,7 +129,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
         Btn_edit_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Bank_Add_Update_Record.class);
+                Intent intent = new Intent(context, Util_Bank.class);
                 intent.putExtra("POSITION", position);
                 intent.putExtra("ID", id);
                 intent.putExtra("TITLE", title);

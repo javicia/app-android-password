@@ -1,10 +1,8 @@
-package com.javier.passlive.Add_Update_Record;
+package com.javier.passlive.Util;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,19 +23,18 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.DAO.BankDAO;
+import com.javier.passlive.DAO.WebDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
-public class Bank_Add_Update_Record extends AppCompatActivity {
+public class Util_Web extends AppCompatActivity {
 
-    EditText Et_B_Title,Et_B_Bank_name, Et_B_Account_name,Et_B_Number_Bank,Et_B_Websites, Et_B_Note;
-    String id, title, bank_name, account_name, number,websites,note, t_record, t_update;
+    EditText EtTittle,EtAccount,EtUsername,EtPassword, EtWebsites,EtNote;
+    String id, tittle, account, username, password,websites,note, t_record, t_update;
     ImageView Image;
-    Button Btn_B_Image;
+    Button Btn_W_Image;
 
     private boolean EDITION_MODE= false;
 
@@ -52,45 +49,47 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        setContentView(R.layout.activity_add_bank);
+        setContentView(R.layout.activity_add_web);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar !=null;
         actionBar.setTitle("");
         Initial_Var();
         GetInformation();
 
-        Btn_B_Image.setOnClickListener(new View.OnClickListener() {
+       /* Btn_W_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Si el permiso de cámara ha sido concedido entonces que se ejecute el método TakePhoto
-                if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)==
-                        PackageManager.PERMISSION_GRANTED){
-                    TakePhoto();
-                    //En caso contrario llamamos a la solicitur de permiso de cámara
-                }else {
-                    Camera_Permission_Request.launch(Manifest.permission.CAMERA);
-                }
+        if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)==
+                PackageManager.PERMISSION_GRANTED){
+            TakePhoto();
+            //En caso contrario llamamos a la solicitur de permiso de cámara
+        }else {
+            Camera_Permission_Request.launch(Manifest.permission.CAMERA);
+        }
 
             }
         });
 
+
+        */
     }
     private void Initial_Var(){
-        Et_B_Title = findViewById(R.id.Et_B_Title);
-        Et_B_Bank_name = findViewById(R.id.Et_B_Bank_name);
-        Et_B_Account_name = findViewById(R.id.Et_B_Account_name);
-        Et_B_Number_Bank = findViewById(R.id.Et_B_Number_Bank);
-        Et_B_Websites = findViewById(R.id.Et_B_Websites);
-        Et_B_Note = findViewById(R.id.Et_B_Note);
+        EtTittle = findViewById(R.id.EtTittle);
+        EtAccount = findViewById(R.id.EtAccount);
+        EtUsername = findViewById(R.id.EtUsername);
+        EtPassword = findViewById(R.id.EtPassword);
+        EtWebsites = findViewById(R.id.EtWebsites);
+        EtNote = findViewById(R.id.EtNote);
 
         Image = findViewById(R.id.Image);
-        Btn_B_Image = findViewById(R.id.Btn_B_Image);
+        Btn_W_Image = findViewById(R.id.Btn_B_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
         BDHelper = new BBDD_Helper(this);
 
     }
-    //Método para obtener información desde el adaptador
+//Método para obtener información desde el adaptador
     private void GetInformation() {
         Intent intent = getIntent();
         EDITION_MODE = intent.getBooleanExtra("EDITION MODE", false);
@@ -98,10 +97,10 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
         if (EDITION_MODE) {
             //Verdadero
             id = intent.getStringExtra("ID");
-            title = intent.getStringExtra("TITLE");
-            bank_name = intent.getStringExtra("BANK_NAME");
-            account_name = intent.getStringExtra("ACCOUNT_NAME");
-            number = intent.getStringExtra("NUMBER");
+            tittle = intent.getStringExtra("TITTLE");
+            account = intent.getStringExtra("ACCOUNT");
+            username = intent.getStringExtra("USERNAME");
+            password = intent.getStringExtra("PASSWORD");
             websites = intent.getStringExtra("WEBSITE");
             note = intent.getStringExtra("NOTE");
             imageUri = Uri.parse(intent.getStringExtra("IMAGE"));
@@ -109,12 +108,12 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
             t_update = intent.getStringExtra("T_UPDATE");
 
             //Seteamos información en las vistas
-            Et_B_Title.setText(title);
-            Et_B_Bank_name.setText(bank_name);
-            Et_B_Account_name.setText(account_name);
-            Et_B_Number_Bank.setText(number);
-            Et_B_Websites.setText(websites);
-            Et_B_Note.setText(note);
+            EtTittle.setText(tittle);
+            EtAccount.setText(account);
+            EtUsername.setText(username);
+            EtPassword.setText(password);
+            EtWebsites.setText(websites);
+            EtNote.setText(note);
 
             //Si la imagen no existe que se setee dentro del ImageView
             if (imageUri.toString().equals("null")) {
@@ -132,59 +131,57 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
                 public void onClick(View v) {
                     imageUri = null;
                     Image.setImageResource(R.drawable.logo_image);
-                    Toast.makeText(Bank_Add_Update_Record.this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Util_Web.this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
-            // Si es falso se agrega un registro
+        // Si es falso se agrega un registro
         }
     }
-    //Método para guardar password
-    private void Add_Update_Record_Bank(){
+//Método para guardar password
+    private void Add_Update_Record_Web(){
 //Obtener datos de entrada
-        title= Et_B_Title.getText().toString().trim();
-        bank_name=Et_B_Bank_name.getText().toString().trim();
-        account_name=Et_B_Account_name.getText().toString().trim();
-        number=Et_B_Number_Bank.getText().toString().trim();
-        websites=Et_B_Websites.getText().toString().trim();
-        note=Et_B_Note.getText().toString().trim();
+        tittle= EtTittle.getText().toString().trim();
+        account=EtAccount.getText().toString().trim();
+        username=EtUsername.getText().toString().trim();
+        password=EtPassword.getText().toString().trim();
+        websites=EtWebsites.getText().toString().trim();
+        note=EtNote.getText().toString().trim();
 
         if(EDITION_MODE){
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = ""+ System.currentTimeMillis();
-            BankDAO.updateRecordBank(
-                    "" + id,
-                    ""+ title,
-                    "" + bank_name,
-                    "" + account_name,
-                    "" + number,
-                    ""+ websites,
-                    ""+ note,
-                    "" + imageUri,
-                    "" + t_record,
+           WebDAO.updateRecordWeb("" + id, "" + tittle,"" + account, "" + username,
+                    "" + password, ""+ websites, ""+ note,"" + imageUri,"" + t_record,
                     "" + current_time);
             Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(Bank_Add_Update_Record.this, MainActivity.class));
+            startActivity(new Intent(Util_Web.this, MainActivity.class));
             finish();
+
+
+
         }else {
             //Si es falsa se agrega un nuevo registro
 
-            if(!title.equals("")){
+            if(!tittle.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = BankDAO.insertRecordBank (
-                        "" +title, "" + bank_name, "" + account_name,
-                        "" + number,"" + websites,   "" + note,
+                long id = WebDAO.insertRecordWeb(
+                        "" +tittle, "" + account, "" + username,
+                        "" + password,"" + websites,   "" + note,
                         ""+ imageUri,""+ time, ""+ time);
                 Toast.makeText(this, "Se ha guardado con éxito: ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Bank_Add_Update_Record.this, MainActivity.class));
+                startActivity(new Intent(Util_Web.this, MainActivity.class));
                 finish();
-            } else {
-                Et_B_Title.setError("Campo Obligatorio");
-                Et_B_Title.setFocusable(true);
+            }
+            else {
+                EtTittle.setError("Campo Obligatorio");
+                EtTittle.setFocusable(true);
             }
         }
+
+
     }
 
     @Override
@@ -197,11 +194,11 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save_password){
-            Add_Update_Record_Bank();
+           Add_Update_Record_Web();
         }
         return super.onOptionsItemSelected(item);
     }
-    //Método para realizar foto
+//Método para realizar foto
     private void TakePhoto() {
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "Nueva imagen");
@@ -213,20 +210,20 @@ public class Bank_Add_Update_Record extends AppCompatActivity {
         camaraActivytyResultLauncher.launch(intent);
     }
 
-    private ActivityResultLauncher<Intent> camaraActivytyResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    //Comprobamos si la fotografía ha sido guardada correctamente
-                    if (result.getResultCode() == Activity.RESULT_OK){
-                        Image.setImageURI(imageUri);
-                    }else{
-                        Toast.makeText(Bank_Add_Update_Record.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
-                    }
+private ActivityResultLauncher<Intent> camaraActivytyResultLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                //Comprobamos si la fotografía ha sido guardada correctamente
+                if (result.getResultCode() == Activity.RESULT_OK){
+                    Image.setImageURI(imageUri);
+                }else{
+                    Toast.makeText(Util_Web.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
                 }
             }
-    );
+        }
+);
     //Método que permite comprobar si el permiso ha sido concedido por el usuario
     private ActivityResultLauncher<String> Camera_Permission_Request = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(), Grant_permission ->{

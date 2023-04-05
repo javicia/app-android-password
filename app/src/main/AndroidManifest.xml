@@ -45,13 +45,13 @@
             android:exported="false" />
 
         <activity
-            android:name=".Add_Update_Record.Web_Add_Update_Record"
+            android:name=".Util.Util_Web"
             android:exported="false" />
         <activity
-            android:name=".Add_Update_Record.Bank_Add_Update_Record"
+            android:name=".Util.Util_Bank"
             android:exported="false" />
         <activity
-            android:name=".Add_Update_Record.Card_Add_Update_Record"
+            android:name=".Util.Util_Card"
             android:exported="false" />
 
         <activity
