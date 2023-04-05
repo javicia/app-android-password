@@ -28,7 +28,7 @@ import com.javier.passlive.DAO.CardDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
-public class Util_Card extends AppCompatActivity {
+public class Util_Card extends AppCompatActivity{
     EditText Et_C_Title,Et_C_Name, Et_C_Number_Card,Et_C_Date,Et_C_CVC, Et_C_Note;
     String id_card, title, username, name, number, date, cvc, note, t_record, t_update;
     ImageView Image;
