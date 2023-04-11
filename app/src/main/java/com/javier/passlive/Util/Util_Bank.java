@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,13 +30,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
+//import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
 public class Util_Bank extends AppCompatActivity {
 
-    EditText Et_B_Title,Et_B_Bank_name, Et_B_Account_name,Et_B_Number_Bank,Et_B_Websites, Et_B_Note;
+    EditText Et_B_Title,Et_B_Bank_name, Et_B_Account_name,Et_B_Number_Bank,Et_B_Websites, Et_B_Note, Et_B_tRecord, Et_B_Update;
     String id, title, bank_name, account_name, number,websites,note, t_record, t_update;
     ImageView Image;
     Button Btn_B_Image;
@@ -83,6 +86,7 @@ public class Util_Bank extends AppCompatActivity {
         Et_B_Websites = findViewById(R.id.Et_B_Websites);
         Et_B_Note = findViewById(R.id.Et_B_Note);
 
+
         Image = findViewById(R.id.Image);
         Btn_B_Image = findViewById(R.id.Btn_B_Image);
 
@@ -113,8 +117,11 @@ public class Util_Bank extends AppCompatActivity {
             Et_B_Bank_name.setText(bank_name);
             Et_B_Account_name.setText(account_name);
             Et_B_Number_Bank.setText(number);
+            Et_B_Number_Bank.setBackgroundColor(Color.TRANSPARENT);
+            Et_B_Number_Bank.setInputType(InputType.TYPE_CLASS_TEXT| InputType.TYPE_TEXT_VARIATION_PASSWORD);
             Et_B_Websites.setText(websites);
             Et_B_Note.setText(note);
+            Et_B_tRecord.setText(t_record);
 
             //Si la imagen no existe que se setee dentro del ImageView
             if (imageUri.toString().equals("null")) {
@@ -173,7 +180,7 @@ public class Util_Bank extends AppCompatActivity {
             if(!title.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = BankDAO.insertRecordBank (
+                long id = BDHelper.insertRecordBank (
                         "" +title, "" + bank_name, "" + account_name,
                         "" + number,"" + websites,   "" + note,
                         ""+ imageUri,""+ time, ""+ time);
@@ -237,3 +244,5 @@ public class Util_Bank extends AppCompatActivity {
                 }
             });
 }
+
+

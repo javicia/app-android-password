@@ -1,5 +1,5 @@
 package com.javier.passlive.Adapter;
-
+/*
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +18,7 @@ import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
+import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import com.javier.passlive.Util.Util_Bank;
 import com.javier.passlive.Record.Bank_Record;
@@ -49,50 +50,52 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
 
     @Override
     public void onBindViewHolder(@NonNull Adapter_bank.HolderBank holder, @SuppressLint("Recyclerview") int position) {
-        Bank model_bank = (Bank) bankList.get(position);
-        String id = model_bank.getId();
-        String title =model_bank.getTitle();
-        String bank = model_bank.getBank();
-        String account_name = model_bank.getAccount_bank();
-        String number = model_bank.getNumber();
-        String websites = model_bank.getWebsites();
-        String note = model_bank.getNotes();
-        String image = model_bank.getImage();
-        String t_record = model_bank.getRecord_time();
-        String t_update = model_bank.getUpdate_time();
+        if (bankList.get(position) instanceof Bank) {
+            Bank model_bank = (Bank) bankList.get(position);
+            String id = model_bank.getId();
+            String title = model_bank.getTitle();
+            String bank = model_bank.getBank();
+            String account_name = model_bank.getAccount_bank();
+            String number = model_bank.getNumber();
+            String websites = model_bank.getWebsites();
+            String note = model_bank.getNotes();
+            String image = model_bank.getImage();
+            String t_record = model_bank.getRecord_time();
+            String t_update = model_bank.getUpdate_time();
 
-        holder.Item_b_tittle.setText(title);
-        holder.Item_b_account_name.setText(account_name);
+            holder.Item_b_tittle.setText(title);
+            holder.Item_b_account_name.setText(account_name);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //Cuando el usuario presione el item
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Bank_Record.class);
-                //Enviamos el dato id a la actividad Detail_record
-                intent.putExtra("Id_registro", id);
-                context.startActivity(intent);
-            }
-        });
-        holder.Img_B_option.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //Cuando el usuario presione el Image Button
-            public void onClick(View v) {
-                Option_edit_delete(
-                        "" + position,
-                        "" +id,
-                        "" +title,
-                        "" + bank,
-                        "" + account_name,
-                        "" + number,
-                        "" + websites,
-                        "" + note,
-                        ""+ image,
-                        "" + t_record,
-                        "" + t_update);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                //Cuando el usuario presione el item
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, Util_Bank.class);
+                    //Enviamos el dato id a la actividad Detail_record
+                    intent.putExtra("Id_registro", id);
+                    context.startActivity(intent);
+                }
+            });
+            holder.Img_B_option.setOnClickListener(new View.OnClickListener() {
+                @Override
+                //Cuando el usuario presione el Image Button
+                public void onClick(View v) {
+                    Option_edit_delete(
+                            "" + position,
+                            "" + id,
+                            "" + title,
+                            "" + bank,
+                            "" + account_name,
+                            "" + number,
+                            "" + websites,
+                            "" + note,
+                            "" + image,
+                            "" + t_record,
+                            "" + t_update);
 
-            }
-        });
+                }
+            });
+        }
     }
     //Método para obtener el registro
     @Override
@@ -163,3 +166,6 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
 
     }
     }
+
+
+ */

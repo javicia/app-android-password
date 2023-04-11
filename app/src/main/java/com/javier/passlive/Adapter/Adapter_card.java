@@ -1,5 +1,5 @@
 package com.javier.passlive.Adapter;
-
+/*
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.javier.passlive.BBDD.BBDD_Helper;
 
 import com.javier.passlive.DAO.CardDAO;
+import com.javier.passlive.Model.Web;
 import com.javier.passlive.Record.Card_Record;
 import com.javier.passlive.MainActivity;
 
@@ -28,14 +29,14 @@ import com.javier.passlive.R;
 
 import java.util.List;
 
-public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
+public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard> {
     private Context context;
     private List<Object> cardList;
     BBDD_Helper bbddHelper;
     Dialog dialog;
 
     //Creamos Constructor
-    public Adapter_card (Context context, List<Object> cardList) {
+    public Adapter_card(Context context, List<Object> cardList) {
         this.context = context;
         this.cardList = cardList;
         dialog = new Dialog(context);
@@ -49,51 +50,55 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
         View view = LayoutInflater.from(context).inflate(R.layout.item_card, parent, false);
         return new HolderCard(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull HolderCard holder, @SuppressLint("Recyclerview") int position) {
-        Card model_card = (Card) cardList.get(position);
-        String id = model_card.getId();
-        String title =model_card.getTitle();
-        String username = model_card.getUsername();
-        String number = model_card.getNumber();
-        String date = model_card.getDate();
-        String cvc = model_card.getCvc();
-        String note = model_card.getNotes();
-        String image = model_card.getImage();
-        String t_record = model_card.getRecord_time();
-        String t_update = model_card.getUpdate_time();
+        if (cardList.get(position) instanceof Card) {
+            Card model_card = (Card) cardList.get(position);
+            String id = model_card.getId();
+            String title = model_card.getTitle();
+            String username = model_card.getUsername();
+            String number = model_card.getNumber();
+            String date = model_card.getDate();
+            String cvc = model_card.getCvc();
+            String note = model_card.getNotes();
+            String image = model_card.getImage();
+            String t_record = model_card.getRecord_time();
+            String t_update = model_card.getUpdate_time();
 
-        holder.Item_c_tittle.setText(title);
-        holder.Item_c_account_name.setText(username);
+            holder.Item_c_tittle.setText(title);
+            holder.Item_c_account_name.setText(username);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //Cuando el usuario presione el item
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Card_Record.class);
-                //Enviamos el dato id a la actividad Detail_record
-                intent.putExtra("Id_registro", id);
-                context.startActivity(intent);
-            }
-        });
-        holder.Img_C_option.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //Cuando el usuario presione el Image Button
-            public void onClick(View v) {
-                Option_edit_deleteCard(
-                        "" + position,
-                        "" +id,
-                        "" +title,
-                        "" + username,
-                        "" + date,
-                        "" + cvc,
-                        "" + note,
-                        ""+ image,
-                        "" + t_record,
-                        "" + t_update);
-            }
-        });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                //Cuando el usuario presione el item
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, Util_Card.class);
+                    //Enviamos el dato id a la actividad Detail_record
+                    intent.putExtra("Id_registro", id);
+                    context.startActivity(intent);
+                }
+            });
+            holder.Img_C_option.setOnClickListener(new View.OnClickListener() {
+                @Override
+                //Cuando el usuario presione el Image Button
+                public void onClick(View v) {
+                    Option_edit_deleteCard(
+                            "" + position,
+                            "" + id,
+                            "" + title,
+                            "" + username,
+                            "" + date,
+                            "" + cvc,
+                            "" + note,
+                            "" + image,
+                            "" + t_record,
+                            "" + t_update);
+                }
+            });
+        }
     }
+
     //Método para obtener el registro
     @Override
     public int getItemCount() {
@@ -101,10 +106,11 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
         return cardList.size();
     }
 
-    class HolderCard extends RecyclerView.ViewHolder{
+    class HolderCard extends RecyclerView.ViewHolder {
 
-        TextView Item_c_tittle, Item_c_account_name, Item_c_number,Item_c_date, Item_c_cvc,Item_c_note;
+        TextView Item_c_tittle, Item_c_account_name, Item_c_number, Item_c_date, Item_c_cvc, Item_c_note;
         ImageButton Img_C_option;
+
         public HolderCard(@NonNull View itemView) {
             super(itemView);
 
@@ -121,8 +127,8 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
 
     //Método para visualizar el cuadro de dialogo
     private void Option_edit_deleteCard(String position, String id, String title, String account_name,
-                                    String date, String cvc, String note, String image, String t_record,
-                                    String t_update){
+                                        String date, String cvc, String note, String image, String t_record,
+                                        String t_update) {
         Button Btn_edit_record, Btn_edit_delete_record;
         dialog.setContentView(R.layout.box_dialog_edit_delete);
         Btn_edit_record = dialog.findViewById(R.id.Btn_edit_record);
@@ -147,9 +153,9 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
                 dialog.dismiss();
             }
         });
-        Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
+        /* Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+           public void onClick(View v) {
                 CardDAO.deleteRecordCard(id);
                 Intent intent = new Intent(context, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -164,5 +170,7 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard>{
 
     }
 
+            */
 
-}
+
+

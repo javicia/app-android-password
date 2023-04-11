@@ -186,7 +186,7 @@ public class F_Setting extends Fragment {
         //Obtenemos el registro que exportaremos
         ArrayList<Web> recordList = new ArrayList<>();
         recordList.clear();
-        recordList = WebDAO.GetAllrecordWeb(orderTitleAsc);
+        recordList = bbddHelper.GetAllrecordWeb(orderTitleAsc);
         try {
             //Escribir en el archivo
             FileWriter fileWriter = new FileWriter(File_Folder);
@@ -247,7 +247,7 @@ public class F_Setting extends Fragment {
                     String t_Record = nextLine[8];
                     String t_Update = nextLine[9];
 
-                    long ids = WebDAO.insertRecordWeb("" + title, ""+ account,
+                    long ids = bbddHelper.insertRecordWeb("" + title, ""+ account,
                             "" + username, "" + password, ""+ websites,
                             ""+ note, ""+ image, ""+ t_Record, "" + t_Update);
                 }
@@ -345,7 +345,6 @@ public class F_Setting extends Fragment {
                 dialog_password.dismiss();
             }
         });
-
         Txt_Password.setText(Recovered_password);
         //Desabilitamos escritura
         Txt_Password.setEnabled(false);
@@ -356,6 +355,4 @@ public class F_Setting extends Fragment {
         dialog_password.show();
         dialog_password.setCancelable(false);
     }
-
-
 }

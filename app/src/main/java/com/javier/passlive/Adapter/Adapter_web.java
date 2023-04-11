@@ -23,20 +23,21 @@ import com.javier.passlive.Model.Web;
 import com.javier.passlive.Util.Util_Web;
 import com.javier.passlive.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     private Context context;
-    private List<Object> webList;
+    private ArrayList<Web> webList;
 
     BBDD_Helper bbddHelper;
 
     Dialog dialog;
 
     //Creamos Constructor
-    public Adapter_web(Context context, List<Object> webList) {
+    public Adapter_web(Context context, ArrayList<Web> webList) {
         this.context = context;
         this.webList = webList;
         dialog = new Dialog(context);
@@ -53,57 +54,59 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     @Override
     public void onBindViewHolder(@NonNull HolderWeb holder, @SuppressLint("Recyclerview") int position) {
-    Web model_web = (Web) webList.get(position);
-    String id = model_web.getId();
-    String tittle =model_web.getTittle();
-    String account = model_web.getAccount();
-    String username = model_web.getUsername();
-    String password = model_web.getPassword();
-    String websites = model_web.getWebsites();
-    String note = model_web.getNote();
-    String image = model_web.getImage();
-    String t_record = model_web.getT_record();
-    String t_update = model_web.getT_update();
+        //if (webList.get(position) instanceof Web) {
+            Web model_web = webList.get(position);
+            String id = model_web.getId();
+            String tittle = model_web.getTittle();
+            String account = model_web.getAccount();
+            String username = model_web.getUsername();
+            String password = model_web.getPassword();
+            String websites = model_web.getWebsites();
+            String note = model_web.getNote();
+            String image = model_web.getImage();
+            String t_record = model_web.getT_record();
+            String t_update = model_web.getT_update();
 
-    holder.Item_tittle.setText(tittle);
-    holder.Item_account.setText(account);
+            holder.Item_tittle.setText(tittle);
+            holder.Item_account.setText(account);
 
-    holder.itemView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        //Cuando el usuario presione el item
-        public void onClick(View v) {
-            Intent intent = new Intent(context, Web_Record.class);
-            //Enviamos el dato id a la actividad Detail_record
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                //Cuando el usuario presione el item
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, Web_Record.class);
+                    //Enviamos el dato id a la actividad Detail_record
                     intent.putExtra("Id_registro", id);
                     context.startActivity(intent);
+                }
+            });
+            holder.ImgB_option.setOnClickListener(new View.OnClickListener() {
+                @Override
+                //Cuando el usuario presione el Image Button
+                public void onClick(View v) {
+                    Option_edit_deleteWeb(
+                            "" + position,
+                            "" + id,
+                            "" + tittle,
+                            "" + account,
+                            "" + username,
+                            "" + websites,
+                            "" + note,
+                            "" + image,
+                            "" + t_record,
+                            "" + t_update
+                    );
+
+                }
+            });
         }
-    });
-    holder.ImgB_option.setOnClickListener(new View.OnClickListener() {
+    //}
+        //Método para obtener el registro
         @Override
-        //Cuando el usuario presione el Image Button
-        public void onClick(View v) {
-        Option_edit_deleteWeb(
-                "" + position,
-                "" +id,
-                "" +tittle,
-                "" + account,
-                "" + username,
-                "" + websites,
-                "" + note,
-                "" + image,
-                ""+ t_record,
-                "" + t_update);
-
+        public int getItemCount () {
+            //Devuelve el tamaño de la lista
+            return webList.size();
         }
-    });
-    }
-    //Método para obtener el registro
-    @Override
-    public int getItemCount() {
-        //Devuelve el tamaño de la lista
-        return webList.size();
-    }
-
     class HolderWeb extends RecyclerView.ViewHolder{
 
         TextView Item_tittle,Item_account,Item_username,Item_password, Item_websites,Item_note;
@@ -128,6 +131,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
                                     String t_update){
         Button Btn_edit_record, Btn_edit_delete_record;
         dialog.setContentView(R.layout.box_dialog_edit_delete);
+
         Btn_edit_record = dialog.findViewById(R.id.Btn_edit_record);
         Btn_edit_delete_record = dialog.findViewById(R.id.Btn_edit_delete_record);
 
@@ -153,7 +157,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    WebDAO.deleteRecordWeb(id);
+                   bbddHelper.deleteRecordWeb(id);
                     Intent intent = new Intent(context, MainActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

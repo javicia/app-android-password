@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -57,10 +58,10 @@ public class Web_Record extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-         /*D_Image.setOnClickListener(new View.OnClickListener() {
+         D_Image.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
-                Dialog_Visualize();
+
             }
         });
 
@@ -73,13 +74,12 @@ public class Web_Record extends AppCompatActivity {
                     openWeb(url_web);
                   //No contiene la url
                 }else {
-                    Toast.makeText(Detail_record.this, "No existe una url", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Web_Record.this, "No existe una url", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-          */
     }
     //Método para inicializar variables
     private void Initialize_variables(){

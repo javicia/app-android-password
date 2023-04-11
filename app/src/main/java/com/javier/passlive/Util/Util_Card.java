@@ -49,7 +49,7 @@ public class Util_Card extends AppCompatActivity{
 
         setContentView(R.layout.activity_add_card);
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar !=null;
+        assert actionBar != null;
         actionBar.setTitle("");
         Initial_Var();
         GetInformation();
@@ -70,7 +70,10 @@ public class Util_Card extends AppCompatActivity{
         });
 
 
-         */
+
+    }
+
+   */
     }
     private void Initial_Var(){
         Et_C_Title = findViewById(R.id.Et_C_Title);
@@ -139,18 +142,18 @@ public class Util_Card extends AppCompatActivity{
     //Método para guardar password
     private void Add_Update_Record_Card(){
 //Obtener datos de entrada
-        title= Et_C_Title.getText().toString().trim();
-        name=Et_C_Name.getText().toString().trim();
-        number=Et_C_Number_Card.getText().toString().trim();
-        date=Et_C_Date.getText().toString().trim();
-        cvc=Et_C_CVC.getText().toString().trim();
-        note=Et_C_Note.getText().toString().trim();
+        title = Et_C_Title.getText().toString().trim();
+        name = Et_C_Name.getText().toString().trim();
+        number = Et_C_Number_Card.getText().toString().trim();
+        //date = Et_C_Date.getText().toString().trim();
+        //cvc = Et_C_CVC.getText().toString().trim();
+        //note = Et_C_Note.getText().toString().trim();
 
         if(EDITION_MODE){
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = "" + System.currentTimeMillis();
-            CardDAO.updateRecordCard(
+            BDHelper.updateRecordCard(
                     "" + id_card,
                     ""+ title,
                     "" + username,
@@ -171,7 +174,7 @@ public class Util_Card extends AppCompatActivity{
             if(!title.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = CardDAO.insertRecordCard(
+                long id = BDHelper.insertRecordCard(
                         "" +title, "" + name, "" + number,
                         "" + date,"" + cvc, "" + note,
                         ""+ imageUri,""+ time, ""+ time);
@@ -238,5 +241,6 @@ public class Util_Card extends AppCompatActivity{
                 }
             });
 }
+
 
 

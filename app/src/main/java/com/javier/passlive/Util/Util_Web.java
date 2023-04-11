@@ -1,8 +1,10 @@
 package com.javier.passlive.Util;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.DAO.WebDAO;
@@ -48,19 +52,20 @@ public class Util_Web extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_add_web);
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar !=null;
+        assert actionBar != null;
         actionBar.setTitle("");
+
         Initial_Var();
         GetInformation();
 
-       /* Btn_W_Image.setOnClickListener(new View.OnClickListener() {
+        /*Btn_W_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Si el permiso de cámara ha sido concedido entonces que se ejecute el método TakePhoto
-        if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)==
+        if(ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.CAMERA)==
                 PackageManager.PERMISSION_GRANTED){
             TakePhoto();
             //En caso contrario llamamos a la solicitur de permiso de cámara
@@ -71,8 +76,7 @@ public class Util_Web extends AppCompatActivity {
             }
         });
 
-
-        */
+         */
     }
     private void Initial_Var(){
         EtTittle = findViewById(R.id.EtTittle);
@@ -86,6 +90,7 @@ public class Util_Web extends AppCompatActivity {
         Btn_W_Image = findViewById(R.id.Btn_B_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
+
         BDHelper = new BBDD_Helper(this);
 
     }
@@ -152,25 +157,38 @@ public class Util_Web extends AppCompatActivity {
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = ""+ System.currentTimeMillis();
-           WebDAO.updateRecordWeb("" + id, "" + tittle,"" + account, "" + username,
-                    "" + password, ""+ websites, ""+ note,"" + imageUri,"" + t_record,
-                    "" + current_time);
+           BDHelper.updateRecordWeb(
+                   "" + id,
+                   "" + tittle,
+                   "" + account,
+                   "" + username,
+                    "" + password,
+                   ""+ websites,
+                   ""+ note,
+                   "" + imageUri,
+                   "" + t_record,
+                    "" + current_time
+           );
             Toast.makeText(this,"Actualizado con éxito",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Util_Web.this, MainActivity.class));
             finish();
-
-
-
-        }else {
+        }
+        else {
             //Si es falsa se agrega un nuevo registro
-
             if(!tittle.equals("")){
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
-                long id = WebDAO.insertRecordWeb(
-                        "" +tittle, "" + account, "" + username,
-                        "" + password,"" + websites,   "" + note,
-                        ""+ imageUri,""+ time, ""+ time);
+                long id = BDHelper.insertRecordWeb(
+                        "" +tittle,
+                        "" + account,
+                        "" + username,
+                        "" + password,
+                        "" + websites,
+                        "" + note,
+                        ""+ imageUri,
+                        ""+ time,
+                        ""+ time
+                );
                 Toast.makeText(this, "Se ha guardado con éxito: ", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Util_Web.this, MainActivity.class));
                 finish();
@@ -180,8 +198,6 @@ public class Util_Web extends AppCompatActivity {
                 EtTittle.setFocusable(true);
             }
         }
-
-
     }
 
     @Override
@@ -234,3 +250,4 @@ private ActivityResultLauncher<Intent> camaraActivytyResultLauncher = registerFo
                 }
             });
 }
+

@@ -1,5 +1,5 @@
 package com.javier.passlive.Record;
-
+/*
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -140,3 +140,5 @@ public class Bank_Record extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 }
+
+ */

@@ -17,10 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
-        <activity
-            android:name=".Category.Category"
-            android:exported="false" />
 
+<activity android:name=".Category.Category"
+    android:exported="true" />
         <activity
             android:name=".Login.Login_user"
             android:exported="false" />
@@ -36,13 +35,7 @@
 
         <activity
             android:name=".Record.Web_Record"
-            android:exported="false" />
-        <activity
-            android:name=".Record.Bank_Record"
-            android:exported="false" />
-        <activity
-            android:name=".Record.Card_Record"
-            android:exported="false" />
+            android:exported="false"/>
 
         <activity
             android:name=".Util.Util_Web"
