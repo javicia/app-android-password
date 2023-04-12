@@ -18,7 +18,7 @@
             android:id="@+id/img_item_password"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/icon_password"
+            android:src="@drawable/icon_bank_record"
             android:layout_centerVertical="true"
             android:padding="8dp"/>
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -35,7 +35,7 @@
                 android:text="@string/Item_b_tittle"
                 android:textSize="25dp"
                 android:textStyle="bold"
-                android:textColor="#7ed957"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

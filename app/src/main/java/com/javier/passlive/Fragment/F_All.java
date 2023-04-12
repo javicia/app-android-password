@@ -74,53 +74,25 @@ public class F_All extends Fragment {
 //Método para cargar registros
     private void loadRecordWeb(String orderby) {
             statusOrder = orderby;
-            Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
             //Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
-            //Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
-            //Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
+            Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
+            Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
+            Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
 
-        //ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
-            RView_record.setAdapter(adapter_web);
+        ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
+            RView_record.setAdapter(concatAdapter);
 
     }
 
-    /*private void loadRecordCard(String orderby) {
-        statusOrder = orderby;
-        Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
-        RView_record.setAdapter(adapter_card);
-    }
-
-     */
     //Buscar registro en base de datos
         private void Record_seach(String consultation){
-        Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
-        RView_record.setAdapter(adapter_web);
-            /*List<Object> seachResults = new ArrayList<>();
-            seachResults.addAll(helper.search_RecordsWeb(consultation));
-            seachResults.addAll(helper.search_RecordsBank(consultation));
-            seachResults.addAll(helper.search_RecordsCard(consultation));
+        //Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
+            Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
+            Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));
+            Adapter_card adapter_card = new Adapter_card(getActivity(), helper.search_RecordsCard(consultation));
+            ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
 
-            RecyclerView.Adapter adapter = null;
-            if (!seachResults.isEmpty()) {
-                //Si se producen resultados, crear el adaptador cortrespontiente
-                if (seachResults.get(0) instanceof Web) {
-                    adapter = new Adapter_web(getActivity(), seachResults);
-                } else if (seachResults.get(0) instanceof Bank) {
-                    adapter = new Adapter_bank(getActivity(), seachResults);
-                } else if (seachResults.get(0) instanceof Card) {
-                    adapter = new Adapter_card(getActivity(), seachResults);
-                }
-            }
-            if (adapter !=null){
-                //Si se creó el adaptador, establecerlo en el RecyclerView
-                RView_record.setAdapter(adapter);
-            }else {
-                //Si no se encuentra resultado
-                Toast.makeText(getActivity(), "No se encuentran resultados", Toast.LENGTH_SHORT).show();
-            }
-
-             */
-
+        RView_record.setAdapter(concatAdapter);
  }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -168,7 +140,6 @@ public class F_All extends Fragment {
     @Override
     public void onResume() {
         loadRecordWeb(statusOrder);
-        //loadRecordCard(statusOrder);
         super.onResume();
     }
 
@@ -225,7 +196,7 @@ public class F_All extends Fragment {
         Btn_New.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecordWeb(orderTittleAsc);
+                loadRecordWeb(newOrder);
                 //loadRecordCard(orderTittleAsc);
                 dialog_order.dismiss();
             }
