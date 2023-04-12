@@ -1,13 +1,15 @@
 package com.javier.passlive.Record;
-/*
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ public class Bank_Record extends AppCompatActivity {
     String id_record;
     BBDD_Helper helper;
     ImageView B_Image;
+    ImageButton Img_bank;
     Dialog dialog;
     EditText B_Number;
 
@@ -46,6 +49,7 @@ public class Bank_Record extends AppCompatActivity {
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
         helper = new BBDD_Helper(this);
+
         Initialize_variables();
         Registration_info();
 
@@ -56,6 +60,27 @@ public class Bank_Record extends AppCompatActivity {
         //Creamos la fecha de retroceso dentro del action Bar
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+
+     B_Image.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+
+         }
+     });
+
+        Img_bank.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String url_web = B_Websites.getText().toString().trim();
+            //Si contiene la url
+            if(!url_web.equals("")){
+                openBank(url_web);
+                //No contiene la url
+            }else {
+                Toast.makeText(Bank_Record.this, "No existe una url", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
     }
         private void Initialize_variables(){
             B_Title = findViewById(R.id.B_Title);
@@ -69,6 +94,7 @@ public class Bank_Record extends AppCompatActivity {
             B_Image = findViewById(R.id.B_image);
 
             dialog= new Dialog(this);
+            Img_bank = findViewById(R.id.Img_bank);
         }
     private void Registration_info(){
         String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
@@ -141,4 +167,4 @@ public class Bank_Record extends AppCompatActivity {
     }
 }
 
- */
+

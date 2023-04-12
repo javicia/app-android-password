@@ -94,8 +94,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/EtNote"
-                android:hint="@string/EtNote"
+                android:id="@+id/Et_C_Note"
+                android:hint="@string/Et_C_Note"
                 android:padding="15dp"
                 android:textSize="18sp"
                 android:height="150dp"

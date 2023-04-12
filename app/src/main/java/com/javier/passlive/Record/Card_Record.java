@@ -1,5 +1,5 @@
 package com.javier.passlive.Record;
-/*
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -48,6 +48,7 @@ public class Card_Record extends AppCompatActivity {
             id_record = intent.getStringExtra("Id_registro");
             Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
             helper = new BBDD_Helper(this);
+
             Initialize_variables();
             Registration_info();
 
@@ -105,18 +106,22 @@ public class Card_Record extends AppCompatActivity {
                     String update_time = "" + DateFormat.format("dd/MM/yyyy hh:mm:aa", calendar_updateTime);
 
                     //Fecha de caducidad tarjeta
-                    Calendar calendar_date = Calendar.getInstance(Locale.getDefault());
+                   /* Calendar calendar_date = Calendar.getInstance(Locale.getDefault());
                     calendar_date.setTimeInMillis(Long.parseLong(date));
                     int month = calendar_date.get(Calendar.MONTH) + 1; // Sumar 1 porque Calendar.MONTH comienza en 0
                     int year = calendar_date.get(Calendar.YEAR);
                     String expiration_date = String.format("%02d/%04d", month, year);
+
+                    */
 
                     //Setear información en las vistas
 
                     C_Title.setText(title_card);
                     C_Name.setText(name_card);
                     C_Number.setText(number);
-                    C_Date.setText(expiration_date);
+                    C_Number.setBackgroundColor(Color.TRANSPARENT);
+                    C_Number.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    C_Date.setText(date);
                     C_CVC.setText(cvc);
                     C_CVC.setBackgroundColor(Color.TRANSPARENT);
                     C_CVC.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -135,12 +140,6 @@ public class Card_Record extends AppCompatActivity {
             }
             db.close();
         }
-
-        //Método para abrir página web
-        private void openBank(String url_web) {
-            Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" +url_web));
-            startActivity(navigation);
-        }
         @Override
         public boolean onSupportNavigateUp() {
             //cuando presionamos la fecha de retroceso nos mandará a la actividad anterior
@@ -149,4 +148,4 @@ public class Card_Record extends AppCompatActivity {
         }
 }
 
- */
+

@@ -20,10 +20,7 @@ public class CardDAO {
 
 
 
-    /*public static void deleteRecordCard(String id){
-        db.delete(Constans.TABLE_CARD, Constans.ID_CARD+" = ?", new String[]{id});
-        db.close();
-    }
 
-     */
+
+
 }

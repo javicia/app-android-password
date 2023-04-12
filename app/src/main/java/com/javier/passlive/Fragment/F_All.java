@@ -17,11 +17,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 //import com.javier.passlive.Adapter.Adapter_bank;
 //import com.javier.passlive.Adapter.Adapter_card;
+import com.javier.passlive.Adapter.Adapter_bank;
+import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
 import com.javier.passlive.BBDD.BBDD_Helper;
 //import com.javier.passlive.DAO.BankDAO;
@@ -57,7 +60,8 @@ public class F_All extends Fragment {
         dialog_category = new Dialog(getActivity());
 
 //Listar registros
-        loadRecord(orderTittleAsc);
+        loadRecordWeb(orderTittleAsc);
+        //loadRecordCard(orderTittleAsc);
                 btnadd_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -68,17 +72,25 @@ public class F_All extends Fragment {
         return view;
     }
 //Método para cargar registros
-    private void loadRecord(String orderby) {
+    private void loadRecordWeb(String orderby) {
             statusOrder = orderby;
             Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
-            //Adapter_web adapter_web = new Adapter_web(getActivity(), Collections.singletonList(helper.GetAllrecordWeb(orderby)));
-            //Adapter_bank adapter_bank = new Adapter_bank(getActivity(), Collections.singletonList(helper.GetAllrecordBank(orderby)));
-            //Adapter_card adapter_card = new Adapter_card(getActivity(), Collections.singletonList(helper.GetAllrecordCard(orderby)));
+            //Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
+            //Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
+            //Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
 
         //ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
             RView_record.setAdapter(adapter_web);
 
     }
+
+    /*private void loadRecordCard(String orderby) {
+        statusOrder = orderby;
+        Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
+        RView_record.setAdapter(adapter_card);
+    }
+
+     */
     //Buscar registro en base de datos
         private void Record_seach(String consultation){
         Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
@@ -155,7 +167,8 @@ public class F_All extends Fragment {
 //Para refrescar la lista cuando estemos en el fragmento
     @Override
     public void onResume() {
-        loadRecord(statusOrder);
+        loadRecordWeb(statusOrder);
+        //loadRecordCard(statusOrder);
         super.onResume();
     }
 
@@ -212,7 +225,8 @@ public class F_All extends Fragment {
         Btn_New.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecord(orderTittleAsc);
+                loadRecordWeb(orderTittleAsc);
+                //loadRecordCard(orderTittleAsc);
                 dialog_order.dismiss();
             }
         });
@@ -220,21 +234,24 @@ public class F_All extends Fragment {
         Btn_Past.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecord(sortPast);
+                loadRecordWeb(sortPast);
+                //loadRecordCard(sortPast);
                 dialog_order.dismiss();
             }
         });
         Btn_Asc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecord(orderTittleAsc);
+                loadRecordWeb(orderTittleAsc);
+                //loadRecordCard(orderTittleAsc);
                 dialog_order.dismiss();
             }
         });
         Btn_Desc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecord(orderTittleDesc);
+               loadRecordWeb(orderTittleDesc);
+                //loadRecordCard(orderTittleDesc);
                 dialog_order.dismiss();
             }
         });

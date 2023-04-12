@@ -1,5 +1,5 @@
 package com.javier.passlive.Adapter;
-/*
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,25 +14,25 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
-import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
-import com.javier.passlive.Util.Util_Bank;
 import com.javier.passlive.Record.Bank_Record;
+import com.javier.passlive.Util.Util_Bank;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
     private Context context;
-    private List<Object> bankList;
+    private ArrayList<Bank> bankList;
     BBDD_Helper bbddHelper;
     Dialog dialog;
 
 
-   public Adapter_bank(Context context, List<Object> bankList){
+   public Adapter_bank(Context context, ArrayList<Bank> bankList){
        this.context = context;
        this.bankList = bankList;
        dialog = new Dialog(context);
@@ -44,14 +44,14 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
     @Override
     public HolderBank onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //Inflamos item
-        View view = LayoutInflater.from(context).inflate(R.layout.item_web, parent, false);
-        return new Adapter_bank.HolderBank(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_bank, parent, false);
+        return new HolderBank(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter_bank.HolderBank holder, @SuppressLint("Recyclerview") int position) {
-        if (bankList.get(position) instanceof Bank) {
-            Bank model_bank = (Bank) bankList.get(position);
+    public void onBindViewHolder (@NonNull HolderBank holder, @SuppressLint("Recyclerview") int position) {
+        //if (bankList.get(position) instanceof Bank) {
+            Bank model_bank = bankList.get(position);
             String id = model_bank.getId();
             String title = model_bank.getTitle();
             String bank = model_bank.getBank();
@@ -70,7 +70,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
                 @Override
                 //Cuando el usuario presione el item
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, Util_Bank.class);
+                    Intent intent = new Intent(context, Bank_Record.class);
                     //Enviamos el dato id a la actividad Detail_record
                     intent.putExtra("Id_registro", id);
                     context.startActivity(intent);
@@ -80,7 +80,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
                 @Override
                 //Cuando el usuario presione el Image Button
                 public void onClick(View v) {
-                    Option_edit_delete(
+                    Option_edit_deleteBank(
                             "" + position,
                             "" + id,
                             "" + title,
@@ -96,7 +96,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
                 }
             });
         }
-    }
+
     //Método para obtener el registro
     @Override
     public int getItemCount() {
@@ -121,11 +121,12 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
             Img_B_option = itemView.findViewById(R.id.Img_B_option);
         }
     }
-    private void Option_edit_delete(String position, String id, String title, String bank ,
+    private void Option_edit_deleteBank(String position, String id, String title, String bank ,
                                     String account_name, String number, String websites, String notes ,String image, String t_record,
                                     String t_update){
         Button Btn_edit_record, Btn_edit_delete_record;
         dialog.setContentView(R.layout.box_dialog_edit_delete);
+
         Btn_edit_record = dialog.findViewById(R.id.Btn_edit_record);
         Btn_edit_delete_record = dialog.findViewById(R.id.Btn_edit_delete_record);
 
@@ -152,7 +153,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
         Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BankDAO.deleteRecordBank(id);
+                bbddHelper.deleteRecordBank(id);
                 Intent intent = new Intent(context, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -167,5 +168,3 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
     }
     }
 
-
- */

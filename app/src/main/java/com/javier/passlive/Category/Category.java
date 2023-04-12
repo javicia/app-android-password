@@ -27,8 +27,8 @@ public class Category extends AppCompatActivity {
         dialog.setContentView(R.layout.box_category_dialog);
 
         Btn_Web = dialog.findViewById(R.id.Btn_Web);
-        //Btn_Bank = dialog.findViewById(R.id.Btn_Bank);
-        //Btn_Card = dialog.findViewById(R.id.Btn_Card);
+        Btn_Bank = dialog.findViewById(R.id.Btn_Bank);
+        Btn_Card = dialog.findViewById(R.id.Btn_Card);
 
         Btn_Web.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class Category extends AppCompatActivity {
             }
         });
 
-/*    Btn_Bank.setOnClickListener(new View.OnClickListener() {
+    Btn_Bank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Category.this, Util_Bank.class);
@@ -58,7 +58,6 @@ public class Category extends AppCompatActivity {
         });
 
 
- */
 
 //Mostrar el dilogo y permitir que se pueda cancelar
         dialog.show();

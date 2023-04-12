@@ -27,36 +27,13 @@ public class BankDAO {
 
 
     //Método para actualizar registros de cuentas bancarias en BBDD
-    public static void updateRecordBank(String id_bank, String title, String bank, String account_Bank, String number, String b_websites, String b_notes,
-                                        String b_image, String b_recordTime, String b_updateTime){
-        ContentValues values = new ContentValues();
-
-        //Insertamos los datos
-        values.put(Constans.B_ID_BANK, id_bank);
-        values.put(Constans.B_TITLE_BANK, title);
-        values.put(Constans.B_BANK, bank);
-        values.put(Constans.B_ACCOUNT_BANK, account_Bank);
-        values.put(Constans.B_NUMBER, number);
-        values.put(Constans.B_WEBSITES, b_websites);
-        values.put(Constans.B_NOTES, b_notes);
-        values.put(Constans.B_IMAGE, b_image);
-        values.put(Constans.B_RECORD_TIME, b_recordTime);
-        values.put(Constans.B_UPDATE_TIME, b_updateTime);
-        //Actualizamos la fila
-        db.update(Constans.TABLE_ACCOUNT_BANK, values, Constans.B_ID_BANK + "=?", new String[]{id_bank});
-
-        //Cerramos conexión de BBDD
-        db.close();
-    }
 
 
 
 
 
-    public static void deleteRecordBank(String id){
-        db.delete(Constans.TABLE_CARD, Constans.ID_CARD+" = ?", new String[]{id});
-        db.close();
-    }
+
+
     }
 
 

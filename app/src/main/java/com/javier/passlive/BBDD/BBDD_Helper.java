@@ -297,6 +297,29 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateRecordBank(String id_bank, String title, String bank, String account_Bank, String number, String b_websites, String b_notes,
+                                 String b_image, String b_recordTime, String b_updateTime){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //Insertamos los datos
+        values.put(Constans.B_ID_BANK, id_bank);
+        values.put(Constans.B_TITLE_BANK, title);
+        values.put(Constans.B_BANK, bank);
+        values.put(Constans.B_ACCOUNT_BANK, account_Bank);
+        values.put(Constans.B_NUMBER, number);
+        values.put(Constans.B_WEBSITES, b_websites);
+        values.put(Constans.B_NOTES, b_notes);
+        values.put(Constans.B_IMAGE, b_image);
+        values.put(Constans.B_RECORD_TIME, b_recordTime);
+        values.put(Constans.B_UPDATE_TIME, b_updateTime);
+        //Actualizamos la fila
+        db.update(Constans.TABLE_ACCOUNT_BANK, values, Constans.B_ID_BANK + "=?", new String[]{id_bank});
+
+        //Cerramos conexión de BBDD
+        db.close();
+    }
+
     public void updateRecordCard(String id_card, String title, String username, String number, String dates, String cvc,
                                  String c_notes, String c_image, String c_recordTime, String c_updateTime, String s){
         ContentValues values = new ContentValues();
@@ -415,6 +438,16 @@ public class BBDD_Helper extends SQLiteOpenHelper {
     public void deleteRecordWeb(String id) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(Constans.TABLE_ACCOUNT_WEB, Constans.W_ID + " = ?", new String[]{id});
+        db.close();
+    }
+    public void deleteRecordBank(String id){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(Constans.TABLE_CARD, Constans.ID_CARD+" = ?", new String[]{id});
+        db.close();
+    }
+    public void deleteRecordCard(String id){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(Constans.TABLE_CARD, Constans.ID_CARD+" = ?", new String[]{id});
         db.close();
     }
 

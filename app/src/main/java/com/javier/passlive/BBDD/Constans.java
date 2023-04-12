@@ -105,7 +105,7 @@ public class Constans {
             + B_WEBSITES + " TEXT,"
             + B_NOTES + " TEXT,"
             + B_IMAGE + " TEXT,"
-            + B_RECORD_TIME + " TEXT, "
+            + B_RECORD_TIME + " TEXT,"
             + B_UPDATE_TIME + " TEXT,"
             + B_ID_CATEGORY + " INTEGER, "
             + "FOREIGN KEY(" + B_ID_CATEGORY + ") REFERENCES " + TABLE_CATEGORY + "(" + ID_CATEGORY + ")"

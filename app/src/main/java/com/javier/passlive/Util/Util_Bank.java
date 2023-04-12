@@ -54,11 +54,11 @@ public class Util_Bank extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_add_bank);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar !=null;
         actionBar.setTitle("");
+
         Initial_Var();
         GetInformation();
 
@@ -117,8 +117,6 @@ public class Util_Bank extends AppCompatActivity {
             Et_B_Bank_name.setText(bank_name);
             Et_B_Account_name.setText(account_name);
             Et_B_Number_Bank.setText(number);
-            Et_B_Number_Bank.setBackgroundColor(Color.TRANSPARENT);
-            Et_B_Number_Bank.setInputType(InputType.TYPE_CLASS_TEXT| InputType.TYPE_TEXT_VARIATION_PASSWORD);
             Et_B_Websites.setText(websites);
             Et_B_Note.setText(note);
             Et_B_tRecord.setText(t_record);
@@ -160,7 +158,7 @@ public class Util_Bank extends AppCompatActivity {
             //Si es verdadero actualizamos el registro
             //Obtenemos el tiempo del dispositivo
             String current_time = ""+ System.currentTimeMillis();
-            BankDAO.updateRecordBank(
+            BDHelper.updateRecordBank(
                     "" + id,
                     ""+ title,
                     "" + bank_name,
@@ -181,9 +179,16 @@ public class Util_Bank extends AppCompatActivity {
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
                 long id = BDHelper.insertRecordBank (
-                        "" +title, "" + bank_name, "" + account_name,
-                        "" + number,"" + websites,   "" + note,
-                        ""+ imageUri,""+ time, ""+ time);
+                        "" +title,
+                        "" + bank_name,
+                        "" + account_name,
+                        "" + number,
+                        "" + websites,
+                        "" + note,
+                        ""+ imageUri,
+                        ""+ time,
+                        ""+ time
+                );
                 Toast.makeText(this, "Se ha guardado con éxito: ", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Util_Bank.this, MainActivity.class));
                 finish();

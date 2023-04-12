@@ -46,11 +46,11 @@ public class Util_Card extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-
         setContentView(R.layout.activity_add_card);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("");
+
         Initial_Var();
         GetInformation();
 
@@ -79,9 +79,9 @@ public class Util_Card extends AppCompatActivity{
         Et_C_Title = findViewById(R.id.Et_C_Title);
         Et_C_Name = findViewById(R.id.Et_C_Name);
         Et_C_Number_Card = findViewById(R.id.Et_C_Number_Card);
-        Et_C_Date = findViewById(R.id.Et_B_Number_Bank);
-        Et_C_CVC = findViewById(R.id.Et_B_Websites);
-        Et_C_Note = findViewById(R.id.Et_B_Note);
+        Et_C_Date = findViewById(R.id.Et_C_Date);
+        Et_C_CVC = findViewById(R.id.Et_C_CVC);
+        Et_C_Note = findViewById(R.id.Et_C_Note);
 
         Image = findViewById(R.id.Image);
         Btn_C_Image = findViewById(R.id.Btn_B_Image);
@@ -145,9 +145,9 @@ public class Util_Card extends AppCompatActivity{
         title = Et_C_Title.getText().toString().trim();
         name = Et_C_Name.getText().toString().trim();
         number = Et_C_Number_Card.getText().toString().trim();
-        //date = Et_C_Date.getText().toString().trim();
-        //cvc = Et_C_CVC.getText().toString().trim();
-        //note = Et_C_Note.getText().toString().trim();
+        date = Et_C_Date.getText().toString().trim();
+        cvc = Et_C_CVC.getText().toString().trim();
+        note = Et_C_Note.getText().toString().trim();
 
         if(EDITION_MODE){
             //Si es verdadero actualizamos el registro
@@ -175,9 +175,15 @@ public class Util_Card extends AppCompatActivity{
                 //Obtenemos el tiempo del dispositovo
                 String time = ""+System.currentTimeMillis();
                 long id = BDHelper.insertRecordCard(
-                        "" +title, "" + name, "" + number,
-                        "" + date,"" + cvc, "" + note,
-                        ""+ imageUri,""+ time, ""+ time);
+                        "" +title,
+                        "" + name,
+                        "" + number,
+                        "" + date,
+                        "" + cvc,
+                        "" + note,
+                        ""+ imageUri,
+                        ""+ time,
+                        ""+ time);
                 Toast.makeText(this, "Se ha guardado con éxito: ", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Util_Card.this, MainActivity.class));
                 finish();
