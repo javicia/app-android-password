@@ -36,6 +36,12 @@
         <activity
             android:name=".Record.Web_Record"
             android:exported="false"/>
+        <activity
+            android:name=".Record.Bank_Record"
+            android:exported="false"/>
+        <activity
+            android:name=".Record.Card_Record"
+            android:exported="false"/>
 
         <activity
             android:name=".Util.Util_Web"

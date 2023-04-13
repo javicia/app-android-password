@@ -56,9 +56,6 @@ public class Category extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
 //Mostrar el dilogo y permitir que se pueda cancelar
         dialog.show();
         dialog.setCancelable(true);
