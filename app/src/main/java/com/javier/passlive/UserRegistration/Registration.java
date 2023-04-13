@@ -27,7 +27,7 @@ public class Registration extends AppCompatActivity {
     private static final String SHARE_PREF = "my_pref";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_C_PASSWORD = "c_password";
-
+    private static final String KEY_PRIVACY_POLICY_ACCEPTED = "política de privacidad aceptada";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,5 +95,14 @@ public class Registration extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+    public void onPrivacyPolicyAccepted() {
+        // Update the shared preferences to indicate that the privacy policy has been accepted
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(KEY_PRIVACY_POLICY_ACCEPTED, true);
+        editor.apply();
+
+        // Show a toast message to indicate that the privacy policy has been accepted
+        Toast.makeText(this, "Política de privacidad aceptada", Toast.LENGTH_SHORT).show();
     }
 }

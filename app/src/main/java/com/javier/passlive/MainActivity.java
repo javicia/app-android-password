@@ -57,11 +57,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.Option_all){
-        getSupportFragmentManager().beginTransaction().
-        replace(R.id.fragment_container, new F_All()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new F_All()).commit();
         }
-        if (id == R.id.Option_setting){
-            getSupportFragmentManager().beginTransaction().
+        if (id == R.id.Option_setting){getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragment_container, new F_Setting()).commit();
         }
         if (id == R.id.option_about){

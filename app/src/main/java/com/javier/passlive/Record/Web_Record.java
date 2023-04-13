@@ -1,4 +1,4 @@
-package com.javier.passlive.Detail;
+package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -19,17 +19,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
 
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Detail_record extends AppCompatActivity {
+public class Web_Record extends AppCompatActivity {
     TextView D_Tittle, D_Account, D_Username, D_Websites,D_Note, D_RecordTime, D_UpdateTime;
     String id_record;
-    BBDD helper;
+    BBDD_Helper helper;
     ImageView D_Image;
     Dialog dialog;
     EditText D_Password;
@@ -39,14 +39,14 @@ public class Detail_record extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-        setContentView(R.layout.activity_detail_record);
+        setContentView(R.layout.activity_web_record);
 
         ActionBar actionBar = getSupportActionBar();
 
         Intent intent = getIntent();
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-        helper = new BBDD(this);
+        helper = new BBDD_Helper(this);
         Initialize_variables();
         Registration_info();
 
@@ -58,10 +58,10 @@ public class Detail_record extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-         /*D_Image.setOnClickListener(new View.OnClickListener() {
+         D_Image.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
-                Dialog_Visualize();
+
             }
         });
 
@@ -74,13 +74,12 @@ public class Detail_record extends AppCompatActivity {
                     openWeb(url_web);
                   //No contiene la url
                 }else {
-                    Toast.makeText(Detail_record.this, "No existe una url", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Web_Record.this, "No existe una url", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-          */
     }
     //Método para inicializar variables
     private void Initialize_variables(){
@@ -100,7 +99,7 @@ public class Detail_record extends AppCompatActivity {
 
     //Método para visualizar información de los registros
     private void Registration_info(){
-        String query ="SELECT * FROM " + Constans.TABLE_NAME + " WHERE " + Constans.C_ID + " =\"" +
+        String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + " WHERE " + Constans.W_ID + " =\"" +
                 id_record + "\"";
 
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -109,16 +108,16 @@ public class Detail_record extends AppCompatActivity {
 //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.C_ID));
-                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Constans.C_TITTLE));
-                @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Constans.C_ACCOUNT));
-                @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Constans.C_USERNAME));
-                @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Constans.C_PASSWORD));
-                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.C_WEBSITES));
-                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.C_NOTES));
-                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.C_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
+                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.W_ID));
+                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Constans.W_TITTLE));
+                @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Constans.W_ACCOUNT));
+                @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Constans.W_USERNAME));
+                @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Constans.W_PASSWORD));
+                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.W_WEBSITES));
+                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.W_NOTES));
+                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.W_RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.W_UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro

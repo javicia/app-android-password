@@ -31,7 +31,7 @@
 
     <string name="add_password">Agregar</string>
 
-    // Record Detail
+    // Web Record Detail
     <string name="Txt_D_Tittle">Título:</string>
     <string name="D_Tittle">--</string>
     <string name="Txt_D_Account">Cuenta: </string>
@@ -49,24 +49,96 @@
     <string name="Txt_D_UpdateTime">Tiempo de actualización: </string>
     <string name="D_UpdateTime">--</string>
 
+    // Bank Record Detail
+    <string name="Txt_B_Title">Título:</string>
+    <string name="B_Title">--</string>
+    <string name="Txt_B_Bank">Banco: </string>
+    <string name="B_Bank">--</string>
+    <string name="Txt_B_Account_Name">Titular de la cuenta:  </string>
+    <string name="B_Account_Name">--</string>
+    <string name="Txt_B_Number">Número de cuenta bancaria:  </string>
+    <string name="B_Number">--</string>
+    <string name="Txt_B_Websites">Sitio web: </string>
+    <string name="B_Websites">--</string>
+    <string name="Txt_B_Note">Notas: </string>
+    <string name="B_Note">--</string>
+    <string name="Txt_B_RecordTime">Tiempo de registro: </string>
+    <string name="B_RecordTime">--</string>
+    <string name="Txt_B_UpdateTime">Tiempo de actualización: </string>
+    <string name="B_UpdateTime">--</string>
 
-    //Add password design
+    // Card Record Detail
+    <string name="Txt_C_Title">Título:</string>
+    <string name="C_Title">--</string>
+    <string name="Txt_C_Name">Nombre del titular:  </string>
+    <string name="C_Name">--</string>
+    <string name="Txt_C_Number">Número de tarjeta:  </string>
+    <string name="C_Number">--</string>
+    <string name="Txt_C_Date">Fecha de caducidad:  </string>
+    <string name="C_Date">--</string>
+    <string name="Txt_C_CVC">Código de seguridad:  </string>
+    <string name="C_CVC">--</string>
+    <string name="Txt_C_Websites">Sitio web: </string>
+    <string name="C_Websites">--</string>
+    <string name="Txt_C_Note">Notas: </string>
+    <string name="C_Note">--</string>
+    <string name="Txt_C_RecordTime">Tiempo de registro: </string>
+    <string name="C_RecordTime">--</string>
+    <string name="Txt_C_UpdateTime">Tiempo de actualización: </string>
+    <string name="C_UpdateTime">--</string>
+
+
+    //Add web design
     <string name="EtTittle">Título (Obligatorio)</string>
     <string name="EtAccount">Cuenta</string>
     <string name="EtUsername">Nombre de usuario</string>
     <string name="EtPassword">Contraseña</string>
     <string name="EtWebsites">Sitio Web</string>
     <string name="EtNote">Nota</string>
-    <string name="Btn_Attach_image">Adjuntar imagen</string>
+    <string name="Btn_W_Image">Adjuntar imagen</string>
+
+    //Add bank design
+    <string name="Et_B_Title">Título (Obligatorio)</string>
+    <string name="Et_B_Bank_name">Nombre de banco</string>
+    <string name="Et_B_Account_name">Titular de la cuenta</string>
+    <string name="Et_B_Number_Bank">Número de cuenta bancaria</string>
+    <string name="Et_B_Websites">Sitio Web</string>
+    <string name="Et_B_Note">Nota</string>
+    <string name="Btn_B_Image">Adjuntar imagen</string>
+
+    //Add card design
+    <string name="Et_C_Title">Título (Obligatorio)</string>
+    <string name="Et_C_Name">Nombre del titular</string>
+    <string name="Et_C_Number_Card">Número de tarjeta</string>
+    <string name="Et_C_Date">Fecha de caducidad</string>
+    <string name="Et_C_CVC">Código de seguridad</string>
+    <string name="Et_C_Note">Nota</string>
+    <string name="Btn_C_Image">Adjuntar imagen</string>
 
 
-    //Item password
+    //Item web
     <string name="Item_tittle">Título</string>
     <string name="Item_account">Cuenta</string>
     <string name="Item_username">Nombre de usuario</string>
     <string name="Item_password">Contraseña</string>
     <string name="Item_websites">Sitio web</string>
     <string name="Item_note">Nota</string>
+
+    //Item bank
+    <string name="Item_b_tittle">Título</string>
+    <string name="Item_b_bank">Banco</string>
+    <string name="Item_b_account_name">Titular de la cuenta</string>
+    <string name="Item_b_number">Número de cuenta bancaria</string>
+    <string name="Item_b_websites">Sitio web</string>
+    <string name="Item_b_note">Nota</string>
+
+    //Item card
+    <string name="Item_c_tittle">Título</string>
+    <string name="Item_c_account_name">Nombre del titular</string>
+    <string name="Item_c_number">Número de tarjeta</string>
+    <string name="Item_c_date">Fecha de caducidad</string>
+    <string name="Item_c_cvc">Codigo de seguridad</string>
+    <string name="Item_c_note">Nota</string>
 
 
     // Dialog box
@@ -100,10 +172,17 @@
 
 
     //Order record
+    <string name="Btn_Category">Categorias</string>
     <string name="Btn_New">Nuevos</string>
     <string name="Btn_Past">Antiguos</string>
     <string name="Btn_Asc">A-Z</string>
     <string name="Btn_Desc">Z-A</string>
+
+    //Order Category
+    <string name="Btn_Order_Web">Cuentas de Sitios Web</string>
+    <string name="Btn_Order_Bank">Cuentas bancarias</string>
+    <string name="Btn_Order_Card">Tarjetas de crédito</string>
+
 
 
     //Setting
@@ -113,6 +192,13 @@
     <string name="Import_File">Importar archivo CSV</string>
     <string name="Btn_Registration">Registrar</string>
     <string name="Change_Password">Cambiar password</string>
+
+
+    //Caregory
+    <string name="Btn_Web">Cuentas de Sitios Web</string>
+    <string name="Btn_Bank">Cuentas bancarias</string>
+    <string name="Btn_Card">Tarjetas de crédito</string>
+
 
     //Info app
     <string name="Txt_Developer">Desarrollado por: Javier García Pérez</string>
@@ -125,5 +211,77 @@
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>
     <string name="id_production">ca-app-pub-2936215461830489~5293704997</string>
     <string name="title_activity_detail_record">Detail_record</string>
+
+    //Privacy policy
+    <string name="privacy_policy_text">Política de privacidad</string>
+    <string name="Cb_accept_term">Aceptar los términos</string>
+    <string name="Btn_accept">Aceptar</string>
+    <string name="Tv_text_privacy">Términos y condiciones de uso:
+
+   Al acceder y utilizar nuestra aplicación, acepta nuestros términos y condiciones de uso, así como nuestra política de privacidad. Si no estás de acuerdo con estos términos, por favor no utilices nuestra aplicación.
+
+Uso de la aplicación: Nuestra aplicación está diseñada para almacenar de manera segura las contraseñas y datos bancarios de las personas. No está permitido utilizar la aplicación para multas ilegales o fraudulentas. Nos reservamos el derecho de suspender o cancelar la cuenta de cualquier usuario que infrinja estos términos.
+
+Seguridad: Nos esforzamos por proporcionar un alto nivel de seguridad para proteger los datos de nuestros usuarios. Sin embargo, no podemos garantizar la seguridad absoluta de los datos almacenados. Por lo tanto, el usuario debe tomar precauciones para proteger su información personal, como no compartir su contraseña con terceros. La aplicación dispone de las siguientes medidas de seguridad:
+
+No se registran direcciones IP.
+
+No se accede a las cuentas de correo de los usuarios.
+
+La aplicación no guarda datos ni hace seguimientos sobre tiempos y horarios de utilización.
+
+La aplicación no guarda información relativa en su dispositivo, por ejemplo, fallos, actividad del sistema, ajustes del hardware, tipo de navegador.
+
+La aplicación no accede a tus contactos ni agendas.
+
+La aplicación no recopila información sobre tu ubicación real.
+
+Responsabilidad: No somos responsables de los daños directos o indirectos
+
+Actualización de los términos: Nos reservamos el derecho de modificar estos términos en cualquier momento sin previo aviso. La versión actualizada de los términos estará disponible en nuestra aplicación. Si continúa utilizando la aplicación después de los cambios, se considerará que acepta los nuevos términos.
+
+Política de privacidad:
+
+En nuestra aplicación, nos tomamos muy en serio la privacidad de los datos de nuestros usuarios. Esta política de privacidad describe cómo recopilamos
+
+Información personal recopilada: Recopilamos información personal del usuario, como el nombre, las contraseñas y los datos bancarios, solo con el fin de brindar el servicio de almacenamiento seguro de datos.
+
+Uso de la información personal: Utilizamos la información personal del usuario para proporcionar el servicio de almacenamiento seguro de datos. No compartimos ni vendemos información personal
+
+Protección de la información personal: Nos esforzamos por proporcionar un alto nivel de seguridad para proteger la información personal del usuario. Utilizamos medidas técnicas y organizativas para proteger
+
+Derechos de los usuarios: El usuario tiene derecho a acceder, rectificar o eliminar su información personal en cualquier momento. El usuario también tiene derecho a retirar su consentimiento para el procesamiento de su información personal.
+
+Cambios en la política de privacidad: Nos reservamos el derecho de modificar esta política de
+
+Cumplimiento con LOPD:
+
+Nuestra aplicación cumple con la Ley Orgánica de Protección de Datos (LOPD) de España y la Regulación General de Protección de Datos (
+
+Responsable del tratamiento: Somos los responsables del tratamiento de los datos personales recopilados en nuestra aplicación.
+
+Base legal: Recopil
+
+Derechos de autor:
+
+   Los derechos de autor de Javier García Pérez sobre la aplicación están protegidos por la Ley de Propiedad Intelectual (LPI) de España y leyes y tratados internacionales aplicables a los derechos de autor. Como titular de los derechos de propiedad intelectual de la aplicación, Javier García Pérez tiene derecho exclusivo a controlar la reproducción, distribución, comunicación pública y transformación de la misma, así como cualquier actualización o mejora que se realice.
+
+   Cualquier uso no autorizado de la aplicación, su código fuente o sus elementos constitutivos estará sujeto a las sanciones previstas por la ley. Los usuarios de la aplicación no tienen derecho a modificar, copiar, distribuir o reproducir la aplicación o cualquier parte de ella sin la autorización expresa
+
+   Los derechos de autor de Javier García Pérez sobre la aplicación incluyen el derecho exclusivo a:
+
+Reproducir la aplicación: Esto implica la creación de copias de la aplicación, ya sea en su forma original o en forma modificada.
+
+Distribuir la aplicación: Javier García Pérez tiene el derecho de distribuir la aplicación a través de cualquier medio, ya sea físico o digital.
+
+Comunicar públicamente la aplicación: Esto incluye la emisión, transmisión, exhibición, difusión y puesta a disposición de la aplicación al público.
+
+Transformar la aplicación: Esto implica la creación de obras basadas en la aplicación, ya sea mediante la modificación del código fuente o la incorporación de otros elementos creativos.
+
+   Se prohíbe expresamente la venta, alquiler o sublicencia de la aplicación o cualquier parte de ella sin la autorización previa y expresa de
+
+   En caso de que se detecte cualquier infracción de los derechos de propiedad intelectual de Javier García Pérez, se reserve el derecho a tomar todas las medidas legales necesarias para proteger sus derechos y hacer cumplir los términos y condiciones de uso de la aplicación, incluyendo la exigencia de responsabilidades civiles y penales a los infractores.
+
+</string>
 
 </resources>

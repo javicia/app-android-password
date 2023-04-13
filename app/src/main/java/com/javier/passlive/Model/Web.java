@@ -1,15 +1,15 @@
 package com.javier.passlive.Model;
 //Establecemos atributos para realizar la obtención de datos en la lista
 
-public class Password {
+public class Web {
 
     String id, tittle, account, username, password, websites, note, image, t_record, t_update;
 
     //Constructor
 
-    public Password(String id, String tittle, String account, String username,
-                    String password, String websites, String note,
-                    String image, String t_record, String t_update) {
+    public Web(String id, String tittle, String account, String username,
+               String password, String websites, String note,
+               String image, String t_record, String t_update) {
         this.id = id;
         this.tittle = tittle;
         this.account = account;

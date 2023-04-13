@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="1dp"
     app:cardUseCompatPadding="true"
     app:contentPadding="3dp">
-    
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -18,7 +18,7 @@
         android:id="@+id/img_item_password"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/icon_password"
+        android:src="@drawable/icon_web_record"
         android:layout_centerVertical="true"
         android:padding="8dp"/>
 <androidx.appcompat.widget.LinearLayoutCompat
@@ -29,13 +29,13 @@
     android:layout_toEndOf="@+id/img_item_password"
     android:layout_toStartOf="@id/ImgB_option"
     android:layout_marginStart="3dp">
-    
+
     <TextView
         android:id="@+id/Item_tittle"
         android:text="@string/Item_tittle"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textColor="#7ed957"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

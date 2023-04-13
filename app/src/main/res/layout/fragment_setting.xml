@@ -10,6 +10,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="vertical">
+
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
@@ -19,10 +20,15 @@
            android:textSize="18sp"
            android:layout_marginTop="18dp"
            android:layout_marginStart="18dp"
+           app:drawableStartCompat="@drawable/icon_settings"
+           android:drawablePadding="8dp"
+           android:clickable="true"
+           android:focusable="true"
+           android:foreground="?android:attr/selectableItemBackground"
            />
        <TextView
-           android:id="@+id/Delete_All_Record"
-           android:text="@string/Delete_All_Record"
+           android:id="@+id/Change_Password"
+           android:text="@string/Change_Password"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:textStyle="bold"
@@ -30,12 +36,13 @@
            android:textSize="15sp"
            android:layout_marginTop="8dp"
            android:layout_marginStart="18dp"
-           app:drawableStartCompat="@drawable/icon_delete_record"
+           app:drawableStartCompat="@drawable/icon_change_password"
            android:drawablePadding="8dp"
            android:clickable="true"
            android:focusable="true"
            android:foreground="?android:attr/selectableItemBackground"
            />
+
        <TextView
            android:id="@+id/Export_File"
            android:text="@string/Export_File"
@@ -69,8 +76,8 @@
            android:foreground="?android:attr/selectableItemBackground"
            />
        <TextView
-           android:id="@+id/Change_Password"
-           android:text="@string/Change_Password"
+           android:id="@+id/Delete_All_Record"
+           android:text="@string/Delete_All_Record"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:textStyle="bold"
@@ -78,11 +85,12 @@
            android:textSize="15sp"
            android:layout_marginTop="8dp"
            android:layout_marginStart="18dp"
-           app:drawableStartCompat="@drawable/icon_change_password"
+           app:drawableStartCompat="@drawable/icon_delete_record"
            android:drawablePadding="8dp"
            android:clickable="true"
            android:focusable="true"
            android:foreground="?android:attr/selectableItemBackground"
            />
+
    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

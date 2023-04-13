@@ -26,11 +26,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.javier.passlive.BBDD.BBDD;
+import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.DAO.WebDAO;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
-import com.javier.passlive.Model.Password;
+import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import com.opencsv.CSVReader;
 
@@ -45,9 +46,9 @@ public class F_Setting extends Fragment {
     TextView Delete_All_Record, Export_File, Import_File, Change_Password;
     Dialog dialog, dialog_password;
 
-    BBDD bbddHelper;
+    BBDD_Helper bbddHelper;
 
-    String orderTitleAsc = Constans.C_TITTLE + "ASC";
+    String orderTitleAsc = Constans.W_TITTLE + "ASC";
 
     //Guardar preferencias de usuario en un archivo con una clave y valor
     SharedPreferences sharedPreferences;
@@ -71,7 +72,7 @@ public class F_Setting extends Fragment {
         Change_Password = view.findViewById(R.id.Change_Password);
         dialog = new Dialog(getActivity());
         dialog_password = new Dialog(getActivity());
-        bbddHelper = new BBDD(getActivity());
+        bbddHelper = new BBDD_Helper(getActivity());
 
         sharedPreferences = getActivity().getSharedPreferences(SHARE_PREF, Context.MODE_PRIVATE);
 
@@ -183,9 +184,9 @@ public class F_Setting extends Fragment {
         //Concatenamos el nombre de la carpeta y archivo para almacenar en File_Folder
         String File_Folder = file + "/" + csvfileName;
         //Obtenemos el registro que exportaremos
-        ArrayList<Password> recordList = new ArrayList<>();
+        ArrayList<Web> recordList = new ArrayList<>();
         recordList.clear();
-        recordList = bbddHelper.GetAllrecord(orderTitleAsc);
+        recordList = bbddHelper.GetAllrecordWeb(orderTitleAsc);
         try {
             //Escribir en el archivo
             FileWriter fileWriter = new FileWriter(File_Folder);
@@ -246,7 +247,7 @@ public class F_Setting extends Fragment {
                     String t_Record = nextLine[8];
                     String t_Update = nextLine[9];
 
-                    long ids = bbddHelper.insertRecord("" + title, ""+ account,
+                    long ids = bbddHelper.insertRecordWeb("" + title, ""+ account,
                             "" + username, "" + password, ""+ websites,
                             ""+ note, ""+ image, ""+ t_Record, "" + t_Update);
                 }
@@ -344,7 +345,6 @@ public class F_Setting extends Fragment {
                 dialog_password.dismiss();
             }
         });
-
         Txt_Password.setText(Recovered_password);
         //Desabilitamos escritura
         Txt_Password.setEnabled(false);
@@ -355,6 +355,4 @@ public class F_Setting extends Fragment {
         dialog_password.show();
         dialog_password.setCancelable(false);
     }
-
-
 }

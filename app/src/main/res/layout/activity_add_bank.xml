@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".Util.Util_Bank">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Et_B_Title"
+                android:hint="@string/Et_B_Title"
+                android:padding="15dp"
+                android:textSize="30sp"
+                android:maxLines="1"
+                android:inputType="textCapWords|text"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Et_B_Bank_name"
+                android:hint="@string/Et_B_Bank_name"
+                android:padding="15dp"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:inputType="textCapWords|text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Et_B_Account_name"
+                android:hint="@string/Et_B_Account_name"
+                android:padding="15dp"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:inputType="textCapWords|text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/Et_B_Number_Bank"
+                android:hint="@string/Et_B_Number_Bank"
+                android:padding="15dp"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Et_B_Websites"
+                android:hint="@string/Et_B_Websites"
+                android:padding="15dp"
+                android:textSize="18sp"
+                android:maxLines="1"
+                android:inputType="textWebEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/Et_B_Note"
+                android:hint="@string/Et_B_Note"
+                android:padding="15dp"
+                android:textSize="18sp"
+                android:height="150dp"
+                android:gravity="start"
+                android:inputType="textCapWords|textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/Image"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_image"
+                android:scaleType="centerCrop"
+                android:layout_width="200dp"
+                android:layout_height="200dp"/>
+            <ImageView
+                android:id="@+id/ImageView_delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:src="@drawable/image_delete"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <Button
+            android:id="@+id/Btn_B_Image"
+            android:text="@string/Btn_B_Image"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>
