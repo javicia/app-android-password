@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.javier.passlive">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
@@ -16,6 +20,7 @@
         android:roundIcon="@mipmap/icon_passlive_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
 <activity android:name=".Category.Category"
@@ -66,3 +71,4 @@
     </application>
 
 </manifest>
+

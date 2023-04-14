@@ -110,7 +110,7 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
             <ImageView
-                android:id="@+id/C_Image"
+                android:id="@+id/Image"
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center"
                 android:src="@drawable/logo_image"

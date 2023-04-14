@@ -117,12 +117,12 @@ public class BBDD_Helper extends SQLiteOpenHelper {
       }
 //Obtenemos el total de registros de la BBDD
     public int GetRecordNumber() {
-        String countquery = "SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB; //+ ", "
-        // + Constans.TABLE_ACCOUNT_BANK + ", "
-        //+ Constans.TABLE_CARD;
+        String countquery = "SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + ", "
+         + Constans.TABLE_ACCOUNT_BANK + ", "
+        + Constans.TABLE_CARD;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countquery, null);
-/*
+
         int count = 0;
         if (cursor.moveToFirst()){
             count= cursor.getInt(0);
@@ -130,12 +130,14 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         cursor.close();
         return count;
 
- */
-        int count = cursor.getCount();
+
+        /*int count = cursor.getCount();
 
         cursor.close();
 
         return count;
+
+         */
     }
     //Método para actualizar registros web en BBDD
 
@@ -147,38 +149,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         //Creamos consulta para seleccionar el registro
         String selectQuery = "SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + " ORDER BY " + orderby;
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        /*
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = null;
-        try {
-            cursor = db.rawQuery(selectQuery, null);
 
-            while (cursor.moveToNext()) {
-                @SuppressLint("Range") Web model_web = new Web(
-                        "" + cursor.getInt(cursor.getColumnIndex(Constans.W_ID)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_TITTLE)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_ACCOUNT)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_USERNAME)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_PASSWORD)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_WEBSITES)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_NOTES)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_RECORD_TIME)),
-                        "" + cursor.getString(cursor.getColumnIndex(Constans.W_UPDATE_TIME))
-                );
-                webList.add(model_web);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-        return webList;
-    }
-
-         */
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 

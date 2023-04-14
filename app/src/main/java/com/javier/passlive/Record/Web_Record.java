@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
@@ -34,19 +37,21 @@ public class Web_Record extends AppCompatActivity {
     Dialog dialog;
     EditText D_Password;
     ImageButton Img_web;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //No permite captura de pantalla
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_web_record);
-
         ActionBar actionBar = getSupportActionBar();
 
         Intent intent = getIntent();
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
         helper = new BBDD_Helper(this);
+
         Initialize_variables();
         Registration_info();
 
@@ -61,7 +66,7 @@ public class Web_Record extends AppCompatActivity {
          D_Image.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
-
+                Dialog_Visualize();
             }
         });
 
@@ -155,7 +160,7 @@ public class Web_Record extends AppCompatActivity {
         }
         db.close();
     }
-/*
+
     //Método para visualizar cuadro de diálogo para ampliar imagen
     private void Dialog_Visualize(){
         PhotoView Visualize_image;
@@ -164,8 +169,8 @@ public class Web_Record extends AppCompatActivity {
         Visualize_image = dialog.findViewById(R.id.Visualize_image);
         Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
 
-        String query ="SELECT * FROM " + Constans.TABLE_NAME + " WHERE " + Constans.C_ID + " =\"" +
-                id_record + "\"";
+        String query ="SELECT * FROM " + Constans.ACCOUNT_WEB + " WHERE " + Constans.W_ID + " =\"" +
+                id_record+ "\"";
 
         SQLiteDatabase db = helper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -173,7 +178,7 @@ public class Web_Record extends AppCompatActivity {
 //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-                @SuppressLint("Range") String image = "" + cursor.getInt(cursor.getColumnIndex(Constans.C_IMAGE));
+                @SuppressLint("Range") String image = "" +cursor.getInt(cursor.getColumnIndex(Constans.W_IMAGE));
 
                 if(image.equals("null")){
                     Visualize_image.setImageResource(R.drawable.logo_image);
@@ -197,7 +202,7 @@ public class Web_Record extends AppCompatActivity {
         dialog.setCancelable(false);
     }
 
- */
+
     //Método para abrir página web
     private void openWeb(String url_web) {
     Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" +url_web));

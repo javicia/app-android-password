@@ -79,6 +79,7 @@ public class F_Setting extends Fragment {
         Delete_All_Record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Dialog_Delete_All_Record();
             }
         });

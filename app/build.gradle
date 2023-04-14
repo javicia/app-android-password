@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     implementation 'com.airbnb.android:lottie:4.2.1'
     //PhotoView
-    //implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     //Material
     implementation 'com.google.android.material:material:1.8.0'
     //Import csv

@@ -60,24 +60,22 @@ public class Util_Web extends AppCompatActivity {
         Initial_Var();
         GetInformation();
 
-        /*Btn_W_Image.setOnClickListener(new View.OnClickListener() {
+        Btn_W_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Si el permiso de cámara ha sido concedido entonces que se ejecute el método TakePhoto
-        if(ContextCompat.checkSelfPermission(getApplicationContext(),
-                Manifest.permission.CAMERA)==
-                PackageManager.PERMISSION_GRANTED){
-            TakePhoto();
-            //En caso contrario llamamos a la solicitur de permiso de cámara
-        }else {
-            Camera_Permission_Request.launch(Manifest.permission.CAMERA);
-        }
-
+                // Comprobamos si tenemos permiso para usar la cámara
+                if (ContextCompat.checkSelfPermission(Util_Web.this, Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    // Si tenemos permiso, llamamos al método TakePhoto() para tomar la foto
+                    takePhoto();
+                } else {
+                    // Si no tenemos permiso, pedimos al usuario que lo conceda
+                    Camera_Permission_Request.launch(Manifest.permission.CAMERA);
+                }
             }
         });
-
-         */
     }
+
     private void Initial_Var(){
         EtTittle = findViewById(R.id.EtTittle);
         EtAccount = findViewById(R.id.EtAccount);
@@ -87,7 +85,7 @@ public class Util_Web extends AppCompatActivity {
         EtNote = findViewById(R.id.EtNote);
 
         Image = findViewById(R.id.Image);
-        Btn_W_Image = findViewById(R.id.Btn_B_Image);
+        Btn_W_Image = findViewById(R.id.Btn_W_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
 
@@ -214,40 +212,51 @@ public class Util_Web extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-//Método para realizar foto
-    private void TakePhoto() {
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "Nueva imagen");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "Descripción");
-        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        camaraActivytyResultLauncher.launch(intent);
+
+    private void takePhoto() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            // Pedir permiso al usuario para acceder a la cámara
+            Camera_Permission_Request.launch(Manifest.permission.CAMERA);
+        } else {
+            // El permiso ya ha sido concedido, tomar la foto
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Images.Media.TITLE, "Nueva imagen");
+            values.put(MediaStore.Images.Media.DESCRIPTION, "Descripción");
+            imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            cameraActivityResultLauncher.launch(intent);
+        }
     }
 
-private ActivityResultLauncher<Intent> camaraActivytyResultLauncher = registerForActivityResult(
-        new ActivityResultContracts.StartActivityForResult(),
-        new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                //Comprobamos si la fotografía ha sido guardada correctamente
-                if (result.getResultCode() == Activity.RESULT_OK){
+    // Resultado de la acción de tomar una foto
+    private ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    // Mostrar la imagen en un ImageView
                     Image.setImageURI(imageUri);
-                }else{
-                    Toast.makeText(Util_Web.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+                } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
+                    Toast.makeText(this, "Acción cancelada por el usuario", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Error al tomar la foto", Toast.LENGTH_SHORT).show();
                 }
             }
-        }
-);
-    //Método que permite comprobar si el permiso ha sido concedido por el usuario
+    );
+
+    // Pedir permiso al usuario para acceder a la cámara
     private ActivityResultLauncher<String> Camera_Permission_Request = registerForActivityResult(
-            new ActivityResultContracts.RequestPermission(), Grant_permission ->{
-                if(Grant_permission){
-                    TakePhoto();
-                }else {
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    takePhoto();
+                } else {
                     Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+    );
+
 }
 

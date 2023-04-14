@@ -60,8 +60,7 @@ public class F_All extends Fragment {
         dialog_category = new Dialog(getActivity());
 
 //Listar registros
-        loadRecordWeb(orderTittleAsc);
-        //loadRecordCard(orderTittleAsc);
+        loadRecord(orderTittleAsc);
                 btnadd_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -72,9 +71,8 @@ public class F_All extends Fragment {
         return view;
     }
 //Método para cargar registros
-    private void loadRecordWeb(String orderby) {
+    private void loadRecord(String orderby) {
             statusOrder = orderby;
-            //Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
             Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
             Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
             Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
@@ -86,7 +84,6 @@ public class F_All extends Fragment {
 
     //Buscar registro en base de datos
         private void Record_seach(String consultation){
-        //Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
             Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
             Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));
             Adapter_card adapter_card = new Adapter_card(getActivity(), helper.search_RecordsCard(consultation));
@@ -139,7 +136,7 @@ public class F_All extends Fragment {
 //Para refrescar la lista cuando estemos en el fragmento
     @Override
     public void onResume() {
-        loadRecordWeb(statusOrder);
+        loadRecord(statusOrder);
         super.onResume();
     }
 
@@ -196,8 +193,7 @@ public class F_All extends Fragment {
         Btn_New.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecordWeb(newOrder);
-                //loadRecordCard(orderTittleAsc);
+                loadRecord(newOrder);
                 dialog_order.dismiss();
             }
         });
@@ -205,24 +201,21 @@ public class F_All extends Fragment {
         Btn_Past.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecordWeb(sortPast);
-                //loadRecordCard(sortPast);
+                loadRecord(sortPast);
                 dialog_order.dismiss();
             }
         });
         Btn_Asc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecordWeb(orderTittleAsc);
-                //loadRecordCard(orderTittleAsc);
+                loadRecord(orderTittleAsc);
                 dialog_order.dismiss();
             }
         });
         Btn_Desc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               loadRecordWeb(orderTittleDesc);
-                //loadRecordCard(orderTittleDesc);
+               loadRecord(orderTittleDesc);
                 dialog_order.dismiss();
             }
         });
