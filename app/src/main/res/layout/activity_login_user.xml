@@ -36,7 +36,10 @@
         android:backgroundTint="@color/colorPrimary"
         android:textColor="#ffffff"
         android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
         android:text="@string/Txt_Other_Procedure"
@@ -61,7 +64,10 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:layout_width="wrap_content"
+            app:cornerRadius = "20dp"
+            app:style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/colorPrimary"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
 

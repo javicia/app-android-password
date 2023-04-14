@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="12dp"
     android:layout_gravity="center"
@@ -13,6 +13,9 @@
         android:textStyle="bold"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
@@ -22,6 +25,9 @@
         android:textStyle="bold"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

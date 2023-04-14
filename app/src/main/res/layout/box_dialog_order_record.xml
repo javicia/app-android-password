@@ -20,6 +20,9 @@
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"
         android:layout_marginTop="12dp"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
@@ -29,6 +32,9 @@
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"
         android:layout_marginTop="12dp"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
@@ -38,6 +44,9 @@
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"
         android:layout_marginTop="12dp"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
@@ -47,6 +56,9 @@
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"
         android:layout_marginTop="12dp"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
@@ -56,6 +68,9 @@
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"
         android:layout_marginTop="12dp"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

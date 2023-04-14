@@ -53,6 +53,9 @@
         android:textColor="#fff"
         android:layout_marginTop="12dp"
         android:background="@color/colorPrimary"
+        app:cornerRadius = "20dp"
+        app:style="?attr/materialButtonOutlinedStyle"
+        app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
