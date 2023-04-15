@@ -286,7 +286,8 @@ public class F_Setting extends Fragment {
 
     private void Dialog_Change_Password(){
     //Establecemos las vistas
-        EditText Txt_Password, New_Password, Confirm_Password;
+        EditText Password__;
+        EditText New_Password, Confirm_Password;
         Button Btn_Change_password,Btn_Cancel_Password;
 
     //Creamos un String para almacenar la contraseña del usuario,
@@ -297,7 +298,7 @@ public class F_Setting extends Fragment {
         dialog_password.setContentView(R.layout.box_dialog_password);
 
         //Inicializamos las vistas
-        Txt_Password = dialog_password.findViewById(R.id.Txt_Password);
+        Password__ = dialog_password.findViewById(R.id.Password__);
         New_Password = dialog_password.findViewById(R.id.New_Password);
         Confirm_Password = dialog_password.findViewById(R.id.Confirm_Password);
         Btn_Change_password = dialog_password.findViewById(R.id.Btn_Change_password);
@@ -346,14 +347,15 @@ public class F_Setting extends Fragment {
                 dialog_password.dismiss();
             }
         });
-        Txt_Password.setText(Recovered_password);
+        Password__.setText(Recovered_password);
         //Desabilitamos escritura
-        Txt_Password.setEnabled(false);
-        Txt_Password.setBackgroundColor(Color.TRANSPARENT);
+        Password__.setEnabled(false);
+        Password__.setBackgroundColor(Color.TRANSPARENT);
         //Cuando visualicemos el cuadro de diálogo la contraseña se encontrará oculta
-        Txt_Password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        Password__.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         dialog_password.show();
         dialog_password.setCancelable(false);
     }
+
 }

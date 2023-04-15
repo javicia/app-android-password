@@ -37,7 +37,6 @@
         android:textColor="#ffffff"
         android:layout_marginTop="25dp"
         app:cornerRadius = "20dp"
-        app:style="?attr/materialButtonOutlinedStyle"
         app:strokeColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -65,7 +64,6 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             app:cornerRadius = "20dp"
-            app:style="?attr/materialButtonOutlinedStyle"
             app:strokeColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

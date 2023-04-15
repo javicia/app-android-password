@@ -134,7 +134,6 @@
             android:background="@color/colorPrimary"
             android:textColor="#ffffff"
             app:cornerRadius = "20dp"
-            app:style="?attr/materialButtonOutlinedStyle"
             app:strokeColor="@color/colorPrimary"
             android:textStyle="bold"
             android:layout_marginTop="8dp"

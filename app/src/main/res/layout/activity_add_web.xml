@@ -133,7 +133,6 @@
         android:textColor="#ffffff"
         android:textStyle="bold"
         app:cornerRadius = "20dp"
-        app:style="?attr/materialButtonOutlinedStyle"
         app:strokeColor="@color/colorPrimary"
         android:layout_marginTop="8dp"
         android:padding="8dp"
