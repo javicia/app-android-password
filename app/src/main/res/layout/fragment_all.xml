@@ -17,7 +17,7 @@
         tools:listitem="@layout/item_web" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnadd_password"
+        android:id="@+id/btn_add_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#7ed957"

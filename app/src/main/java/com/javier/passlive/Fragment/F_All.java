@@ -1,5 +1,6 @@
 package com.javier.passlive.Fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,10 +32,10 @@ import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Category.Category;
 import com.javier.passlive.R;
-import com.javier.passlive.Util.Util_Web;
 
 
 public class F_All extends Fragment {
+    String category;
     String newOrder= Constans.W_RECORD_TIME +  " DESC";
     String sortPast= Constans.W_RECORD_TIME + " ASC";
     String orderTittleAsc = Constans.W_TITTLE + " ASC";
@@ -43,7 +44,8 @@ public class F_All extends Fragment {
    Dialog dialog, dialog_order, dialog_category;
  BBDD_Helper helper;
     RecyclerView RView_record;
-    FloatingActionButton btnadd_password;
+    FloatingActionButton btn_add_record;
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,15 +55,16 @@ public class F_All extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all, container, false);
         RView_record = view.findViewById(R.id.RView_record);
-        btnadd_password= view.findViewById(R.id.btnadd_password);
+        btn_add_record= view.findViewById(R.id.btn_add_record);
         helper = new BBDD_Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
-        dialog_category = new Dialog(getActivity());
+
+
 
 //Listar registros
         loadRecord(orderTittleAsc);
-                btnadd_password.setOnClickListener(new View.OnClickListener() {
+                btn_add_record.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent= new Intent(getActivity(), Category.class);
@@ -173,23 +176,22 @@ public class F_All extends Fragment {
         Button Btn_Category, Btn_New, Btn_Past, Btn_Asc, Btn_Desc;
         //Conexión hacia el diseño
         dialog_order.setContentView(R.layout.box_dialog_order_record);
+        //dialog_category.setContentView(R.layout.box_order_category);
 
-        //Btn_Category = dialog_order.findViewById(R.id.Btn_Category);
+        Btn_Category = dialog_order.findViewById(R.id.Btn_Category);
         Btn_New = dialog_order.findViewById(R.id.Btn_New);
         Btn_Past = dialog_order.findViewById(R.id.Btn_Past);
         Btn_Asc = dialog_order.findViewById(R.id.Btn_Asc);
         Btn_Desc = dialog_order.findViewById(R.id.Btn_Desc);
 
-
-        /*Btn_Category.setOnClickListener(new View.OnClickListener() {
+        Btn_Category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderRecordsByCategory();
                 dialog_order.dismiss();
+                orderRecordsByCategory();
+
             }
         });
-
-         */
         Btn_New.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,41 +223,46 @@ public class F_All extends Fragment {
         });
         dialog_order.show();
         dialog_order.setCancelable(true);
+
     }
 
-    /*private void orderRecordsByCategory() {
+    private void orderRecordsByCategory() {
         Button Btn_Order_Web, Btn_Order_Bank, Btn_Order_Card;
-        dialog_category.setContentView(R.layout.box_order_category);
+        dialog_order.setContentView(R.layout.box_order_category);
 
-        Btn_Order_Web = dialog_category.findViewById(R.id.Btn_Order_Web);
-        //Btn_Order_Bank = dialog_category.findViewById(R.id.Btn_Order_Bank);
-        //Btn_Order_Card = dialog_category.findViewById(R.id.Btn_Order_Card);
+        Btn_Order_Web = dialog_order.findViewById(R.id.Btn_Order_Web);
+        Btn_Order_Bank = dialog_order.findViewById(R.id.Btn_Order_Bank);
+        Btn_Order_Card = dialog_order.findViewById(R.id.Btn_Order_Card);
         Btn_Order_Web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(statusOrder));
+                RView_record.setAdapter(adapter_web);
+                dialog_order.dismiss();
             }
         });
 
-        /*Btn_Order_Bank.setOnClickListener(new View.OnClickListener() {
+        Btn_Order_Bank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Adapter_bank adapter_bank = new Adapter_bank(getActivity(), Collections.singletonList(helper.GetAllrecordBank(statusOrder)));
+                Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(statusOrder));
+                RView_record.setAdapter(adapter_bank);
+                dialog_order.dismiss();
 
             }
         });
 
-       //Btn_Order_Card.setOnClickListener(new View.OnClickListener() {
+       Btn_Order_Card.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Adapter_card adapter_card = new Adapter_card(getActivity(), Collections.singletonList(helper.GetAllrecordCard(statusOrder)));
+               Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(statusOrder));
+               RView_record.setAdapter(adapter_card);
+               dialog_order.dismiss();
            }
        });
-
-
         dialog_order.show();
         dialog_order.setCancelable(true);
     }
 
-     */
+
 }
