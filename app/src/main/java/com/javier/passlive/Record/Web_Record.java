@@ -2,6 +2,8 @@ package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,6 +38,7 @@ public class Web_Record extends AppCompatActivity {
     String id_record;
     BBDD_Helper helper;
     ImageView D_Image;
+    ImageView Img_copy_usename_web, Img_copy_password_web;
     Dialog dialog;
     EditText D_Password;
     ImageButton Img_web;
@@ -85,7 +88,19 @@ public class Web_Record extends AppCompatActivity {
                 }
             }
         });
+        Img_copy_usename_web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextUsename(v);
+            }
+        });
 
+        Img_copy_password_web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextPassword(v);
+            }
+        });
 
     }
     //Método para inicializar variables
@@ -102,6 +117,8 @@ public class Web_Record extends AppCompatActivity {
 
         dialog= new Dialog(this);
         Img_web = findViewById(R.id.Img_web);
+        Img_copy_usename_web = findViewById(R.id.Img_copy_usename_web);
+        Img_copy_password_web = findViewById(R.id.Img_copy_password_web);
     }
 
     //Método para visualizar información de los registros
@@ -239,7 +256,20 @@ private void Dialog_Visualize(){
         dialog.show();
         dialog.setCancelable(false);
 }
-
+    //Método para copiar el textView del Nombre de Usuario
+    public void copyTextUsename(View view) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", D_Username.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+    }
+    //Método para copiar el textView de la contraseña
+    private void copyTextPassword(View v) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", D_Password.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+    }
     //Método para abrir página web
     private void openWeb(String url_web) {
     Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" +url_web));
@@ -251,6 +281,5 @@ private void Dialog_Visualize(){
         onBackPressed();
         return super.onSupportNavigateUp();
     }
-
 
 }

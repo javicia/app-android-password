@@ -2,6 +2,8 @@ package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ public class Bank_Record extends AppCompatActivity {
     String id_record;
     BBDD_Helper helper;
     ImageView B_Image;
+    ImageView Img_copy_account_bank, Img_copy_number_bank;
     ImageButton Img_bank;
     Dialog dialog;
     EditText B_Number;
@@ -81,6 +84,19 @@ public class Bank_Record extends AppCompatActivity {
             }
         }
     });
+        Img_copy_account_bank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextAccountName(v);
+            }
+        });
+
+        Img_copy_number_bank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextNumber(v);
+            }
+        });
     }
         private void Initialize_variables(){
             B_Title = findViewById(R.id.B_Title);
@@ -95,6 +111,9 @@ public class Bank_Record extends AppCompatActivity {
 
             dialog= new Dialog(this);
             Img_bank = findViewById(R.id.Img_bank);
+            Img_copy_account_bank = findViewById(R.id.Img_copy_account_bank);
+            Img_copy_number_bank = findViewById(R.id.Img_copy_number_bank);
+
         }
     private void Registration_info(){
         String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
@@ -152,6 +171,20 @@ public class Bank_Record extends AppCompatActivity {
             }while (cursor.moveToNext());
         }
         db.close();
+    }
+    //Método para copiar el textView del Nombre de Usuario
+    public void copyTextAccountName(View view) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", B_Account_Name.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+    }
+    //Método para copiar el textView de la contraseña
+    private void copyTextNumber(View v) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", B_Number.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
     }
 
     //Método para abrir página web

@@ -65,7 +65,7 @@
             //Datos
             <TextView
                 android:id="@+id/B_Bank"
-                android:text="@string/D_Account"
+                android:text="@string/B_Bank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -101,7 +101,7 @@
             //Datos
             <TextView
                 android:id="@+id/B_Account_Name"
-                android:text="@string/D_Username"
+                android:text="@string/B_Account_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -116,6 +116,7 @@
                     android:background="@null"
                     android:src="@drawable/icon_copy"
                     android:clickable="true"
+                    android:onClick="copyTextAccountName"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"/>
             </RelativeLayout>
@@ -155,7 +156,7 @@
                 //Datos
                 <EditText
                     android:id="@+id/B_Number"
-                    android:text="@string/D_Password"
+                    android:hint="ES"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -173,6 +174,7 @@
                     android:background="@null"
                     android:src="@drawable/icon_copy"
                     android:clickable="true"
+                    android:onClick="copyTextNumber"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"/>
             </RelativeLayout>
@@ -210,7 +212,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:text="@string/D_Websites"
+                    android:hint="www."
                     android:textSize="15sp"
                     android:layout_toStartOf="@id/Img_bank"/>
 
@@ -256,7 +258,7 @@
             //Datos
             <TextView
                 android:id="@+id/B_Note"
-                android:text="@string/D_Note"
+                android:text="@string/B_Note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"

@@ -41,7 +41,7 @@
     <string name="Txt_D_Password">Contraseña: </string>
     <string name="D_Password">--</string>
     <string name="Txt_D_Websites">Sitio web: </string>
-    <string name="D_Websites">--</string>
+    <string name="D_Websites"></string>
     <string name="Txt_D_Note">Notas: </string>
     <string name="D_Note">--</string>
     <string name="Txt_D_RecordTime">Tiempo de registro: </string>
@@ -57,9 +57,9 @@
     <string name="Txt_B_Account_Name">Titular de la cuenta:  </string>
     <string name="B_Account_Name">--</string>
     <string name="Txt_B_Number">Número de cuenta bancaria:  </string>
-    <string name="B_Number">--</string>
+    <string name="B_Number"></string>
     <string name="Txt_B_Websites">Sitio web: </string>
-    <string name="B_Websites">--</string>
+    <string name="B_Websites"></string>
     <string name="Txt_B_Note">Notas: </string>
     <string name="B_Note">--</string>
     <string name="Txt_B_RecordTime">Tiempo de registro: </string>
@@ -75,11 +75,9 @@
     <string name="Txt_C_Number">Número de tarjeta:  </string>
     <string name="C_Number">--</string>
     <string name="Txt_C_Date">Fecha de caducidad:  </string>
-    <string name="C_Date">--</string>
+    <string name="C_Date"></string>
     <string name="Txt_C_CVC">Código de seguridad:  </string>
     <string name="C_CVC">--</string>
-    <string name="Txt_C_Websites">Sitio web: </string>
-    <string name="C_Websites">--</string>
     <string name="Txt_C_Note">Notas: </string>
     <string name="C_Note">--</string>
     <string name="Txt_C_RecordTime">Tiempo de registro: </string>

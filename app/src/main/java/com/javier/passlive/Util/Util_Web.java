@@ -2,6 +2,8 @@ package com.javier.passlive.Util;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -257,6 +259,8 @@ public class Util_Web extends AppCompatActivity {
                 }
             }
     );
+
+
 
 }
 

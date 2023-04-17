@@ -119,6 +119,7 @@
                 android:background="@null"
                 android:src="@drawable/icon_copy"
                 android:clickable="true"
+                android:onClick="copyTextUsename"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"/>
 
@@ -178,6 +179,7 @@
                     android:background="@null"
                     android:src="@drawable/icon_copy"
                     android:clickable="true"
+                    android:onClick="copyTextPassword"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"/>
             </RelativeLayout>
@@ -215,7 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:text="@string/D_Websites"
+                android:hint="www."
                 android:textSize="15sp"
                 android:layout_toStartOf="@id/Img_web"/>
 
