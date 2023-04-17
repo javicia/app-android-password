@@ -95,6 +95,9 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             //Datos
             <TextView
                 android:id="@+id/B_Account_Name"
@@ -104,6 +107,18 @@
                 android:textStyle="italic"
                 android:textSize="15sp"/>
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/Img_copy_account_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@null"
+                    android:src="@drawable/icon_copy"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"/>
+            </RelativeLayout>
             //Linea para mejorar diseño
             <View
                 android:layout_width="match_parent"
@@ -119,6 +134,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="12dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             // Texto
             <TextView
@@ -143,9 +162,20 @@
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="15sp"/>
-
             </com.google.android.material.textfield.TextInputLayout>
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/Img_copy_number_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@null"
+                    android:src="@drawable/icon_copy"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"/>
+            </RelativeLayout>
             //Linea para mejorar diseño
             <View
                 android:layout_width="match_parent"
