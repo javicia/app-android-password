@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Record.Bank_Record">
+    tools:context=".Record.Card_Record">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -109,6 +109,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:digits="1234567890 "
+                    android:maxLength="18"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="15sp"/>
@@ -123,6 +125,7 @@
                     android:background="@null"
                     android:src="@drawable/icon_copy"
                     android:clickable="true"
+                    android:onClick="copyTextNumber"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"/>
             </RelativeLayout>
@@ -153,7 +156,7 @@
             //Datos
             <TextView
                 android:id="@+id/C_Date"
-                android:text="@string/C_Date"
+                android:hint="00/00"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -199,13 +202,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:maxLength="3"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="15sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/Img_copy_number_bank"
+                    android:id="@+id/Img_copy_number_cvc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -213,8 +217,10 @@
                     android:background="@null"
                     android:src="@drawable/icon_copy"
                     android:clickable="true"
+                    android:onClick="copyTextCVC"
                     android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"/>
+                    android:foreground="?android:attr/selectableItemBackground"
+                    />
             </RelativeLayout>
 
             //Linea para mejorar diseño

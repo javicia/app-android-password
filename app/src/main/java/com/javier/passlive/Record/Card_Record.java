@@ -2,6 +2,8 @@ package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +35,7 @@ public class Card_Record extends AppCompatActivity {
     String id_record;
     BBDD_Helper helper;
     ImageView C_Image;
+    ImageView Img_copy_number_card, Img_copy_number_cvc;
     Dialog dialog;
     EditText C_Number,C_CVC ;
 
@@ -59,6 +63,20 @@ public class Card_Record extends AppCompatActivity {
             //Creamos la fecha de retroceso dentro del action Bar
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
+
+        Img_copy_number_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextNumber(v);
+            }
+        });
+
+        Img_copy_number_cvc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextCVC(v);
+            }
+        });
         }
         private void Initialize_variables(){
             C_Title = findViewById(R.id.C_Title);
@@ -72,6 +90,8 @@ public class Card_Record extends AppCompatActivity {
             C_Image = findViewById(R.id.C_image);
 
             dialog= new Dialog(this);
+            Img_copy_number_card = findViewById(R.id.Img_copy_number_card);
+            Img_copy_number_cvc = findViewById(R.id.Img_copy_number_cvc);
         }
         private void Registration_info(){
             String query ="SELECT * FROM " + Constans.TABLE_CARD+ " WHERE " + Constans.ID_CARD + " =\"" +
@@ -105,14 +125,6 @@ public class Card_Record extends AppCompatActivity {
                     calendar_updateTime.setTimeInMillis(Long.parseLong(updateTime));
                     String update_time = "" + DateFormat.format("dd/MM/yyyy hh:mm:aa", calendar_updateTime);
 
-                    //Fecha de caducidad tarjeta
-                   /* Calendar calendar_date = Calendar.getInstance(Locale.getDefault());
-                    calendar_date.setTimeInMillis(Long.parseLong(date));
-                    int month = calendar_date.get(Calendar.MONTH) + 1; // Sumar 1 porque Calendar.MONTH comienza en 0
-                    int year = calendar_date.get(Calendar.YEAR);
-                    String expiration_date = String.format("%02d/%04d", month, year);
-
-                    */
 
                     //Setear información en las vistas
 
@@ -140,6 +152,20 @@ public class Card_Record extends AppCompatActivity {
             }
             db.close();
         }
+
+    //Método para copiar el textView del Nombre de Usuario
+    public void copyTextNumber(View view) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", C_Number.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+    }
+    public void copyTextCVC(View view) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", C_CVC.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+    }
         @Override
         public boolean onSupportNavigateUp() {
             //cuando presionamos la fecha de retroceso nos mandará a la actividad anterior
