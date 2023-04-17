@@ -117,11 +117,11 @@ public class BBDD_Helper extends SQLiteOpenHelper {
       }
 //Obtenemos el total de registros de la BBDD
     public int GetRecordNumber() {
-        String countquery = "SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + ", "
-         + Constans.TABLE_ACCOUNT_BANK + ", "
-        + Constans.TABLE_CARD;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countquery, null);
+        String query = "SELECT COUNT(*) FROM (SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB
+                + " UNION ALL SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK
+                + " UNION ALL SELECT * FROM " + Constans.TABLE_CARD + ")";
+        Cursor cursor = db.rawQuery(query, null);
 
         int count = 0;
         if (cursor.moveToFirst()){
@@ -413,7 +413,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
     }
     public void deleteRecordBank(String id){
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(Constans.TABLE_CARD, Constans.ID_CARD+" = ?", new String[]{id});
+        db.delete(Constans.TABLE_ACCOUNT_BANK, Constans.B_ID_BANK+" = ?", new String[]{id});
         db.close();
     }
     public void deleteRecordCard(String id){
