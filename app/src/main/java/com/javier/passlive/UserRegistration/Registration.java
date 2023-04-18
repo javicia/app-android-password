@@ -1,5 +1,8 @@
 package com.javier.passlive.UserRegistration;
 
+import static com.javier.passlive.PrivacyPolicy.PrivacyPolicy.showPrivacyPolicyDialog;
+
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,7 +22,7 @@ import com.javier.passlive.R;
 public class Registration extends AppCompatActivity {
 
     EditText Et_UserPassword, Et_ConfirmPassword;
-    Button Btn_Registration;
+    Button Btn_Registration, Btn_ShowPrivacyPolicy;
 
     //Guardar preferencias de usuario en un archivo con una clave y valor
     SharedPreferences sharedPreferences;
@@ -28,6 +31,7 @@ public class Registration extends AppCompatActivity {
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_C_PASSWORD = "c_password";
     private static final String KEY_PRIVACY_POLICY_ACCEPTED = "política de privacidad aceptada";
+    private boolean privacyPolicyAccepted = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,10 @@ public class Registration extends AppCompatActivity {
                     //Si las contraseñas no coinciden
                 } else if (!password.equals(confirm_Password)) {
                     Toast.makeText(Registration.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                }else if (!privacyPolicyAccepted) {
+                    // Si la política de privacidad no ha sido aceptada, mostramos el diálogo
+                    showPrivacyPolicyDialog(Registration.this, Registration.this);
+
                 }else {
                     //Si ninguna condición se cumple. Pasamos todos los datos introducidos al SharedPreferences
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -105,4 +113,6 @@ public class Registration extends AppCompatActivity {
         // Show a toast message to indicate that the privacy policy has been accepted
         Toast.makeText(this, "Política de privacidad aceptada", Toast.LENGTH_SHORT).show();
     }
+
+
 }

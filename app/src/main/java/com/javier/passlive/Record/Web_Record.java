@@ -2,6 +2,9 @@ package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +13,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.format.DateFormat;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -25,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
 import java.io.File;
@@ -65,9 +71,9 @@ public class Web_Record extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-         D_Image.setOnClickListener(new View.OnClickListener() {
+        D_Image.setOnClickListener(new View.OnClickListener() {
             @Override
-           public void onClick(View v) {
+            public void onClick(View v) {
                 Dialog_Visualize();
             }
         });
@@ -77,17 +83,16 @@ public class Web_Record extends AppCompatActivity {
             public void onClick(View v) {
                 String url_web = D_Websites.getText().toString().trim();
                 //Si contiene la url
-                if(!url_web.equals("")){
+                if (!url_web.equals("")) {
                     openWeb(url_web);
-                  //No contiene la url
-                }else {
+                    //No contiene la url
+                } else {
                     Toast.makeText(Web_Record.this, "No existe una url", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
+
     //Método para inicializar variables
     private void Initialize_variables(){
         D_Tittle = findViewById(R.id.D_Tittle);
