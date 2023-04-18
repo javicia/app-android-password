@@ -105,12 +105,12 @@ public class Registration extends AppCompatActivity {
         }
     }
     public void onPrivacyPolicyAccepted() {
-        // Update the shared preferences to indicate that the privacy policy has been accepted
+        // Actualizar las preferencias compartidas para indicar que se ha aceptado la política de privacidad
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(KEY_PRIVACY_POLICY_ACCEPTED, true);
         editor.apply();
 
-        // Show a toast message to indicate that the privacy policy has been accepted
+        // Mostrar un mensaje para indicar que se ha aceptado la política de privacidad
         Toast.makeText(this, "Política de privacidad aceptada", Toast.LENGTH_SHORT).show();
     }
 
