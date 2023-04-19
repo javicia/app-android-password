@@ -14,6 +14,7 @@ import android.text.InputType;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
@@ -63,6 +65,13 @@ public class Card_Record extends AppCompatActivity {
             //Creamos la fecha de retroceso dentro del action Bar
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
+
+            C_Image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Dialog_Visualize();
+                }
+            });
 
         Img_copy_number_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +161,40 @@ public class Card_Record extends AppCompatActivity {
             }
             db.close();
         }
+    private void Dialog_Visualize(){
+        PhotoView Visualize_image;
+        Button Btn_close_image;
+        dialog.setContentView(R.layout.box_dialog_image_visualize);
+        Visualize_image = dialog.findViewById(R.id.Visualize_image);
+        Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
+        String query ="SELECT * FROM " + Constans.TABLE_CARD + " WHERE " + Constans.ID_CARD + " =\"" + id_record+ "\"";
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+
+        //Buscar en la BBDD el registro seleccionado
+        if (cursor.moveToFirst()){
+            do{
+                @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE));
+
+                if(image.equals("null")){
+                    Visualize_image.setImageResource(R.drawable.logo_image);
+                }else {
+                    Visualize_image.setImageResource(R.drawable.logo_image);
+                }
+            }while (cursor.moveToNext());
+        }
+        db.close();
+
+        Btn_close_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.setCancelable(false);
+    }
 
     //Método para copiar el textView del Nombre de Usuario
     public void copyTextNumber(View view) {

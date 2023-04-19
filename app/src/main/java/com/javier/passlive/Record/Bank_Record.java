@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.net.Uri;
 import android.text.InputType;
+
+import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
@@ -67,7 +70,7 @@ public class Bank_Record extends AppCompatActivity {
      B_Image.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-
+             Dialog_Visualize();
          }
      });
 
@@ -115,6 +118,41 @@ public class Bank_Record extends AppCompatActivity {
             Img_copy_number_bank = findViewById(R.id.Img_copy_number_bank);
 
         }
+    private void Dialog_Visualize(){
+        PhotoView Visualize_image;
+        Button Btn_close_image;
+        dialog.setContentView(R.layout.box_dialog_image_visualize);
+        Visualize_image = dialog.findViewById(R.id.Visualize_image);
+        Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
+        String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" + id_record+ "\"";
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+
+        //Buscar en la BBDD el registro seleccionado
+        if (cursor.moveToFirst()){
+            do{
+                @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE));
+
+                if(image.equals("null")){
+                    Visualize_image.setImageResource(R.drawable.logo_image);
+                }else {
+                    Visualize_image.setImageResource(R.drawable.logo_image);
+                }
+            }while (cursor.moveToNext());
+        }
+        db.close();
+
+        Btn_close_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.setCancelable(false);
+    }
+
     private void Registration_info(){
         String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
                 id_record + "\"";

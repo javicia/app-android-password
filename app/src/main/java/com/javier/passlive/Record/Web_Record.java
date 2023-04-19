@@ -179,49 +179,7 @@ public class Web_Record extends AppCompatActivity {
         }
         db.close();
     }
-/*
-    //Método para visualizar cuadro de diálogo para ampliar imagen
-    private void Dialog_Visualize(){
-        PhotoView Visualize_image;
-        Button Btn_close_image;
-        dialog.setContentView(R.layout.box_dialog_image_visualize);
-        Visualize_image = dialog.findViewById(R.id.Visualize_image);
-        Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
 
-        String query ="SELECT * FROM " + Constans.ACCOUNT_WEB + " WHERE " + Constans.W_ID + " =\"" +
-                id_record+ "\"";
-
-        SQLiteDatabase db = helper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-//Buscar en la BBDD el registro seleccionado
-        if (cursor.moveToFirst()){
-            do{
-                @SuppressLint("Range") String image = "" +cursor.getInt(cursor.getColumnIndex(Constans.W_IMAGE));
-
-                if(image.equals("null")){
-                    Visualize_image.setImageResource(R.drawable.logo_image);
-                }else {
-                    //Si la imagen existe pasamos la imagen
-                    Visualize_image.setImageURI(Uri.parse(image));
-                }
-
-            }while (cursor.moveToNext());
-        }
-
-        db.close();
-
-        Btn_close_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-        dialog.setCancelable(false);
-    }
-
- */
 private void Dialog_Visualize(){
     PhotoView Visualize_image;
     Button Btn_close_image;

@@ -80,8 +80,8 @@
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-    //Nombre usuario
 
+    //Nombre usuario
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +95,6 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -104,9 +103,8 @@
             <TextView
                 android:id="@+id/D_Username"
                 android:text="@string/D_Username"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:textStyle="italic"
                 android:textSize="15sp"/>
 
@@ -130,10 +128,8 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/black"/>
-
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     //Contraseña
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
