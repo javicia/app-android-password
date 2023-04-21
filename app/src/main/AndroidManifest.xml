@@ -23,8 +23,8 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-<activity android:name=".Category.Category"
-    android:exported="true" />
+        <activity android:name=".Category.Category"
+            android:exported="true" />
         <activity
             android:name=".Login.Login_user"
             android:exported="false" />
@@ -71,4 +71,3 @@
     </application>
 
 </manifest>
-

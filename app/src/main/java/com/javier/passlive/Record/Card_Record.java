@@ -180,7 +180,7 @@ public class Card_Record extends AppCompatActivity {
                 if(image.equals("null")){
                     Visualize_image.setImageResource(R.drawable.logo_image);
                 }else {
-                    Visualize_image.setImageResource(R.drawable.logo_image);
+                    Visualize_image.setImageURI(Uri.parse(image));
                 }
             }while (cursor.moveToNext());
         }

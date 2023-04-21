@@ -22,8 +22,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_16
+        targetCompatibility JavaVersion.VERSION_16
     }
     buildFeatures {
         viewBinding true
@@ -57,9 +57,9 @@ dependencies {
     implementation 'androidx.biometric:biometric:1.1.0'
     implementation "androidx.biometric:biometric-ktx:1.2.0-alpha05"
     //Koin
-    implementation 'org.koin:koin-android:2.1.5'
-    implementation 'org.koin:koin-androidx-scope:2.1.5'
-    implementation "org.koin:koin-androidx-viewmodel:2.1.5"
+    //implementation 'org.koin:koin-android:2.1.5'
+    //implementation 'org.koin:koin-androidx-scope:2.1.5'
+    //implementation "org.koin:koin-androidx-viewmodel:2.1.5"
     //Room
     implementation "androidx.room:room-runtime:2.5.1"
     //kapt "androidx.room:room-runtime:2.5.1"

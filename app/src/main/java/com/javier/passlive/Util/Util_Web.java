@@ -217,6 +217,7 @@ public class Util_Web extends AppCompatActivity {
 
 
     private void takePhoto() {
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             // Pedir permiso al usuario para acceder a la cámara
             Camera_Permission_Request.launch(Manifest.permission.CAMERA);
@@ -247,6 +248,7 @@ public class Util_Web extends AppCompatActivity {
                 }
             }
     );
+
 
     // Pedir permiso al usuario para acceder a la cámara
     private ActivityResultLauncher<String> Camera_Permission_Request = registerForActivityResult(
