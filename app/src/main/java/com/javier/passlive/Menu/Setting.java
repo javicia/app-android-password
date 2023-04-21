@@ -1,4 +1,4 @@
-package com.javier.passlive.Fragment;
+package com.javier.passlive.Menu;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -28,7 +28,6 @@ import androidx.fragment.app.Fragment;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
-import com.javier.passlive.DAO.WebDAO;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
@@ -41,7 +40,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 
-public class F_Setting extends Fragment {
+public class Setting extends Fragment {
 
     TextView Delete_All_Record, Export_File, Import_File, Change_Password;
     Dialog dialog, dialog_password;

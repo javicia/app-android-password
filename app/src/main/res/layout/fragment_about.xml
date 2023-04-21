@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragment.F_About">
+    tools:context=".Menu.Social_Networks">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

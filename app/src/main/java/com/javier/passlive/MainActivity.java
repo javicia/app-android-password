@@ -15,9 +15,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.javier.passlive.Fragment.F_About;
-import com.javier.passlive.Fragment.F_All;
-import com.javier.passlive.Fragment.F_Setting;
+import com.javier.passlive.Menu.Social_Networks;
+import com.javier.passlive.Menu.Record_All;
+import com.javier.passlive.Menu.Setting;
 import com.javier.passlive.Login.Login_user;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (savedInstanceState == null){
     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-            new F_All()).commit();
+            new Record_All()).commit();
     navigationView.setCheckedItem(R.id.Option_all);
 }
     }
@@ -58,14 +58,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if (id == R.id.Option_all){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new F_All()).commit();
+                new Record_All()).commit();
         }
         if (id == R.id.Option_setting){getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragment_container, new F_Setting()).commit();
+                    replace(R.id.fragment_container, new Setting()).commit();
         }
         if (id == R.id.option_about){
             getSupportFragmentManager().beginTransaction().
-                    replace(R.id.fragment_container, new F_About()).commit();
+                    replace(R.id.fragment_container, new Social_Networks()).commit();
         }
         if (id == R.id.Option_exit){
             CloseSession();

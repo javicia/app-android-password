@@ -1,4 +1,4 @@
-package com.javier.passlive.Fragment;
+package com.javier.passlive.Menu;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.javier.passlive.R;
 
 
-public class F_About extends Fragment {
+public class Social_Networks extends Fragment {
 
     ImageView Iv_facebook, Iv_instagram, Iv_twitter;
     Button Txt_political_terms;

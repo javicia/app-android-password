@@ -10,6 +10,8 @@
     //Drawer menu
     <string name="option_all">Todos los registros</string>
     <string name="option_setting">Ajustes</string>
+    <string name="option_favorites">Favoritos</string>
+    <string name="option_share">Compartidos</string>
     <string name="option_about">Acerca De</string>
     <string name="option_exit">Salir</string>
 
@@ -205,6 +207,10 @@
     <string name="Txt_version">Versión: 1.0</string>
     <string name="Txt_follow">Síguenos:</string>
     <string name="Txt_political_terms">Términos y políticas de privacidad</string>
+
+    //Button
+    <string name="Txt_favorite">Añadir a favoritos</string>
+    <string name="Txt_share">Compartir</string>
 
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>

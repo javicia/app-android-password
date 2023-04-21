@@ -1,4 +1,4 @@
-package com.javier.passlive.Fragment;
+package com.javier.passlive.Menu;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -34,7 +34,7 @@ import com.javier.passlive.Category.Category;
 import com.javier.passlive.R;
 
 
-public class F_All extends Fragment {
+public class Record_All extends Fragment {
     String category;
     String newOrder= Constans.W_RECORD_TIME +  " DESC";
     String sortPast= Constans.W_RECORD_TIME + " ASC";

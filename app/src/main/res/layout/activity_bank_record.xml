@@ -98,14 +98,14 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            //Datos
-            <TextView
-                android:id="@+id/B_Account_Name"
-                android:text="@string/B_Account_Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"
-                android:textSize="15sp"/>
+                //Datos
+                <TextView
+                    android:id="@+id/B_Account_Name"
+                    android:text="@string/B_Account_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:textSize="15sp"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/Img_copy_account_bank"
@@ -140,30 +140,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            // Texto
-            <TextView
-                android:text="@string/Txt_B_Number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:passwordToggleEnabled="true">
-
-                //Datos
-                <EditText
-                    android:id="@+id/B_Number"
-                    android:hint="ES"
+                // Texto
+                <TextView
+                    android:text="@string/Txt_B_Number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="18sp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:passwordToggleEnabled="true">
+
+                    //Datos
+                    <EditText
+                        android:id="@+id/B_Number"
+                        android:hint="ES"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/Img_copy_number_bank"
@@ -334,6 +334,37 @@
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
             android:background="@color/black"/>
+        //Botones
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <ImageButton
+                android:id="@+id/Btn_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_favorite"
+                android:background="@android:color/transparent"/>
+            <TextView
+                android:text="@string/Txt_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                android:id="@+id/Btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_share"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:text="@string/Txt_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/B_image"
             android:src="@drawable/logo_image"
