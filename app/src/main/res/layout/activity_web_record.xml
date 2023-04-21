@@ -335,37 +335,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/black"/>
-        //Botones
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="12dp">
 
-            <ImageButton
-                android:id="@+id/Btn_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_favorite"
-                android:background="@android:color/transparent"/>
-            <TextView
-                android:text="@string/Txt_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageButton
-                android:id="@+id/Btn_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_share"
-                android:background="@android:color/transparent"
-                android:layout_marginLeft="30dp"/>
-
-            <TextView
-                android:text="@string/Txt_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/D_image"
             android:src="@drawable/logo_image"

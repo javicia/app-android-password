@@ -233,6 +233,12 @@ private void Dialog_Visualize(){
     Intent navigation = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" +url_web));
     startActivity(navigation);
     }
+    private void add_Favorites(){
+        Button Btn_favorite;
+        Btn_favorite = findViewById(R.id.Btn_favorite);
+
+
+    }
     @Override
     public boolean onSupportNavigateUp() {
         //cuando presionamos la fecha de retroceso nos mandará a la actividad anterior
