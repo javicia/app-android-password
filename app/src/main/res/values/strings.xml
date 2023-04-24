@@ -167,8 +167,10 @@
 
     //UserRegistration
     <string name="Txt_Message">Por favor, introduzca una contraseña</string>
+    <string name="Et_Email">E-mail</string>
     <string name="Et_UserPassword">Contraseña</string>
     <string name="Et_ConfirmPassword">Confirmar contraseña</string>
+
 
 
     //Order record
