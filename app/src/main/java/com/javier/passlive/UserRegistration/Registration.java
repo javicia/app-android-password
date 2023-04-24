@@ -25,13 +25,14 @@ import com.javier.passlive.R;
 
 public class Registration extends AppCompatActivity {
 
-    EditText Et_UserPassword, Et_ConfirmPassword;
+    EditText Et_Email, Et_UserPassword, Et_ConfirmPassword;
     Button Btn_Registration, Btn_ShowPrivacyPolicy;
 
     //Guardar preferencias de usuario en un archivo con una clave y valor
     static SharedPreferences sharedPreferences;
 
     private static final String SHARE_PREF = "my_pref";
+    private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_C_PASSWORD = "c_password";
     private static final String KEY_PRIVACY_POLICY_ACCEPTED = "política de privacidad aceptada";
@@ -52,6 +53,7 @@ public class Registration extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Obtenemos el texto obtenido en el campo contraseña
+                String email = Et_Email.getText().toString().trim();
                 String password = Et_UserPassword.getText().toString().trim();
                 String confirm_Password = Et_ConfirmPassword.getText().toString().trim();
 
@@ -72,6 +74,7 @@ public class Registration extends AppCompatActivity {
                     } else {
                         //Si ninguna condición se cumple. Pasamos todos los datos introducidos al SharedPreferences
                         SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(KEY_EMAIL, email);
                         editor.putString(KEY_PASSWORD, password);
                         editor.putString(KEY_C_PASSWORD, confirm_Password);
                         editor.apply();
@@ -96,6 +99,7 @@ public class Registration extends AppCompatActivity {
     }
     //Inicializamos variables
     private void Inicialize_Variables(){
+        Et_Email = findViewById(R.id.Et_Email);
         Et_UserPassword = findViewById(R.id.Et_UserPassword);
         Et_ConfirmPassword = findViewById(R.id.Et_ConfirmPassword);
         Btn_Registration = findViewById(R.id.Btn_Registration);
