@@ -1,12 +1,15 @@
 package com.javier.passlive.Record;
 
+import static com.javier.passlive.BBDD.BBDD_Helper.PASS_PHARSE;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,11 +31,18 @@ import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.util.Calendar;
 import java.util.Locale;
 
 public class Card_Record extends AppCompatActivity {
-
+    private static  BBDD_Helper instance;
+    static public synchronized BBDD_Helper getInstance(Context context){
+        if (instance == null)
+            instance = new BBDD_Helper(context);
+        return instance;
+    }
     TextView C_Title, C_Name, C_Date, C_Note, C_RecordTime, C_UpdateTime;
     String id_record;
     BBDD_Helper helper;
@@ -106,7 +116,7 @@ public class Card_Record extends AppCompatActivity {
             String query ="SELECT * FROM " + Constans.TABLE_CARD+ " WHERE " + Constans.ID_CARD + " =\"" +
                     id_record + "\"";
 
-            SQLiteDatabase db = helper.getWritableDatabase();
+            SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
             Cursor cursor = db.rawQuery(query, null);
 
 //Buscar en la BBDD el registro seleccionado
@@ -169,7 +179,7 @@ public class Card_Record extends AppCompatActivity {
         Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
         String query ="SELECT * FROM " + Constans.TABLE_CARD + " WHERE " + Constans.ID_CARD + " =\"" + id_record+ "\"";
 
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(query,null);
 
         //Buscar en la BBDD el registro seleccionado

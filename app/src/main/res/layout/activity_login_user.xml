@@ -14,20 +14,7 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center" />
-    //Email
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
 
-        <EditText
-            android:id="@+id/Et_Email"
-            android:hint="@string/Et_Email"
-            android:textStyle="italic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
     //Contraseña
     <com.google.android.material.textfield.TextInputLayout

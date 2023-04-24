@@ -12,16 +12,7 @@
         android:title="@string/option_setting"
         android:icon="@drawable/icon_setting"
         />
-    <item
-        android:id="@+id/option_favorites"
-        android:title="@string/option_favorites"
-        android:icon="@drawable/icon_favorite"
-    />
-    <item
-        android:id="@+id/option_share"
-        android:title="@string/option_share"
-        android:icon="@drawable/icon_share"
-        />
+
     <item
         android:id="@+id/option_about"
         android:title="@string/option_about"

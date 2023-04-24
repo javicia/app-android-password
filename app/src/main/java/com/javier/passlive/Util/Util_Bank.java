@@ -30,8 +30,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
-//import com.javier.passlive.DAO.BankDAO;
-import com.javier.passlive.DAO.BankDAO;
+
+
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 

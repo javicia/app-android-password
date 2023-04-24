@@ -1,9 +1,13 @@
 package com.javier.passlive.Record;
 
+import static com.javier.passlive.BBDD.BBDD_Helper.PASS_PHARSE;
+
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,7 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.database.sqlite.SQLiteDatabase;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
@@ -27,11 +31,19 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.R;
+
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.util.Calendar;
 import java.util.Locale;
 
 public class Bank_Record extends AppCompatActivity {
-
+    private static  BBDD_Helper instance;
+    static public synchronized BBDD_Helper getInstance(Context context){
+        if (instance == null)
+            instance = new BBDD_Helper(context);
+        return instance;
+    }
     TextView B_Title, B_Bank, B_Account_Name, B_Websites,B_Note, B_RecordTime, B_UpdateTime;
     String id_record;
     BBDD_Helper helper;
@@ -126,7 +138,7 @@ public class Bank_Record extends AppCompatActivity {
         Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
         String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" + id_record+ "\"";
 
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(query,null);
 
         //Buscar en la BBDD el registro seleccionado
@@ -157,7 +169,7 @@ public class Bank_Record extends AppCompatActivity {
         String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
                 id_record + "\"";
 
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(query, null);
 
 //Buscar en la BBDD el registro seleccionado

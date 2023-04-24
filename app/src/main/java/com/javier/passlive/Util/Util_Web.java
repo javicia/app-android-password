@@ -31,7 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.DAO.WebDAO;
+
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 

@@ -4,20 +4,34 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
 import androidx.annotation.Nullable;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.Model.Card;
 import com.javier.passlive.Model.Web;
+
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class BBDD_Helper extends SQLiteOpenHelper {
+        public class BBDD_Helper extends SQLiteOpenHelper {
+        private static  BBDD_Helper instance;
+        public static final String PASS_PHARSE = "DGFDFGFGFDG";
+        /*static public synchronized BBDD_Helper getInstance(Context context){
+            if (instance == null)
+        instance = new BBDD_Helper(context.getApplicationContext());
+            return instance;
+}
 
-
-    public BBDD_Helper(@Nullable Context context) {
+         */
+            private SQLiteDatabase db;
+            public BBDD_Helper(@Nullable Context context) {
         super(context, Constans.BD_NAME, null, Constans.BD_VERSION);
+                SQLiteDatabase.loadLibs(context);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -39,7 +53,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
 
     public long insertRecordWeb(String tittle, String account, String username, String password,
                                 String websites, String notes, String image, String recordTime, String updateTime) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         ContentValues values = new ContentValues();
 
         //Insertamos los datos
@@ -66,7 +80,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
 
      public long insertRecordBank(String title_bank, String bank, String account_bank,
                                    String number, String websites, String notes, String image, String recordTime, String updateTime) {
-          SQLiteDatabase db = this.getWritableDatabase();
+         db = this.getWritableDatabase(PASS_PHARSE);
           ContentValues values = new ContentValues();
 
           //Insertamos los datos
@@ -93,7 +107,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
       public long insertRecordCard(String title, String account_name, String number, String date, String cvc,
                                    String notes, String image, String recordTime, String updateTime) {
           ContentValues values = new ContentValues();
-          SQLiteDatabase db = this.getWritableDatabase();
+          db = this.getWritableDatabase(PASS_PHARSE);
           //Insertamos los datos
           values.put(Constans.C_TITLE_CARD, title);
           values.put(Constans.C_USERNAME, account_name);
@@ -117,7 +131,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
       }
 //Obtenemos el total de registros de la BBDD
     public int GetRecordNumber() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         String query = "SELECT COUNT(*) FROM (SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB
                 + " UNION ALL SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK
                 + " UNION ALL SELECT * FROM " + Constans.TABLE_CARD + ")";
@@ -130,14 +144,6 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         cursor.close();
         return count;
 
-
-        /*int count = cursor.getCount();
-
-        cursor.close();
-
-        return count;
-
-         */
     }
     //Método para actualizar registros web en BBDD
 
@@ -150,7 +156,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + " ORDER BY " + orderby;
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
 
-        SQLiteDatabase db = this.getWritableDatabase();
+     db = this.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
@@ -179,7 +185,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         String selectQuerybank = "SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " ORDER BY " + orderby;
 
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = null;
         try{
             cursor= db.rawQuery(selectQuerybank, null);
@@ -214,7 +220,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         //Creamos consulta para seleccionar el registro
         String selectQuerycard = "SELECT * FROM " + Constans.TABLE_CARD + " ORDER BY " + orderby;
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = null;
         try {
             cursor = db.rawQuery(selectQuerycard, null);
@@ -246,7 +252,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
 
     public void updateRecordWeb(String id, String tittle, String account, String username, String password,
                                 String websites, String notes, String image, String recordTime, String updateTime) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
 
         ContentValues values = new ContentValues();
 
@@ -270,7 +276,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
 
     public void updateRecordBank(String id_bank, String title, String bank, String account_Bank, String number, String b_websites, String b_notes,
                                  String b_image, String b_recordTime, String b_updateTime){
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         ContentValues values = new ContentValues();
 
         //Insertamos los datos
@@ -294,7 +300,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
     public void updateRecordCard(String id_card, String title, String username, String number, String dates, String cvc,
                                  String c_notes, String c_image, String c_recordTime, String c_updateTime, String s){
         ContentValues values = new ContentValues();
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         //Insertamos los datos
         values.put(Constans.ID_CARD, id_card);
         values.put(Constans.C_TITLE_CARD, title);
@@ -321,7 +327,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
                 " LIKE '%" + consultation + "%'";
 
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst()){
@@ -352,7 +358,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
                 " LIKE '%" + consultation + "%'";
 
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst()){
@@ -382,7 +388,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + Constans.TABLE_CARD + " WHERE " + Constans.C_TITLE_CARD +
                 " LIKE '%" + consultation + "%'";
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst()){
@@ -407,17 +413,17 @@ public class BBDD_Helper extends SQLiteOpenHelper {
     }
 
     public void deleteRecordWeb(String id) {
-        SQLiteDatabase db = getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         db.delete(Constans.TABLE_ACCOUNT_WEB, Constans.W_ID + " = ?", new String[]{id});
         db.close();
     }
     public void deleteRecordBank(String id){
-        SQLiteDatabase db = getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         db.delete(Constans.TABLE_ACCOUNT_BANK, Constans.B_ID_BANK+" = ?", new String[]{id});
         db.close();
     }
     public void deleteRecordCard(String id){
-        SQLiteDatabase db = getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         db.delete(Constans.TABLE_CARD, Constans.ID_CARD+" = ?", new String[]{id});
         db.close();
     }
@@ -425,7 +431,7 @@ public class BBDD_Helper extends SQLiteOpenHelper {
 
     //Método para eliminar todos los registros de la BBDD
     public void deleteAllRecord(){
-        SQLiteDatabase db = getWritableDatabase();
+        db = this.getWritableDatabase(PASS_PHARSE);
         db.execSQL("DELETE FROM " + Constans.TABLE_ACCOUNT_WEB);
         db.execSQL("DELETE FROM " + Constans.TABLE_ACCOUNT_BANK);
         db.execSQL("DELETE FROM " + Constans.TABLE_CARD);

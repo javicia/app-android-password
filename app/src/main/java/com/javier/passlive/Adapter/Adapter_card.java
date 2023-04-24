@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
 
-import com.javier.passlive.DAO.CardDAO;
+
 import com.javier.passlive.Model.Web;
 import com.javier.passlive.Record.Card_Record;
 import com.javier.passlive.MainActivity;

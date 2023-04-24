@@ -33,6 +33,8 @@ import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Category.Category;
 import com.javier.passlive.R;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 
 public class Record_All extends Fragment {
     String category;
@@ -54,11 +56,16 @@ public class Record_All extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all, container, false);
+
+        SQLiteDatabase.loadLibs(getActivity());
+
+
         RView_record = view.findViewById(R.id.RView_record);
         btn_add_record= view.findViewById(R.id.btn_add_record);
         helper = new BBDD_Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
+
 
 
 

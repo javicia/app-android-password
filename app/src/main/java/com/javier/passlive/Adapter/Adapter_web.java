@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.DAO.WebDAO;
+
 import com.javier.passlive.Record.Web_Record;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;

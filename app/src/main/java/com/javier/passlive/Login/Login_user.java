@@ -20,7 +20,6 @@ import com.javier.passlive.R;
 public class Login_user extends AppCompatActivity {
 
     private static final String SHARED_PREF = "my_pref";
-    private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
     //Declaramos aviso biométrico
     private BiometricPrompt biometricPrompt;
@@ -44,16 +43,15 @@ public class Login_user extends AppCompatActivity {
         Btn_Access.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = Et_Email.getText().toString().trim();
+
                 String password = Et_UserPassword.getText().toString().trim();
                 //Obtenemos contraseña almacenada en SharedPreferences
-                String Share_email = sharedPreferences.getString(KEY_EMAIL, null);
                 String Share_password = sharedPreferences.getString(KEY_PASSWORD, null);
                 //Si el campo está vacío
-                if (Share_password.equals("")&&(Share_email.equals(""))) {
+                if (Share_password.equals("")) {
                     Toast.makeText(Login_user.this, "Campo obligatorio", Toast.LENGTH_SHORT).show();
                     //Si la contraseña no es igual a la contraseña almacenada
-                } else if (!password.equals(Share_password)&&!email.equals(Share_email)) {
+                } else if (!password.equals(Share_password)) {
                     Toast.makeText(Login_user.this, "El email o la contraseña es incorrecta", Toast.LENGTH_SHORT).show();
                     //Si la contraseña es correcta
                 } else {
@@ -102,7 +100,6 @@ public class Login_user extends AppCompatActivity {
     }
 
     private void Inicialize_Variables(){
-        Et_Email = findViewById(R.id.Et_Email);
         Et_UserPassword = findViewById(R.id.Et_UserPassword);
         Btn_Access = findViewById(R.id.Btn_Access);
         Btn_Biometric_Login = findViewById(R.id.Btn_Biometric_Login);
