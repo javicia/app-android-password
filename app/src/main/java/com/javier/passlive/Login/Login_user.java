@@ -102,6 +102,7 @@ public class Login_user extends AppCompatActivity {
     }
 
     private void Inicialize_Variables(){
+        Et_Email = findViewById(R.id.Et_Email);
         Et_UserPassword = findViewById(R.id.Et_UserPassword);
         Btn_Access = findViewById(R.id.Btn_Access);
         Btn_Biometric_Login = findViewById(R.id.Btn_Biometric_Login);
