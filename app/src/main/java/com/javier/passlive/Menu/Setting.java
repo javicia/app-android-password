@@ -30,6 +30,7 @@ import com.javier.passlive.BBDD.BBDD_Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
+import com.javier.passlive.Model.Bank;
 import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import com.opencsv.CSVReader;
@@ -246,10 +247,35 @@ public class Setting extends Fragment {
                     String image = nextLine[7];
                     String t_Record = nextLine[8];
                     String t_Update = nextLine[9];
-
-                    long ids = bbddHelper.insertRecordWeb("" + title, ""+ account,
+                    String titleBank = nextLine[10];
+                    String bank = nextLine[11];
+                    String accountbank = nextLine[12];
+                    String number = nextLine[13];
+                    String websitesBank = nextLine[14];
+                    String noteBank = nextLine[15];
+                    String imageBank = nextLine[16];
+                    String t_RecordBank = nextLine[17];
+                    String t_UpdateBank = nextLine[18];
+                    String titleCard = nextLine[19];
+                    String account_name_Card = nextLine[20];
+                    String numberCard = nextLine[21];
+                    String dateCard = nextLine[22];
+                    String cvc = nextLine[23];
+                    String noteCard = nextLine[24];
+                    String imageCard = nextLine[25];
+                    String t_RecordCard = nextLine[26];
+                    String t_UpdateCard = nextLine[27];
+                    long idsWeb = bbddHelper.insertRecordWeb("" + title, ""+ account,
                             "" + username, "" + password, ""+ websites,
                             ""+ note, ""+ image, ""+ t_Record, "" + t_Update);
+
+                    long idsBank = bbddHelper.insertRecordBank("" + titleBank, "" + bank,
+                            "" + accountbank, ""+ number, "" + websitesBank,
+                            "" + noteBank, "" + imageBank, "" + t_RecordBank,
+                            "" + t_UpdateBank);
+                    long idsCard = bbddHelper.insertRecordCard("" + titleCard, ""+ account_name_Card,
+                            "" + numberCard, "" + dateCard,"" + cvc ,"" +noteCard,
+                            ""+ imageCard, "" + t_RecordCard,"" + t_UpdateCard );
                 }
                 Toast.makeText(getActivity(), "Archivo CSV importado con éxito", Toast.LENGTH_SHORT).show();
             }catch (Exception e){
