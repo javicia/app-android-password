@@ -13,19 +13,13 @@ import com.javier.passlive.Model.Web;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 
         public class BBDD_Helper extends SQLiteOpenHelper {
         private static  BBDD_Helper instance;
         public static final String PASS_PHARSE = "DGFDFGFGFDG";
-        /*static public synchronized BBDD_Helper getInstance(Context context){
-            if (instance == null)
-        instance = new BBDD_Helper(context.getApplicationContext());
-            return instance;
-}
 
-         */
             private SQLiteDatabase db;
             public BBDD_Helper(@Nullable Context context) {
         super(context, Constans.BD_NAME, null, Constans.BD_VERSION);
