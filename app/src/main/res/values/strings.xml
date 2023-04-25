@@ -10,9 +10,7 @@
     //Drawer menu
     <string name="option_all">Todos los registros</string>
     <string name="option_setting">Ajustes</string>
-    <string name="option_favorites">Favoritos</string>
-    <string name="option_share">Compartidos</string>
-    <string name="option_about">Acerca De</string>
+    <string name="option_follow">Síguenos</string>
     <string name="option_exit">Salir</string>
 
     //Drawer layout
@@ -204,15 +202,11 @@
 
 
     //Info app
-    <string name="Txt_Developer">Desarrollado por: Javier García Pérez</string>
-    <string name="Txt_email">Contacto: javier.garcia.perez@hotmail.com</string>
-    <string name="Txt_version">Versión: 1.0</string>
     <string name="Txt_follow">Síguenos:</string>
-    <string name="Txt_political_terms">Términos y políticas de privacidad</string>
 
-    //Button
-    <string name="Txt_favorite">Añadir a favoritos</string>
-    <string name="Txt_share">Compartir</string>
+    //Social Networks
+     <string name=""
+
 
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>

@@ -10,44 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            app:lottie_imageAssetsFolder="assets"
-            app:lottie_fileName="image_info.json"
-            app:lottie_loop="true"
-            app:lottie_autoPlay="true"/>
-        <TextView
-            android:text="@string/Txt_Developer"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:text="@string/Txt_email"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:text="@string/Txt_version"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
+        android:padding="8dp"
+        android:layout_marginTop="200dp"
+        >
         <TextView
             android:text="@string/Txt_follow"
             android:textSize="30sp"
@@ -63,8 +28,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="5dp">
-
+            android:layout_marginTop="10dp">
 
 
             <ImageView
@@ -91,17 +55,7 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <Button
-            android:id="@+id/Txt_political_terms"
-            android:textColor="#ffffff"
-            android:textStyle="italic"
-            android:background="@color/colorPrimary"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
-            android:text="@string/Txt_political_terms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -18,7 +18,9 @@ import java.util.ArrayList;
 
         public class BBDD_Helper extends SQLiteOpenHelper {
         private static  BBDD_Helper instance;
-        public static final String PASS_PHARSE = "DGFDFGFGFDG";
+
+
+            public static final String PASS_PHARSE = "DGFDFGFGFDG";
 
             private SQLiteDatabase db;
             public BBDD_Helper(@Nullable Context context) {
@@ -98,8 +100,12 @@ import java.util.ArrayList;
           return id;
       }
       //Insertamos registros en Tarjeta
-      public long insertRecordCard(String title, String account_name, String number, String date, String cvc,
-                                   String notes, String image, String recordTime, String updateTime) {
+      public long insertRecordCard(String title,
+                                   String account_name, String number,
+                                   String date, String cvc,
+                                   String notes, String image,
+                                   String recordTime,
+                                   String updateTime) {
           ContentValues values = new ContentValues();
           db = this.getWritableDatabase(PASS_PHARSE);
           //Insertamos los datos

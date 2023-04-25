@@ -15,8 +15,8 @@
 
     <item
         android:id="@+id/option_about"
-        android:title="@string/option_about"
-        android:icon="@drawable/icon_about"
+        android:title="@string/option_follow"
+        android:icon="@drawable/icon_follow"
         />
     <item
         android:id="@+id/Option_exit"
