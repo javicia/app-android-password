@@ -107,7 +107,7 @@ public class Record_All extends Fragment {
  }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_fragment_all, menu);
+        inflater.inflate(R.menu.menu_all, menu);
 
         MenuItem item = menu.findItem(R.id.menu_Record_seach);
         SearchView searchView = (SearchView)item.getActionView();

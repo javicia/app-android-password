@@ -41,7 +41,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:menu="@menu/drawer_menu"
+        app:menu="@menu/menu_drawer"
         android:background="#ffffff"
         app:itemIconPadding="15dp"/>
 
