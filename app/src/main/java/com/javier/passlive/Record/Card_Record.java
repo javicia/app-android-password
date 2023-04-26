@@ -1,6 +1,6 @@
 package com.javier.passlive.Record;
 
-import static com.javier.passlive.BBDD.BBDD_Helper.PASS_PHARSE;
+import static com.javier.passlive.BBDD.Helper.PASS_PHARSE;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -27,8 +27,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.BBDD.SQLCipherKeyGenerator;
 import com.javier.passlive.R;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -37,15 +38,15 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Card_Record extends AppCompatActivity {
-    private static  BBDD_Helper instance;
-    static public synchronized BBDD_Helper getInstance(Context context){
+    private static Helper instance;
+    static public synchronized Helper getInstance(Context context){
         if (instance == null)
-            instance = new BBDD_Helper(context);
+            instance = new Helper(context);
         return instance;
     }
     TextView C_Title, C_Name, C_Date, C_Note, C_RecordTime, C_UpdateTime;
     String id_record;
-    BBDD_Helper helper;
+    Helper helper;
     ImageView C_Image;
     ImageView Img_copy_number_card, Img_copy_number_cvc;
     Dialog dialog;
@@ -63,12 +64,16 @@ public class Card_Record extends AppCompatActivity {
             Intent intent = getIntent();
             id_record = intent.getStringExtra("Id_registro");
             Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-            helper = new BBDD_Helper(this);
+            helper = new Helper(this);
 
             Initialize_variables();
+        try {
             Registration_info();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-            //Visualizar el título de un registro
+        //Visualizar el título de un registro
             String title_record = C_Title.getText().toString();
             assert actionBar != null;
             actionBar.setTitle(title_record);
@@ -86,6 +91,7 @@ public class Card_Record extends AppCompatActivity {
         Img_copy_number_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 copyTextNumber(v);
             }
         });
@@ -93,6 +99,7 @@ public class Card_Record extends AppCompatActivity {
         Img_copy_number_cvc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 copyTextCVC(v);
             }
         });
@@ -112,11 +119,11 @@ public class Card_Record extends AppCompatActivity {
             Img_copy_number_card = findViewById(R.id.Img_copy_number_card);
             Img_copy_number_cvc = findViewById(R.id.Img_copy_number_cvc);
         }
-        private void Registration_info(){
+        private void Registration_info() throws Exception {
             String query ="SELECT * FROM " + Constans.TABLE_CARD+ " WHERE " + Constans.ID_CARD + " =\"" +
                     id_record + "\"";
 
-            SQLiteDatabase db = helper.getWritableDatabase(PASS_PHARSE);
+            SQLiteDatabase db = helper.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
             Cursor cursor = db.rawQuery(query, null);
 
 //Buscar en la BBDD el registro seleccionado

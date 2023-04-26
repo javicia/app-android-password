@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 
 import com.javier.passlive.Record.Web_Record;
 import com.javier.passlive.MainActivity;
@@ -24,7 +24,6 @@ import com.javier.passlive.Util.Util_Web;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
@@ -32,7 +31,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
     private Context context;
     private ArrayList<Web> webList;
 
-    BBDD_Helper bbddHelper;
+    Helper bbddHelper;
 
     Dialog dialog;
 
@@ -41,7 +40,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
         this.context = context;
         this.webList = webList;
         dialog = new Dialog(context);
-        bbddHelper = new BBDD_Helper(context);
+        bbddHelper = new Helper(context);
     }
 
     @NonNull
@@ -157,7 +156,11 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   bbddHelper.deleteRecordWeb(id);
+                    try {
+                        bbddHelper.deleteRecordWeb(id);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     Intent intent = new Intent(context, MainActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

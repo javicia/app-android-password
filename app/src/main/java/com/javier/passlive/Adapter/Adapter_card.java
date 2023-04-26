@@ -15,10 +15,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 
 
-import com.javier.passlive.Model.Web;
 import com.javier.passlive.Record.Card_Record;
 import com.javier.passlive.MainActivity;
 
@@ -28,12 +27,11 @@ import com.javier.passlive.Util.Util_Card;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard> {
     private Context context;
     private ArrayList<Card> cardList;
-    BBDD_Helper bbddHelper;
+    Helper bbddHelper;
     Dialog dialog;
 
     //Creamos Constructor
@@ -41,7 +39,7 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard> 
         this.context = context;
         this.cardList = cardList;
         dialog = new Dialog(context);
-        bbddHelper = new BBDD_Helper(context);
+        bbddHelper = new Helper(context);
     }
 
     @NonNull
@@ -158,7 +156,11 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard> 
         Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bbddHelper.deleteRecordCard(id);
+                try {
+                    bbddHelper.deleteRecordCard(id);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 Intent intent = new Intent(context, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

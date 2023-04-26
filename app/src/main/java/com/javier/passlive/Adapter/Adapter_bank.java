@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.R;
@@ -23,12 +23,11 @@ import com.javier.passlive.Record.Bank_Record;
 import com.javier.passlive.Util.Util_Bank;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
     private Context context;
     private ArrayList<Bank> bankList;
-    BBDD_Helper bbddHelper;
+    Helper bbddHelper;
     Dialog dialog;
 
 
@@ -36,7 +35,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
        this.context = context;
        this.bankList = bankList;
        dialog = new Dialog(context);
-       bbddHelper = new BBDD_Helper(context);
+       bbddHelper = new Helper(context);
 
    }
 
@@ -153,7 +152,11 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
         Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bbddHelper.deleteRecordBank(id);
+                try {
+                    bbddHelper.deleteRecordBank(id);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 Intent intent = new Intent(context, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

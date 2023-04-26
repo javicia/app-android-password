@@ -27,7 +27,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.javier.passlive.Adapter.Adapter_bank;
 import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 //import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Category.Category;
@@ -44,7 +44,7 @@ public class Record_All extends Fragment {
     String orderTittleDesc = Constans.W_TITTLE + " DESC";
     String statusOrder = orderTittleAsc;
    Dialog dialog, dialog_order, dialog_category;
- BBDD_Helper helper;
+ Helper helper;
     RecyclerView RView_record;
     FloatingActionButton btn_add_record;
     @SuppressLint("MissingInflatedId")
@@ -62,7 +62,7 @@ public class Record_All extends Fragment {
 
         RView_record = view.findViewById(R.id.RView_record);
         btn_add_record= view.findViewById(R.id.btn_add_record);
-        helper = new BBDD_Helper(getActivity());
+        helper = new Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
 
@@ -70,8 +70,12 @@ public class Record_All extends Fragment {
 
 
 //Listar registros
-        loadRecord(orderTittleAsc);
-                btn_add_record.setOnClickListener(new View.OnClickListener() {
+        try {
+            loadRecord(orderTittleAsc);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        btn_add_record.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent= new Intent(getActivity(), Category.class);
@@ -81,7 +85,7 @@ public class Record_All extends Fragment {
         return view;
     }
 //Método para cargar registros
-    private void loadRecord(String orderby) {
+    private void loadRecord(String orderby) throws Exception {
             statusOrder = orderby;
             Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
             Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
@@ -93,7 +97,7 @@ public class Record_All extends Fragment {
     }
 
     //Buscar registro en base de datos
-        private void Record_seach(String consultation){
+        private void Record_seach(String consultation) throws Exception {
             Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
             Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));
             Adapter_card adapter_card = new Adapter_card(getActivity(), helper.search_RecordsCard(consultation));
@@ -111,13 +115,21 @@ public class Record_All extends Fragment {
             //Método que se ejecuta cuando los usuarios presionan el botón de búsqueda del teclado
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Record_seach(query);
+                try {
+                    Record_seach(query);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 return true;
             }
             //Método que permite realizar la búsqueda mientras el usuario está escribiendo en el teclado
             @Override
             public boolean onQueryTextChange(String newText) {
-                Record_seach(newText);
+                try {
+                    Record_seach(newText);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 return true;
             }
         });
@@ -132,7 +144,11 @@ public class Record_All extends Fragment {
             return true;
         }
         if (id == R.id.menu_Record_number){
-            Display_total_records();
+            try {
+                Display_total_records();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -146,12 +162,16 @@ public class Record_All extends Fragment {
 //Para refrescar la lista cuando estemos en el fragmento
     @Override
     public void onResume() {
-        loadRecord(statusOrder);
+        try {
+            loadRecord(statusOrder);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         super.onResume();
     }
 
     //Método para visualizar total de registros
-    public void Display_total_records(){
+    public void Display_total_records() throws Exception {
         TextView Total;
         Button BtnFully_Undertood;
 
@@ -202,7 +222,11 @@ public class Record_All extends Fragment {
         Btn_New.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecord(newOrder);
+                try {
+                    loadRecord(newOrder);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 dialog_order.dismiss();
             }
         });
@@ -210,21 +234,33 @@ public class Record_All extends Fragment {
         Btn_Past.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecord(sortPast);
+                try {
+                    loadRecord(sortPast);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 dialog_order.dismiss();
             }
         });
         Btn_Asc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadRecord(orderTittleAsc);
+                try {
+                    loadRecord(orderTittleAsc);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 dialog_order.dismiss();
             }
         });
         Btn_Desc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               loadRecord(orderTittleDesc);
+                try {
+                    loadRecord(orderTittleDesc);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 dialog_order.dismiss();
             }
         });
@@ -243,7 +279,12 @@ public class Record_All extends Fragment {
         Btn_Order_Web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(statusOrder));
+                Adapter_web adapter_web = null;
+                try {
+                    adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(statusOrder));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 RView_record.setAdapter(adapter_web);
                 dialog_order.dismiss();
             }
@@ -252,7 +293,12 @@ public class Record_All extends Fragment {
         Btn_Order_Bank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(statusOrder));
+                Adapter_bank adapter_bank = null;
+                try {
+                    adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(statusOrder));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 RView_record.setAdapter(adapter_bank);
                 dialog_order.dismiss();
 
@@ -262,7 +308,12 @@ public class Record_All extends Fragment {
        Btn_Order_Card.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(statusOrder));
+               Adapter_card adapter_card = null;
+               try {
+                   adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(statusOrder));
+               } catch (Exception e) {
+                   throw new RuntimeException(e);
+               }
                RView_record.setAdapter(adapter_card);
                dialog_order.dismiss();
            }

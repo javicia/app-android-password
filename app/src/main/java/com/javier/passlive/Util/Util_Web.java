@@ -2,8 +2,6 @@ package com.javier.passlive.Util;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,12 +15,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -30,7 +25,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
@@ -44,7 +39,7 @@ public class Util_Web extends AppCompatActivity {
 
     private boolean EDITION_MODE= false;
 
-    private BBDD_Helper BDHelper;
+    private Helper BDHelper;
 
     Uri imageUri = null;
 
@@ -91,7 +86,7 @@ public class Util_Web extends AppCompatActivity {
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
 
-        BDHelper = new BBDD_Helper(this);
+        BDHelper = new Helper(this);
 
     }
 //Método para obtener información desde el adaptador
@@ -144,7 +139,7 @@ public class Util_Web extends AppCompatActivity {
         }
     }
 //Método para guardar password
-    private void Add_Update_Record_Web(){
+    private void Add_Update_Record_Web() throws Exception {
 //Obtener datos de entrada
         tittle= EtTittle.getText().toString().trim();
         account=EtAccount.getText().toString().trim();
@@ -210,7 +205,11 @@ public class Util_Web extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save_password){
-           Add_Update_Record_Web();
+            try {
+                Add_Update_Record_Web();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

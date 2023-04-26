@@ -26,11 +26,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Constans;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
-import com.javier.passlive.Model.Bank;
 import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import com.opencsv.CSVReader;
@@ -46,7 +45,7 @@ public class Setting extends Fragment {
     TextView Delete_All_Record, Export_File, Import_File, Change_Password;
     Dialog dialog, dialog_password;
 
-    BBDD_Helper bbddHelper;
+    Helper bbddHelper;
 
     String orderTitleAsc = Constans.W_TITTLE + "ASC";
 
@@ -72,7 +71,7 @@ public class Setting extends Fragment {
         Change_Password = view.findViewById(R.id.Change_Password);
         dialog = new Dialog(getActivity());
         dialog_password = new Dialog(getActivity());
-        bbddHelper = new BBDD_Helper(getActivity());
+        bbddHelper = new Helper(getActivity());
 
         sharedPreferences = getActivity().getSharedPreferences(SHARE_PREF, Context.MODE_PRIVATE);
 
@@ -90,7 +89,11 @@ public class Setting extends Fragment {
                 //Comprobamos si el permiso fue concedido
                 if (ContextCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-                    Export_Record();
+                    try {
+                        Export_Record();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     //Si el permiso no fue concedido se mostrará el cuadro de dialogo para que
                     // el usuario pueda conceder el permiso
                 }else {
@@ -112,7 +115,11 @@ public class Setting extends Fragment {
                         if (ContextCompat.checkSelfPermission(getActivity(),
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                             //A la hora de importar los registros eliminamos todos los registros de la BBDD
-                            bbddHelper.deleteAllRecord();
+                            try {
+                                bbddHelper.deleteAllRecord();
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
                             Import_Record();
                             //Si el permiso no fue concedido se mostrará el cuadro de dialogo para que
                             // el usuario pueda conceder el permiso
@@ -153,7 +160,11 @@ public class Setting extends Fragment {
         Btn_Yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bbddHelper.deleteAllRecord();
+                try {
+                    bbddHelper.deleteAllRecord();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 startActivity(new Intent(getActivity(), MainActivity.class));
                 Toast.makeText(getActivity(), "Eliminaste todos los registros", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
@@ -171,7 +182,7 @@ public class Setting extends Fragment {
         dialog.setCancelable(false);
     }
     //Método para exportar registro
-    private void Export_Record() {
+    private void Export_Record() throws Exception {
         //Creamos el nombre de la carpeta
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS
         ), "PassLive");
@@ -291,7 +302,11 @@ public class Setting extends Fragment {
     private ActivityResultLauncher<String> PermissionExport = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(), grantPermissionExport -> {
                 if(grantPermissionExport){
-                    Export_Record();
+                    try {
+                        Export_Record();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }else {
                     Toast.makeText(getActivity(), "Permiso denegado", Toast.LENGTH_SHORT).show();
                 }

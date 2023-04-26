@@ -1,6 +1,6 @@
 package com.javier.passlive.Record;
 
-import static com.javier.passlive.BBDD.BBDD_Helper.PASS_PHARSE;
+import static com.javier.passlive.BBDD.Helper.PASS_PHARSE;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -28,8 +28,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.BBDD.SQLCipherKeyGenerator;
 import com.javier.passlive.R;
 
 
@@ -39,16 +40,16 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Web_Record extends AppCompatActivity {
-    private static  BBDD_Helper instance;
-    static public synchronized BBDD_Helper getInstance(Context context){
+    private static Helper instance;
+    static public synchronized Helper getInstance(Context context){
         if (instance == null)
-            instance = new BBDD_Helper(context);
+            instance = new Helper(context);
         return instance;
     }
 
     TextView D_Tittle, D_Account, D_Username, D_Websites,D_Note, D_RecordTime, D_UpdateTime;
     String id_record;
-    BBDD_Helper helper;
+    Helper helper;
     ImageView D_Image;
     ImageView Img_copy_usename_web, Img_copy_password_web;
     Dialog dialog;
@@ -67,10 +68,14 @@ public class Web_Record extends AppCompatActivity {
         Intent intent = getIntent();
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-        helper = new BBDD_Helper(this);
+        helper = new Helper(this);
 
         Initialize_variables();
-        Registration_info();
+        try {
+            Registration_info();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         //Visualizar el título de un registro
         String tittle_record = D_Tittle.getText().toString();
@@ -134,11 +139,11 @@ public class Web_Record extends AppCompatActivity {
     }
 
     //Método para visualizar información de los registros
-    private void Registration_info(){
+    private void Registration_info() throws Exception {
         String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + " WHERE " + Constans.W_ID + " =\"" +
                 id_record + "\"";
 
-        SQLiteDatabase db = helper.getWritableDatabase(PASS_PHARSE);
+        SQLiteDatabase db = helper.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(query, null);
 
 //Buscar en la BBDD el registro seleccionado
