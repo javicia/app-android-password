@@ -138,7 +138,7 @@ public class Util_Web extends AppCompatActivity {
         // Si es falso se agrega un registro
         }
     }
-//Método para guardar password
+//Método para guardar la actualización realizada
     private void Add_Update_Record_Web() throws Exception {
 //Obtener datos de entrada
         tittle= EtTittle.getText().toString().trim();
@@ -214,7 +214,7 @@ public class Util_Web extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    // Método para realizar fotografías
     private void takePhoto() {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {

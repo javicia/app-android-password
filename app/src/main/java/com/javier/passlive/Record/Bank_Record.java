@@ -29,7 +29,7 @@ import android.text.InputType;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.Helper;
-import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.BBDD.SQLCipherKeyGenerator;
 import com.javier.passlive.R;
 
@@ -118,7 +118,7 @@ public class Bank_Record extends AppCompatActivity {
             }
         });
     }
-        private void Initialize_variables(){
+    private void Initialize_variables(){
             B_Title = findViewById(R.id.B_Title);
             B_Bank = findViewById(R.id.B_Bank);
             B_Account_Name = findViewById(R.id.B_Account_Name);
@@ -135,13 +135,14 @@ public class Bank_Record extends AppCompatActivity {
             Img_copy_number_bank = findViewById(R.id.Img_copy_number_bank);
 
         }
+    //Método para visualizar registros en el RecycleView
     private void Dialog_Visualize(){
         PhotoView Visualize_image;
         Button Btn_close_image;
         dialog.setContentView(R.layout.box_dialog_image_visualize);
         Visualize_image = dialog.findViewById(R.id.Visualize_image);
         Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
-        String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" + id_record+ "\"";
+        String query ="SELECT * FROM " + Query.TABLE_ACCOUNT_BANK + " WHERE " + Query.B_ID_BANK + " =\"" + id_record+ "\"";
 
         SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(query,null);
@@ -149,7 +150,7 @@ public class Bank_Record extends AppCompatActivity {
         //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-                @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE));
+                @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Query.W_IMAGE));
 
                 if(image.equals("null")){
                     Visualize_image.setImageResource(R.drawable.logo_image);
@@ -169,9 +170,9 @@ public class Bank_Record extends AppCompatActivity {
         dialog.show();
         dialog.setCancelable(false);
     }
-
+    //Método para visualizar registros en el RecycleView
     private void Registration_info() throws Exception {
-        String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
+        String query ="SELECT * FROM " + Query.TABLE_ACCOUNT_BANK + " WHERE " + Query.B_ID_BANK + " =\"" +
                 id_record + "\"";
 
         SQLiteDatabase db = helper.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
@@ -180,16 +181,16 @@ public class Bank_Record extends AppCompatActivity {
 //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.B_ID_BANK));
-                @SuppressLint("Range") String title_bank = "" +cursor.getString(cursor.getColumnIndex(Constans.B_TITLE_BANK));
-                @SuppressLint("Range") String name_bank = "" +cursor.getString(cursor.getColumnIndex(Constans.B_BANK));
-                @SuppressLint("Range") String account_name = "" +cursor.getString(cursor.getColumnIndex(Constans.B_ACCOUNT_BANK));
-                @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Constans.B_NUMBER));
-                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.B_WEBSITES));
-                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.B_NOTES));
-                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.B_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.B_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.B_UPDATE_TIME));
+                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Query.B_ID_BANK));
+                @SuppressLint("Range") String title_bank = "" +cursor.getString(cursor.getColumnIndex(Query.B_TITLE_BANK));
+                @SuppressLint("Range") String name_bank = "" +cursor.getString(cursor.getColumnIndex(Query.B_BANK));
+                @SuppressLint("Range") String account_name = "" +cursor.getString(cursor.getColumnIndex(Query.B_ACCOUNT_BANK));
+                @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Query.B_NUMBER));
+                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Query.B_WEBSITES));
+                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Query.B_NOTES));
+                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Query.B_IMAGE));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.B_RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.B_UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro
@@ -234,7 +235,7 @@ public class Bank_Record extends AppCompatActivity {
         clipboardManager.setPrimaryClip(clipData);
         Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
     }
-    //Método para copiar el textView de la contraseña
+    //Método para copiar el número de cuenta bancaria
     private void copyTextNumber(View v) {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("text", B_Number.getText().toString());

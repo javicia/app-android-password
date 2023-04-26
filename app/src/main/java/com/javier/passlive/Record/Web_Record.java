@@ -29,7 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.Helper;
-import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.BBDD.SQLCipherKeyGenerator;
 import com.javier.passlive.R;
 
@@ -140,7 +140,7 @@ public class Web_Record extends AppCompatActivity {
 
     //Método para visualizar información de los registros
     private void Registration_info() throws Exception {
-        String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + " WHERE " + Constans.W_ID + " =\"" +
+        String query ="SELECT * FROM " + Query.TABLE_ACCOUNT_WEB + " WHERE " + Query.W_ID + " =\"" +
                 id_record + "\"";
 
         SQLiteDatabase db = helper.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
@@ -149,16 +149,16 @@ public class Web_Record extends AppCompatActivity {
 //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.W_ID));
-                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Constans.W_TITTLE));
-                @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Constans.W_ACCOUNT));
-                @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Constans.W_USERNAME));
-                @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Constans.W_PASSWORD));
-                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.W_WEBSITES));
-                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.W_NOTES));
-                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.W_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.W_UPDATE_TIME));
+                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Query.W_ID));
+                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Query.W_TITTLE));
+                @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Query.W_ACCOUNT));
+                @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Query.W_USERNAME));
+                @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Query.W_PASSWORD));
+                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Query.W_WEBSITES));
+                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Query.W_NOTES));
+                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Query.W_IMAGE));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.W_RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.W_UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro
@@ -196,14 +196,14 @@ public class Web_Record extends AppCompatActivity {
         }
         db.close();
     }
-
-private void Dialog_Visualize(){
+    //Método para ampliar imagen
+    private void Dialog_Visualize(){
     PhotoView Visualize_image;
     Button Btn_close_image;
     dialog.setContentView(R.layout.box_dialog_image_visualize);
     Visualize_image = dialog.findViewById(R.id.Visualize_image);
     Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
-    String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_WEB + " WHERE " + Constans.W_ID + " =\"" + id_record+ "\"";
+    String query ="SELECT * FROM " + Query.TABLE_ACCOUNT_WEB + " WHERE " + Query.W_ID + " =\"" + id_record+ "\"";
 
     SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
     Cursor cursor = db.rawQuery(query,null);
@@ -211,7 +211,7 @@ private void Dialog_Visualize(){
     //Buscar en la BBDD el registro seleccionado
     if (cursor.moveToFirst()){
         do{
-            @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Constans.W_IMAGE));
+            @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Query.W_IMAGE));
 
             if(image.equals("null")){
                 Visualize_image.setImageResource(R.drawable.logo_image);

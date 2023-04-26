@@ -116,8 +116,8 @@ public class Registration extends AppCompatActivity {
             finish();
         }
     }
+    // Actualizar las preferencias compartidas para indicar que se ha aceptado la política de privacidad
     public static void onPrivacyPolicyAccepted() {
-        // Actualizar las preferencias compartidas para indicar que se ha aceptado la política de privacidad
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(KEY_PRIVACY_POLICY_ACCEPTED, true);
         editor.apply();

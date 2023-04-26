@@ -29,7 +29,7 @@ import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
 import com.javier.passlive.BBDD.Helper;
 //import com.javier.passlive.DAO.BankDAO;
-import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.Category.Category;
 import com.javier.passlive.R;
 
@@ -38,10 +38,10 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 public class Record_All extends Fragment {
     String category;
-    String newOrder= Constans.W_RECORD_TIME +  " DESC";
-    String sortPast= Constans.W_RECORD_TIME + " ASC";
-    String orderTittleAsc = Constans.W_TITTLE + " ASC";
-    String orderTittleDesc = Constans.W_TITTLE + " DESC";
+    String newOrder= Query.W_RECORD_TIME +  " DESC";
+    String sortPast= Query.W_RECORD_TIME + " ASC";
+    String orderTittleAsc = Query.W_TITTLE + " ASC";
+    String orderTittleDesc = Query.W_TITTLE + " DESC";
     String statusOrder = orderTittleAsc;
    Dialog dialog, dialog_order, dialog_category;
  Helper helper;
@@ -84,7 +84,7 @@ public class Record_All extends Fragment {
                 });
         return view;
     }
-//Método para cargar registros
+    //Método para cargar registros
     private void loadRecord(String orderby) throws Exception {
             statusOrder = orderby;
             Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
@@ -159,7 +159,7 @@ public class Record_All extends Fragment {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
-//Para refrescar la lista cuando estemos en el fragmento
+    //Para refrescar la lista cuando estemos en el fragmento
     @Override
     public void onResume() {
         try {
@@ -198,7 +198,7 @@ public class Record_All extends Fragment {
         dialog.show();
         dialog.setCancelable(false);
     }
-
+    //Método para ordenar registros
     private void Order_Record(){
         Button Btn_Category, Btn_New, Btn_Past, Btn_Asc, Btn_Desc;
         //Conexión hacia el diseño
@@ -268,7 +268,7 @@ public class Record_All extends Fragment {
         dialog_order.setCancelable(true);
 
     }
-
+    //Método para ordenar los registros por categorías
     private void orderRecordsByCategory() {
         Button Btn_Order_Web, Btn_Order_Bank, Btn_Order_Card;
         dialog_order.setContentView(R.layout.box_order_category);

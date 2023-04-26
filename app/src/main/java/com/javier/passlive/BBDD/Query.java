@@ -1,6 +1,6 @@
 package com.javier.passlive.BBDD;
 
-public class Constans {
+public class Query {
 
     //Nombre de bases de datos, versión y nombre de tabla
     public static final String BD_NAME= "PASSLIVE_BBDD";

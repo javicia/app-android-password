@@ -139,7 +139,7 @@ public class Util_Bank extends AppCompatActivity {
             // Si es falso se agrega un registro
         }
     }
-    //Método para guardar password
+    //Método para guardar la actualización del registro
     private void Add_Update_Record_Bank() throws Exception {
 //Obtener datos de entrada
         title= Et_B_Title.getText().toString().trim();
@@ -212,6 +212,7 @@ public class Util_Bank extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //Método para realizar fotografías
     private void takePhoto() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             // Pedir permiso al usuario para acceder a la cámara

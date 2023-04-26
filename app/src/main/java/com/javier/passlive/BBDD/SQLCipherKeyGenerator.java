@@ -13,12 +13,13 @@ import javax.crypto.SecretKey;
 
 public class SQLCipherKeyGenerator {
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";
-    private static final String KEY_ALIAS = "myKeyAlias";
+    private static final String KEY_ALIAS = "AliasPassLife";
     private static final String ENCRYPTION_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES;
     private static final String BLOCK_MODE = KeyProperties.BLOCK_MODE_CBC;
     private static final String PADDING = KeyProperties.ENCRYPTION_PADDING_PKCS7;
     private static final int KEY_SIZE = 256;
 
+    //Método para obtener clave
     public static SecretKey getSecretKey() throws Exception {
         KeyStore keyStore = KeyStore.getInstance(ANDROID_KEYSTORE);
         keyStore.load(null);
@@ -36,7 +37,7 @@ public class SQLCipherKeyGenerator {
 
         return (SecretKey) keyStore.getKey(KEY_ALIAS, null);
     }
-
+    //Método para encriptar clave
     public static byte[] encrypt(Context context, byte[] data) throws Exception {
         SecretKey secretKey = getSecretKey();
 
@@ -52,7 +53,7 @@ public class SQLCipherKeyGenerator {
 
         return result;
     }
-
+    //Método para desencriptar clave
     public static byte[] decrypt(Context context, byte[] encryptedData) throws Exception {
         SecretKey secretKey = getSecretKey();
 

@@ -27,7 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.javier.passlive.BBDD.Helper;
-import com.javier.passlive.BBDD.Constans;
+import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.Login.Login_user;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
@@ -47,7 +47,7 @@ public class Setting extends Fragment {
 
     Helper bbddHelper;
 
-    String orderTitleAsc = Constans.W_TITTLE + "ASC";
+    String orderTitleAsc = Query.W_TITTLE + "ASC";
 
     //Guardar preferencias de usuario en un archivo con una clave y valor
     SharedPreferences sharedPreferences;
@@ -148,6 +148,7 @@ public class Setting extends Fragment {
         });
         return view;
     }
+    //Método para eliminar todos los registros
     private void Dialog_Delete_All_Record() {
         Button Btn_Yes, Btn_Cancel;
         dialog.setContentView(R.layout.box_dialog_delete_all_record);
@@ -313,7 +314,7 @@ public class Setting extends Fragment {
             }
     );
 
-    //permiso para importar registro
+    //Darpermiso para importar registro
     private ActivityResultLauncher<String> PermissionImport = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(), grantPermissionImport -> {
                 if(grantPermissionImport){
@@ -323,7 +324,7 @@ public class Setting extends Fragment {
                 }
             }
     );
-
+    //Método para cambiar la contraseña
     private void Dialog_Change_Password(){
     //Establecemos las vistas
         EditText Password__;
