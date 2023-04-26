@@ -27,7 +27,7 @@ public class Login_user extends AppCompatActivity {
     private BiometricPrompt.PromptInfo prompInfo;
 
 
-    EditText Et_Email, Et_UserPassword;
+    EditText  Et_UserPassword;
     Button Btn_Access, Btn_Biometric_Login;
     SharedPreferences sharedPreferences;
 
