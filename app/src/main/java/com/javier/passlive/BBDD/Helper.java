@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
         public class Helper extends SQLiteOpenHelper {
             public static final String PASS_PHARSE = "DGFDFGFGFDG";
-    public SQLCipherKeyGenerator sqlCipherKeyGenerator;
+    public SQLKeyGenerator sqlCipherKeyGenerator;
             private SQLiteDatabase db;
             public Helper(@Nullable Context context) {
         super(context, Query.BD_NAME, null, Query.BD_VERSION);
@@ -45,7 +45,7 @@ import java.util.ArrayList;
     //Método para insertar registros de aplicaciones web
     public long insertRecordWeb(String tittle, String account, String username, String password,
                                 String websites, String notes, String image, String recordTime, String updateTime) throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         ContentValues values = new ContentValues();
 
         //Insertamos los datos
@@ -72,7 +72,7 @@ import java.util.ArrayList;
     //Método para insertar registros de cuentas bancarias
      public long insertRecordBank(String title_bank, String bank, String account_bank,
                                    String number, String websites, String notes, String image, String recordTime, String updateTime) throws Exception {
-         db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+         db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
           ContentValues values = new ContentValues();
 
           //Insertamos los datos
@@ -103,7 +103,7 @@ import java.util.ArrayList;
                                    String recordTime,
                                    String updateTime) throws Exception {
           ContentValues values = new ContentValues();
-          db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+          db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
           //Insertamos los datos
           values.put(Query.C_TITLE_CARD, title);
           values.put(Query.C_USERNAME, account_name);
@@ -127,7 +127,7 @@ import java.util.ArrayList;
       }
     //Método para obtener el total de registros de la BBDD
     public int GetRecordNumber() throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         String query = "SELECT COUNT(*) FROM (SELECT * FROM " + Query.TABLE_ACCOUNT_WEB
                 + " UNION ALL SELECT * FROM " + Query.TABLE_ACCOUNT_BANK
                 + " UNION ALL SELECT * FROM " + Query.TABLE_CARD + ")";
@@ -148,7 +148,7 @@ import java.util.ArrayList;
         String selectQuery = "SELECT * FROM " + Query.TABLE_ACCOUNT_WEB + " ORDER BY " + orderby;
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
 
-     db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+     db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
@@ -178,7 +178,7 @@ import java.util.ArrayList;
         String selectQuerybank = "SELECT * FROM " + Query.TABLE_ACCOUNT_BANK + " ORDER BY " + orderby;
 
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = null;
         try{
             cursor= db.rawQuery(selectQuerybank, null);
@@ -214,7 +214,7 @@ import java.util.ArrayList;
         //Creamos consulta para seleccionar el registro
         String selectQuerycard = "SELECT * FROM " + Query.TABLE_CARD + " ORDER BY " + orderby;
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = null;
         try {
             cursor = db.rawQuery(selectQuerycard, null);
@@ -246,7 +246,7 @@ import java.util.ArrayList;
     //Método para actualizar registros de aplicaciones web
     public void updateRecordWeb(String id, String tittle, String account, String username, String password,
                                 String websites, String notes, String image, String recordTime, String updateTime) throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
 
         ContentValues values = new ContentValues();
 
@@ -270,7 +270,7 @@ import java.util.ArrayList;
     //Método para actualizar registros de cuentas bancarias
     public void updateRecordBank(String id_bank, String title, String bank, String account_Bank, String number, String b_websites, String b_notes,
                                  String b_image, String b_recordTime, String b_updateTime) throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         ContentValues values = new ContentValues();
 
         //Insertamos los datos
@@ -294,7 +294,7 @@ import java.util.ArrayList;
     public void updateRecordCard(String id_card, String title, String username, String number, String dates, String cvc,
                                  String c_notes, String c_image, String c_recordTime, String c_updateTime, String s) throws Exception {
         ContentValues values = new ContentValues();
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         //Insertamos los datos
         values.put(Query.ID_CARD, id_card);
         values.put(Query.C_TITLE_CARD, title);
@@ -321,7 +321,7 @@ import java.util.ArrayList;
                 " LIKE '%" + consultation + "%'";
 
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst()){
@@ -352,7 +352,7 @@ import java.util.ArrayList;
                 " LIKE '%" + consultation + "%'";
 
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst()){
@@ -383,7 +383,7 @@ import java.util.ArrayList;
         String selectQuery = "SELECT * FROM " + Query.TABLE_CARD + " WHERE " + Query.C_TITLE_CARD +
                 " LIKE '%" + consultation + "%'";
         //Recorremos todos los registros de la BD para que se puedan añadir a la lista
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if(cursor.moveToFirst()){
@@ -408,25 +408,25 @@ import java.util.ArrayList;
     }
     //Método para eliminar registros de de aplicaciones web
     public void deleteRecordWeb(String id) throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         db.delete(Query.TABLE_ACCOUNT_WEB, Query.W_ID + " = ?", new String[]{id});
         db.close();
     }
     //Método para eliminar registros de cuentas bancarias
     public void deleteRecordBank(String id) throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         db.delete(Query.TABLE_ACCOUNT_BANK, Query.B_ID_BANK+" = ?", new String[]{id});
         db.close();
     }
     //Método para eliminar registros de tarjetas
     public void deleteRecordCard(String id) throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         db.delete(Query.TABLE_CARD, Query.ID_CARD+" = ?", new String[]{id});
         db.close();
     }
     //Método para eliminar todos los registros de la BBDD
     public void deleteAllRecord() throws Exception {
-        db = this.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         db.execSQL("DELETE FROM " + Query.TABLE_ACCOUNT_WEB);
         db.execSQL("DELETE FROM " + Query.TABLE_ACCOUNT_BANK);
         db.execSQL("DELETE FROM " + Query.TABLE_CARD);

@@ -11,7 +11,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class SQLCipherKeyGenerator {
+public class SQLKeyGenerator {
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";
     private static final String KEY_ALIAS = "AliasPassLife";
     private static final String ENCRYPTION_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES;
@@ -71,11 +71,11 @@ public class SQLCipherKeyGenerator {
 
         return decryptedData;
     }
-
+    //Cifrar cadenas de texto en lugar de bytes
     public static byte[] encryptString(Context context, String text) throws Exception {
         return encrypt(context, text.getBytes(StandardCharsets.UTF_8));
     }
-
+    //Descifra cadenas de texto en vez de bytes
     public static String decryptString(Context context, byte[] encryptedData) throws Exception {
         byte[] decryptedData = decrypt(context, encryptedData);
         return new String(decryptedData, StandardCharsets.UTF_8);

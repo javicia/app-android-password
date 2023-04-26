@@ -30,7 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Query;
-import com.javier.passlive.BBDD.SQLCipherKeyGenerator;
+import com.javier.passlive.BBDD.SQLKeyGenerator;
 import com.javier.passlive.R;
 
 
@@ -143,7 +143,7 @@ public class Web_Record extends AppCompatActivity {
         String query ="SELECT * FROM " + Query.TABLE_ACCOUNT_WEB + " WHERE " + Query.W_ID + " =\"" +
                 id_record + "\"";
 
-        SQLiteDatabase db = helper.getWritableDatabase(SQLCipherKeyGenerator.getSecretKey().getEncoded());
+        SQLiteDatabase db = helper.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(query, null);
 
 //Buscar en la BBDD el registro seleccionado
