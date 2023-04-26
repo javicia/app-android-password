@@ -169,7 +169,7 @@ public class Bank_Record extends AppCompatActivity {
         String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
                 id_record + "\"";
 
-        SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
+        SQLiteDatabase db = helper.getWritableDatabase(PASS_PHARSE);
         Cursor cursor = db.rawQuery(query, null);
 
 //Buscar en la BBDD el registro seleccionado
