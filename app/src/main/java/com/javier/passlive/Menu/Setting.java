@@ -197,7 +197,7 @@ public class Setting extends Fragment {
             fileFolder = file.mkdirs();
         }
         //Creamos el nombre del archivo
-        String csvfileName = "PassLive.csv";
+        String csvfileName = "Record.csv";
         //Concatenamos el nombre de la carpeta y archivo para almacenar en File_Folder
         String File_Folder = file + "/" + csvfileName;
         //Obtenemos el registro que exportaremos
@@ -242,7 +242,7 @@ public class Setting extends Fragment {
             FileWriter fileWriterBank = new FileWriter(File_Folder);
             //recorremos cada atributo para escribirlo en el archivo
             int j;
-            for (j = 0; j < recordList.size(); j++) {
+            for (j = 0; j < recordListBank.size(); j++) {
                 fileWriterBank.append("" + recordListBank.get(j).getId());
                 fileWriterBank.append(",");
                 fileWriterBank.append("" + recordListBank.get(j).getTitle());
@@ -264,18 +264,20 @@ public class Setting extends Fragment {
                 fileWriterBank.append("" + recordListBank.get(j).getUpdate_time());
                 fileWriterBank.append("\n");
             }
+            fileWriterBank.flush();
+            fileWriterBank.close();
 
 
             //Obtenemos el registro que exportaremos
             ArrayList<Card> recordListCard = new ArrayList<>();
-            recordList.clear();
+            recordListCard.clear();
             recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
 
                 //Escribir en el archivo
                 FileWriter fileWriterCard = new FileWriter(File_Folder);
                 //recorremos cada atributo para escribirlo en el archivo
                 int k;
-                for (k = 0; k < recordList.size(); k++) {
+                for (k = 0; k < recordListCard.size(); k++) {
                     fileWriterCard.append("" + recordListCard.get(k).getId());
                     fileWriterCard.append(",");
                     fileWriterCard.append("" + recordListCard.get(k).getTitle());
