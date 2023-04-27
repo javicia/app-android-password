@@ -231,16 +231,24 @@ public class Bank_Record extends AppCompatActivity {
     //Método para copiar el textView del Nombre de Usuario
     public void copyTextAccountName(View view) {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //Copiar el texto en el portapapeles;
         ClipData clipData = ClipData.newPlainText("text", B_Account_Name.getText().toString());
         clipboardManager.setPrimaryClip(clipData);
         Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        // Pegar el texto del portapapeles
+        ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+        String clipboardText = item.getText().toString();
     }
     //Método para copiar el número de cuenta bancaria
     private void copyTextNumber(View v) {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //Copiar el texto en el portapapeles
         ClipData clipData = ClipData.newPlainText("text", B_Number.getText().toString());
         clipboardManager.setPrimaryClip(clipData);
         Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        // Pegar el texto del portapapeles
+        ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+        String clipboardText = item.getText().toString();
     }
 
     //Método para abrir página web

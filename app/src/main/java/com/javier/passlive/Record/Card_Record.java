@@ -217,16 +217,24 @@ public class Card_Record extends AppCompatActivity {
         //Método para copiar el número de tarjeta
          public void copyTextNumber(View view) {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+             //Copiar el texto en el portapapeles
         ClipData clipData = ClipData.newPlainText("text", C_Number.getText().toString());
         clipboardManager.setPrimaryClip(clipData);
         Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+             // Pegar el texto del portapapeles
+             ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+             String clipboardText = item.getText().toString();
     }
         //Método para copiar código de seguridad
         public void copyTextCVC(View view) {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //Copiar el texto en el portapapeles
         ClipData clipData = ClipData.newPlainText("text", C_CVC.getText().toString());
         clipboardManager.setPrimaryClip(clipData);
         Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+            // Pegar el texto del portapapeles
+            ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+            String clipboardText = item.getText().toString();
     }
         @Override
         public boolean onSupportNavigateUp() {

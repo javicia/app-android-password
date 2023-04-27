@@ -1,7 +1,6 @@
 package com.javier.passlive.Record;
 
 import static com.javier.passlive.BBDD.Helper.PASS_PHARSE;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
@@ -9,7 +8,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,17 +23,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.BBDD.SQLKeyGenerator;
 import com.javier.passlive.R;
-
-
 import net.sqlcipher.database.SQLiteDatabase;
-
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -237,13 +230,21 @@ public class Web_Record extends AppCompatActivity {
         ClipData clipData = ClipData.newPlainText("text", D_Username.getText().toString());
         clipboardManager.setPrimaryClip(clipData);
         Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        // Pegar el texto del portapapeles
+        ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+        String clipboardText = item.getText().toString();
     }
     //Método para copiar el textView de la contraseña
     private void copyTextPassword(View v) {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //Copiar el texto en el portapapeles
         ClipData clipData = ClipData.newPlainText("text", D_Password.getText().toString());
         clipboardManager.setPrimaryClip(clipData);
         Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        // Pegar el texto del portapapeles
+        ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+        String clipboardText = item.getText().toString();
+
     }
     //Método para abrir página web
     private void openWeb(String url_web) {
