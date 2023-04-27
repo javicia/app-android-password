@@ -21,6 +21,10 @@ public class Web {
         this.t_record = t_record;
         this.t_update = t_update;
     }
+
+    public Web() {
+
+    }
     //Getters y Setters
 
     public String getId() {

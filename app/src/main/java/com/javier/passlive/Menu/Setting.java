@@ -36,9 +36,12 @@ import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import com.opencsv.CSVReader;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -124,7 +127,11 @@ public class Setting extends Fragment {
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }
-                            Import_Record();
+                            try {
+                                Import_Record();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                             //Si el permiso no fue concedido se mostrará el cuadro de dialogo para que
                             // el usuario pueda conceder el permiso
                         }else {
@@ -289,9 +296,9 @@ public class Setting extends Fragment {
 
 
     //Método para importar registro
-    private void Import_Record(){
+    private void Import_Record() throws IOException {
     //Establecemos la ruta donde se encuentra alamcenado ese registro
-        String File_Folder = Environment.getExternalStorageDirectory() + "/Documents/" + "/PassLive/"
+       String File_Folder = Environment.getExternalStorageDirectory() + "/Documents/" + "/PassLive/"
                 + "/PassLive.csv/";
         File file = new File(File_Folder);
         if (file.exists()){
@@ -300,46 +307,51 @@ public class Setting extends Fragment {
                 CSVReader csvReader = new CSVReader(new FileReader(file.getAbsoluteFile()));
                 String [] nextLine;
                 //Recorremos todos los registros del archivo
-                while ((nextLine = csvReader.readNext())!=null){
-                    String id = nextLine[0];
-                    String title = nextLine[1];
-                    String account = nextLine[2];
-                    String username = nextLine[3];
-                    String password = nextLine[4];
-                    String websites = nextLine[5];
-                    String note = nextLine[6];
-                    String image = nextLine[7];
-                    String t_Record = nextLine[8];
-                    String t_Update = nextLine[9];
-                    String titleBank = nextLine[10];
-                    String bank = nextLine[11];
-                    String accountbank = nextLine[12];
-                    String number = nextLine[13];
-                    String websitesBank = nextLine[14];
-                    String noteBank = nextLine[15];
-                    String imageBank = nextLine[16];
-                    String t_RecordBank = nextLine[17];
-                    String t_UpdateBank = nextLine[18];
-                    String titleCard = nextLine[19];
-                    String account_name_Card = nextLine[20];
-                    String numberCard = nextLine[21];
-                    String dateCard = nextLine[22];
-                    String cvc = nextLine[23];
-                    String noteCard = nextLine[24];
-                    String imageCard = nextLine[25];
-                    String t_RecordCard = nextLine[26];
-                    String t_UpdateCard = nextLine[27];
-                    long idsWeb = bbddHelper.insertRecordWeb("" + title, ""+ account,
-                            "" + username, "" + password, ""+ websites,
-                            ""+ note, ""+ image, ""+ t_Record, "" + t_Update);
+                while ((nextLine = csvReader.readNext())!=null) {
+                    if (nextLine.length == 10) { // Verificamos que la línea tenga la cantidad correcta de elementos
+                        // Asignamos los valores de la línea a las variables cor
+                        String id = nextLine[0];
+                        String title = nextLine[1];
+                        String account = nextLine[2];
+                        String username = nextLine[3];
+                        String password = nextLine[4];
+                        String websites = nextLine[5];
+                        String note = nextLine[6];
+                        String image = nextLine[7];
+                        String t_Record = nextLine[8];
+                        String t_Update = nextLine[9];
+                        long idsWeb = bbddHelper.insertRecordWeb("" + title, "" + account,
+                                "" + username, "" + password, "" + websites,
+                                "" + note, "" + image, "" + t_Record, "" + t_Update);
+                    } else if (nextLine.length == 9) {
+                        String titleBank = nextLine[0];
+                        String bank = nextLine[1];
+                        String accountbank = nextLine[2];
+                        String number = nextLine[3];
+                        String websitesBank = nextLine[4];
+                        String noteBank = nextLine[5];
+                        String imageBank = nextLine[6];
+                        String t_RecordBank = nextLine[7];
+                        String t_UpdateBank = nextLine[8];
 
-                    long idsBank = bbddHelper.insertRecordBank("" + titleBank, "" + bank,
-                            "" + accountbank, ""+ number, "" + websitesBank,
-                            "" + noteBank, "" + imageBank, "" + t_RecordBank,
-                            "" + t_UpdateBank);
-                    long idsCard = bbddHelper.insertRecordCard("" + titleCard, ""+ account_name_Card,
-                            "" + numberCard, "" + dateCard,"" + cvc ,"" +noteCard,
-                            ""+ imageCard, "" + t_RecordCard,"" + t_UpdateCard );
+                        long idsBank = bbddHelper.insertRecordBank("" + titleBank, "" + bank,
+                                "" + accountbank, "" + number, "" + websitesBank,
+                                "" + noteBank, "" + imageBank, "" + t_RecordBank,
+                                "" + t_UpdateBank);
+                    } else if (nextLine.length == 8) {
+                        String titleCard = nextLine[0];
+                        String account_name_Card = nextLine[1];
+                        String numberCard = nextLine[2];
+                        String dateCard = nextLine[3];
+                        String cvc = nextLine[4];
+                        String noteCard = nextLine[5];
+                        String imageCard = nextLine[6];
+                        String t_RecordCard = nextLine[7];
+                        String t_UpdateCard = nextLine[8];
+                    long idsCard = bbddHelper.insertRecordCard("" + titleCard, "" + account_name_Card,
+                                "" + numberCard, "" + dateCard, "" + cvc, "" + noteCard,
+                                "" + imageCard, "" + t_RecordCard, "" + t_UpdateCard);
+                    }
                 }
                 Toast.makeText(getActivity(), "Archivo CSV importado con éxito", Toast.LENGTH_SHORT).show();
             }catch (Exception e){
@@ -350,6 +362,10 @@ public class Setting extends Fragment {
             Toast.makeText(getActivity(), "No se encuentra archivo", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
+
 
     //Permiso para exportar registros
     private ActivityResultLauncher<String> PermissionExport = registerForActivityResult(
@@ -370,7 +386,11 @@ public class Setting extends Fragment {
     private ActivityResultLauncher<String> PermissionImport = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(), grantPermissionImport -> {
                 if(grantPermissionImport){
-                    Import_Record();
+                    try {
+                        Import_Record();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }else {
                     Toast.makeText(getActivity(), "Permiso denegado", Toast.LENGTH_SHORT).show();
                 }
