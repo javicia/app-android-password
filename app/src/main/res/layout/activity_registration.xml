@@ -28,6 +28,7 @@
         <EditText
             android:id="@+id/Et_Email"
             android:hint="@string/Et_Email"
+            android:singleLine="true"
             android:textStyle="italic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +44,8 @@
         <EditText
             android:id="@+id/Et_UserPassword"
             android:hint="@string/Et_UserPassword"
+            android:maxLength="20"
+            android:singleLine="true"
             android:textStyle="italic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,6 +63,8 @@
             android:id="@+id/Et_ConfirmPassword"
             android:hint="@string/Et_ConfirmPassword"
             android:textStyle="italic"
+            android:maxLength="20"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

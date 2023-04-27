@@ -197,119 +197,92 @@ public class Setting extends Fragment {
             fileFolder = file.mkdirs();
         }
         //Creamos el nombre del archivo
-        String csvfileName = "Record.csv";
-        //Concatenamos el nombre de la carpeta y archivo para almacenar en File_Folder
-        String File_Folder = file + "/" + csvfileName;
+        String csvfileName = "PassLive.csv";
+
         //Obtenemos el registro que exportaremos
-        ArrayList<Web> recordList = new ArrayList<>();
-        recordList.clear();
-        recordList = bbddHelper.GetAllrecordWeb(orderTitleAscWeb);
-        try {
-            //Escribir en el archivo
-            FileWriter fileWriter = new FileWriter(File_Folder);
-            //recorremos cada atributo para escribirlo en el archivo
-            int i;
-            for (i = 0; i < recordList.size(); i++) {
-                fileWriter.append("" + recordList.get(i).getId());
+        ArrayList<Web> recordListWeb = bbddHelper.GetAllrecordWeb(orderTitleAscWeb);
+        ArrayList<Bank> recordListBank = bbddHelper.GetAllrecordBank(orderTitleAscBank);
+        ArrayList<Card> recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
+
+        //Escribir en el archivo
+        FileWriter fileWriter = new FileWriter(file + "/" + csvfileName);
+        //recorremos cada atributo para escribirlo en el archivo
+        for (Web web : recordListWeb) {
+
+                fileWriter.append("" + web.getId());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getTittle());
+                fileWriter.append("" + web.getTittle());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getAccount());
+                fileWriter.append("" + web.getAccount());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getUsername());
+                fileWriter.append("" + web.getUsername());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getPassword());
+                fileWriter.append("" + web.getPassword());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getWebsites());
+                fileWriter.append("" + web.getWebsites());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getNote());
+                fileWriter.append("" + web.getNote());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getImage());
+                fileWriter.append("" + web.getImage());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getT_record());
+                fileWriter.append("" + web.getT_record());
                 fileWriter.append(",");
-                fileWriter.append("" + recordList.get(i).getT_update());
+                fileWriter.append("" + web.getT_update());
                 fileWriter.append("\n");
             }
-            fileWriter.flush();
-            fileWriter.close();
 
-            //Obtenemos el registro que exportaremos
-            ArrayList<Bank> recordListBank = new ArrayList<>();
-            recordListBank.clear();
-            recordListBank = bbddHelper.GetAllrecordBank(orderTitleAscBank);
-            //Escribir en el archivo
-            FileWriter fileWriterBank = new FileWriter(File_Folder);
-            //recorremos cada atributo para escribirlo en el archivo
-            int j;
-            for (j = 0; j < recordListBank.size(); j++) {
-                fileWriterBank.append("" + recordListBank.get(j).getId());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getTitle());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getBank());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getTitle_account_bank());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getNumber());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getWebsites());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getNotes());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getImage());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getRecord_time());
-                fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(j).getUpdate_time());
-                fileWriterBank.append("\n");
+        for (Bank bank : recordListBank) {
+                fileWriter.append("" + bank.getId());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getTitle());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getBank());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getTitle_account_bank());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getNumber());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getWebsites());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getNotes());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getImage());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getRecord_time());
+                fileWriter.append(",");
+                fileWriter.append("" + bank.getUpdate_time());
+                fileWriter.append("\n");
             }
-            fileWriterBank.flush();
-            fileWriterBank.close();
-
-
-            //Obtenemos el registro que exportaremos
-            ArrayList<Card> recordListCard = new ArrayList<>();
-            recordListCard.clear();
-            recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
-
-                //Escribir en el archivo
-                FileWriter fileWriterCard = new FileWriter(File_Folder);
-                //recorremos cada atributo para escribirlo en el archivo
-                int k;
-                for (k = 0; k < recordListCard.size(); k++) {
-                    fileWriterCard.append("" + recordListCard.get(k).getId());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getTitle());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getUsername());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getNumber());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getDate());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getCvc());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getNotes());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getImage());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getRecord_time());
-                    fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(k).getUpdate_time());
-                    fileWriterCard.append("\n");
+        for (Card card : recordListCard) {
+                    fileWriter.append("" + card.getId());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getTitle());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getUsername());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getNumber());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getDate());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getCvc());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getNotes());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getImage());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getRecord_time());
+                    fileWriter.append(",");
+                    fileWriter.append("" + card.getUpdate_time());
+                    fileWriter.append("\n");
 
                 }
 
-            fileWriterCard.flush();
-            fileWriterCard.close();
+            fileWriter.flush();
+            fileWriter.close();
 
                 Toast.makeText(getActivity(), "Se ha exportado archivo CSV con éxito", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-
             }
-    }
+
 
     //Método para importar registro
     private void Import_Record(){
