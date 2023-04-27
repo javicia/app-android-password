@@ -204,10 +204,11 @@ public class Setting extends Fragment {
         ArrayList<Bank> recordListBank = bbddHelper.GetAllrecordBank(orderTitleAscBank);
         ArrayList<Card> recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
 
-        //Escribir en el archivo
-        FileWriter fileWriter = new FileWriter(file + "/" + csvfileName);
-        //recorremos cada atributo para escribirlo en el archivo
-        for (Web web : recordListWeb) {
+        try {
+            //Escribir en el archivo
+            FileWriter fileWriter = new FileWriter(file + "/" + csvfileName);
+            //recorremos cada atributo para escribirlo en el archivo
+            for (Web web : recordListWeb) {
 
                 fileWriter.append("" + web.getId());
                 fileWriter.append(",");
@@ -231,7 +232,7 @@ public class Setting extends Fragment {
                 fileWriter.append("\n");
             }
 
-        for (Bank bank : recordListBank) {
+            for (Bank bank : recordListBank) {
                 fileWriter.append("" + bank.getId());
                 fileWriter.append(",");
                 fileWriter.append("" + bank.getTitle());
@@ -253,35 +254,38 @@ public class Setting extends Fragment {
                 fileWriter.append("" + bank.getUpdate_time());
                 fileWriter.append("\n");
             }
-        for (Card card : recordListCard) {
-                    fileWriter.append("" + card.getId());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getTitle());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getUsername());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getNumber());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getDate());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getCvc());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getNotes());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getImage());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getRecord_time());
-                    fileWriter.append(",");
-                    fileWriter.append("" + card.getUpdate_time());
-                    fileWriter.append("\n");
+            for (Card card : recordListCard) {
+                fileWriter.append("" + card.getId());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getTitle());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getUsername());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getNumber());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getDate());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getCvc());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getNotes());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getImage());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getRecord_time());
+                fileWriter.append(",");
+                fileWriter.append("" + card.getUpdate_time());
+                fileWriter.append("\n");
 
-                }
+            }
 
             fileWriter.flush();
             fileWriter.close();
 
-                Toast.makeText(getActivity(), "Se ha exportado archivo CSV con éxito", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(getActivity(), "Se ha exportado archivo CSV con éxito", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Permiso denegado", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
     //Método para importar registro
