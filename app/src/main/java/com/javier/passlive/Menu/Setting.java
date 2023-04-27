@@ -49,7 +49,9 @@ public class Setting extends Fragment {
 
     Helper bbddHelper;
 
-    String orderTitleAsc = Query.W_TITTLE + "ASC";
+    String orderTitleAscWeb = Query.W_TITTLE + " ASC";
+    String orderTitleAscBank = Query.B_TITLE_BANK + " ASC";
+    String orderTitleAscCard = Query.C_TITLE_CARD + " ASC";
 
     //Guardar preferencias de usuario en un archivo con una clave y valor
     SharedPreferences sharedPreferences;
@@ -201,7 +203,7 @@ public class Setting extends Fragment {
         //Obtenemos el registro que exportaremos
         ArrayList<Web> recordList = new ArrayList<>();
         recordList.clear();
-        recordList = bbddHelper.GetAllrecordWeb(orderTitleAsc);
+        recordList = bbddHelper.GetAllrecordWeb(orderTitleAscWeb);
         try {
             //Escribir en el archivo
             FileWriter fileWriter = new FileWriter(File_Folder);
@@ -235,7 +237,7 @@ public class Setting extends Fragment {
             //Obtenemos el registro que exportaremos
             ArrayList<Bank> recordListBank = new ArrayList<>();
             recordListBank.clear();
-            recordListBank = bbddHelper.GetAllrecordBank(orderTitleAsc);
+            recordListBank = bbddHelper.GetAllrecordBank(orderTitleAscBank);
             //Escribir en el archivo
             FileWriter fileWriterBank = new FileWriter(File_Folder);
             //recorremos cada atributo para escribirlo en el archivo
@@ -243,60 +245,60 @@ public class Setting extends Fragment {
             for (j = 0; j < recordList.size(); j++) {
                 fileWriterBank.append("" + recordListBank.get(j).getId());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getTitle());
+                fileWriterBank.append("" + recordListBank.get(j).getTitle());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getBank());
+                fileWriterBank.append("" + recordListBank.get(j).getBank());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getTitle_account_bank());
+                fileWriterBank.append("" + recordListBank.get(j).getTitle_account_bank());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getNumber());
+                fileWriterBank.append("" + recordListBank.get(j).getNumber());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getWebsites());
+                fileWriterBank.append("" + recordListBank.get(j).getWebsites());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getNotes());
+                fileWriterBank.append("" + recordListBank.get(j).getNotes());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getImage());
+                fileWriterBank.append("" + recordListBank.get(j).getImage());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getRecord_time());
+                fileWriterBank.append("" + recordListBank.get(j).getRecord_time());
                 fileWriterBank.append(",");
-                fileWriterBank.append("" + recordListBank.get(i).getUpdate_time());
+                fileWriterBank.append("" + recordListBank.get(j).getUpdate_time());
                 fileWriterBank.append("\n");
             }
-            fileWriterBank.flush();
-            fileWriterBank.close();
+
 
             //Obtenemos el registro que exportaremos
             ArrayList<Card> recordListCard = new ArrayList<>();
             recordList.clear();
-            recordListCard = bbddHelper.GetAllrecordCard(orderTitleAsc);
+            recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
 
                 //Escribir en el archivo
                 FileWriter fileWriterCard = new FileWriter(File_Folder);
                 //recorremos cada atributo para escribirlo en el archivo
                 int k;
                 for (k = 0; k < recordList.size(); k++) {
-                    fileWriterCard.append("" + recordListCard.get(i).getId());
+                    fileWriterCard.append("" + recordListCard.get(k).getId());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getTitle());
+                    fileWriterCard.append("" + recordListCard.get(k).getTitle());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getUsername());
+                    fileWriterCard.append("" + recordListCard.get(k).getUsername());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getNumber());
+                    fileWriterCard.append("" + recordListCard.get(k).getNumber());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getDate());
+                    fileWriterCard.append("" + recordListCard.get(k).getDate());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getCvc());
+                    fileWriterCard.append("" + recordListCard.get(k).getCvc());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getNotes());
+                    fileWriterCard.append("" + recordListCard.get(k).getNotes());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getImage());
+                    fileWriterCard.append("" + recordListCard.get(k).getImage());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getRecord_time());
+                    fileWriterCard.append("" + recordListCard.get(k).getRecord_time());
                     fileWriterCard.append(",");
-                    fileWriterCard.append("" + recordListCard.get(i).getUpdate_time());
+                    fileWriterCard.append("" + recordListCard.get(k).getUpdate_time());
                     fileWriterCard.append("\n");
 
                 }
+
             fileWriterCard.flush();
             fileWriterCard.close();
 
