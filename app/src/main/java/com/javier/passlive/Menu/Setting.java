@@ -320,7 +320,7 @@ public class Setting extends Fragment {
                         String image = nextLine[7];
                         String t_Record = nextLine[8];
                         String t_Update = nextLine[9];
-                        long idsWeb = bbddHelper.insertRecordWeb("" + title, "" + account,
+                        long Web = bbddHelper.insertRecordWeb("" + title, "" + account,
                                 "" + username, "" + password, "" + websites,
                                 "" + note, "" + image, "" + t_Record, "" + t_Update);
                     } else if (nextLine.length == 9) {
@@ -334,7 +334,7 @@ public class Setting extends Fragment {
                         String t_RecordBank = nextLine[7];
                         String t_UpdateBank = nextLine[8];
 
-                        long idsBank = bbddHelper.insertRecordBank("" + titleBank, "" + bank,
+                        long Bank = bbddHelper.insertRecordBank("" + titleBank, "" + bank,
                                 "" + accountbank, "" + number, "" + websitesBank,
                                 "" + noteBank, "" + imageBank, "" + t_RecordBank,
                                 "" + t_UpdateBank);
@@ -348,7 +348,7 @@ public class Setting extends Fragment {
                         String imageCard = nextLine[6];
                         String t_RecordCard = nextLine[7];
                         String t_UpdateCard = nextLine[8];
-                    long idsCard = bbddHelper.insertRecordCard("" + titleCard, "" + account_name_Card,
+                    long Card = bbddHelper.insertRecordCard("" + titleCard, "" + account_name_Card,
                                 "" + numberCard, "" + dateCard, "" + cvc, "" + noteCard,
                                 "" + imageCard, "" + t_RecordCard, "" + t_UpdateCard);
                     }
@@ -359,7 +359,7 @@ public class Setting extends Fragment {
             }
         }
         else {
-            Toast.makeText(getActivity(), "No se encuentra archivo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No se encuentra el archivo", Toast.LENGTH_SHORT).show();
         }
     }
 

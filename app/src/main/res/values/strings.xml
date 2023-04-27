@@ -187,7 +187,7 @@
 
     //Setting
     <string name="Txt_Setting">Ajustes</string>
-    <string name="Delete_All_Record">Eliminar todoslos registros</string>
+    <string name="Delete_All_Record">Eliminar todos los registros</string>
     <string name="Export_File">Exportar archivo CSV</string>
     <string name="Import_File">Importar archivo CSV</string>
     <string name="Btn_Registration">Registrar</string>
