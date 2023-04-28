@@ -16,8 +16,8 @@ import net.sqlcipher.database.SQLiteOpenHelper;
 import java.util.ArrayList;
 
         public class Helper extends SQLiteOpenHelper {
-            public static final String PASS_PHARSE = "DGFDFGFGFDG";
-    public SQLKeyGenerator sqlCipherKeyGenerator;
+
+        public SQLKeyGenerator sqlCipherKeyGenerator;
             private SQLiteDatabase db;
             public Helper(@Nullable Context context) {
         super(context, Query.BD_NAME, null, Query.BD_VERSION);

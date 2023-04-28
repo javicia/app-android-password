@@ -1,7 +1,4 @@
 package com.javier.passlive.Record;
-
-import static com.javier.passlive.BBDD.Helper.PASS_PHARSE;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
@@ -9,7 +6,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,18 +18,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.BBDD.SQLKeyGenerator;
 import com.javier.passlive.R;
-
 import net.sqlcipher.database.SQLiteDatabase;
-
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -83,7 +75,11 @@ public class Card_Record extends AppCompatActivity {
             C_Image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Dialog_Visualize();
+                    try {
+                        Dialog_Visualize();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             });
 
@@ -179,7 +175,7 @@ public class Card_Record extends AppCompatActivity {
             db.close();
         }
         //Método para visualizar imagen
-        private void Dialog_Visualize(){
+        private void Dialog_Visualize() throws Exception {
         PhotoView Visualize_image;
         Button Btn_close_image;
         dialog.setContentView(R.layout.box_dialog_image_visualize);
@@ -187,7 +183,7 @@ public class Card_Record extends AppCompatActivity {
         Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
         String query ="SELECT * FROM " + Query.TABLE_CARD + " WHERE " + Query.ID_CARD + " =\"" + id_record+ "\"";
 
-        SQLiteDatabase db = instance.getWritableDatabase(PASS_PHARSE);
+        SQLiteDatabase db = helper.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(query,null);
 
         //Buscar en la BBDD el registro seleccionado
