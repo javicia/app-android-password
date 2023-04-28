@@ -37,7 +37,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 
 public class Record_All extends Fragment {
-    String category;
+
     String newOrder= Query.W_RECORD_TIME +  " DESC";
     String sortPast= Query.W_RECORD_TIME + " ASC";
     String orderTittleAsc = Query.W_TITTLE + " ASC";
@@ -65,6 +65,7 @@ public class Record_All extends Fragment {
         helper = new Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
+        dialog_category = new Dialog(getActivity());
 
 
 
