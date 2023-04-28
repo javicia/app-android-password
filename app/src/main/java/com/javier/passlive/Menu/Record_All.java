@@ -65,7 +65,7 @@ public class Record_All extends Fragment {
         helper = new Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
-
+        dialog_category = new Dialog(getActivity());
 
 
 
