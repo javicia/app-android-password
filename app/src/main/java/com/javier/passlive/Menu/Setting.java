@@ -36,12 +36,9 @@ import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import com.opencsv.CSVReader;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -127,11 +124,7 @@ public class Setting extends Fragment {
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }
-                            try {
-                                Import_Record();
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+                            Import_Record();
                             //Si el permiso no fue concedido se mostrará el cuadro de dialogo para que
                             // el usuario pueda conceder el permiso
                         }else {
@@ -204,101 +197,124 @@ public class Setting extends Fragment {
             fileFolder = file.mkdirs();
         }
         //Creamos el nombre del archivo
-        String csvfileName = "PassLive.csv";
-
+        String csvfileName = "Record.csv";
+        //Concatenamos el nombre de la carpeta y archivo para almacenar en File_Folder
+        String File_Folder = file + "/" + csvfileName;
         //Obtenemos el registro que exportaremos
-        ArrayList<Web> recordListWeb = bbddHelper.GetAllrecordWeb(orderTitleAscWeb);
-        ArrayList<Bank> recordListBank = bbddHelper.GetAllrecordBank(orderTitleAscBank);
-        ArrayList<Card> recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
-
+        ArrayList<Web> recordList = new ArrayList<>();
+        recordList.clear();
+        recordList = bbddHelper.GetAllrecordWeb(orderTitleAscWeb);
         try {
             //Escribir en el archivo
-            FileWriter fileWriter = new FileWriter(file + "/" + csvfileName);
+            FileWriter fileWriter = new FileWriter(File_Folder);
             //recorremos cada atributo para escribirlo en el archivo
-            for (Web web : recordListWeb) {
-
-                fileWriter.append("" + web.getId());
+            int i;
+            for (i = 0; i < recordList.size(); i++) {
+                fileWriter.append("" + recordList.get(i).getId());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getTittle());
+                fileWriter.append("" + recordList.get(i).getTittle());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getAccount());
+                fileWriter.append("" + recordList.get(i).getAccount());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getUsername());
+                fileWriter.append("" + recordList.get(i).getUsername());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getPassword());
+                fileWriter.append("" + recordList.get(i).getPassword());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getWebsites());
+                fileWriter.append("" + recordList.get(i).getWebsites());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getNote());
+                fileWriter.append("" + recordList.get(i).getNote());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getImage());
+                fileWriter.append("" + recordList.get(i).getImage());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getT_record());
+                fileWriter.append("" + recordList.get(i).getT_record());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getT_update());
+                fileWriter.append("" + recordList.get(i).getT_update());
                 fileWriter.append("\n");
             }
-
-            for (Bank bank : recordListBank) {
-                fileWriter.append("" + bank.getId());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getTitle());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getBank());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getTitle_account_bank());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getNumber());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getWebsites());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getNotes());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getImage());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getRecord_time());
-                fileWriter.append(",");
-                fileWriter.append("" + bank.getUpdate_time());
-                fileWriter.append("\n");
-            }
-            for (Card card : recordListCard) {
-                fileWriter.append("" + card.getId());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getTitle());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getUsername());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getNumber());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getDate());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getCvc());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getNotes());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getImage());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getRecord_time());
-                fileWriter.append(",");
-                fileWriter.append("" + card.getUpdate_time());
-                fileWriter.append("\n");
-
-            }
-
             fileWriter.flush();
             fileWriter.close();
 
-            Toast.makeText(getActivity(), "Se ha exportado archivo CSV con éxito", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(getActivity(), "Permiso denegado", Toast.LENGTH_SHORT).show();
-        }
+            //Obtenemos el registro que exportaremos
+            ArrayList<Bank> recordListBank = new ArrayList<>();
+            recordListBank.clear();
+            recordListBank = bbddHelper.GetAllrecordBank(orderTitleAscBank);
+            //Escribir en el archivo
+            FileWriter fileWriterBank = new FileWriter(File_Folder);
+            //recorremos cada atributo para escribirlo en el archivo
+            int j;
+            for (j = 0; j < recordListBank.size(); j++) {
+                fileWriterBank.append("" + recordListBank.get(j).getId());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getTitle());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getBank());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getTitle_account_bank());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getNumber());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getWebsites());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getNotes());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getImage());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getRecord_time());
+                fileWriterBank.append(",");
+                fileWriterBank.append("" + recordListBank.get(j).getUpdate_time());
+                fileWriterBank.append("\n");
+            }
+            fileWriterBank.flush();
+            fileWriterBank.close();
+
+
+            //Obtenemos el registro que exportaremos
+            ArrayList<Card> recordListCard = new ArrayList<>();
+            recordListCard.clear();
+            recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
+
+                //Escribir en el archivo
+                FileWriter fileWriterCard = new FileWriter(File_Folder);
+                //recorremos cada atributo para escribirlo en el archivo
+                int k;
+                for (k = 0; k < recordListCard.size(); k++) {
+                    fileWriterCard.append("" + recordListCard.get(k).getId());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getTitle());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getUsername());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getNumber());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getDate());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getCvc());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getNotes());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getImage());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getRecord_time());
+                    fileWriterCard.append(",");
+                    fileWriterCard.append("" + recordListCard.get(k).getUpdate_time());
+                    fileWriterCard.append("\n");
+
+                }
+
+            fileWriterCard.flush();
+            fileWriterCard.close();
+
+                Toast.makeText(getActivity(), "Se ha exportado archivo CSV con éxito", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
     }
 
-
     //Método para importar registro
-    private void Import_Record() throws IOException {
+    private void Import_Record(){
     //Establecemos la ruta donde se encuentra alamcenado ese registro
-       String File_Folder = Environment.getExternalStorageDirectory() + "/Documents/" + "/PassLive/"
+        String File_Folder = Environment.getExternalStorageDirectory() + "/Documents/" + "/PassLive/"
                 + "/PassLive.csv/";
         File file = new File(File_Folder);
         if (file.exists()){
@@ -307,51 +323,46 @@ public class Setting extends Fragment {
                 CSVReader csvReader = new CSVReader(new FileReader(file.getAbsoluteFile()));
                 String [] nextLine;
                 //Recorremos todos los registros del archivo
-                while ((nextLine = csvReader.readNext())!=null) {
-                    if (nextLine.length == 10) { // Verificamos que la línea tenga la cantidad correcta de elementos
-                        // Asignamos los valores de la línea a las variables cor
-                        String id = nextLine[0];
-                        String title = nextLine[1];
-                        String account = nextLine[2];
-                        String username = nextLine[3];
-                        String password = nextLine[4];
-                        String websites = nextLine[5];
-                        String note = nextLine[6];
-                        String image = nextLine[7];
-                        String t_Record = nextLine[8];
-                        String t_Update = nextLine[9];
-                        long Web = bbddHelper.insertRecordWeb("" + title, "" + account,
-                                "" + username, "" + password, "" + websites,
-                                "" + note, "" + image, "" + t_Record, "" + t_Update);
-                    } else if (nextLine.length == 9) {
-                        String titleBank = nextLine[0];
-                        String bank = nextLine[1];
-                        String accountbank = nextLine[2];
-                        String number = nextLine[3];
-                        String websitesBank = nextLine[4];
-                        String noteBank = nextLine[5];
-                        String imageBank = nextLine[6];
-                        String t_RecordBank = nextLine[7];
-                        String t_UpdateBank = nextLine[8];
+                while ((nextLine = csvReader.readNext())!=null){
+                    String id = nextLine[0];
+                    String title = nextLine[1];
+                    String account = nextLine[2];
+                    String username = nextLine[3];
+                    String password = nextLine[4];
+                    String websites = nextLine[5];
+                    String note = nextLine[6];
+                    String image = nextLine[7];
+                    String t_Record = nextLine[8];
+                    String t_Update = nextLine[9];
+                    String titleBank = nextLine[10];
+                    String bank = nextLine[11];
+                    String accountbank = nextLine[12];
+                    String number = nextLine[13];
+                    String websitesBank = nextLine[14];
+                    String noteBank = nextLine[15];
+                    String imageBank = nextLine[16];
+                    String t_RecordBank = nextLine[17];
+                    String t_UpdateBank = nextLine[18];
+                    String titleCard = nextLine[19];
+                    String account_name_Card = nextLine[20];
+                    String numberCard = nextLine[21];
+                    String dateCard = nextLine[22];
+                    String cvc = nextLine[23];
+                    String noteCard = nextLine[24];
+                    String imageCard = nextLine[25];
+                    String t_RecordCard = nextLine[26];
+                    String t_UpdateCard = nextLine[27];
+                    long idsWeb = bbddHelper.insertRecordWeb("" + title, ""+ account,
+                            "" + username, "" + password, ""+ websites,
+                            ""+ note, ""+ image, ""+ t_Record, "" + t_Update);
 
-                        long Bank = bbddHelper.insertRecordBank("" + titleBank, "" + bank,
-                                "" + accountbank, "" + number, "" + websitesBank,
-                                "" + noteBank, "" + imageBank, "" + t_RecordBank,
-                                "" + t_UpdateBank);
-                    } else if (nextLine.length == 8) {
-                        String titleCard = nextLine[0];
-                        String account_name_Card = nextLine[1];
-                        String numberCard = nextLine[2];
-                        String dateCard = nextLine[3];
-                        String cvc = nextLine[4];
-                        String noteCard = nextLine[5];
-                        String imageCard = nextLine[6];
-                        String t_RecordCard = nextLine[7];
-                        String t_UpdateCard = nextLine[8];
-                    long Card = bbddHelper.insertRecordCard("" + titleCard, "" + account_name_Card,
-                                "" + numberCard, "" + dateCard, "" + cvc, "" + noteCard,
-                                "" + imageCard, "" + t_RecordCard, "" + t_UpdateCard);
-                    }
+                    long idsBank = bbddHelper.insertRecordBank("" + titleBank, "" + bank,
+                            "" + accountbank, ""+ number, "" + websitesBank,
+                            "" + noteBank, "" + imageBank, "" + t_RecordBank,
+                            "" + t_UpdateBank);
+                    long idsCard = bbddHelper.insertRecordCard("" + titleCard, ""+ account_name_Card,
+                            "" + numberCard, "" + dateCard,"" + cvc ,"" +noteCard,
+                            ""+ imageCard, "" + t_RecordCard,"" + t_UpdateCard );
                 }
                 Toast.makeText(getActivity(), "Archivo CSV importado con éxito", Toast.LENGTH_SHORT).show();
             }catch (Exception e){
@@ -359,13 +370,9 @@ public class Setting extends Fragment {
             }
         }
         else {
-            Toast.makeText(getActivity(), "No se encuentra el archivo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No se encuentra archivo", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
 
     //Permiso para exportar registros
     private ActivityResultLauncher<String> PermissionExport = registerForActivityResult(
@@ -386,11 +393,7 @@ public class Setting extends Fragment {
     private ActivityResultLauncher<String> PermissionImport = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(), grantPermissionImport -> {
                 if(grantPermissionImport){
-                    try {
-                        Import_Record();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    Import_Record();
                 }else {
                     Toast.makeText(getActivity(), "Permiso denegado", Toast.LENGTH_SHORT).show();
                 }
