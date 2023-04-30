@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.javier.passlive.R;
 
 
-public class Social_Networks extends Fragment {
+public class Menu_Social_Networks extends Fragment {
 
     ImageView Iv_facebook, Iv_instagram, Iv_twitter;
 

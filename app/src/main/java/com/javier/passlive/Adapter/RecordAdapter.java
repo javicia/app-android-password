@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.javier.passlive.BBDD.Helper;
-import com.javier.passlive.Menu.Record_All;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.Model.Card;
 import com.javier.passlive.Model.Web;

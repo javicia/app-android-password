@@ -2,10 +2,8 @@ package com.javier.passlive.Menu;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -27,21 +24,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.javier.passlive.Adapter.Adapter_bank;
 import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
-import com.javier.passlive.Adapter.RecordAdapter;
 import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.Category.Category;
-import com.javier.passlive.Model.Bank;
-import com.javier.passlive.Model.Card;
-import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import net.sqlcipher.database.SQLiteDatabase;
 
-import java.util.ArrayList;
-import java.util.List;
 
-
-public class Record_All extends Fragment {
+public class Menu_Record_All extends Fragment {
     String query = "(SELECT * FROM " + Query.TABLE_ACCOUNT_WEB
             + " INNER JOIN " + Query.TABLE_ACCOUNT_BANK + " ON "  + Query.TABLE_ACCOUNT_WEB + "." +
             Query.W_ID + " = " + Query.TABLE_ACCOUNT_BANK + "." + Query.B_ID_BANK
