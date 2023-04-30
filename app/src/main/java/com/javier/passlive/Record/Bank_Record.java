@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+
 import android.graphics.Color;
 import android.net.Uri;
 import android.text.InputType;
@@ -183,15 +185,15 @@ public class Bank_Record extends AppCompatActivity {
         if (cursor.moveToFirst()){
             do{
                 @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Query.B_ID_BANK));
-                @SuppressLint("Range") String title_bank = "" +cursor.getString(cursor.getColumnIndex(Query.B_TITLE_BANK));
+                @SuppressLint("Range") String title_bank = "" +cursor.getString(cursor.getColumnIndex(Query.TITLE));
                 @SuppressLint("Range") String name_bank = "" +cursor.getString(cursor.getColumnIndex(Query.B_BANK));
                 @SuppressLint("Range") String account_name = "" +cursor.getString(cursor.getColumnIndex(Query.B_ACCOUNT_BANK));
                 @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Query.B_NUMBER));
                 @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Query.B_WEBSITES));
                 @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Query.B_NOTES));
                 @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Query.B_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.B_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.B_UPDATE_TIME));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro

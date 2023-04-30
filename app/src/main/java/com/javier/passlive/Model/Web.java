@@ -71,7 +71,7 @@ public class Web {
         return websites;
     }
 
-    public void setWebsites(String websites) {
+    public void setWebsites() {
         this.websites = websites;
     }
 

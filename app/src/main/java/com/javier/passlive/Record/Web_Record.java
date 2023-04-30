@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Query;
@@ -146,15 +148,15 @@ public class Web_Record extends AppCompatActivity {
         if (cursor.moveToFirst()){
             do{
                 @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Query.W_ID));
-                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Query.W_TITTLE));
+                @SuppressLint("Range") String tittle = "" +cursor.getString(cursor.getColumnIndex(Query.TITLE));
                 @SuppressLint("Range") String account = "" +cursor.getString(cursor.getColumnIndex(Query.W_ACCOUNT));
                 @SuppressLint("Range") String username = "" +cursor.getString(cursor.getColumnIndex(Query.W_USERNAME));
                 @SuppressLint("Range") String password = "" +cursor.getString(cursor.getColumnIndex(Query.W_PASSWORD));
                 @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Query.W_WEBSITES));
                 @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Query.W_NOTES));
                 @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Query.W_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.W_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.W_UPDATE_TIME));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro

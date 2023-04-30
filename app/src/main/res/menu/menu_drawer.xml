@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
-<item
+
+    <group android:checkableBehavior="single">
+    <item
     android:id="@+id/Option_all"
     android:title="@string/option_all"
     android:icon="@drawable/icon_all"
     />
+    <item
+        android:id="@+id/Option_web"
+        android:title="@string/option_web"
+        android:icon="@drawable/icon_web"
+        />
+    <item
+        android:id="@+id/Option_bank"
+        android:title="@string/option_bank"
+        android:icon="@drawable/icon_bank"
+        />
+    <item
+        android:id="@+id/Option_card"
+        android:title="@string/option_card"
+        android:icon="@drawable/icon_card"
+        />
+    </group>
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
     <item
         android:id="@+id/Option_setting"
         android:title="@string/option_setting"
@@ -18,9 +40,15 @@
         android:title="@string/option_follow"
         android:icon="@drawable/icon_follow"
         />
+    </group>
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
     <item
         android:id="@+id/Option_exit"
         android:title="@string/option_exit"
         android:icon="@drawable/icon_exit"
         />
+    </group>
+
 </menu>

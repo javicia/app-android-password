@@ -53,7 +53,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     @Override
     public void onBindViewHolder(@NonNull HolderWeb holder, @SuppressLint("Recyclerview") int position) {
-        //if (webList.get(position) instanceof Web) {
+
             Web model_web = webList.get(position);
             String id = model_web.getId();
             String tittle = model_web.getTittle();
@@ -106,7 +106,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             //Devuelve el tamaño de la lista
             return webList.size();
         }
-    class HolderWeb extends RecyclerView.ViewHolder{
+    static class HolderWeb extends RecyclerView.ViewHolder{
 
         TextView Item_tittle,Item_account,Item_username,Item_password, Item_websites,Item_note;
         ImageButton ImgB_option;
@@ -121,6 +121,15 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             Item_note = itemView.findViewById(R.id.Item_note);
 
             ImgB_option = itemView.findViewById(R.id.ImgB_option);
+        }
+
+        public void bind(Web web) {
+            Item_tittle.setText(web.getTittle());
+            Item_account.setText(web.getAccount());
+            Item_username.setText(web.getUsername());
+            Item_password.setText(web.getPassword());
+            Item_websites.setText(web.getWebsites());
+            Item_note.setText(web.getNote());
         }
     }
 

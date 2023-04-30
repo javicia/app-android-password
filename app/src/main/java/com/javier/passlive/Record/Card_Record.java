@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+
 import com.github.chrisbanes.photoview.PhotoView;
 import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Query;
@@ -126,15 +128,15 @@ public class Card_Record extends AppCompatActivity {
             if (cursor.moveToFirst()){
                 do{
                     @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Query.ID_CARD));
-                    @SuppressLint("Range") String title_card = "" +cursor.getString(cursor.getColumnIndex(Query.C_TITLE_CARD));
+                    @SuppressLint("Range") String title_card = "" +cursor.getString(cursor.getColumnIndex(Query.TITLE));
                     @SuppressLint("Range") String name_card = "" +cursor.getString(cursor.getColumnIndex(Query.C_USERNAME));
                     @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Query.C_NUMBER));
                     @SuppressLint("Range") String date = "" +cursor.getString(cursor.getColumnIndex(Query.C_DATE));
                     @SuppressLint("Range") String cvc = "" +cursor.getString(cursor.getColumnIndex(Query.C_CVC));
                     @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Query.C_NOTES));
                     @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Query.C_IMAGE));
-                    @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.C_RECORD_TIME));
-                    @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.C_UPDATE_TIME));
+                    @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.RECORD_TIME));
+                    @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.UPDATE_TIME));
 
                     //Convertimos tiempo a dia/mes/año
                     //Tiempo registro

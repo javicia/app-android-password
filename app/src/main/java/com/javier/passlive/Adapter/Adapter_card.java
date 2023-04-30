@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.javier.passlive.BBDD.Helper;
@@ -39,7 +40,7 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard> 
         this.context = context;
         this.cardList = cardList;
         dialog = new Dialog(context);
-        bbddHelper = new Helper(context);
+        bbddHelper = new Helper((FragmentActivity) context);
     }
 
     @NonNull
@@ -105,7 +106,7 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard> 
         return cardList.size();
     }
 
-    class HolderCard extends RecyclerView.ViewHolder {
+    static class HolderCard extends RecyclerView.ViewHolder {
 
         TextView Item_c_tittle, Item_c_account_name, Item_c_number, Item_c_date, Item_c_cvc, Item_c_note;
         ImageButton Img_C_option;
@@ -121,6 +122,18 @@ public class Adapter_card extends RecyclerView.Adapter<Adapter_card.HolderCard> 
             Item_c_note = itemView.findViewById(R.id.Item_c_note);
 
             Img_C_option = itemView.findViewById(R.id.Img_C_option);
+        }
+
+        public void bind(Card card) {
+            Item_c_tittle.setText(card.getTitle());
+            Item_c_account_name.setText(card.getUsername());
+            Item_c_number.setText(card.getNumber());
+            Item_c_date.setText(card.getDate());
+            Item_c_cvc.setText(card.getCvc());
+            Item_c_note.setText(card.getNotes());
+
+            ;
+
         }
     }
 

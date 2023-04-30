@@ -9,6 +9,9 @@
 
     //Drawer menu
     <string name="option_all">Todos los registros</string>
+    <string name="option_web">Cuentas Web</string>
+    <string name="option_bank">Cuentas Bancarias</string>
+    <string name="option_card">Tarjetas de crédito</string>
     <string name="option_setting">Ajustes</string>
     <string name="option_follow">Síguenos</string>
     <string name="option_exit">Salir</string>
@@ -138,6 +141,9 @@
     <string name="Item_c_cvc">Codigo de seguridad</string>
     <string name="Item_c_note">Nota</string>
 
+    //Item generic
+    <string name="Item_g_title">Título</string>
+    <string name="Item_g">--</string>
 
     // Dialog box
     <string name="TxtTotal">Total de registros</string>

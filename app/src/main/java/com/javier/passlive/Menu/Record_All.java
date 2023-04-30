@@ -2,8 +2,10 @@ package com.javier.passlive.Menu;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,42 +13,52 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-//import com.javier.passlive.Adapter.Adapter_bank;
-//import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_bank;
 import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
+import com.javier.passlive.Adapter.RecordAdapter;
 import com.javier.passlive.BBDD.Helper;
-//import com.javier.passlive.DAO.BankDAO;
 import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.Category.Category;
+import com.javier.passlive.Model.Bank;
+import com.javier.passlive.Model.Card;
+import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
-
 import net.sqlcipher.database.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Record_All extends Fragment {
-
-    String newOrder= Query.W_RECORD_TIME +  " DESC";
-    String sortPast= Query.W_RECORD_TIME + " ASC";
-    String orderTittleAsc = Query.W_TITTLE + " ASC";
-    String orderTittleDesc = Query.W_TITTLE + " DESC";
-    String statusOrder = orderTittleAsc;
-   Dialog dialog, dialog_order, dialog_category;
- Helper helper;
-    RecyclerView RView_record;
+    String query = "(SELECT * FROM " + Query.TABLE_ACCOUNT_WEB
+            + " INNER JOIN " + Query.TABLE_ACCOUNT_BANK + " ON "  + Query.TABLE_ACCOUNT_WEB + "." +
+            Query.W_ID + " = " + Query.TABLE_ACCOUNT_BANK + "." + Query.B_ID_BANK
+            + " INNER JOIN " + Query.TABLE_CARD + " ON " + Query.TABLE_ACCOUNT_WEB + "."
+            + Query.W_ID + " = " + Query.TABLE_CARD + "." + Query.ID_CARD + ")";
+    Dialog dialog, dialog_order, dialog_category;
+    Helper helper;
     FloatingActionButton btn_add_record;
+    RecyclerView RView_record;
+
+
+    String orderTitleAsc = Query.TITLE + " ASC";
+    String orderTittleDesc =  Query.TITLE + " DESC";
+    String newOrder =  Query.RECORD_TIME + " DESC";
+    String sortPast =   Query.RECORD_TIME + " ASC";
+    String statusOrder = orderTitleAsc;
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,8 +66,8 @@ public class Record_All extends Fragment {
         //No permite captura de pantalla
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_all, container, false);
+
+        View view = inflater.inflate(R.layout.item_record, container, false);
 
         SQLiteDatabase.loadLibs(getActivity());
 
@@ -72,7 +84,7 @@ public class Record_All extends Fragment {
 
 //Listar registros
         try {
-            loadRecord(orderTittleAsc);
+            loadRecord(orderTitleAsc);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -85,27 +97,54 @@ public class Record_All extends Fragment {
                 });
         return view;
     }
-    //Método para cargar registros
-    private void loadRecord(String orderby) throws Exception {
-            statusOrder = orderby;
-            Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
-            Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
-            Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
+/*
+  private void loadRecord(String orderby) throws Exception {
+         statusOrder = orderby;
+         List<Object> allRecords = new ArrayList<>();
 
-        ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
-            RView_record.setAdapter(concatAdapter);
+         ArrayList<Web> webRecords = helper.GetAllrecordWeb(statusOrder);
+         allRecords.addAll(webRecords);
+         ArrayList<Bank> bankRecords = helper.GetAllrecordBank(statusOrder);
+         allRecords.addAll(bankRecords);
+         ArrayList<Card> cardRecords = helper.GetAllrecordCard(statusOrder);
+         allRecords.addAll(cardRecords);
 
-    }
+      Adapter_web adapter_web = new Adapter_web(getActivity(), allRecords);
+      Adapter_bank adapter_bank = new Adapter_bank(getActivity(), allRecords);
+      Adapter_card adapter_card = new Adapter_card(getActivity(), allRecords);
+      ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, allRecords);
+
+
+         RView_record.setAdapter(concatAdapter);
+         }
+
+
+
+ */
+
+
+//Método para cargar registros
+private void loadRecord(String orderby) throws Exception {
+    statusOrder = orderby;
+    Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
+    Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
+    Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
+    ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
+    RView_record.setAdapter(concatAdapter);
+}
+
+
 
     //Buscar registro en base de datos
-        private void Record_seach(String consultation) throws Exception {
-            Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
-            Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));
-            Adapter_card adapter_card = new Adapter_card(getActivity(), helper.search_RecordsCard(consultation));
-            ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
+    private void Record_seach(String consultation) throws Exception {
+        Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
+        Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));
+        Adapter_card adapter_card = new Adapter_card(getActivity(), helper.search_RecordsCard(consultation));
+        ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
 
         RView_record.setAdapter(concatAdapter);
- }
+    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_all, menu);
@@ -204,7 +243,7 @@ public class Record_All extends Fragment {
         Button Btn_Category, Btn_New, Btn_Past, Btn_Asc, Btn_Desc;
         //Conexión hacia el diseño
         dialog_order.setContentView(R.layout.box_dialog_order_record);
-        //dialog_category.setContentView(R.layout.box_order_category);
+        dialog_category.setContentView(R.layout.box_order_category);
 
         Btn_Category = dialog_order.findViewById(R.id.Btn_Category);
         Btn_New = dialog_order.findViewById(R.id.Btn_New);
@@ -247,7 +286,7 @@ public class Record_All extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    loadRecord(orderTittleAsc);
+                    loadRecord(orderTitleAsc);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

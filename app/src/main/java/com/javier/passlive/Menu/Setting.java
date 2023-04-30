@@ -52,9 +52,8 @@ public class Setting extends Fragment {
 
     Helper bbddHelper;
 
-    String orderTitleAscWeb = Query.W_TITTLE + " ASC";
-    String orderTitleAscBank = Query.B_TITLE_BANK + " ASC";
-    String orderTitleAscCard = Query.C_TITLE_CARD + " ASC";
+    String orderTitleAsc = Query.TITLE + " ASC";
+
 
     //Guardar preferencias de usuario en un archivo con una clave y valor
     SharedPreferences sharedPreferences;
@@ -70,7 +69,7 @@ public class Setting extends Fragment {
         //No permite captura de pantalla
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         Delete_All_Record = view.findViewById(R.id.Delete_All_Record);
         Export_File = view.findViewById(R.id.Export_File);
@@ -207,9 +206,9 @@ public class Setting extends Fragment {
         String csvfileName = "PassLive.csv";
 
         //Obtenemos el registro que exportaremos
-        ArrayList<Web> recordListWeb = bbddHelper.GetAllrecordWeb(orderTitleAscWeb);
-        ArrayList<Bank> recordListBank = bbddHelper.GetAllrecordBank(orderTitleAscBank);
-        ArrayList<Card> recordListCard = bbddHelper.GetAllrecordCard(orderTitleAscCard);
+        ArrayList<Web> recordListWeb = bbddHelper.GetAllrecordWeb(orderTitleAsc);
+        ArrayList<Bank> recordListBank = bbddHelper.GetAllrecordBank(orderTitleAsc);
+        ArrayList<Card> recordListCard = bbddHelper.GetAllrecordCard(orderTitleAsc);
 
         try {
             //Escribir en el archivo
