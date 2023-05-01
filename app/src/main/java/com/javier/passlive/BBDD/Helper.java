@@ -142,6 +142,46 @@ public class Helper extends SQLiteOpenHelper {
         return count;
 
     }
+
+    public int GetRecordNumberWeb() throws Exception {
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
+        String query = "SELECT COUNT(*) FROM " + Query.TABLE_ACCOUNT_WEB;
+        Cursor cursor = db.rawQuery(query, null);
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        return count;
+    }
+
+    public int GetRecordNumberBank() throws Exception {
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
+        String query = "SELECT COUNT(*) FROM " + Query.TABLE_ACCOUNT_BANK;
+        Cursor cursor = db.rawQuery(query, null);
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        return count;
+    }
+
+    public int GetRecordNumberCard() throws Exception {
+        db = this.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
+        String query = "SELECT COUNT(*) FROM " + Query.TABLE_CARD;
+        Cursor cursor = db.rawQuery(query, null);
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        return count;
+    }
+
     //Método para obetener registros de tarjetas
     public ArrayList<Web> GetAllrecordWeb(String orderby) throws Exception {
         ArrayList<Web> webList = new ArrayList<>();

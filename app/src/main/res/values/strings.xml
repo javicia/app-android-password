@@ -146,7 +146,13 @@
     <string name="Item_g">--</string>
 
     // Dialog box
-    <string name="TxtTotal">Total de registros</string>
+    <string name="Txt_web">Registros de aplicaciones web: </string>
+    <string name="Total_web">--</string>
+    <string name="Txt_bank">Registros de cuentas bancarias: </string>
+    <string name="Total_bank">--</string>
+    <string name="Txt_card">Registros de tarjetas de crédito:</string>
+    <string name="Total_card">--</string>
+    <string name="TxtTotal">Total de registros: </string>
     <string name="Total">--</string>
     <string name="Fully_Undertood">Entendido</string>
 

@@ -263,18 +263,32 @@ public class Menu_Record_All extends Fragment {
 
     //Método para visualizar total de registros
     public void Display_total_records() throws Exception {
-        TextView Total;
+        TextView Total_web, Total_bank, Total_card, Total;
         Button BtnFully_Undertood;
 
         dialog.setContentView(R.layout.box_total_records_dialog);
+        Total_web = dialog.findViewById(R.id.Total_web);
+        Total_bank = dialog.findViewById(R.id.Total_bank);
+        Total_card = dialog.findViewById(R.id.Total_card);
         Total = dialog.findViewById(R.id.Total);
         BtnFully_Undertood = dialog.findViewById(R.id.BtnFully_Undertood);
 
-        //Obtenemos valor entero de registro
-
+        //Obtenemos valor entero de cada categoria de registro
+        int totalWeb = helper.GetRecordNumberWeb();
+        int totalBank = helper.GetRecordNumberBank();
+        int totalCard = helper.GetRecordNumberCard();
         int total = helper.GetRecordNumber();
 
         //Convertir a String el número total de registros
+
+        String total_Web = String.valueOf(totalWeb);
+        Total_web.setText(total_Web);
+
+        String total_Card = String.valueOf(totalCard);
+        Total_card.setText(total_Card);
+
+        String total_Bank = String.valueOf(totalBank);
+        Total_bank.setText(total_Bank);
 
         String total_String = String.valueOf(total);
         Total.setText(total_String);
