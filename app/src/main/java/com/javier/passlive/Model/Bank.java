@@ -18,7 +18,9 @@ public class Bank extends Record{
         this.record_time = record_time;
         this.update_time = update_time;
     }
-
+public Bank(){
+        super();
+}
     public String getId() {
         return id;
     }

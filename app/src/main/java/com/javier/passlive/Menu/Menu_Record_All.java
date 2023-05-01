@@ -68,13 +68,11 @@ public class Menu_Record_All extends Fragment {
 
 
         RView_record = view.findViewById(R.id.RView_record);
-        btn_add_record= view.findViewById(R.id.btn_add_record);
+        btn_add_record = view.findViewById(R.id.btn_add_record);
         helper = new Helper(getActivity());
         dialog = new Dialog(getActivity());
         dialog_order = new Dialog(getActivity());
         dialog_category = new Dialog(getActivity());
-
-
 
 
 //Listar registros
@@ -84,12 +82,12 @@ public class Menu_Record_All extends Fragment {
             throw new RuntimeException(e);
         }
         btn_add_record.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent= new Intent(getActivity(), Category.class);
-                        startActivity(intent);
-                    }
-                });
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Category.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -125,25 +123,6 @@ public class Menu_Record_All extends Fragment {
                     }
                 });
             }
-
-            if (orderby.equals(orderTitleAsc)) {
-                Collections.sort(allRecords, new Comparator<Object>() {
-                    public int compare(Object o1, Object o2) {
-                        String titulo1 = ((Record) o1).getTitle();
-                        String titulo2 = ((Record) o2).getTitle();
-                        return titulo1.compareTo(titulo2);
-                    }
-                });
-            }
-            if (orderby.equals(orderTitleDesc)) {
-                Collections.sort(allRecords, new Comparator<Object>() {
-                    public int compare(Object o1, Object o2) {
-                        String titulo1 = ((Record) o1).getTitle();
-                        String titulo2 = ((Record) o2).getTitle();
-                        return titulo2.compareTo(titulo1);
-                    }
-                });
-            }
         if (orderby.equals(sortPast)) {
             Collections.sort(allRecords, new Comparator<Object>() {
                 public int compare(Object o1, Object o2) {
@@ -161,7 +140,6 @@ public class Menu_Record_All extends Fragment {
                 }
             });
         }
-
         else if (orderby.equals(newOrder)) {
             Collections.sort(allRecords, new Comparator<Object>() {
                 public int compare(Object o1, Object o2) {
@@ -179,14 +157,14 @@ public class Menu_Record_All extends Fragment {
                 }
             });
         }
-
-
                         //Creamos el adaptador para cargar los registros en el recycleView
                         RecordAdapter adapter = new RecordAdapter(getActivity(), allRecords);
                         RView_record.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
                     }
 
-                    //Buscar registro en base de datos
+
+        //Buscar registro en base de datos
                     private void Record_seach(String consultation) throws Exception {
                         Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
                         Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));

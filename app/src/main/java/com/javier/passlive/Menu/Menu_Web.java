@@ -1,5 +1,6 @@
 package com.javier.passlive.Menu;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +15,19 @@ import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.R;
 
 import net.sqlcipher.database.SQLiteDatabase;
-
+/*
 public class Menu_Web extends Fragment {
     Helper helper;
     String orderTitleAsc = Query.TITLE + " ASC";
     String statusOrder = orderTitleAsc;
     RecyclerView RView_record;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.item_web, container, false);
+        View view = inflater.inflate(R.layout.menu_web, container, false);
 
         SQLiteDatabase.loadLibs(getActivity());
         RView_record = view.findViewById(R.id.RView_record);
@@ -45,6 +47,8 @@ public class Menu_Web extends Fragment {
     }
 }
 
+
+ */
 
 
 

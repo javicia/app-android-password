@@ -72,7 +72,7 @@ public class Web extends Record {
         return websites;
     }
 
-    public void setWebsites() {
+    public void setWebsites(String websites) {
         this.websites = websites;
     }
 

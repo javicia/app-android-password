@@ -5,6 +5,7 @@ public class Record implements Comparable<Record> {
     private String title;
     private String Record_time;
 
+
     public Record(String title, String Record_time) {
         this.title = title;
         this.Record_time = Record_time;

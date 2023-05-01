@@ -16,7 +16,9 @@ public class Card extends Record {
         this.record_time = record_time;
         this.update_time = update_time;
     }
-
+public Card(){
+        super();
+}
     public String getId() {
         return id;
     }

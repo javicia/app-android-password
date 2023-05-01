@@ -56,7 +56,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
             Web model_web = webList.get(position);
             String id = model_web.getId();
-            String tittle = model_web.getTitle();
+            String title = model_web.getTitle();
             String account = model_web.getAccount();
             String username = model_web.getUsername();
             String password = model_web.getPassword();
@@ -66,7 +66,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             String t_record = model_web.getT_record();
             String t_update = model_web.getT_update();
 
-            holder.Item_tittle.setText(tittle);
+            holder.Item_tittle.setText(title);
             holder.Item_account.setText(account);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
                     Option_edit_deleteWeb(
                             "" + position,
                             "" + id,
-                            "" + tittle,
+                            "" + title,
                             "" + account,
                             "" + username,
                             "" + websites,
@@ -149,7 +149,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
                 Intent intent = new Intent(context, Util_Web.class);
                 intent.putExtra("POSITION", position);
                 intent.putExtra("ID", id);
-                intent.putExtra("TITTLE", tittle);
+                intent.putExtra("TITLE", tittle);
                 intent.putExtra("ACCOUNT", account);
                 intent.putExtra("USERNAME", usename);
                 intent.putExtra("WEBSITES", websites);
