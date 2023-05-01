@@ -7,9 +7,24 @@
     <group android:checkableBehavior="single">
     <item
     android:id="@+id/Option_all"
-    android:title="@string/option_all"
+    android:title="@string/option_bank"
     android:icon="@drawable/icon_all"
     />
+        <item
+            android:id="@+id/Option_web"
+            android:title="@string/option_web"
+            android:icon="@drawable/icon_web"
+            />
+        <item
+            android:id="@+id/Option_bank"
+            android:title="@string/option_bank"
+            android:icon="@drawable/icon_bank"
+            />
+        <item
+            android:id="@+id/Option_card"
+            android:title="@string/option_card"
+            android:icon="@drawable/icon_card"
+            />
     </group>
     <group
         android:id="@+id/group1"

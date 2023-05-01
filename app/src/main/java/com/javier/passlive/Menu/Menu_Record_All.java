@@ -106,23 +106,23 @@ public class Menu_Record_All extends Fragment {
 
 
         if(orderby.equals(orderTitleAsc)) {
-                Collections.sort(allRecords, new Comparator<Object>() {
-                    public int compare(Object o1, Object o2) {
-                        String titulo1 = ((Record) o1).getTitle();
-                        String titulo2 = ((Record) o2).getTitle();
-                        return titulo1.compareTo(titulo2);
-                    }
-                });
-            }
-            if (orderby.equals(orderTitleDesc)) {
-                Collections.sort(allRecords, new Comparator<Object>() {
-                    public int compare(Object o1, Object o2) {
-                        String titulo1 = ((Record) o1).getTitle();
-                        String titulo2 = ((Record) o2).getTitle();
-                        return titulo2.compareTo(titulo1);
-                    }
-                });
-            }
+            Collections.sort(allRecords, new Comparator<Object>() {
+                public int compare(Object o1, Object o2) {
+                    String titulo1 = ((Record) o1).getTitle();
+                    String titulo2 = ((Record) o2).getTitle();
+                    return titulo1.compareTo(titulo2);
+                }
+            });
+        }
+        if (orderby.equals(orderTitleDesc)) {
+            Collections.sort(allRecords, new Comparator<Object>() {
+                public int compare(Object o1, Object o2) {
+                    String titulo1 = ((Record) o1).getTitle();
+                    String titulo2 = ((Record) o2).getTitle();
+                    return titulo2.compareTo(titulo1);
+                }
+            });
+        }
         if (orderby.equals(sortPast)) {
             Collections.sort(allRecords, new Comparator<Object>() {
                 public int compare(Object o1, Object o2) {
@@ -157,13 +157,14 @@ public class Menu_Record_All extends Fragment {
                 }
             });
         }
-                        //Creamos el adaptador para cargar los registros en el recycleView
-                        RecordAdapter adapter = new RecordAdapter(getActivity(), allRecords);
-                        RView_record.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    }
+
+        //Creamos el adaptador para cargar los registros en el recycleView
+        RecordAdapter adapter = new RecordAdapter(getActivity(), allRecords);
+        RView_record.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
 
+    }
         //Buscar registro en base de datos
                     private void Record_seach(String consultation) throws Exception {
                         Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
@@ -173,6 +174,7 @@ public class Menu_Record_All extends Fragment {
 
                         RView_record.setAdapter(concatAdapter);
                     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

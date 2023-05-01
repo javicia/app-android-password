@@ -15,7 +15,7 @@ import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.R;
 
 import net.sqlcipher.database.SQLiteDatabase;
-/*
+
 public class Menu_Web extends Fragment {
     Helper helper;
     String orderTitleAsc = Query.TITLE + " ASC";
@@ -27,28 +27,29 @@ public class Menu_Web extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.menu_web, container, false);
+        View view = inflater.inflate(R.layout.item_record, container, false);
 
         SQLiteDatabase.loadLibs(getActivity());
         RView_record = view.findViewById(R.id.RView_record);
+        helper = new Helper(getActivity());
         try {
             loadRecordWeb(orderTitleAsc);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
         return view;
     }
 
     private void loadRecordWeb(String orderby) throws Exception {
         statusOrder = orderby;
+
         Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
         RView_record.setAdapter(adapter_web);
     }
 }
 
 
- */
+
 
 
 

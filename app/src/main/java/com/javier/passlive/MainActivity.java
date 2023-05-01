@@ -15,8 +15,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.javier.passlive.Menu.Menu_Bank;
+import com.javier.passlive.Menu.Menu_Card;
 import com.javier.passlive.Menu.Menu_Social_Networks;
 import com.javier.passlive.Menu.Menu_Record_All;
+import com.javier.passlive.Menu.Menu_Web;
 import com.javier.passlive.Menu.Setting;
 import com.javier.passlive.Login.Login_user;
 
@@ -59,6 +62,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.Option_all){
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new Menu_Record_All()).commit();
+        }
+        if (id == R.id.Option_web){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new Menu_Web()).commit();
+        }
+        if (id == R.id.Option_bank){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new Menu_Bank()).commit();
+        }
+        if (id == R.id.Option_card){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new Menu_Card()).commit();
         }
         if (id == R.id.Option_setting){getSupportFragmentManager().beginTransaction().
                     replace(R.id.fragment_container, new Setting()).commit();
