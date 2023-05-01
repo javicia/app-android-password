@@ -1,6 +1,6 @@
 package com.javier.passlive.Model;
 
-public class Card {
+public class Card extends Record {
 
     String id, title, username, number, date, cvc, notes, image, record_time, update_time;
 
@@ -95,5 +95,10 @@ public class Card {
 
     public void setUpdate_time(String update_time) {
         this.update_time = update_time;
+    }
+
+    @Override
+    public int compareTo(Record other) {
+        return this.title.compareTo(other.getTitle());
     }
 }

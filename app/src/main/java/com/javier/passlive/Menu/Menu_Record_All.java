@@ -24,29 +24,34 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.javier.passlive.Adapter.Adapter_bank;
 import com.javier.passlive.Adapter.Adapter_card;
 import com.javier.passlive.Adapter.Adapter_web;
+import com.javier.passlive.Adapter.RecordAdapter;
 import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.BBDD.Query;
 import com.javier.passlive.Category.Category;
+import com.javier.passlive.Model.Bank;
+import com.javier.passlive.Model.Card;
+import com.javier.passlive.Model.Record;
+import com.javier.passlive.Model.Web;
 import com.javier.passlive.R;
 import net.sqlcipher.database.SQLiteDatabase;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
 
 public class Menu_Record_All extends Fragment {
-    String query = "(SELECT * FROM " + Query.TABLE_ACCOUNT_WEB
-            + " INNER JOIN " + Query.TABLE_ACCOUNT_BANK + " ON "  + Query.TABLE_ACCOUNT_WEB + "." +
-            Query.W_ID + " = " + Query.TABLE_ACCOUNT_BANK + "." + Query.B_ID_BANK
-            + " INNER JOIN " + Query.TABLE_CARD + " ON " + Query.TABLE_ACCOUNT_WEB + "."
-            + Query.W_ID + " = " + Query.TABLE_CARD + "." + Query.ID_CARD + ")";
+
     Dialog dialog, dialog_order, dialog_category;
     Helper helper;
     FloatingActionButton btn_add_record;
     RecyclerView RView_record;
-
-
     String orderTitleAsc = Query.TITLE + " ASC";
-    String orderTittleDesc =  Query.TITLE + " DESC";
-    String newOrder =  Query.RECORD_TIME + " DESC";
-    String sortPast =   Query.RECORD_TIME + " ASC";
+    String orderTitleDesc = Query.TITLE + " DESC";
+    String newOrder = Query.RECORD_TIME + " DESC";
+    String sortPast = Query.RECORD_TIME + " ASC";
     String statusOrder = orderTitleAsc;
 
     @SuppressLint("MissingInflatedId")
@@ -87,43 +92,82 @@ public class Menu_Record_All extends Fragment {
                 });
         return view;
     }
-/*
-  private void loadRecord(String orderby) throws Exception {
-         statusOrder = orderby;
-         List<Object> allRecords = new ArrayList<>();
 
-         ArrayList<Web> webRecords = helper.GetAllrecordWeb(statusOrder);
-         allRecords.addAll(webRecords);
-         ArrayList<Bank> bankRecords = helper.GetAllrecordBank(statusOrder);
-         allRecords.addAll(bankRecords);
-         ArrayList<Card> cardRecords = helper.GetAllrecordCard(statusOrder);
-         allRecords.addAll(cardRecords);
+    //Método para cargar registros
+    private void loadRecord(String orderby) throws Exception {
+        statusOrder = orderby;
+        ArrayList<Object> allRecords = new ArrayList<>();
 
-      Adapter_web adapter_web = new Adapter_web(getActivity(), allRecords);
-      Adapter_bank adapter_bank = new Adapter_bank(getActivity(), allRecords);
-      Adapter_card adapter_card = new Adapter_card(getActivity(), allRecords);
-      ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, allRecords);
+        // Obtener todos los registros de las tres fuentes y agregárlos al arraylist allRecords
+        ArrayList<Web> webRecords = helper.GetAllrecordWeb(orderby);
+        allRecords.addAll(webRecords);
+        ArrayList<Bank> bankRecords = helper.GetAllrecordBank(orderby);
+        allRecords.addAll(bankRecords);
+        ArrayList<Card> cardRecords = helper.GetAllrecordCard(orderby);
+        allRecords.addAll(cardRecords);
 
 
-         RView_record.setAdapter(concatAdapter);
-         }
+        if(orderby.equals(orderTitleAsc)) {
+                Collections.sort(allRecords, new Comparator<Object>() {
+                    public int compare(Object o1, Object o2) {
+                        String titulo1 = ((Record) o1).getTitle();
+                        String titulo2 = ((Record) o2).getTitle();
+                        return titulo1.compareTo(titulo2);
+                    }
+                });
+            }
+            if (orderby.equals(orderTitleDesc)) {
+                Collections.sort(allRecords, new Comparator<Object>() {
+                    public int compare(Object o1, Object o2) {
+                        String titulo1 = ((Record) o1).getTitle();
+                        String titulo2 = ((Record) o2).getTitle();
+                        return titulo2.compareTo(titulo1);
+                    }
+                });
+            }
+
+            if (orderby.equals(orderTitleAsc)) {
+                Collections.sort(allRecords, new Comparator<Object>() {
+                    public int compare(Object o1, Object o2) {
+                        String titulo1 = ((Record) o1).getTitle();
+                        String titulo2 = ((Record) o2).getTitle();
+                        return titulo1.compareTo(titulo2);
+                    }
+                });
+            }
+            if (orderby.equals(orderTitleDesc)) {
+                Collections.sort(allRecords, new Comparator<Object>() {
+                    public int compare(Object o1, Object o2) {
+                        String titulo1 = ((Record) o1).getTitle();
+                        String titulo2 = ((Record) o2).getTitle();
+                        return titulo2.compareTo(titulo1);
+                    }
+                });
+            }
+            if (orderby.equals(sortPast)) {
+                Collections.sort(allRecords, new Comparator<Object>() {
+                    public int compare(Object o1, Object o2) {
+                        String time1 = ((Record) o1).getRecord_time();
+                        String time2 = ((Record) o2).getRecord_time();
+                        return time1.compareTo(time2);
+                    }
+                });
+            }
+            if (orderby.equals(newOrder)) {
+                Collections.sort(allRecords, new Comparator<Object>() {
+                    public int compare(Object o1, Object o2) {
+                        String time1 = ((Record) o1).getRecord_time();
+                        String time2 = ((Record) o2).getRecord_time();
+                        return time2.compareTo(time1);
+                    }
+                });
+            }
 
 
-
- */
-
-
-//Método para cargar registros
-private void loadRecord(String orderby) throws Exception {
-    statusOrder = orderby;
-    Adapter_web adapter_web = new Adapter_web(getActivity(), helper.GetAllrecordWeb(orderby));
-    Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.GetAllrecordBank(orderby));
-    Adapter_card adapter_card = new Adapter_card(getActivity(), helper.GetAllrecordCard(orderby));
-    ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
-    RView_record.setAdapter(concatAdapter);
-}
-
-
+        //Creamos el adaptador para cargar los registros en el recycleView
+        RecordAdapter adapter = new RecordAdapter(getActivity(), allRecords);
+        RView_record.setAdapter(adapter);
+    }
 
     //Buscar registro en base de datos
     private void Record_seach(String consultation) throws Exception {
@@ -287,7 +331,7 @@ private void loadRecord(String orderby) throws Exception {
             @Override
             public void onClick(View v) {
                 try {
-                    loadRecord(orderTittleDesc);
+                    loadRecord(orderTitleDesc);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

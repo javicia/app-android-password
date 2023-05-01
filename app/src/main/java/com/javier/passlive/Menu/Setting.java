@@ -218,7 +218,7 @@ public class Setting extends Fragment {
 
                 fileWriter.append("" + web.getId());
                 fileWriter.append(",");
-                fileWriter.append("" + web.getTittle());
+                fileWriter.append("" + web.getTitle());
                 fileWriter.append(",");
                 fileWriter.append("" + web.getAccount());
                 fileWriter.append(",");

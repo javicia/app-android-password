@@ -1,17 +1,17 @@
 package com.javier.passlive.Model;
 //Establecemos atributos para realizar la obtención de datos en la lista
 
-public class Web {
+public class Web extends Record {
 
-    String id, tittle, account, username, password, websites, note, image, t_record, t_update;
+    String id, title, account, username, password, websites, note, image, t_record, t_update;
 
     //Constructor
 
-    public Web(String id, String tittle, String account, String username,
+    public Web(String id, String title, String account, String username,
                String password, String websites, String note,
                String image, String t_record, String t_update) {
         this.id = id;
-        this.tittle = tittle;
+        this.title = title;
         this.account = account;
         this.username = username;
         this.password = password;
@@ -23,6 +23,7 @@ public class Web {
     }
 
     public Web() {
+        super();
 
     }
     //Getters y Setters
@@ -35,12 +36,12 @@ public class Web {
         this.id = id;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String tittle) {
+        this.title = tittle;
     }
 
     public String getAccount() {
@@ -105,5 +106,10 @@ public class Web {
 
     public void setT_update(String t_update) {
         this.t_update = t_update;
+    }
+
+    @Override
+    public int compareTo(Record other) {
+        return this.title.compareTo(other.getTitle());
     }
 }

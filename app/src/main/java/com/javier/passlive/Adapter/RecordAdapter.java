@@ -22,18 +22,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private ArrayList<Object> recordList;
 
-    private Helper bbddHelper;
-    private Dialog dialog;
-
-
-
-
     public RecordAdapter(Context context, ArrayList<Object> recordList) {
         this.context = context;
         this.recordList = recordList;
-        dialog = new Dialog(context);
-        bbddHelper = new Helper(context);
-
     }
 
     @NonNull
@@ -81,7 +72,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemCount() {
-        return recordList != null ? recordList.size() : 0;
+         return recordList.size();
     }
 
     @Override

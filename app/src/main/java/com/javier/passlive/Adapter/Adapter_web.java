@@ -56,7 +56,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
             Web model_web = webList.get(position);
             String id = model_web.getId();
-            String tittle = model_web.getTittle();
+            String tittle = model_web.getTitle();
             String account = model_web.getAccount();
             String username = model_web.getUsername();
             String password = model_web.getPassword();
@@ -124,7 +124,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
         }
 
         public void bind(Web web) {
-            Item_tittle.setText(web.getTittle());
+            Item_tittle.setText(web.getTitle());
             Item_account.setText(web.getAccount());
             Item_username.setText(web.getUsername());
             Item_password.setText(web.getPassword());
