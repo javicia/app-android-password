@@ -144,40 +144,57 @@ public class Menu_Record_All extends Fragment {
                     }
                 });
             }
-            if (orderby.equals(sortPast)) {
-                Collections.sort(allRecords, new Comparator<Object>() {
-                    public int compare(Object o1, Object o2) {
-                        String time1 = ((Record) o1).getRecord_time();
-                        String time2 = ((Record) o2).getRecord_time();
+        if (orderby.equals(sortPast)) {
+            Collections.sort(allRecords, new Comparator<Object>() {
+                public int compare(Object o1, Object o2) {
+                    String time1 = ((Record) o1).getRecord_time();
+                    String time2 = ((Record) o2).getRecord_time();
+                    if (time1 == null && time2 == null) {
+                        return 0;
+                    } else if (time1 == null) {
+                        return -1;
+                    } else if (time2 == null) {
+                        return 1;
+                    } else {
                         return time1.compareTo(time2);
                     }
-                });
-            }
-            if (orderby.equals(newOrder)) {
-                Collections.sort(allRecords, new Comparator<Object>() {
-                    public int compare(Object o1, Object o2) {
-                        String time1 = ((Record) o1).getRecord_time();
-                        String time2 = ((Record) o2).getRecord_time();
+                }
+            });
+        }
+
+        else if (orderby.equals(newOrder)) {
+            Collections.sort(allRecords, new Comparator<Object>() {
+                public int compare(Object o1, Object o2) {
+                    String time1 = ((Record) o1).getRecord_time();
+                    String time2 = ((Record) o2).getRecord_time();
+                    if (time1 == null && time2 == null) {
+                        return 0;
+                    } else if (time1 == null) {
+                        return -1;
+                    } else if (time2 == null) {
+                        return 1;
+                    } else {
                         return time2.compareTo(time1);
                     }
-                });
-            }
+                }
+            });
+        }
 
 
-        //Creamos el adaptador para cargar los registros en el recycleView
-        RecordAdapter adapter = new RecordAdapter(getActivity(), allRecords);
-        RView_record.setAdapter(adapter);
-    }
+                        //Creamos el adaptador para cargar los registros en el recycleView
+                        RecordAdapter adapter = new RecordAdapter(getActivity(), allRecords);
+                        RView_record.setAdapter(adapter);
+                    }
 
-    //Buscar registro en base de datos
-    private void Record_seach(String consultation) throws Exception {
-        Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
-        Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));
-        Adapter_card adapter_card = new Adapter_card(getActivity(), helper.search_RecordsCard(consultation));
-        ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
+                    //Buscar registro en base de datos
+                    private void Record_seach(String consultation) throws Exception {
+                        Adapter_web adapter_web = new Adapter_web(getActivity(), helper.search_RecordsWeb(consultation));
+                        Adapter_bank adapter_bank = new Adapter_bank(getActivity(), helper.search_RecordsBank(consultation));
+                        Adapter_card adapter_card = new Adapter_card(getActivity(), helper.search_RecordsCard(consultation));
+                        ConcatAdapter concatAdapter = new ConcatAdapter(adapter_web, adapter_bank, adapter_card);
 
-        RView_record.setAdapter(concatAdapter);
-    }
+                        RView_record.setAdapter(concatAdapter);
+                    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

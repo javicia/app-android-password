@@ -107,8 +107,13 @@ public class Bank extends Record{
         this.update_time = update_time;
     }
 
-  @Override
+    @Override
     public int compareTo(Record other) {
-        return this.title.compareTo(other.getTitle());
+        int titleCompare = this.title.compareTo(other.getTitle());
+        if (titleCompare == 0) {
+            return this.getRecord_time().compareTo(other.getRecord_time());
+        } else {
+            return titleCompare;
+        }
     }
 }

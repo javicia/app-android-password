@@ -110,6 +110,11 @@ public class Web extends Record {
 
     @Override
     public int compareTo(Record other) {
-        return this.title.compareTo(other.getTitle());
+        int titleCompare = this.title.compareTo(other.getTitle());
+        if (titleCompare == 0) {
+            return this.getRecord_time().compareTo(other.getRecord_time());
+        } else {
+            return titleCompare;
+        }
     }
 }

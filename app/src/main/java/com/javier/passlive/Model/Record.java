@@ -25,7 +25,12 @@ public class Record implements Comparable<Record> {
     // Sobrescribir compareTo() para ordenar por título
     @Override
     public int compareTo(Record other) {
-        return this.title.compareTo(other.title);
+        int titleCompare = this.title.compareTo(other.title);
+        if (titleCompare == 0) {
+            return this.Record_time.compareTo(other.Record_time);
+        } else {
+            return titleCompare;
+        }
     }
 
 }
