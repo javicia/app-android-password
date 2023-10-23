@@ -65,7 +65,7 @@
             //Datos
             <TextView
                 android:id="@+id/B_Bank"
-                android:text="@string/D_Account"
+                android:text="@string/B_Bank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -80,8 +80,8 @@
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-        //Titular
 
+        //Titular
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,14 +98,14 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            //Datos
-            <TextView
-                android:id="@+id/B_Account_Name"
-                android:text="@string/D_Username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"
-                android:textSize="15sp"/>
+                //Datos
+                <TextView
+                    android:id="@+id/B_Account_Name"
+                    android:text="@string/B_Account_Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="italic"
+                    android:textSize="15sp"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/Img_copy_account_bank"
@@ -116,6 +116,7 @@
                     android:background="@null"
                     android:src="@drawable/icon_copy"
                     android:clickable="true"
+                    android:onClick="copyTextAccountName"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"/>
             </RelativeLayout>
@@ -139,30 +140,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            // Texto
-            <TextView
-                android:text="@string/Txt_B_Number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:passwordToggleEnabled="true">
-
-                //Datos
-                <EditText
-                    android:id="@+id/B_Number"
-                    android:text="@string/D_Password"
+                // Texto
+                <TextView
+                    android:text="@string/Txt_B_Number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textSize="18sp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:passwordToggleEnabled="true">
+
+                    //Datos
+                    <EditText
+                        android:id="@+id/B_Number"
+                        android:hint="ES"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/Img_copy_number_bank"
@@ -173,6 +174,7 @@
                     android:background="@null"
                     android:src="@drawable/icon_copy"
                     android:clickable="true"
+                    android:onClick="copyTextNumber"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"/>
             </RelativeLayout>
@@ -210,7 +212,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="italic"
-                    android:text="@string/D_Websites"
+                    android:hint="www."
                     android:textSize="15sp"
                     android:layout_toStartOf="@id/Img_bank"/>
 
@@ -256,7 +258,7 @@
             //Datos
             <TextView
                 android:id="@+id/B_Note"
-                android:text="@string/D_Note"
+                android:text="@string/B_Note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -332,6 +334,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
             android:background="@color/black"/>
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/B_image"
             android:src="@drawable/logo_image"

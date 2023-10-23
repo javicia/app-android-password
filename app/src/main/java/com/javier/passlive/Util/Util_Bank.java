@@ -5,11 +5,9 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,8 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -29,9 +25,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
-//import com.javier.passlive.DAO.BankDAO;
-import com.javier.passlive.DAO.BankDAO;
+import com.javier.passlive.BBDD.Helper;
+
+
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -44,7 +40,7 @@ public class Util_Bank extends AppCompatActivity {
 
     private boolean EDITION_MODE= false;
 
-    private BBDD_Helper BDHelper;
+    private Helper BDHelper;
 
     Uri imageUri = null;
 
@@ -90,7 +86,7 @@ public class Util_Bank extends AppCompatActivity {
         Btn_B_Image = findViewById(R.id.Btn_B_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
-        BDHelper = new BBDD_Helper(this);
+        BDHelper = new Helper(this);
 
     }
     //Método para obtener información desde el adaptador
@@ -143,8 +139,8 @@ public class Util_Bank extends AppCompatActivity {
             // Si es falso se agrega un registro
         }
     }
-    //Método para guardar password
-    private void Add_Update_Record_Bank(){
+    //Método para guardar la actualización del registro
+    private void Add_Update_Record_Bank() throws Exception {
 //Obtener datos de entrada
         title= Et_B_Title.getText().toString().trim();
         bank_name=Et_B_Bank_name.getText().toString().trim();
@@ -208,10 +204,15 @@ public class Util_Bank extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save_password){
-            Add_Update_Record_Bank();
+            try {
+                Add_Update_Record_Bank();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
+    //Método para realizar fotografías
     private void takePhoto() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             // Pedir permiso al usuario para acceder a la cámara

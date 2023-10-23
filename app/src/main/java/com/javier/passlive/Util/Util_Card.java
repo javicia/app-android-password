@@ -25,7 +25,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.R;
 
@@ -37,7 +37,7 @@ public class Util_Card extends AppCompatActivity{
 
     private boolean EDITION_MODE= false;
 
-    private BBDD_Helper BDHelper;
+    private Helper BDHelper;
 
     Uri imageUri = null;
 
@@ -85,7 +85,7 @@ public class Util_Card extends AppCompatActivity{
         Btn_C_Image = findViewById(R.id.Btn_C_Image);
 
         ImageView_delete = findViewById(R.id.ImageView_delete);
-        BDHelper = new BBDD_Helper(this);
+        BDHelper = new Helper(this);
 
     }
     //Método para obtener información desde el adaptador
@@ -138,7 +138,7 @@ public class Util_Card extends AppCompatActivity{
         }
     }
     //Método para guardar password
-    private void Add_Update_Record_Card(){
+    private void Add_Update_Record_Card() throws Exception {
 //Obtener datos de entrada
         title = Et_C_Title.getText().toString().trim();
         name = Et_C_Name.getText().toString().trim();
@@ -205,7 +205,11 @@ public class Util_Card extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save_password){
-            Add_Update_Record_Card();
+            try {
+                Add_Update_Record_Card();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

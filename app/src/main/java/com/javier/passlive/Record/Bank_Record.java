@@ -2,35 +2,53 @@ package com.javier.passlive.Record;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.database.sqlite.SQLiteDatabase;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+
 import android.graphics.Color;
 import android.net.Uri;
 import android.text.InputType;
-import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.BBDD.Constans;
+
+import com.github.chrisbanes.photoview.PhotoView;
+import com.javier.passlive.BBDD.Helper;
+import com.javier.passlive.BBDD.Query;
+import com.javier.passlive.BBDD.SQLKeyGenerator;
 import com.javier.passlive.R;
+
+import net.sqlcipher.database.SQLiteDatabase;
+
 import java.util.Calendar;
 import java.util.Locale;
 
 public class Bank_Record extends AppCompatActivity {
-
+    private static Helper instance;
+    static public synchronized Helper getInstance(Context context){
+        if (instance == null)
+            instance = new Helper(context);
+        return instance;
+    }
     TextView B_Title, B_Bank, B_Account_Name, B_Websites,B_Note, B_RecordTime, B_UpdateTime;
     String id_record;
-    BBDD_Helper helper;
+    Helper helper;
     ImageView B_Image;
+    ImageView Img_copy_account_bank, Img_copy_number_bank;
     ImageButton Img_bank;
     Dialog dialog;
     EditText B_Number;
@@ -48,10 +66,14 @@ public class Bank_Record extends AppCompatActivity {
         Intent intent = getIntent();
         id_record = intent.getStringExtra("Id_registro");
         Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-        helper = new BBDD_Helper(this);
+        helper = new Helper(this);
 
         Initialize_variables();
-        Registration_info();
+        try {
+            Registration_info();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         //Visualizar el título de un registro
         String title_record = B_Title.getText().toString();
@@ -64,7 +86,11 @@ public class Bank_Record extends AppCompatActivity {
      B_Image.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-
+             try {
+                 Dialog_Visualize();
+             } catch (Exception e) {
+                 throw new RuntimeException(e);
+             }
          }
      });
 
@@ -81,8 +107,21 @@ public class Bank_Record extends AppCompatActivity {
             }
         }
     });
+        Img_copy_account_bank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextAccountName(v);
+            }
+        });
+
+        Img_copy_number_bank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyTextNumber(v);
+            }
+        });
     }
-        private void Initialize_variables(){
+    private void Initialize_variables(){
             B_Title = findViewById(R.id.B_Title);
             B_Bank = findViewById(R.id.B_Bank);
             B_Account_Name = findViewById(R.id.B_Account_Name);
@@ -95,27 +134,66 @@ public class Bank_Record extends AppCompatActivity {
 
             dialog= new Dialog(this);
             Img_bank = findViewById(R.id.Img_bank);
+            Img_copy_account_bank = findViewById(R.id.Img_copy_account_bank);
+            Img_copy_number_bank = findViewById(R.id.Img_copy_number_bank);
+
         }
-    private void Registration_info(){
-        String query ="SELECT * FROM " + Constans.TABLE_ACCOUNT_BANK + " WHERE " + Constans.B_ID_BANK + " =\"" +
+    //Método para visualizar registros en el RecycleView
+    private void Dialog_Visualize() throws Exception {
+        PhotoView Visualize_image;
+        Button Btn_close_image;
+        dialog.setContentView(R.layout.box_dialog_image_visualize);
+        Visualize_image = dialog.findViewById(R.id.Visualize_image);
+        Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
+        String query ="SELECT * FROM " + Query.TABLE_ACCOUNT_BANK + " WHERE " + Query.B_ID_BANK + " =\"" + id_record+ "\"";
+
+        SQLiteDatabase db = helper.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
+        Cursor cursor = db.rawQuery(query,null);
+
+        //Buscar en la BBDD el registro seleccionado
+        if (cursor.moveToFirst()){
+            do{
+                @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Query.W_IMAGE));
+
+                if(image.equals("null")){
+                    Visualize_image.setImageResource(R.drawable.logo_image);
+                }else {
+                    Visualize_image.setImageURI(Uri.parse(image));
+                }
+            }while (cursor.moveToNext());
+        }
+        db.close();
+
+        Btn_close_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.setCancelable(false);
+    }
+    //Método para visualizar registros en el RecycleView
+    private void Registration_info() throws Exception {
+        String query ="SELECT * FROM " + Query.TABLE_ACCOUNT_BANK + " WHERE " + Query.B_ID_BANK + " =\"" +
                 id_record + "\"";
 
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
         Cursor cursor = db.rawQuery(query, null);
 
 //Buscar en la BBDD el registro seleccionado
         if (cursor.moveToFirst()){
             do{
-                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.B_ID_BANK));
-                @SuppressLint("Range") String title_bank = "" +cursor.getString(cursor.getColumnIndex(Constans.B_TITLE_BANK));
-                @SuppressLint("Range") String name_bank = "" +cursor.getString(cursor.getColumnIndex(Constans.B_BANK));
-                @SuppressLint("Range") String account_name = "" +cursor.getString(cursor.getColumnIndex(Constans.B_ACCOUNT_BANK));
-                @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Constans.B_NUMBER));
-                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Constans.B_WEBSITES));
-                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.B_NOTES));
-                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.B_IMAGE));
-                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.B_RECORD_TIME));
-                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.B_UPDATE_TIME));
+                @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Query.B_ID_BANK));
+                @SuppressLint("Range") String title_bank = "" +cursor.getString(cursor.getColumnIndex(Query.TITLE));
+                @SuppressLint("Range") String name_bank = "" +cursor.getString(cursor.getColumnIndex(Query.B_BANK));
+                @SuppressLint("Range") String account_name = "" +cursor.getString(cursor.getColumnIndex(Query.B_ACCOUNT_BANK));
+                @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Query.B_NUMBER));
+                @SuppressLint("Range") String websites = "" +cursor.getString(cursor.getColumnIndex(Query.B_WEBSITES));
+                @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Query.B_NOTES));
+                @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Query.B_IMAGE));
+                @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.RECORD_TIME));
+                @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.UPDATE_TIME));
 
                 //Convertimos tiempo a dia/mes/año
                 //Tiempo registro
@@ -152,6 +230,28 @@ public class Bank_Record extends AppCompatActivity {
             }while (cursor.moveToNext());
         }
         db.close();
+    }
+    //Método para copiar el textView del Nombre de Usuario
+    public void copyTextAccountName(View view) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //Copiar el texto en el portapapeles;
+        ClipData clipData = ClipData.newPlainText("text", B_Account_Name.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        // Pegar el texto del portapapeles
+        ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+        String clipboardText = item.getText().toString();
+    }
+    //Método para copiar el número de cuenta bancaria
+    private void copyTextNumber(View v) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //Copiar el texto en el portapapeles
+        ClipData clipData = ClipData.newPlainText("text", B_Number.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+        // Pegar el texto del portapapeles
+        ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+        String clipboardText = item.getText().toString();
     }
 
     //Método para abrir página web

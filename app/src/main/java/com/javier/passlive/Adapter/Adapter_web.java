@@ -15,8 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.DAO.WebDAO;
+import com.javier.passlive.BBDD.Helper;
+
 import com.javier.passlive.Record.Web_Record;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Web;
@@ -24,7 +24,6 @@ import com.javier.passlive.Util.Util_Web;
 import com.javier.passlive.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
@@ -32,7 +31,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
     private Context context;
     private ArrayList<Web> webList;
 
-    BBDD_Helper bbddHelper;
+    Helper bbddHelper;
 
     Dialog dialog;
 
@@ -41,7 +40,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
         this.context = context;
         this.webList = webList;
         dialog = new Dialog(context);
-        bbddHelper = new BBDD_Helper(context);
+        bbddHelper = new Helper(context);
     }
 
     @NonNull
@@ -54,10 +53,10 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
 
     @Override
     public void onBindViewHolder(@NonNull HolderWeb holder, @SuppressLint("Recyclerview") int position) {
-        //if (webList.get(position) instanceof Web) {
+
             Web model_web = webList.get(position);
             String id = model_web.getId();
-            String tittle = model_web.getTittle();
+            String title = model_web.getTitle();
             String account = model_web.getAccount();
             String username = model_web.getUsername();
             String password = model_web.getPassword();
@@ -67,7 +66,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             String t_record = model_web.getT_record();
             String t_update = model_web.getT_update();
 
-            holder.Item_tittle.setText(tittle);
+            holder.Item_tittle.setText(title);
             holder.Item_account.setText(account);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +86,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
                     Option_edit_deleteWeb(
                             "" + position,
                             "" + id,
-                            "" + tittle,
+                            "" + title,
                             "" + account,
                             "" + username,
                             "" + websites,
@@ -107,7 +106,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             //Devuelve el tamaño de la lista
             return webList.size();
         }
-    class HolderWeb extends RecyclerView.ViewHolder{
+    static class HolderWeb extends RecyclerView.ViewHolder{
 
         TextView Item_tittle,Item_account,Item_username,Item_password, Item_websites,Item_note;
         ImageButton ImgB_option;
@@ -122,6 +121,15 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             Item_note = itemView.findViewById(R.id.Item_note);
 
             ImgB_option = itemView.findViewById(R.id.ImgB_option);
+        }
+
+        public void bind(Web web) {
+            Item_tittle.setText(web.getTitle());
+            Item_account.setText(web.getAccount());
+            Item_username.setText(web.getUsername());
+            Item_password.setText(web.getPassword());
+            Item_websites.setText(web.getWebsites());
+            Item_note.setText(web.getNote());
         }
     }
 
@@ -141,7 +149,7 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
                 Intent intent = new Intent(context, Util_Web.class);
                 intent.putExtra("POSITION", position);
                 intent.putExtra("ID", id);
-                intent.putExtra("TITTLE", tittle);
+                intent.putExtra("TITLE", tittle);
                 intent.putExtra("ACCOUNT", account);
                 intent.putExtra("USERNAME", usename);
                 intent.putExtra("WEBSITES", websites);
@@ -157,7 +165,11 @@ public class Adapter_web extends RecyclerView.Adapter<Adapter_web.HolderWeb>{
             Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   bbddHelper.deleteRecordWeb(id);
+                    try {
+                        bbddHelper.deleteRecordWeb(id);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     Intent intent = new Intent(context, MainActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

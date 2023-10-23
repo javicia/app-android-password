@@ -1,37 +1,48 @@
 package com.javier.passlive.Record;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
-import com.javier.passlive.BBDD.Constans;
+import com.github.chrisbanes.photoview.PhotoView;
+import com.javier.passlive.BBDD.Helper;
+import com.javier.passlive.BBDD.Query;
+import com.javier.passlive.BBDD.SQLKeyGenerator;
 import com.javier.passlive.R;
-
+import net.sqlcipher.database.SQLiteDatabase;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class Card_Record extends AppCompatActivity {
-
+    private static Helper instance;
+    static public synchronized Helper getInstance(Context context){
+        if (instance == null)
+            instance = new Helper(context);
+        return instance;
+    }
     TextView C_Title, C_Name, C_Date, C_Note, C_RecordTime, C_UpdateTime;
     String id_record;
-    BBDD_Helper helper;
+    Helper helper;
     ImageView C_Image;
+    ImageView Img_copy_number_card, Img_copy_number_cvc;
     Dialog dialog;
     EditText C_Number,C_CVC ;
 
@@ -47,18 +58,48 @@ public class Card_Record extends AppCompatActivity {
             Intent intent = getIntent();
             id_record = intent.getStringExtra("Id_registro");
             Toast.makeText(this, "Id del registro " + id_record, Toast.LENGTH_SHORT).show();
-            helper = new BBDD_Helper(this);
+            helper = new Helper(this);
 
             Initialize_variables();
+        try {
             Registration_info();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-            //Visualizar el título de un registro
+        //Visualizar el título de un registro
             String title_record = C_Title.getText().toString();
             assert actionBar != null;
             actionBar.setTitle(title_record);
             //Creamos la fecha de retroceso dentro del action Bar
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
+            C_Image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Dialog_Visualize();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+        Img_copy_number_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                copyTextNumber(v);
+            }
+        });
+
+        Img_copy_number_cvc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                copyTextCVC(v);
+            }
+        });
         }
         private void Initialize_variables(){
             C_Title = findViewById(R.id.C_Title);
@@ -72,27 +113,30 @@ public class Card_Record extends AppCompatActivity {
             C_Image = findViewById(R.id.C_image);
 
             dialog= new Dialog(this);
+            Img_copy_number_card = findViewById(R.id.Img_copy_number_card);
+            Img_copy_number_cvc = findViewById(R.id.Img_copy_number_cvc);
         }
-        private void Registration_info(){
-            String query ="SELECT * FROM " + Constans.TABLE_CARD+ " WHERE " + Constans.ID_CARD + " =\"" +
+        //Método para visualizar registros en el Recycleview
+        private void Registration_info() throws Exception {
+            String query ="SELECT * FROM " + Query.TABLE_CARD+ " WHERE " + Query.ID_CARD + " =\"" +
                     id_record + "\"";
 
-            SQLiteDatabase db = helper.getWritableDatabase();
+            SQLiteDatabase db = helper.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
             Cursor cursor = db.rawQuery(query, null);
 
-//Buscar en la BBDD el registro seleccionado
+            //Buscar en la BBDD el registro seleccionado
             if (cursor.moveToFirst()){
                 do{
-                    @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Constans.ID_CARD));
-                    @SuppressLint("Range") String title_card = "" +cursor.getString(cursor.getColumnIndex(Constans.C_TITLE_CARD));
-                    @SuppressLint("Range") String name_card = "" +cursor.getString(cursor.getColumnIndex(Constans.C_USERNAME));
-                    @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Constans.C_NUMBER));
-                    @SuppressLint("Range") String date = "" +cursor.getString(cursor.getColumnIndex(Constans.C_DATE));
-                    @SuppressLint("Range") String cvc = "" +cursor.getString(cursor.getColumnIndex(Constans.C_CVC));
-                    @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Constans.C_NOTES));
-                    @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Constans.C_IMAGE));
-                    @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_RECORD_TIME));
-                    @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Constans.C_UPDATE_TIME));
+                    @SuppressLint("Range") String id = "" +cursor.getInt(cursor.getColumnIndex(Query.ID_CARD));
+                    @SuppressLint("Range") String title_card = "" +cursor.getString(cursor.getColumnIndex(Query.TITLE));
+                    @SuppressLint("Range") String name_card = "" +cursor.getString(cursor.getColumnIndex(Query.C_USERNAME));
+                    @SuppressLint("Range") String number = "" +cursor.getString(cursor.getColumnIndex(Query.C_NUMBER));
+                    @SuppressLint("Range") String date = "" +cursor.getString(cursor.getColumnIndex(Query.C_DATE));
+                    @SuppressLint("Range") String cvc = "" +cursor.getString(cursor.getColumnIndex(Query.C_CVC));
+                    @SuppressLint("Range") String note = "" +cursor.getString(cursor.getColumnIndex(Query.C_NOTES));
+                    @SuppressLint("Range") String image = "" +cursor.getString(cursor.getColumnIndex(Query.C_IMAGE));
+                    @SuppressLint("Range") String recordTime = "" + cursor.getString(cursor.getColumnIndex(Query.RECORD_TIME));
+                    @SuppressLint("Range") String updateTime = "" + cursor.getString(cursor.getColumnIndex(Query.UPDATE_TIME));
 
                     //Convertimos tiempo a dia/mes/año
                     //Tiempo registro
@@ -105,14 +149,6 @@ public class Card_Record extends AppCompatActivity {
                     calendar_updateTime.setTimeInMillis(Long.parseLong(updateTime));
                     String update_time = "" + DateFormat.format("dd/MM/yyyy hh:mm:aa", calendar_updateTime);
 
-                    //Fecha de caducidad tarjeta
-                   /* Calendar calendar_date = Calendar.getInstance(Locale.getDefault());
-                    calendar_date.setTimeInMillis(Long.parseLong(date));
-                    int month = calendar_date.get(Calendar.MONTH) + 1; // Sumar 1 porque Calendar.MONTH comienza en 0
-                    int year = calendar_date.get(Calendar.YEAR);
-                    String expiration_date = String.format("%02d/%04d", month, year);
-
-                    */
 
                     //Setear información en las vistas
 
@@ -140,6 +176,64 @@ public class Card_Record extends AppCompatActivity {
             }
             db.close();
         }
+        //Método para visualizar imagen
+        private void Dialog_Visualize() throws Exception {
+        PhotoView Visualize_image;
+        Button Btn_close_image;
+        dialog.setContentView(R.layout.box_dialog_image_visualize);
+        Visualize_image = dialog.findViewById(R.id.Visualize_image);
+        Btn_close_image = dialog.findViewById(R.id.Btn_close_image);
+        String query ="SELECT * FROM " + Query.TABLE_CARD + " WHERE " + Query.ID_CARD + " =\"" + id_record+ "\"";
+
+        SQLiteDatabase db = helper.getWritableDatabase(SQLKeyGenerator.getSecretKey().getEncoded());
+        Cursor cursor = db.rawQuery(query,null);
+
+        //Buscar en la BBDD el registro seleccionado
+        if (cursor.moveToFirst()){
+            do{
+                @SuppressLint("Range") String image = "" + cursor.getString(cursor.getColumnIndex(Query.W_IMAGE));
+
+                if(image.equals("null")){
+                    Visualize_image.setImageResource(R.drawable.logo_image);
+                }else {
+                    Visualize_image.setImageURI(Uri.parse(image));
+                }
+            }while (cursor.moveToNext());
+        }
+        db.close();
+
+        Btn_close_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.setCancelable(false);
+    }
+
+        //Método para copiar el número de tarjeta
+         public void copyTextNumber(View view) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+             //Copiar el texto en el portapapeles
+        ClipData clipData = ClipData.newPlainText("text", C_Number.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+             // Pegar el texto del portapapeles
+             ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+             String clipboardText = item.getText().toString();
+    }
+        //Método para copiar código de seguridad
+        public void copyTextCVC(View view) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        //Copiar el texto en el portapapeles
+        ClipData clipData = ClipData.newPlainText("text", C_CVC.getText().toString());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, "Texto copiado al portapapeles", Toast.LENGTH_SHORT).show();
+            // Pegar el texto del portapapeles
+            ClipData.Item item = clipboardManager.getPrimaryClip().getItemAt(0);
+            String clipboardText = item.getText().toString();
+    }
         @Override
         public boolean onSupportNavigateUp() {
             //cuando presionamos la fecha de retroceso nos mandará a la actividad anterior

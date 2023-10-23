@@ -13,9 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.javier.passlive.BBDD.BBDD_Helper;
+import com.javier.passlive.BBDD.Helper;
 import com.javier.passlive.MainActivity;
 import com.javier.passlive.Model.Bank;
 import com.javier.passlive.R;
@@ -23,12 +24,11 @@ import com.javier.passlive.Record.Bank_Record;
 import com.javier.passlive.Util.Util_Bank;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
     private Context context;
     private ArrayList<Bank> bankList;
-    BBDD_Helper bbddHelper;
+    Helper bbddHelper;
     Dialog dialog;
 
 
@@ -36,7 +36,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
        this.context = context;
        this.bankList = bankList;
        dialog = new Dialog(context);
-       bbddHelper = new BBDD_Helper(context);
+       bbddHelper = new Helper((FragmentActivity) context);
 
    }
 
@@ -104,7 +104,7 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
         return bankList.size();
     }
 
-    class HolderBank extends RecyclerView.ViewHolder{
+    static class HolderBank extends RecyclerView.ViewHolder{
 
        TextView Item_b_tittle, Item_b_bank, Item_b_account_name, Item_b_number, Item_b_websites,Item_b_note;
         ImageButton Img_B_option;
@@ -119,6 +119,16 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
             Item_b_note = itemView.findViewById(R.id.Item_b_note);
 
             Img_B_option = itemView.findViewById(R.id.Img_B_option);
+        }
+
+        public void bind(Bank bank) {
+            Item_b_tittle.setText(bank.getTitle());
+            Item_b_bank.setText(bank.getBank());
+            Item_b_account_name.setText(bank.getAccount_bank());
+            Item_b_number.setText(bank.getNumber());
+            Item_b_websites.setText(bank.getWebsites());
+            Item_b_note.setText(bank.getNotes());
+
         }
     }
     private void Option_edit_deleteBank(String position, String id, String title, String bank ,
@@ -153,7 +163,11 @@ public class Adapter_bank extends RecyclerView.Adapter<Adapter_bank.HolderBank>{
         Btn_edit_delete_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bbddHelper.deleteRecordBank(id);
+                try {
+                    bbddHelper.deleteRecordBank(id);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 Intent intent = new Intent(context, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

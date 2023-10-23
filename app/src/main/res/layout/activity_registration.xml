@@ -10,21 +10,30 @@
     android:padding="12dp"
     tools:context=".UserRegistration.Registration"
     tools:ignore="ExtraText">
-    <ImageView
-        android:src="@drawable/logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:id="@+id/Txt_Message"
-        android:text="@string/Txt_Message"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:textStyle="italic"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/logo"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_marginTop="12dp">
+
+        <EditText
+            android:id="@+id/Et_Email"
+            android:hint="@string/Et_Email"
+            android:singleLine="true"
+            android:textStyle="italic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
     // User Password
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -35,6 +44,8 @@
         <EditText
             android:id="@+id/Et_UserPassword"
             android:hint="@string/Et_UserPassword"
+            android:maxLength="20"
+            android:singleLine="true"
             android:textStyle="italic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +63,8 @@
             android:id="@+id/Et_ConfirmPassword"
             android:hint="@string/Et_ConfirmPassword"
             android:textStyle="italic"
+            android:maxLength="20"
+            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

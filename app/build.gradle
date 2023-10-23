@@ -22,8 +22,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_16
+        targetCompatibility JavaVersion.VERSION_16
     }
     buildFeatures {
         viewBinding true
@@ -44,41 +44,24 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //Animation gif
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
-    implementation 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.airbnb.android:lottie:4.2.1'
+    
     //PhotoView
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
     //Material
     implementation 'com.google.android.material:material:1.8.0'
     //Import csv
     implementation 'com.opencsv:opencsv:4.6'
+
     //Biometric
     implementation 'androidx.biometric:biometric:1.1.0'
     implementation "androidx.biometric:biometric-ktx:1.2.0-alpha05"
-    //Koin
-    /*implementation 'org.koin:koin-android:2.1.5'
-    implementation 'org.koin:koin-androidx-scope:2.1.5'
-    implementation "org.koin:koin-androidx-viewmodel:2.1.5"
-    implementation 'io.insert-koin:koin-android:3.1.2'
-    implementation 'io.insert-koin:koin-androidx-viewmodel:3.1.2'
-    //Room
-    implementation "androidx.room:room-runtime:2.5.1"
-    //annotationProcessor "androidx.room:room-compiler:2.5.1"
-    implementation "androidx.room:room-runtime:2.5.1"
-    implementation "androidx.room:room-ktx:2.5.1"
-    implementation "io.insert-koin:koin-androidx-viewmodel:2.2.3"
-    //kapt "androidx.room:room-runtime:2.5.1"
-    implementation "androidx.room:room-rxjava3:2.5.1"
+
     // SQLCipher
     implementation "net.zetetic:android-database-sqlcipher:4.5.3"
     implementation "androidx.sqlite:sqlite-ktx:2.3.1"
 
-
-
-     */
-
 }
 
 apply plugin: 'com.android.application'
-//apply plugin: 'com.google.gms.google-services'

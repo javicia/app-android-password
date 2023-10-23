@@ -9,8 +9,11 @@
 
     //Drawer menu
     <string name="option_all">Todos los registros</string>
+    <string name="option_web">Cuentas Web</string>
+    <string name="option_bank">Cuentas Bancarias</string>
+    <string name="option_card">Tarjetas de crédito</string>
     <string name="option_setting">Ajustes</string>
-    <string name="option_about">Acerca De</string>
+    <string name="option_follow">Síguenos</string>
     <string name="option_exit">Salir</string>
 
     //Drawer layout
@@ -41,7 +44,7 @@
     <string name="Txt_D_Password">Contraseña: </string>
     <string name="D_Password">--</string>
     <string name="Txt_D_Websites">Sitio web: </string>
-    <string name="D_Websites">--</string>
+    <string name="D_Websites"></string>
     <string name="Txt_D_Note">Notas: </string>
     <string name="D_Note">--</string>
     <string name="Txt_D_RecordTime">Tiempo de registro: </string>
@@ -57,9 +60,9 @@
     <string name="Txt_B_Account_Name">Titular de la cuenta:  </string>
     <string name="B_Account_Name">--</string>
     <string name="Txt_B_Number">Número de cuenta bancaria:  </string>
-    <string name="B_Number">--</string>
+    <string name="B_Number"></string>
     <string name="Txt_B_Websites">Sitio web: </string>
-    <string name="B_Websites">--</string>
+    <string name="B_Websites"></string>
     <string name="Txt_B_Note">Notas: </string>
     <string name="B_Note">--</string>
     <string name="Txt_B_RecordTime">Tiempo de registro: </string>
@@ -75,11 +78,9 @@
     <string name="Txt_C_Number">Número de tarjeta:  </string>
     <string name="C_Number">--</string>
     <string name="Txt_C_Date">Fecha de caducidad:  </string>
-    <string name="C_Date">--</string>
+    <string name="C_Date"></string>
     <string name="Txt_C_CVC">Código de seguridad:  </string>
     <string name="C_CVC">--</string>
-    <string name="Txt_C_Websites">Sitio web: </string>
-    <string name="C_Websites">--</string>
     <string name="Txt_C_Note">Notas: </string>
     <string name="C_Note">--</string>
     <string name="Txt_C_RecordTime">Tiempo de registro: </string>
@@ -140,9 +141,18 @@
     <string name="Item_c_cvc">Codigo de seguridad</string>
     <string name="Item_c_note">Nota</string>
 
+    //Item generic
+    <string name="Item_g_title">Título</string>
+    <string name="Item_g">--</string>
 
     // Dialog box
-    <string name="TxtTotal">Total de registros</string>
+    <string name="Txt_web">Registros de aplicaciones web: </string>
+    <string name="Total_web">--</string>
+    <string name="Txt_bank">Registros de cuentas bancarias: </string>
+    <string name="Total_bank">--</string>
+    <string name="Txt_card">Registros de tarjetas de crédito:</string>
+    <string name="Total_card">--</string>
+    <string name="TxtTotal">Total de registros: </string>
     <string name="Total">--</string>
     <string name="Fully_Undertood">Entendido</string>
 
@@ -166,9 +176,10 @@
 
 
     //UserRegistration
-    <string name="Txt_Message">Por favor, introduzca una contraseña</string>
+    <string name="Et_Email">E-mail</string>
     <string name="Et_UserPassword">Contraseña</string>
     <string name="Et_ConfirmPassword">Confirmar contraseña</string>
+
 
 
     //Order record
@@ -188,7 +199,7 @@
 
     //Setting
     <string name="Txt_Setting">Ajustes</string>
-    <string name="Delete_All_Record">Eliminar todoslos registros</string>
+    <string name="Delete_All_Record">Eliminar todos los registros</string>
     <string name="Export_File">Exportar archivo CSV</string>
     <string name="Import_File">Importar archivo CSV</string>
     <string name="Btn_Registration">Registrar</string>
@@ -202,11 +213,8 @@
 
 
     //Info app
-    <string name="Txt_Developer">Desarrollado por: Javier García Pérez</string>
-    <string name="Txt_email">Contacto: javier.garcia.perez@hotmail.com</string>
-    <string name="Txt_version">Versión: 1.0</string>
     <string name="Txt_follow">Síguenos:</string>
-    <string name="Txt_political_terms">Términos y políticas de privacidad</string>
+
 
     //ID proof
     <string name="id_proff">ca-app-pub-3940256099942544~3347511713</string>

@@ -80,8 +80,8 @@
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-    //Nombre usuario
 
+    //Nombre usuario
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,6 +95,10 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             //Datos
             <TextView
                 android:id="@+id/D_Username"
@@ -104,15 +108,28 @@
                 android:textStyle="italic"
                 android:textSize="15sp"/>
 
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/Img_copy_usename_web"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:background="@null"
+                android:src="@drawable/icon_copy"
+                android:clickable="true"
+                android:onClick="copyTextUsename"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"/>
+
+            </RelativeLayout>
             //Linea para mejorar diseño
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/black"/>
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     //Contraseña
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -120,6 +137,9 @@
             android:orientation="vertical"
             android:layout_marginTop="12dp">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             // Texto
             <TextView
                 android:text="@string/Txt_D_Password"
@@ -146,6 +166,19 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/Img_copy_password_web"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@null"
+                    android:src="@drawable/icon_copy"
+                    android:clickable="true"
+                    android:onClick="copyTextPassword"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"/>
+            </RelativeLayout>
             //Linea para mejorar diseño
             <View
                 android:layout_width="match_parent"
@@ -180,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:text="@string/D_Websites"
+                android:hint="www."
                 android:textSize="15sp"
                 android:layout_toStartOf="@id/Img_web"/>
 
@@ -302,6 +335,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
                 android:background="@color/black"/>
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/D_image"
             android:src="@drawable/logo_image"
